@@ -17,6 +17,7 @@ namespace SDAM2_LMS.Models
             // Temporary constructor
         }
 
+        // Adds book to catalogue and then updates it
         public void AddToCatalogue(Book book)
         {
             this.Books.Add(book);
