@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 
 namespace SDAM2_LMS.Models
 {
-    internal class Catalouge
+    internal class Catalogue
     {
         public List<Author>? Authors { get; private set; }
         public List<Book>? Books { get; private set; }
         public List<Genre>? Genres { get; private set; }
 
-        public Catalouge()
+        public Catalogue()
         {
             // Temporary constructor
         }
 
-        public void AddToCatalouge(Book book)
+        public void AddToCatalogue(Book book)
         {
             this.Books.Add(book);
-            UpdateCatalouge(book);
+            UpdateCatalogue(book);
         }
-        public void UpdateCatalouge(Book book)
+        public void UpdateCatalogue(Book book)
         {
             foreach (var author in book.Authors)
             {
