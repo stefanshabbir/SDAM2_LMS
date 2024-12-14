@@ -21,10 +21,7 @@ namespace SDAM2_LMS.Models
         public void AddToCatalogue(Book book)
         {
             this.Books.Add(book);
-            UpdateCatalogue(book);
-        }
-        public void UpdateCatalogue(Book book)
-        {
+
             foreach (var author in book.Authors)
             {
                 bool authorDoesNotExist = !this.Authors.Contains(author);
@@ -37,5 +34,6 @@ namespace SDAM2_LMS.Models
                 if (genreDoesNotExist) { this.Genres.Add(genre); }
             }
         }
+        
     }
 }
