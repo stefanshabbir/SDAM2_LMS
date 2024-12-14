@@ -16,5 +16,25 @@ namespace SDAM2_LMS.Models
         {
             // Temporary constructor
         }
+
+        public void AddToCatalouge(Book book)
+        {
+            this.Books.Add(book);
+            UpdateCatalouge(book);
+        }
+        public void UpdateCatalouge(Book book)
+        {
+            foreach (var author in book.Authors)
+            {
+                bool authorDoesNotExist = !this.Authors.Contains(author);
+                if (authorDoesNotExist) { this.Authors.Add(author); }
+            }
+
+            foreach (var genre in book.Genres)
+            {
+                bool genreDoesNotExist = !this.Genres.Contains(genre);
+                if (genreDoesNotExist) { this.Genres.Add(genre); }
+            }
+        }
     }
 }
