@@ -8,6 +8,6 @@ namespace SDAM2_LMS.Models
 {
     internal class Genre
     {
-        public string GenreName { get; protected set; }
+        public string? GenreName { get; protected set; }
     }
 }

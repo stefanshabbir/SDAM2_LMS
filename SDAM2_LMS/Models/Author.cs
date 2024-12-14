@@ -8,8 +8,8 @@ namespace SDAM2_LMS.Models
 {
     internal class Author
     {
-        public string AuthorName { get; protected set; }
-        public string Contact { get; protected set; }
+        public string? AuthorName { get; protected set; }
+        public string? Contact { get; protected set; }
 
     }
 }
