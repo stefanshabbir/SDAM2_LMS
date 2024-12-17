@@ -9,7 +9,6 @@ namespace SDAM2_LMS.Models
 {
     internal class Librarian : Account
     {
-        private bool IsStaff { get; set; }
 
         public Librarian(string username, string password, int accountId) : base(username, password, accountId)
         {

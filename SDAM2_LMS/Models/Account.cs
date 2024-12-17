@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace SDAM2_LMS.Models
 {
-    internal class Account
+    internal class Account : IAccount
     {
-        private string Username { get; set; }
-        private string Password { get; set; }
-        private int AccountID { get; set; }
+        public string Username { get; private set; }
+        public string Password { get; private set; }
+        public int AccountID { get; private set; }
 
 
         public Account(string username, string password, int accountId)

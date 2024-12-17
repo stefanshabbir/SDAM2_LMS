@@ -8,15 +8,20 @@ namespace SDAM2_LMS.Models
 {
     internal class Member : Account
     {
-        private DateTime DateOfMembership { get; set; }
-        private List<Book> BooksCheckedOut { get; set; }
+        public DateTime DateOfMembership { get; private set; }
+        public List<Book> BooksCheckedOut { get; private set; }
 
-        public Member(string username, string password, int accountId, DateTime dateOfMembership,List<Book> booksCheckedOut) : base(username, password, accountId)
+        public Member(string username, string password, int accountId, DateTime dateOfMembership) : base(username, password, accountId)
         {
-
+            this.DateOfMembership = dateOfMembership;
+            this.BooksCheckedOut = new List<Book>();
         }
 
-        public void returnBook(Book book)
+        public void BorrowBook(Book book)
+        {
+            BooksCheckedOut.Add(book);
+        }
+        public void ReturnBook(Book book)
         {
             BooksCheckedOut.Remove(book);
         }
