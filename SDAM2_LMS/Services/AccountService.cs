@@ -1,10 +1,11 @@
-﻿using System;
+﻿using SDAM2_LMS.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SDAM2_LMS.Models
+namespace SDAM2_LMS.Services
 {
     internal class AccountService : IAccountService
     {
@@ -19,17 +20,18 @@ namespace SDAM2_LMS.Models
         }
 
         //simulating registrations
-        public bool Register(string username, string password, string confirmPassword) 
+        public bool Register(string username, string password, string confirmPassword)
         {
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-                return false; 
+                return false;
 
-            if (password !=  confirmPassword)
+            if (password != confirmPassword)
                 return false;
 
             if (accounts.Any(a => a.Username == username))
                 return false;
 
+            // adds username, password and ascending number for acc ID and returns true
             accounts.Add(new Account(username, password, accounts.Count + 1));
             return true;
         }

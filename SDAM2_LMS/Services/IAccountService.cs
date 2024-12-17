@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SDAM2_LMS.Models
+namespace SDAM2_LMS.Services
 {
     internal interface IAccountService
     {
