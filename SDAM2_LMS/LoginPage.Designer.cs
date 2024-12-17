@@ -30,8 +30,8 @@
         {
             lbl1 = new Label();
             lbl2 = new Label();
-            txt1 = new TextBox();
-            txt2 = new TextBox();
+            textBoxUsername = new TextBox();
+            textBoxPassword = new TextBox();
             button1 = new Button();
             textBox1 = new TextBox();
             label1 = new Label();
@@ -55,19 +55,20 @@
             lbl2.TabIndex = 1;
             lbl2.Text = "Password";
             // 
-            // txt1
+            // textBoxUsername
             // 
-            txt1.Location = new Point(172, 242);
-            txt1.Name = "txt1";
-            txt1.Size = new Size(475, 39);
-            txt1.TabIndex = 2;
+            textBoxUsername.Location = new Point(172, 242);
+            textBoxUsername.Name = "textBoxUsername";
+            textBoxUsername.Size = new Size(475, 39);
+            textBoxUsername.TabIndex = 2;
             // 
-            // txt2
+            // textBoxPassword
             // 
-            txt2.Location = new Point(172, 383);
-            txt2.Name = "txt2";
-            txt2.Size = new Size(475, 39);
-            txt2.TabIndex = 3;
+            textBoxPassword.Location = new Point(172, 383);
+            textBoxPassword.Multiline = true;
+            textBoxPassword.Name = "textBoxPassword";
+            textBoxPassword.Size = new Size(475, 39);
+            textBoxPassword.TabIndex = 3;
             // 
             // button1
             // 
@@ -105,8 +106,8 @@
             Controls.Add(label1);
             Controls.Add(textBox1);
             Controls.Add(button1);
-            Controls.Add(txt2);
-            Controls.Add(txt1);
+            Controls.Add(textBoxPassword);
+            Controls.Add(textBoxUsername);
             Controls.Add(lbl2);
             Controls.Add(lbl1);
             FormBorderStyle = FormBorderStyle.None;
@@ -125,5 +126,7 @@
         private Button button1;
         private TextBox textBox1;
         private Label label1;
+        private TextBox textBoxUsername;
+        private TextBox textBoxPassword;
     }
 }

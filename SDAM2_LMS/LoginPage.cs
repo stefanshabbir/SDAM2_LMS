@@ -20,33 +20,38 @@ namespace SDAM2_LMS
         private void button1_Click(object sender, EventArgs e)
         {
 
-            string username = txt1.Text;
-            string password = txt2.Text;
+            string username = textBoxUsername.Text; 
+            string password = textBoxPassword.Text; 
 
-
+            
             string validUsername = "admin";
             string validPassword = "password123";
 
-
+            
             if (username == validUsername && password == validPassword)
             {
                 MessageBox.Show("Login Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-
-                LoginPage mainPage = new LoginPage();
+                
+                MainPage mainPage = new MainPage(); 
                 mainPage.Show();
-
-                this.Hide();
+                this.Hide(); 
             }
             else
             {
-                MessageBox.Show("Invalid Username or Password!", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid Username or Password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-
-                txt1.Clear();
-                txt2.Clear();
-                txt1.Focus();
+                
+                textBoxUsername.Clear();
+                textBoxPassword.Clear();
+                textBoxUsername.Focus();
             }
+
+        }
+
+        private void txtUsername_MouseEnter(object sender, EventArgs e)
+        {
+
         }
     }
 }
