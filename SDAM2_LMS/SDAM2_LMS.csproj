@@ -11,7 +11,7 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Models\LibraryManagement.db">
+    <Resource Include="Models\Data\LibraryManagement.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
