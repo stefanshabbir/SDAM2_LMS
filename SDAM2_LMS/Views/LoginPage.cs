@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDAM2_LMS.Controllers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,8 +13,10 @@ namespace SDAM2_LMS
 {
     public partial class LoginPage : Form
     {
-        public LoginPage()
+        private readonly AccountController _accountController;
+        public LoginPage(AccountController accountController)
         {
+            _accountController = accountController;
             InitializeComponent();
         }
 
@@ -23,12 +26,7 @@ namespace SDAM2_LMS
             string username = textBoxUsername.Text; 
             string password = textBoxPassword.Text; 
 
-            
-            string validUsername = "admin";
-            string validPassword = "password123";
-
-            
-            if (username == validUsername && password == validPassword)
+            if (_accountController.Login(username, password))
             {
                 MessageBox.Show("Login Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

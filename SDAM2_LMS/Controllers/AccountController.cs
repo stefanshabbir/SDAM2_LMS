@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace SDAM2_LMS.Controllers
 {
-    internal class AccountController
+    public class AccountController
     {
         private readonly IAccountService _accountService;
-        public AccountController(IAccount accountService) 
+        public AccountController(IAccountService accountService) 
         {
-            this._accountService = (IAccountService?)accountService;
+            _accountService = accountService;
         }
 
-        public void Login(string username, string password)
+        public bool Login(string username, string password)
         {
-
+            return _accountService.Login(username, password);
         }
 
         public void Register(string username, string password, string confirmPassword) 

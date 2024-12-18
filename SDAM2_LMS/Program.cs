@@ -1,3 +1,5 @@
+using SDAM2_LMS.Controllers;
+using SDAM2_LMS.Services;
 using System;
 using System.Windows.Forms;
 
@@ -14,7 +16,10 @@ namespace SDAM2_LMS
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new LoginPage());
+            // Create the AccountService and AccountController
+            var accountService = new AccountService();
+            var accountController = new AccountController(accountService);
+            Application.Run(new LoginPage(accountController));
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SDAM2_LMS.Services
 {
-    internal interface IAccountService
+    public interface IAccountService
     {
         bool Login(string username, string password);
         bool Register(string username, string password, string confirmPassword);

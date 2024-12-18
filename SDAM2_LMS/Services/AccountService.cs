@@ -10,13 +10,21 @@ namespace SDAM2_LMS.Services
     internal class AccountService : IAccountService
     {
         //placeholder list to simulate list of accounts
-        private List<Account> accounts = new List<Account>();
+        private readonly List<Account> _accounts;
+
+        public AccountService() 
+        {
+            _accounts = new List<Account>
+            {
+                new Account("admin", "admin123", 1) //Admin username
+            };
+        }
 
         //simulating the login 
         public bool Login(string username, string password)
         {
             // searching for corresponding account in list
-            return accounts.Any(a => a.Username == username && a.Password == password);
+            return _accounts.Any(a => a.Username == username && a.Password == password);
         }
 
         //simulating registrations
@@ -28,11 +36,11 @@ namespace SDAM2_LMS.Services
             if (password != confirmPassword)
                 return false;
 
-            if (accounts.Any(a => a.Username == username))
+            if (_accounts.Any(a => a.Username == username))
                 return false;
 
             // adds username, password and ascending number for acc ID and returns true
-            accounts.Add(new Account(username, password, accounts.Count + 1));
+            _accounts.Add(new Account(username, password, _accounts.Count + 1));
             return true;
         }
     }
