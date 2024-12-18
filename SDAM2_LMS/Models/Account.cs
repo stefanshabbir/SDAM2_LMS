@@ -10,6 +10,7 @@ namespace SDAM2_LMS.Models
     {
         public int AccountID { get; private set; }
         public int PersonalInfo { get; private set; }
+
         public string Username { get; private set; }
         public string Password { get; private set; }
 

@@ -11,6 +11,9 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="System.Data.SQLite" Version="1.0.119" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Models\Data\LibraryManagement.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
