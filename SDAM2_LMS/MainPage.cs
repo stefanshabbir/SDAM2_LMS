@@ -10,20 +10,11 @@ using System.Windows.Forms;
 
 namespace SDAM2_LMS
 {
-    public partial class Register : Form
+    public partial class MainPage : Form
     {
-        public Register()
+        public MainPage()
         {
             InitializeComponent();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Register registerForm = new Register();
-            
-            registerForm.Show();
-
-            this.Hide();
         }
     }
 }
