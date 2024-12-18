@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SDAM2_LMS.Models.Data;
 
 namespace SDAM2_LMS.Models
 {
