@@ -8,7 +8,7 @@ namespace SDAM2_LMS.Models
 {
     internal class Book
     {
-        protected int BookID { get; private set; }
+        protected Database_ID BookID { get; private set; }
 
         public string? Title { get; private set; }
         public List<string> Authors { get; private set; }
@@ -17,7 +17,7 @@ namespace SDAM2_LMS.Models
         public string? Language { get; private set; }
         public string? ISBN { get; private set; }
 
-        public Book(string title, List<string> authors, List<string> genres, List<string> publisher, string language, string isbn)
+        public Book(string title, List<string> authors, List<string> genres, List<string> publisher, string language, string isbn, int id)
         {
             this.Title = title;
             this.Authors = authors;
@@ -25,11 +25,7 @@ namespace SDAM2_LMS.Models
             this.Publisher = publisher;
             this.Language = language;
             this.ISBN = isbn;
-        }
-
-        public void SetBookID(int id)
-        {
-            this.BookID = id;
-        }
+            this.BookID = new Database_ID(id);
+        }     
     }
 }

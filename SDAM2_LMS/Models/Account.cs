@@ -8,8 +8,8 @@ namespace SDAM2_LMS.Models
 {
     internal class Account : IAccount
     {
-        public int AccountID { get; private set; }
-        public int PersonalInfo { get; private set; }
+        public Database_ID AccountID { get; private set; }
+        public Database_ID PersonalInfo { get; private set; }
 
         public string Username { get; private set; }
         public string Password { get; private set; }
@@ -19,8 +19,8 @@ namespace SDAM2_LMS.Models
         {
             this.Username = username;
             this.Password = password;
-            this.AccountID = accountId;
-            this.PersonalInfo = personalInfoID;
+            this.AccountID = new Database_ID(accountId);
+            this.PersonalInfo = new Database_ID(personalInfoID);
         }
 
         public void ResetPassword(string newPassword)
