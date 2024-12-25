@@ -10,22 +10,16 @@ using System.Windows.Forms;
 
 namespace SDAM2_LMS
 {
-    public partial class Register : Form
+    public partial class Dashboard : Form
     {
-        public Register()
+        public Dashboard()
         {
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void studentToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoginPage loginForm = new LoginPage();
 
-          
-            loginForm.Show();
-
-           
-            this.Hide();
         }
     }
 }
