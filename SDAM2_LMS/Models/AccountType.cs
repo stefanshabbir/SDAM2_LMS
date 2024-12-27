@@ -16,5 +16,7 @@ namespace SDAM2_LMS.Models
             this.AccountTypeID = accountTypeID;
             this.AccountTypeName = accountTypeName;
         }
+
+        public ICollection<Account> Accounts { get; set; }
     }
 }
