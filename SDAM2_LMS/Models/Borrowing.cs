@@ -15,10 +15,10 @@ namespace SDAM2_LMS.Models
         public DateTime BorrowDate { get; private set; }
         public DateTime ReturnDate { get; private set; }
 
-        //public Book Book { get; set; }
-        //public Account Account { get; set; }
+        public Book Book { get; set; }
+        public Account Account { get; set; }
 
-        public Borrowing (int borrowID, int bookID, int accountID, DateTime borrowDate, DateTime returnDate, Book book, Account account)
+        public Borrowing(int borrowID, int bookID, int accountID, DateTime borrowDate, DateTime returnDate, Book book, Account account)
         {
             this.BorrowID = borrowID;
             this.BookID = bookID;

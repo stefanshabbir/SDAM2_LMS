@@ -16,14 +16,16 @@ namespace SDAM2_LMS.Models
 
         public PersonalID_Info PersonalID_Info { get; private set; }
         public AccountType AccountType { get; private set; }
+        public ICollection<Borrowing> Borrowings { get; private set; } = new List<Borrowing>();
 
 
-        public Account(string username, string password, int accountId, int personalInfoID)
+        public Account(string username, string password, int accountId, int personalInfoID, int accountTypeID)
         {
             this.Username = username;
             this.Password = password;
             this.AccountID = accountId;
             this.PersonalID = personalInfoID;
+            this.AccountTypeID = accountTypeID;
         }
 
         public void ResetPassword(string newPassword)
