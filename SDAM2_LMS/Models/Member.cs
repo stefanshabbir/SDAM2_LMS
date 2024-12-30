@@ -11,7 +11,8 @@ namespace SDAM2_LMS.Models
         public DateTime DateOfMembership { get; private set; }
         public List<Book> BooksCheckedOut { get; private set; }
 
-        public Member(string username, string password, int accountId, DateTime dateOfMembership) : base(username, password, accountId)
+        public Member(string username, string password, int accountId, int personalInfoID, int accountTypeID, DateTime dateOfMembership) 
+            : base(username, password, accountId, personalInfoID, accountTypeID)
         {
             this.DateOfMembership = dateOfMembership;
             this.BooksCheckedOut = new List<Book>();

@@ -32,7 +32,7 @@ namespace SDAM2_LMS.Services
                 return false;
 
             // adds username, password and ascending number for acc ID and returns true
-            accounts.Add(new Account(username, password, accounts.Count + 1));
+            //accounts.Add(new Account(username, password, accounts.Count + 1));
             return true;
         }
     }
