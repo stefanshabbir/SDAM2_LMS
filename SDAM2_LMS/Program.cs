@@ -19,7 +19,7 @@ namespace SDAM2_LMS
             ApplicationConfiguration.Initialize();
 
             var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
-            optionsBuilder.UseSqlite("Data Source=LibraryManagement.db");
+            optionsBuilder.UseSqlite("Data Source=./Models/Data/LibraryManagement.db");
 
             using (var context = new DatabaseContext(optionsBuilder.Options))
             {
