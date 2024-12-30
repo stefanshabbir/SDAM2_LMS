@@ -8,17 +8,18 @@ namespace SDAM2_LMS.Models
 {
     internal class Account : IAccount
     {
-        public int AccountID { get; private set; }
+        public int AccountID { get; set; }
         public string Username { get; private set; }
         public string Password { get; private set; }
-        public int PersonalID { get; private set; }
-        public int AccountTypeID { get; private set; }
+        public int PersonalID { get; set; }
+        public int AccountTypeID { get; set; }
 
-        public PersonalID_Info PersonalID_Info { get; private set; }
+        public PersonalID_Info PersonalID_Info { get;  set; }
         public AccountType AccountType { get; private set; }
         public ICollection<Borrowing> Borrowings { get; private set; } = new List<Borrowing>();
 
 
+        public Account() { }
         public Account(string username, string password, int accountId, int personalInfoID, int accountTypeID)
         {
             this.Username = username;

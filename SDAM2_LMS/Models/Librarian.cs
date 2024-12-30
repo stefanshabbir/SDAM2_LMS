@@ -9,7 +9,7 @@ namespace SDAM2_LMS.Models
 {
     internal class Librarian : Account
     {
-
+        public Librarian() { }
         public Librarian(string username, string password, int accountId, int personalInfoID, int accountTypeID) 
             : base(username, password, accountId, personalInfoID, accountTypeID)
         {

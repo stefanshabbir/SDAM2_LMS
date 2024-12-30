@@ -18,6 +18,8 @@ namespace SDAM2_LMS.Models
         public Book Book { get; set; }
         public Account Account { get; set; }
 
+
+        public Borrowing() { }
         public Borrowing(int borrowID, int bookID, int accountID, DateTime borrowDate, DateTime returnDate, Book book, Account account)
         {
             this.BorrowID = borrowID;

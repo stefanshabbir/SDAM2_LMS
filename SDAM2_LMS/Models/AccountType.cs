@@ -8,9 +8,11 @@ namespace SDAM2_LMS.Models
 {
     internal class AccountType
     {
-        public int AccountTypeID { get; private set; }
+        public int AccountTypeID { get; set; }
         public string AccountTypeName { get; set; }
 
+
+        public AccountType() { }
         public AccountType(int accountTypeID, string accountTypeName ) 
         {
             this.AccountTypeID = accountTypeID;

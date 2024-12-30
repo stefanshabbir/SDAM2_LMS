@@ -16,6 +16,8 @@ namespace SDAM2_LMS.Models
         public string? ISBN { get; private set; }
         internal int BookID { get; private set; }
 
+
+        public Book() { }
         public Book(string title, List<string> authors, List<string> genres, List<string> publisher, string language, string isbn)
         {
             this.Title = title;
