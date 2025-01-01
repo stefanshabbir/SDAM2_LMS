@@ -18,15 +18,15 @@ namespace SDAM2_LMS
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
-            optionsBuilder.UseSqlite("Data Source=./Models/Data/LibraryManagement.db");
+            //var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            //optionsBuilder.UseSqlite("Data Source=./Models/Data/LibraryManagement.db");
 
-            using (var context = new DatabaseContext(optionsBuilder.Options))
-            {
-                context.Database.Migrate();
-            }
+            //using (var context = new DatabaseContext(optionsBuilder.Options))
+            //{
+            //    context.Database.Migrate();
+            //}
 
-            Application.Run(new LoginPage());
+            Application.Run(new MainPage());
         }
     }
 }

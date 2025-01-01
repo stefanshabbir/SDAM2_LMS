@@ -1,4 +1,7 @@
-﻿using System;
+﻿using SDAM2_LMS.Controllers;
+using SDAM2_LMS.Models;
+using SDAM2_LMS.Models.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,18 +20,15 @@ namespace SDAM2_LMS
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void LoginBtn_Click(object sender, EventArgs e)
         {
-
             string username = textBoxUsername.Text; 
             string password = textBoxPassword.Text; 
 
-            
-            string validUsername = "admin";
-            string validPassword = "password123";
+            var controller = new AccountController(new DatabaseContext());
+            var user = controller.Login(username, password);
 
-            
-            if (username == validUsername && password == validPassword)
+            if (user != null)
             {
                 MessageBox.Show("Login Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
