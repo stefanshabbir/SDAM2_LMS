@@ -75,6 +75,7 @@
             viewBooksToolStripMenuItem.Name = "viewBooksToolStripMenuItem";
             viewBooksToolStripMenuItem.Size = new Size(359, 44);
             viewBooksToolStripMenuItem.Text = "View Books";
+            viewBooksToolStripMenuItem.Click += viewBooksToolStripMenuItem_Click;
             // 
             // studentToolStripMenuItem
             // 
@@ -89,14 +90,15 @@
             // 
             addMemberToolStripMenuItem.Image = (Image)resources.GetObject("addMemberToolStripMenuItem.Image");
             addMemberToolStripMenuItem.Name = "addMemberToolStripMenuItem";
-            addMemberToolStripMenuItem.Size = new Size(296, 44);
+            addMemberToolStripMenuItem.Size = new Size(359, 44);
             addMemberToolStripMenuItem.Text = "Add Member";
+            addMemberToolStripMenuItem.Click += addMemberToolStripMenuItem_Click;
             // 
             // viewMemberToolStripMenuItem
             // 
             viewMemberToolStripMenuItem.Image = (Image)resources.GetObject("viewMemberToolStripMenuItem.Image");
             viewMemberToolStripMenuItem.Name = "viewMemberToolStripMenuItem";
-            viewMemberToolStripMenuItem.Size = new Size(296, 44);
+            viewMemberToolStripMenuItem.Size = new Size(359, 44);
             viewMemberToolStripMenuItem.Text = "View Member";
             // 
             // issueBooksToolStripMenuItem
