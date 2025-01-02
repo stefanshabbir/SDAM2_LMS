@@ -33,8 +33,8 @@ namespace SDAM2_LMS
                 MessageBox.Show("Login Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
-                MainPage mainPage = new MainPage();
-                mainPage.Show();
+                Dashboard dashboard = new Dashboard();
+                dashboard.Show();
                 this.Hide();
             }
             else

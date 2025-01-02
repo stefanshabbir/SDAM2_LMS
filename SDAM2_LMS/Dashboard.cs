@@ -21,5 +21,21 @@ namespace SDAM2_LMS
         {
 
         }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to Exit?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                Application.Exit();
+
+            }
+
+        }
+
+        private void addNewBooksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddBooks abs = new AddBooks();
+            abs.Show();
+        }
     }
 }
