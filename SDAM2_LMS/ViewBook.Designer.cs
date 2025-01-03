@@ -274,7 +274,6 @@
             Controls.Add(label2);
             Controls.Add(panel1);
             Name = "ViewBook";
-            Text = "ViewBook";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
