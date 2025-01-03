@@ -50,5 +50,11 @@ namespace SDAM2_LMS
             AddMember am = new AddMember();
             am.Show();
         }
+
+        private void completeBookDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CompleteBookDetails cbd = new CompleteBookDetails();    
+            cbd.Show();
+        }
     }
 }
