@@ -19,19 +19,14 @@ namespace SDAM2_LMS
 
         private void button1_Click(object sender, EventArgs e)
         {
-
             string username = textBoxUsername.Text;
             string password = textBoxPassword.Text;
 
-
             string validUsername = "admin";
             string validPassword = "password123";
-
-
             if (username == validUsername && password == validPassword)
             {
                 MessageBox.Show("Login Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
 
                 Dashboard dashboard = new Dashboard();
                 dashboard.Show();
@@ -40,8 +35,6 @@ namespace SDAM2_LMS
             else
             {
                 MessageBox.Show("Invalid Username or Password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-
                 textBoxUsername.Clear();
                 textBoxPassword.Clear();
                 textBoxUsername.Focus();
@@ -53,7 +46,6 @@ namespace SDAM2_LMS
         {
 
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             Register registerForm = new Register();
