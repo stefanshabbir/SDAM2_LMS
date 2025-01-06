@@ -1,5 +1,4 @@
-﻿namespace SDAM2_LMS
-{https://github.com/stefanshabbir/SDAM2_LMS/pull/9/conflict?name=SDAM2_LMS%252FViews%252FLoginPage.Designer.cs&base_oid=ee5811bd115c6d613be9bf6f973761f873c927c0&head_oid=24fdbfd00c9015aa3bc45ba0082709b97eaf3925
+﻿namespace SDAM2_LMS;
     partial class LoginPage
     {
         /// <summary>
@@ -142,4 +141,3 @@
         private TextBox textBoxPassword;
         private Button button2;
     }
-}
