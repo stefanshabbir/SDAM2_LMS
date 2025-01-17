@@ -22,8 +22,8 @@ namespace SDAM2_LMS
 
         private void LoginBtn_Click(object sender, EventArgs e)
         {
-            string username = textBoxUsername.Text; 
-            string password = textBoxPassword.Text; 
+            string username = textBoxUsername.Text;
+            string password = textBoxPassword.Text;
 
             var controller = new AccountController(new DatabaseContext());
             var user = controller.Login(username, password);
@@ -32,16 +32,16 @@ namespace SDAM2_LMS
             {
                 MessageBox.Show("Login Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                
-                MainPage mainPage = new MainPage(); 
-                mainPage.Show();
-                this.Hide(); 
+
+                //MainPage mainPage = new MainPage();
+                //mainPage.Show();
+                this.Hide();
             }
             else
             {
                 MessageBox.Show("Invalid Username or Password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                
+
                 textBoxUsername.Clear();
                 textBoxPassword.Clear();
                 textBoxUsername.Focus();
@@ -52,6 +52,12 @@ namespace SDAM2_LMS
         private void txtUsername_MouseEnter(object sender, EventArgs e)
         {
 
+        }
+
+        private void RegistrationBtn_Click(object sender, EventArgs e)
+        {
+            new Register().Show();
+            this.Hide();
         }
     }
 }

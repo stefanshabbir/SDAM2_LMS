@@ -26,7 +26,7 @@ namespace SDAM2_LMS
             //    context.Database.Migrate();
             //}
 
-            Application.Run(new MainPage());
+            Application.Run(new LoginPage());
         }
     }
 }
