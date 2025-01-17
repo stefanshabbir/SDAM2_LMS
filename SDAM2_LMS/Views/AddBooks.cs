@@ -10,22 +10,16 @@ using System.Windows.Forms;
 
 namespace SDAM2_LMS
 {
-    public partial class Register : Form
+    public partial class AddBooks : Form
     {
-        public Register()
+        public AddBooks()
         {
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
-            LoginPage loginForm = new LoginPage();
 
-          
-            loginForm.Show();
-
-           
-            this.Hide();
         }
     }
 }
