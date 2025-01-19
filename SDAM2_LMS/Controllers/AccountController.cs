@@ -1,4 +1,5 @@
 ﻿using SDAM2_LMS.Models;
+using SDAM2_LMS.Models.Data;
 using SDAM2_LMS.Services;
 using System;
 using System.Collections.Generic;
@@ -10,20 +11,35 @@ namespace SDAM2_LMS.Controllers
 {
     internal class AccountController
     {
-        private readonly IAccountService _accountService;
-        public AccountController(IAccount accountService) 
+        private readonly DatabaseContext _context;
+        public AccountController(DatabaseContext context)
         {
-            this._accountService = (IAccountService?)accountService;
+            _context = context;
         }
 
-        public void Login(string username, string password)
+        public Account Login(string username, string password)
         {
-
+            return _context.Accounts.FirstOrDefault(a=> a.Username == username && a.Password == password);
         }
 
-        public void Register(string username, string password, string confirmPassword) 
+        public bool Register(string username, string password, string confirmPassword) 
         {
-            
+            try
+            {
+                if (_context.Accounts.Any(a=> a.Username == username))
+                    return false;
+
+                var account = new Account { Username = username, Password = password, PersonalID = 124124, AccountTypeID = 12312 };
+
+                _context.Accounts.Add(account);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return false;
+            }
         }
     }
 }

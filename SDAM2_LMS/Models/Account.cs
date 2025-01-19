@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDAM2_LMS.Models.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,8 @@ namespace SDAM2_LMS.Models
     internal class Account : IAccount
     {
         public int AccountID { get; set; }
-        public string Username { get; private set; }
-        public string Password { get; private set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
         public int PersonalID { get; set; }
         public int AccountTypeID { get; set; }
 
@@ -20,11 +21,10 @@ namespace SDAM2_LMS.Models
 
 
         public Account() { }
-        public Account(string username, string password, int accountId, int personalInfoID, int accountTypeID)
+        public Account(string username, string password, int personalInfoID, int accountTypeID)
         {
             this.Username = username;
             this.Password = password;
-            this.AccountID = accountId;
             this.PersonalID = personalInfoID;
             this.AccountTypeID = accountTypeID;
         }
