@@ -8,10 +8,10 @@ namespace SDAM2_LMS.Models
 {
     internal class Book
     {
-        public string? Title { get; private set; }
-        public List<string> Authors { get; private set; }
-        public List<string> Genres { get; private set; }
-        public List<string> Publisher { get; private set; }
+        public string Title { get; private set; }
+        public string Author { get; private set; }
+        public string Genre { get; private set; }
+        public string Publisher { get; private set; }
         public string? Language { get; private set; }
         public string? ISBN { get; private set; }
         public int Quantity { get; private set; }
@@ -20,12 +20,12 @@ namespace SDAM2_LMS.Models
 
         public Book() { }
         public Book(
-            string title, List<string> authors, List<string> genres, List<string> publisher, string language, string isbn, int quantity
+        string title, string author, string genre, string publisher, string language, string isbn, int quantity
             )
         {
             this.Title = title;
-            this.Authors = authors;
-            this.Genres = genres;
+            this.Author = author;
+            this.Genre = genre;
             this.Publisher = publisher;
             this.Language = language;
             this.ISBN = isbn;
