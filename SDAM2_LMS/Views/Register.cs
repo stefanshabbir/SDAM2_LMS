@@ -22,12 +22,16 @@ namespace SDAM2_LMS
         private void RegisterBtn_Click(object sender, EventArgs e)
         {
             string username = UsernameInput.Text;
-            string email = EmailInput.Text;
             string password = PasswordInput.Text;
             string confirmPassword = ConfirmPasswordInput.Text;
 
-            var controller = new Services.AccountService(new DatabaseContext());
-            bool isRegistered = controller.Register(username, password, email);
+            string email = EmailInput.Text;
+            string phone = PhoneInput.Text;
+            string address = addressInput.Text;
+            string name = NameInput.Text;
+
+            var controller = new AccountController(new Services.AccountService(new DatabaseContext()));
+            bool isRegistered = controller.Register(username, password, email, name, address, phone);
 
             if (isRegistered)
             {

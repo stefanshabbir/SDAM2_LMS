@@ -38,6 +38,12 @@
             ConfirmPasswordInput = new TextBox();
             RegisterBtn = new Button();
             title = new Label();
+            usernameLabel = new Label();
+            NameInput = new TextBox();
+            phoneNumberLabel = new Label();
+            PhoneInput = new TextBox();
+            addressInput = new TextBox();
+            label1 = new Label();
             SuspendLayout();
             // 
             // lbl1
@@ -63,7 +69,7 @@
             // lbl3
             // 
             lbl3.AutoSize = true;
-            lbl3.Location = new Point(28, 214);
+            lbl3.Location = new Point(28, 277);
             lbl3.Margin = new Padding(2, 0, 2, 0);
             lbl3.Name = "lbl3";
             lbl3.Size = new Size(57, 15);
@@ -73,7 +79,7 @@
             // lbl4
             // 
             lbl4.AutoSize = true;
-            lbl4.Location = new Point(28, 280);
+            lbl4.Location = new Point(28, 311);
             lbl4.Margin = new Padding(2, 0, 2, 0);
             lbl4.Name = "lbl4";
             lbl4.Size = new Size(104, 15);
@@ -82,7 +88,7 @@
             // 
             // UsernameInput
             // 
-            UsernameInput.Location = new Point(149, 79);
+            UsernameInput.Location = new Point(149, 240);
             UsernameInput.Margin = new Padding(2, 1, 2, 1);
             UsernameInput.Name = "UsernameInput";
             UsernameInput.Size = new Size(245, 23);
@@ -98,7 +104,7 @@
             // 
             // PasswordInput
             // 
-            PasswordInput.Location = new Point(149, 211);
+            PasswordInput.Location = new Point(149, 274);
             PasswordInput.Margin = new Padding(2, 1, 2, 1);
             PasswordInput.Name = "PasswordInput";
             PasswordInput.Size = new Size(245, 23);
@@ -106,7 +112,7 @@
             // 
             // ConfirmPasswordInput
             // 
-            ConfirmPasswordInput.Location = new Point(149, 277);
+            ConfirmPasswordInput.Location = new Point(149, 308);
             ConfirmPasswordInput.Margin = new Padding(2, 1, 2, 1);
             ConfirmPasswordInput.Name = "ConfirmPasswordInput";
             ConfirmPasswordInput.Size = new Size(245, 23);
@@ -134,11 +140,71 @@
             title.TabIndex = 9;
             title.Text = "Sign up ";
             // 
+            // usernameLabel
+            // 
+            usernameLabel.AutoSize = true;
+            usernameLabel.Location = new Point(28, 243);
+            usernameLabel.Margin = new Padding(2, 0, 2, 0);
+            usernameLabel.Name = "usernameLabel";
+            usernameLabel.Size = new Size(60, 15);
+            usernameLabel.TabIndex = 10;
+            usernameLabel.Text = "Username";
+            // 
+            // NameInput
+            // 
+            NameInput.Location = new Point(149, 76);
+            NameInput.Margin = new Padding(2, 1, 2, 1);
+            NameInput.Name = "NameInput";
+            NameInput.Size = new Size(245, 23);
+            NameInput.TabIndex = 11;
+            // 
+            // phoneNumberLabel
+            // 
+            phoneNumberLabel.AutoSize = true;
+            phoneNumberLabel.Location = new Point(28, 114);
+            phoneNumberLabel.Margin = new Padding(2, 0, 2, 0);
+            phoneNumberLabel.Name = "phoneNumberLabel";
+            phoneNumberLabel.Size = new Size(88, 15);
+            phoneNumberLabel.TabIndex = 12;
+            phoneNumberLabel.Text = "Phone Number";
+            // 
+            // PhoneInput
+            // 
+            PhoneInput.Location = new Point(149, 111);
+            PhoneInput.Margin = new Padding(2, 1, 2, 1);
+            PhoneInput.Name = "PhoneInput";
+            PhoneInput.Size = new Size(245, 23);
+            PhoneInput.TabIndex = 13;
+            // 
+            // addressInput
+            // 
+            addressInput.Location = new Point(149, 179);
+            addressInput.Margin = new Padding(2, 1, 2, 1);
+            addressInput.Name = "addressInput";
+            addressInput.Size = new Size(245, 23);
+            addressInput.TabIndex = 14;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(28, 182);
+            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(49, 15);
+            label1.TabIndex = 15;
+            label1.Text = "Address";
+            // 
             // Register
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(546, 369);
+            Controls.Add(label1);
+            Controls.Add(addressInput);
+            Controls.Add(PhoneInput);
+            Controls.Add(phoneNumberLabel);
+            Controls.Add(NameInput);
+            Controls.Add(usernameLabel);
             Controls.Add(title);
             Controls.Add(RegisterBtn);
             Controls.Add(ConfirmPasswordInput);
@@ -169,5 +235,11 @@
         private TextBox ConfirmPasswordInput;
         private Button RegisterBtn;
         private Label title;
+        private Label usernameLabel;
+        private TextBox NameInput;
+        private Label phoneNumberLabel;
+        private TextBox PhoneInput;
+        private TextBox addressInput;
+        private Label label1;
     }
 }

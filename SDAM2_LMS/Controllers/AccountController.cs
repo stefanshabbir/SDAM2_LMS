@@ -4,8 +4,10 @@ using SDAM2_LMS.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace SDAM2_LMS.Controllers
 {
@@ -25,9 +27,9 @@ namespace SDAM2_LMS.Controllers
             return _accountService.Login(username, password);
         }
 
-        public bool Register(string username, string password, string email) 
-        { 
-            return _accountService.Register(username, password, email);
+        public bool Register(string username, string password, string email,string name, string address, string phone)
+        {
+            return _accountService.Register(username, password, email, name, address, phone);
         }
         
     }

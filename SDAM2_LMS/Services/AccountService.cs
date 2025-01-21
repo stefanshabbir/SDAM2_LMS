@@ -4,8 +4,10 @@ using SDAM2_LMS.Models.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace SDAM2_LMS.Services
 {
@@ -29,7 +31,7 @@ namespace SDAM2_LMS.Services
         }
 
         //simulating registrations
-        public bool Register(string username, string password, string email)
+        public bool Register(string username, string password, string email, string name, string address, string phone)
         {
 
             var accountExists = _context.Accounts.FirstOrDefault(a => a.Username == username);
@@ -38,7 +40,7 @@ namespace SDAM2_LMS.Services
                 return false;
             } else
             {
-                var personal = new PersonalID_Info(null, email, null, null);
+                var personal = new PersonalID_Info(name, email, phone, address);
                 _context.PersonalIDs.Add(personal);
                 _context.SaveChanges();
 
