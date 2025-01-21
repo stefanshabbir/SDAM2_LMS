@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SDAM2_LMS.Controllers;
+using SDAM2_LMS.Models.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,15 +19,36 @@ namespace SDAM2_LMS
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void RegisterBtn_Click(object sender, EventArgs e)
         {
-            LoginPage loginForm = new LoginPage();
+            string username = UsernameInput.Text;
+            string email = EmailInput.Text;
+            string password = PasswordInput.Text;
+            string confirmPassword = ConfirmPasswordInput.Text;
 
-          
-            loginForm.Show();
+            var controller = new Services.AccountService(new DatabaseContext());
+            bool isRegistered = controller.Register(username, password, email);
 
-           
-            this.Hide();
+            if (isRegistered)
+            {
+                MessageBox.Show("Registration Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                this.Hide();
+                new Dashboard().Show();
+            }
+            else
+            {
+                MessageBox.Show("Invalid Username or Password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                PasswordInput.Clear();
+                UsernameInput.Clear();
+                EmailInput.Clear();
+                ConfirmPasswordInput.Clear();
+                UsernameInput.Focus();
+            }
+
+
+
         }
     }
 }

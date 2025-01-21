@@ -11,35 +11,24 @@ namespace SDAM2_LMS.Controllers
 {
     internal class AccountController
     {
-        private readonly DatabaseContext _context;
-        public AccountController(DatabaseContext context)
+        private readonly AccountService _accountService;
+        public AccountController(AccountService accountService)
         {
-            _context = context;
+            _accountService = accountService;
         }
 
         public Account Login(string username, string password)
         {
-            return _context.Accounts.FirstOrDefault(a=> a.Username == username && a.Password == password);
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+                throw new ArgumentException("Username or password cannot be empty.");
+
+            return _accountService.Login(username, password);
         }
 
-        public bool Register(string username, string password, string confirmPassword) 
-        {
-            try
-            {
-                if (_context.Accounts.Any(a=> a.Username == username))
-                    return false;
-
-                var account = new Account { Username = username, Password = password, PersonalID = 124124, AccountTypeID = 12312 };
-
-                _context.Accounts.Add(account);
-                _context.SaveChanges();
-                return true;
-            }
-            catch (Exception ex) 
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-                return false;
-            }
+        public bool Register(string username, string password, string email) 
+        { 
+            return _accountService.Register(username, password, email);
         }
+        
     }
 }

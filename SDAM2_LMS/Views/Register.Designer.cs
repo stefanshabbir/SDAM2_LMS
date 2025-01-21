@@ -32,114 +32,125 @@
             lbl2 = new Label();
             lbl3 = new Label();
             lbl4 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            button2 = new Button();
+            UsernameInput = new TextBox();
+            EmailInput = new TextBox();
+            PasswordInput = new TextBox();
+            ConfirmPasswordInput = new TextBox();
+            RegisterBtn = new Button();
             title = new Label();
             SuspendLayout();
             // 
             // lbl1
             // 
             lbl1.AutoSize = true;
-            lbl1.Location = new Point(52, 169);
+            lbl1.Location = new Point(28, 79);
+            lbl1.Margin = new Padding(2, 0, 2, 0);
             lbl1.Name = "lbl1";
-            lbl1.Size = new Size(78, 32);
+            lbl1.Size = new Size(39, 15);
             lbl1.TabIndex = 0;
             lbl1.Text = "Name";
             // 
             // lbl2
             // 
             lbl2.AutoSize = true;
-            lbl2.Location = new Point(52, 309);
+            lbl2.Location = new Point(28, 145);
+            lbl2.Margin = new Padding(2, 0, 2, 0);
             lbl2.Name = "lbl2";
-            lbl2.Size = new Size(162, 32);
+            lbl2.Size = new Size(81, 15);
             lbl2.TabIndex = 1;
             lbl2.Text = "Email Address";
             // 
             // lbl3
             // 
             lbl3.AutoSize = true;
-            lbl3.Location = new Point(52, 457);
+            lbl3.Location = new Point(28, 214);
+            lbl3.Margin = new Padding(2, 0, 2, 0);
             lbl3.Name = "lbl3";
-            lbl3.Size = new Size(111, 32);
+            lbl3.Size = new Size(57, 15);
             lbl3.TabIndex = 2;
             lbl3.Text = "Password";
             // 
             // lbl4
             // 
             lbl4.AutoSize = true;
-            lbl4.Location = new Point(52, 598);
+            lbl4.Location = new Point(28, 280);
+            lbl4.Margin = new Padding(2, 0, 2, 0);
             lbl4.Name = "lbl4";
-            lbl4.Size = new Size(204, 32);
+            lbl4.Size = new Size(104, 15);
             lbl4.TabIndex = 3;
             lbl4.Text = "Confirm Password";
             // 
-            // textBox1
+            // UsernameInput
             // 
-            textBox1.Location = new Point(277, 169);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(451, 39);
-            textBox1.TabIndex = 4;
+            UsernameInput.Location = new Point(149, 79);
+            UsernameInput.Margin = new Padding(2, 1, 2, 1);
+            UsernameInput.Name = "UsernameInput";
+            UsernameInput.Size = new Size(245, 23);
+            UsernameInput.TabIndex = 4;
             // 
-            // textBox2
+            // EmailInput
             // 
-            textBox2.Location = new Point(277, 306);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(451, 39);
-            textBox2.TabIndex = 5;
+            EmailInput.Location = new Point(149, 143);
+            EmailInput.Margin = new Padding(2, 1, 2, 1);
+            EmailInput.Name = "EmailInput";
+            EmailInput.Size = new Size(245, 23);
+            EmailInput.TabIndex = 5;
             // 
-            // textBox3
+            // PasswordInput
             // 
-            textBox3.Location = new Point(277, 450);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(451, 39);
-            textBox3.TabIndex = 6;
+            PasswordInput.Location = new Point(149, 211);
+            PasswordInput.Margin = new Padding(2, 1, 2, 1);
+            PasswordInput.Name = "PasswordInput";
+            PasswordInput.Size = new Size(245, 23);
+            PasswordInput.TabIndex = 6;
             // 
-            // textBox4
+            // ConfirmPasswordInput
             // 
-            textBox4.Location = new Point(277, 591);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(451, 39);
-            textBox4.TabIndex = 7;
+            ConfirmPasswordInput.Location = new Point(149, 277);
+            ConfirmPasswordInput.Margin = new Padding(2, 1, 2, 1);
+            ConfirmPasswordInput.Name = "ConfirmPasswordInput";
+            ConfirmPasswordInput.Size = new Size(245, 23);
+            ConfirmPasswordInput.TabIndex = 7;
             // 
-            // button2
+            // RegisterBtn
             // 
-            button2.Location = new Point(797, 726);
-            button2.Name = "button2";
-            button2.Size = new Size(150, 46);
-            button2.TabIndex = 8;
-            button2.Text = "Register";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            RegisterBtn.Location = new Point(429, 340);
+            RegisterBtn.Margin = new Padding(2, 1, 2, 1);
+            RegisterBtn.Name = "RegisterBtn";
+            RegisterBtn.Size = new Size(81, 22);
+            RegisterBtn.TabIndex = 8;
+            RegisterBtn.Text = "Register";
+            RegisterBtn.UseVisualStyleBackColor = true;
+            RegisterBtn.Click += RegisterBtn_Click;
             // 
             // title
             // 
             title.AutoSize = true;
             title.Font = new Font("Arial Black", 19.875F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            title.Location = new Point(365, 9);
+            title.Location = new Point(197, 4);
+            title.Margin = new Padding(2, 0, 2, 0);
             title.Name = "title";
-            title.Size = new Size(264, 74);
+            title.Size = new Size(136, 38);
             title.TabIndex = 9;
             title.Text = "Sign up ";
             // 
             // Register
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1014, 852);
+            ClientSize = new Size(546, 369);
             Controls.Add(title);
-            Controls.Add(button2);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(RegisterBtn);
+            Controls.Add(ConfirmPasswordInput);
+            Controls.Add(PasswordInput);
+            Controls.Add(EmailInput);
+            Controls.Add(UsernameInput);
             Controls.Add(lbl4);
             Controls.Add(lbl3);
             Controls.Add(lbl2);
             Controls.Add(lbl1);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(2, 1, 2, 1);
             Name = "Register";
             Text = "Register";
             ResumeLayout(false);
@@ -152,11 +163,11 @@
         private Label lbl2;
         private Label lbl3;
         private Label lbl4;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private Button button2;
+        private TextBox UsernameInput;
+        private TextBox EmailInput;
+        private TextBox PasswordInput;
+        private TextBox ConfirmPasswordInput;
+        private Button RegisterBtn;
         private Label title;
     }
 }

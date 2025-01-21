@@ -13,7 +13,7 @@ namespace SDAM2_LMS.Models.Data
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=LibraryManagement.db");
+            optionsBuilder.UseSqlite("Data Source=./Models/Data/LibraryManagement.db");
         }
 
         public DbSet<AccountType> AccountTypes { get; set; }

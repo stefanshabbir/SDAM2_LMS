@@ -25,16 +25,14 @@ namespace SDAM2_LMS
             string username = textBoxUsername.Text;
             string password = textBoxPassword.Text;
 
-            var controller = new AccountController(new DatabaseContext());
+            var controller = new AccountController(new Services.AccountService(new DatabaseContext()));
             var user = controller.Login(username, password);
 
             if (user != null)
             {
                 MessageBox.Show("Login Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-
-                //MainPage mainPage = new MainPage();
-                //mainPage.Show();
+                new Dashboard().Show();
                 this.Hide();
             }
             else
