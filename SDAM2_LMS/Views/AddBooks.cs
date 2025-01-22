@@ -18,8 +18,16 @@ namespace SDAM2_LMS
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
+        { }
+
+        private void btn_save_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_cancel_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }
