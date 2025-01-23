@@ -31,7 +31,7 @@
             panel1 = new Panel();
             label1 = new Label();
             panel2 = new Panel();
-            textBox1 = new TextBox();
+            inpt_language = new TextBox();
             lbl_language = new Label();
             inpt_genre = new TextBox();
             lbl_genre = new Label();
@@ -77,7 +77,7 @@
             // panel2
             // 
             panel2.BackColor = Color.Gainsboro;
-            panel2.Controls.Add(textBox1);
+            panel2.Controls.Add(inpt_language);
             panel2.Controls.Add(lbl_language);
             panel2.Controls.Add(inpt_genre);
             panel2.Controls.Add(lbl_genre);
@@ -99,13 +99,13 @@
             panel2.Size = new Size(447, 406);
             panel2.TabIndex = 2;
             // 
-            // textBox1
+            // inpt_language
             // 
-            textBox1.Location = new Point(182, 211);
-            textBox1.Margin = new Padding(2, 1, 2, 1);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(234, 23);
-            textBox1.TabIndex = 18;
+            inpt_language.Location = new Point(182, 211);
+            inpt_language.Margin = new Padding(2, 1, 2, 1);
+            inpt_language.Name = "inpt_language";
+            inpt_language.Size = new Size(234, 23);
+            inpt_language.TabIndex = 18;
             // 
             // lbl_language
             // 
@@ -287,7 +287,7 @@
         private Label lbl_isbn;
         private TextBox inpt_genre;
         private Label lbl_genre;
-        private TextBox textBox1;
+        private TextBox inpt_language;
         private Label lbl_language;
     }
 }
