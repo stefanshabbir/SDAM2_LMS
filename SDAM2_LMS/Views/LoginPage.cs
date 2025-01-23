@@ -30,12 +30,17 @@ namespace SDAM2_LMS
 
             if (user != null)
             {
-                MessageBox.Show("Login Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (user.AccountTypeID == 1)
+                {
+                    LibrarianDashboard dashboard = new LibrarianDashboard();
+                    dashboard.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    //TODO: Log into member's dashboard
+                }
 
-
-                Dashboard dashboard = new Dashboard();
-                dashboard.Show();
-                this.Hide();
             }
             else
             {

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SDAM2_LMS.ErrorLog;
 
 namespace SDAM2_LMS.Controllers
 {
@@ -35,7 +36,8 @@ namespace SDAM2_LMS.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error Occured: {ex.Message}");
+                new WriteErrorLog(ex);
+                Console.WriteLine($"Error Logged");
                 return false;
             }
         }

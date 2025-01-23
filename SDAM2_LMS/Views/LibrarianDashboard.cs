@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SDAM2_LMS
 {
-    public partial class Dashboard : Form
+    public partial class LibrarianDashboard : Form
     {
-        public Dashboard()
+        public LibrarianDashboard()
         {
             InitializeComponent();
         }
