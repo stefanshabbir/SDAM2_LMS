@@ -9,12 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="ErrorLog\[Date_Time]_Error.txt" />
+    <None Remove="ErrorLogs\[Date_Time]_Error.txt" />
     <None Remove="Models\Data\LibraryManagement.db" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="ErrorLog\[Date_Time]_Error.txt">
+    <Content Include="ErrorLogs\[Date_Time]_Error.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Models\Data\LibraryManagement.db">
