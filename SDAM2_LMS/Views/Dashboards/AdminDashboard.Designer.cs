@@ -1,6 +1,6 @@
 ﻿namespace SDAM2_LMS
 {
-    partial class LibrarianDashboard
+    partial class AdminDashboard
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LibrarianDashboard));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminDashboard));
             menuStrip1 = new MenuStrip();
             booksToolStripMenuItem = new ToolStripMenuItem();
             viewBooksToolStripMenuItem = new ToolStripMenuItem();
             addNewBooksToolStripMenuItem = new ToolStripMenuItem();
             RemoveBooks = new ToolStripMenuItem();
             EditBooks = new ToolStripMenuItem();
+            studentToolStripMenuItem = new ToolStripMenuItem();
+            viewMemberToolStripMenuItem = new ToolStripMenuItem();
+            addMemberToolStripMenuItem = new ToolStripMenuItem();
             issueBooksToolStripMenuItem = new ToolStripMenuItem();
             AddReservations = new ToolStripMenuItem();
             RemoveReservations = new ToolStripMenuItem();
@@ -43,13 +46,15 @@
             returnBooksToolStripMenuItem = new ToolStripMenuItem();
             completeBookDetailsToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
+            RemoveMembers = new ToolStripMenuItem();
+            EditMembers = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(32, 32);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { booksToolStripMenuItem, issueBooksToolStripMenuItem, returnBooksToolStripMenuItem, completeBookDetailsToolStripMenuItem, exitToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { booksToolStripMenuItem, studentToolStripMenuItem, issueBooksToolStripMenuItem, returnBooksToolStripMenuItem, completeBookDetailsToolStripMenuItem, exitToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(3, 1, 0, 1);
@@ -69,33 +74,57 @@
             // 
             viewBooksToolStripMenuItem.Image = (Image)resources.GetObject("viewBooksToolStripMenuItem.Image");
             viewBooksToolStripMenuItem.Name = "viewBooksToolStripMenuItem";
-            viewBooksToolStripMenuItem.Size = new Size(152, 22);
+            viewBooksToolStripMenuItem.Size = new Size(196, 38);
             viewBooksToolStripMenuItem.Text = "View Books";
-            viewBooksToolStripMenuItem.Click += this.viewBooksToolStripMenuItem_Click;
+            viewBooksToolStripMenuItem.Click += viewBooksToolStripMenuItem_Click;
             // 
             // addNewBooksToolStripMenuItem
             // 
             addNewBooksToolStripMenuItem.Image = (Image)resources.GetObject("addNewBooksToolStripMenuItem.Image");
             addNewBooksToolStripMenuItem.Name = "addNewBooksToolStripMenuItem";
-            addNewBooksToolStripMenuItem.Size = new Size(152, 22);
+            addNewBooksToolStripMenuItem.Size = new Size(196, 38);
             addNewBooksToolStripMenuItem.Text = "Add Books";
-            addNewBooksToolStripMenuItem.Click += this.addNewBooksToolStripMenuItem_Click;
+            addNewBooksToolStripMenuItem.Click += addNewBooksToolStripMenuItem_Click;
             // 
             // RemoveBooks
             // 
             RemoveBooks.Name = "RemoveBooks";
-            RemoveBooks.Size = new Size(152, 22);
+            RemoveBooks.Size = new Size(196, 38);
             RemoveBooks.Text = "Remove Books";
             // 
             // EditBooks
             // 
             EditBooks.Name = "EditBooks";
-            EditBooks.Size = new Size(152, 22);
+            EditBooks.Size = new Size(196, 38);
             EditBooks.Text = "Edit Books";
+            // 
+            // studentToolStripMenuItem
+            // 
+            studentToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { viewMemberToolStripMenuItem, addMemberToolStripMenuItem, RemoveMembers, EditMembers });
+            studentToolStripMenuItem.Image = (Image)resources.GetObject("studentToolStripMenuItem.Image");
+            studentToolStripMenuItem.Name = "studentToolStripMenuItem";
+            studentToolStripMenuItem.Size = new Size(96, 36);
+            studentToolStripMenuItem.Text = "Member";
+            studentToolStripMenuItem.Click += studentToolStripMenuItem_Click;
+            // 
+            // viewMemberToolStripMenuItem
+            // 
+            viewMemberToolStripMenuItem.Image = (Image)resources.GetObject("viewMemberToolStripMenuItem.Image");
+            viewMemberToolStripMenuItem.Name = "viewMemberToolStripMenuItem";
+            viewMemberToolStripMenuItem.Size = new Size(196, 38);
+            viewMemberToolStripMenuItem.Text = "View Members";
+            // 
+            // addMemberToolStripMenuItem
+            // 
+            addMemberToolStripMenuItem.Image = (Image)resources.GetObject("addMemberToolStripMenuItem.Image");
+            addMemberToolStripMenuItem.Name = "addMemberToolStripMenuItem";
+            addMemberToolStripMenuItem.Size = new Size(196, 38);
+            addMemberToolStripMenuItem.Text = "Add Members";
+            addMemberToolStripMenuItem.Click += addMemberToolStripMenuItem_Click;
             // 
             // issueBooksToolStripMenuItem
             // 
-            issueBooksToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { AddReservations, RemoveReservations, EditReservations, ViewReservations });
+            issueBooksToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ViewReservations, AddReservations, RemoveReservations, EditReservations });
             issueBooksToolStripMenuItem.Image = (Image)resources.GetObject("issueBooksToolStripMenuItem.Image");
             issueBooksToolStripMenuItem.Name = "issueBooksToolStripMenuItem";
             issueBooksToolStripMenuItem.Size = new Size(117, 36);
@@ -138,7 +167,7 @@
             completeBookDetailsToolStripMenuItem.Name = "completeBookDetailsToolStripMenuItem";
             completeBookDetailsToolStripMenuItem.Size = new Size(171, 36);
             completeBookDetailsToolStripMenuItem.Text = "Complete Book Details";
-            completeBookDetailsToolStripMenuItem.Click += this.completeBookDetailsToolStripMenuItem_Click;
+            completeBookDetailsToolStripMenuItem.Click += completeBookDetailsToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
@@ -146,9 +175,21 @@
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             exitToolStripMenuItem.Size = new Size(70, 36);
             exitToolStripMenuItem.Text = "Exit";
-            exitToolStripMenuItem.Click += this.exitToolStripMenuItem_Click;
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
-            // LibrarianDashboard
+            // RemoveMembers
+            // 
+            RemoveMembers.Name = "RemoveMembers";
+            RemoveMembers.Size = new Size(196, 38);
+            RemoveMembers.Text = "Remove Members";
+            // 
+            // EditMembers
+            // 
+            EditMembers.Name = "EditMembers";
+            EditMembers.Size = new Size(196, 38);
+            EditMembers.Text = "Edit Members";
+            // 
+            // AdminDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -159,7 +200,7 @@
             FormBorderStyle = FormBorderStyle.None;
             MainMenuStrip = menuStrip1;
             Margin = new Padding(2, 1, 2, 1);
-            Name = "LibrarianDashboard";
+            Name = "AdminDashboard";
             Text = "Dashboard";
             WindowState = FormWindowState.Maximized;
             menuStrip1.ResumeLayout(false);
@@ -174,6 +215,9 @@
         private ToolStripMenuItem booksToolStripMenuItem;
         private ToolStripMenuItem addNewBooksToolStripMenuItem;
         private ToolStripMenuItem viewBooksToolStripMenuItem;
+        private ToolStripMenuItem studentToolStripMenuItem;
+        private ToolStripMenuItem addMemberToolStripMenuItem;
+        private ToolStripMenuItem viewMemberToolStripMenuItem;
         private ToolStripMenuItem issueBooksToolStripMenuItem;
         private ToolStripMenuItem returnBooksToolStripMenuItem;
         private ToolStripMenuItem completeBookDetailsToolStripMenuItem;
@@ -184,5 +228,7 @@
         private ToolStripMenuItem AddReservations;
         private ToolStripMenuItem EditReservations;
         private ToolStripMenuItem ViewReservations;
+        private ToolStripMenuItem RemoveMembers;
+        private ToolStripMenuItem EditMembers;
     }
 }
