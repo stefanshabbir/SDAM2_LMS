@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDAM2_LMS.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,10 @@ namespace SDAM2_LMS
         public Dashboard()
         {
             InitializeComponent();
+            if (AppSession.IsLoggedIn)
+            {
+                MessageBox.Show($"Welcome, {AppSession.LoggedInAccount.Username}!");
+            }
         }
 
         private void studentToolStripMenuItem_Click(object sender, EventArgs e)

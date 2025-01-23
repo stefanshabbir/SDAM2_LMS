@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -27,7 +28,9 @@ namespace SDAM2_LMS.Services
         public Account Login(string username, string password)
         {
             // searching for corresponding account in list
-            return _context.Accounts.FirstOrDefault(a => a.Username == username && a.Password == password);
+            var account = _context.Accounts.FirstOrDefault(a => a.Username == username && a.Password == password);
+            AppSession.LoggedInAccount = account;
+            return account;
         }
 
         //simulating registrations
@@ -54,6 +57,7 @@ namespace SDAM2_LMS.Services
 
                 _context.Accounts.Add(account);
                 _context.SaveChanges();
+                AppSession.LoggedInAccount = account;
                 return true;
             }
             
