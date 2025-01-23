@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SDAM2_LMS.Services
+namespace SDAM2_LMS.Models.Services
 {
-    internal class AccountService : IAccountService
+    internal class AccountService 
     {
         //placeholder list to simulate list of accounts
         private List<Account> accounts = new List<Account>();
