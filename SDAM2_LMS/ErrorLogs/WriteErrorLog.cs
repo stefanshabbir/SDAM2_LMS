@@ -14,15 +14,17 @@ namespace SDAM2_LMS.ErrorLog
             this.WriteToLogFile(exception);
         }
 
-        public void WriteToLogFile(Exception exception)
+        public void WriteToLogFile(Exception e)
         {
             try
             {
                 string logDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ErrorLogs");
                 string fileName = $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss}_Error.txt";
-
                 string filePath = Path.Combine(logDirectory, fileName);
-                File.WriteAllText(filePath, exception.ToString());
+
+                string errorLogText =
+$"===\nERROR MESSAGE:\n{e.Message}\n===\n\n===INNER EXCEPTION:\n{e.InnerException.ToString()}===\n\n\n{e.ToString()}";
+                File.WriteAllText(filePath, errorLogText);
             }
             catch (Exception ex)
             {
