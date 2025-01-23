@@ -21,7 +21,7 @@ namespace SDAM2_LMS.Models
 
 
         public Account() { }
-        public Account(string username, string password, int personalInfoID, int accountTypeID)
+        public Account(string username, string password, int accountTypeID, int personalInfoID)
         {
             this.Username = username;
             this.Password = password;
