@@ -16,9 +16,8 @@ namespace SDAM2_LMS.Models
 
         public Account Account { get; set; }
 
-        public PersonalID_Info(int personalID, string name, string email, string phoneNumber, string address)
+        public PersonalID_Info(string name, string email, string phoneNumber, string address)
         {
-            PersonalID = personalID;
             Name = name;
             Email = email;
             PhoneNumber = phoneNumber;
