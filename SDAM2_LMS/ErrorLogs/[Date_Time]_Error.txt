@@ -1,1 +1,15 @@
-Log Format
+*** Error logs are in the bin/ directory. 
+*** Below is how an error log would look like so you can get the idea of the format, what it means and what you could do.
+
+===
+ERROR MESSAGE:
+Brief message of the error itself. If it's not enough check the Inner Exception.
+===
+
+===
+INNER EXCEPTION:
+hopefully this will be enough for you to find out the error and fix it.
+===
+
+
+There will be some random jargon around here, if you still can't figure out what's gone wrong copy paste this part to chatgpt and hope for the best.
