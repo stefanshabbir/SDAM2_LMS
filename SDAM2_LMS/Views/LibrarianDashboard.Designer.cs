@@ -1,6 +1,6 @@
 ﻿namespace SDAM2_LMS
 {
-    partial class Dashboard
+    partial class LibrarianDashboard
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LibrarianDashboard));
             menuStrip1 = new MenuStrip();
             booksToolStripMenuItem = new ToolStripMenuItem();
             addNewBooksToolStripMenuItem = new ToolStripMenuItem();
