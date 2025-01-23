@@ -15,6 +15,10 @@ namespace SDAM2_LMS
 {
     public partial class LoginPage : Form
     {
+        const int ADMIN = 1;
+        const int LIBRARIAN = 2;
+        const int MEMBER = 3;
+
         public LoginPage()
         {
             InitializeComponent();
@@ -30,15 +34,27 @@ namespace SDAM2_LMS
 
             if (user != null)
             {
-                MessageBox.Show("Login Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (user.AccountTypeID == ADMIN)
+                {
+                    AdminDashboard dashboard = new AdminDashboard();
+                    dashboard.Show();
+                    this.Hide();
+                }
+                else if (user.AccountTypeID == LIBRARIAN)
+                {
+                    LibrarianDashboard dashboard = new LibrarianDashboard();
+                    dashboard.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    //TODO: Log into member's dashboard
+                }
 
-                new Dashboard().Show();
-                this.Hide();
             }
             else
             {
                 MessageBox.Show("Invalid Username or Password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
 
                 textBoxUsername.Clear();
                 textBoxPassword.Clear();
