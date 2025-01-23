@@ -36,25 +36,25 @@
             RemoveBooks = new ToolStripMenuItem();
             EditBooks = new ToolStripMenuItem();
             studentToolStripMenuItem = new ToolStripMenuItem();
-            viewMemberToolStripMenuItem = new ToolStripMenuItem();
-            addMemberToolStripMenuItem = new ToolStripMenuItem();
-            issueBooksToolStripMenuItem = new ToolStripMenuItem();
+            ViewMembers = new ToolStripMenuItem();
+            AddMembers = new ToolStripMenuItem();
+            RemoveMembers = new ToolStripMenuItem();
+            EditMembers = new ToolStripMenuItem();
+            Reservations = new ToolStripMenuItem();
+            ViewReservations = new ToolStripMenuItem();
             AddReservations = new ToolStripMenuItem();
             RemoveReservations = new ToolStripMenuItem();
             EditReservations = new ToolStripMenuItem();
-            ViewReservations = new ToolStripMenuItem();
             returnBooksToolStripMenuItem = new ToolStripMenuItem();
             completeBookDetailsToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
-            RemoveMembers = new ToolStripMenuItem();
-            EditMembers = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(32, 32);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { booksToolStripMenuItem, studentToolStripMenuItem, issueBooksToolStripMenuItem, returnBooksToolStripMenuItem, completeBookDetailsToolStripMenuItem, exitToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { booksToolStripMenuItem, studentToolStripMenuItem, Reservations, returnBooksToolStripMenuItem, completeBookDetailsToolStripMenuItem, exitToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(3, 1, 0, 1);
@@ -74,61 +74,81 @@
             // 
             viewBooksToolStripMenuItem.Image = (Image)resources.GetObject("viewBooksToolStripMenuItem.Image");
             viewBooksToolStripMenuItem.Name = "viewBooksToolStripMenuItem";
-            viewBooksToolStripMenuItem.Size = new Size(196, 38);
+            viewBooksToolStripMenuItem.Size = new Size(152, 22);
             viewBooksToolStripMenuItem.Text = "View Books";
-            viewBooksToolStripMenuItem.Click += viewBooksToolStripMenuItem_Click;
+            viewBooksToolStripMenuItem.Click += ViewBooks_Click;
             // 
             // addNewBooksToolStripMenuItem
             // 
             addNewBooksToolStripMenuItem.Image = (Image)resources.GetObject("addNewBooksToolStripMenuItem.Image");
             addNewBooksToolStripMenuItem.Name = "addNewBooksToolStripMenuItem";
-            addNewBooksToolStripMenuItem.Size = new Size(196, 38);
+            addNewBooksToolStripMenuItem.Size = new Size(152, 22);
             addNewBooksToolStripMenuItem.Text = "Add Books";
             addNewBooksToolStripMenuItem.Click += addNewBooksToolStripMenuItem_Click;
             // 
             // RemoveBooks
             // 
             RemoveBooks.Name = "RemoveBooks";
-            RemoveBooks.Size = new Size(196, 38);
+            RemoveBooks.Size = new Size(152, 22);
             RemoveBooks.Text = "Remove Books";
             // 
             // EditBooks
             // 
             EditBooks.Name = "EditBooks";
-            EditBooks.Size = new Size(196, 38);
+            EditBooks.Size = new Size(152, 22);
             EditBooks.Text = "Edit Books";
             // 
             // studentToolStripMenuItem
             // 
-            studentToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { viewMemberToolStripMenuItem, addMemberToolStripMenuItem, RemoveMembers, EditMembers });
+            studentToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ViewMembers, AddMembers, RemoveMembers, EditMembers });
             studentToolStripMenuItem.Image = (Image)resources.GetObject("studentToolStripMenuItem.Image");
             studentToolStripMenuItem.Name = "studentToolStripMenuItem";
             studentToolStripMenuItem.Size = new Size(96, 36);
             studentToolStripMenuItem.Text = "Member";
             studentToolStripMenuItem.Click += studentToolStripMenuItem_Click;
             // 
-            // viewMemberToolStripMenuItem
+            // ViewMembers
             // 
-            viewMemberToolStripMenuItem.Image = (Image)resources.GetObject("viewMemberToolStripMenuItem.Image");
-            viewMemberToolStripMenuItem.Name = "viewMemberToolStripMenuItem";
-            viewMemberToolStripMenuItem.Size = new Size(196, 38);
-            viewMemberToolStripMenuItem.Text = "View Members";
+            ViewMembers.Image = (Image)resources.GetObject("ViewMembers.Image");
+            ViewMembers.Name = "ViewMembers";
+            ViewMembers.Size = new Size(196, 38);
+            ViewMembers.Text = "View Members";
             // 
-            // addMemberToolStripMenuItem
+            // AddMembers
             // 
-            addMemberToolStripMenuItem.Image = (Image)resources.GetObject("addMemberToolStripMenuItem.Image");
-            addMemberToolStripMenuItem.Name = "addMemberToolStripMenuItem";
-            addMemberToolStripMenuItem.Size = new Size(196, 38);
-            addMemberToolStripMenuItem.Text = "Add Members";
-            addMemberToolStripMenuItem.Click += addMemberToolStripMenuItem_Click;
+            AddMembers.Image = (Image)resources.GetObject("AddMembers.Image");
+            AddMembers.Name = "AddMembers";
+            AddMembers.Size = new Size(196, 38);
+            AddMembers.Text = "Add Members";
+            AddMembers.Click += AddMembers_Click;
             // 
-            // issueBooksToolStripMenuItem
+            // RemoveMembers
             // 
-            issueBooksToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ViewReservations, AddReservations, RemoveReservations, EditReservations });
-            issueBooksToolStripMenuItem.Image = (Image)resources.GetObject("issueBooksToolStripMenuItem.Image");
-            issueBooksToolStripMenuItem.Name = "issueBooksToolStripMenuItem";
-            issueBooksToolStripMenuItem.Size = new Size(117, 36);
-            issueBooksToolStripMenuItem.Text = "Reservations";
+            RemoveMembers.Name = "RemoveMembers";
+            RemoveMembers.Size = new Size(196, 38);
+            RemoveMembers.Text = "Remove Members";
+            RemoveMembers.Click += RemoveMembers_Click;
+            // 
+            // EditMembers
+            // 
+            EditMembers.Name = "EditMembers";
+            EditMembers.Size = new Size(196, 38);
+            EditMembers.Text = "Edit Members";
+            EditMembers.Click += EditMembers_Click;
+            // 
+            // Reservations
+            // 
+            Reservations.DropDownItems.AddRange(new ToolStripItem[] { ViewReservations, AddReservations, RemoveReservations, EditReservations });
+            Reservations.Image = (Image)resources.GetObject("Reservations.Image");
+            Reservations.Name = "Reservations";
+            Reservations.Size = new Size(117, 36);
+            Reservations.Text = "Reservations";
+            // 
+            // ViewReservations
+            // 
+            ViewReservations.Name = "ViewReservations";
+            ViewReservations.Size = new Size(186, 22);
+            ViewReservations.Text = "View Reservations";
             // 
             // AddReservations
             // 
@@ -147,12 +167,6 @@
             EditReservations.Name = "EditReservations";
             EditReservations.Size = new Size(186, 22);
             EditReservations.Text = "Edit Reservations";
-            // 
-            // ViewReservations
-            // 
-            ViewReservations.Name = "ViewReservations";
-            ViewReservations.Size = new Size(186, 22);
-            ViewReservations.Text = "View Reservations";
             // 
             // returnBooksToolStripMenuItem
             // 
@@ -176,18 +190,6 @@
             exitToolStripMenuItem.Size = new Size(70, 36);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
-            // 
-            // RemoveMembers
-            // 
-            RemoveMembers.Name = "RemoveMembers";
-            RemoveMembers.Size = new Size(196, 38);
-            RemoveMembers.Text = "Remove Members";
-            // 
-            // EditMembers
-            // 
-            EditMembers.Name = "EditMembers";
-            EditMembers.Size = new Size(196, 38);
-            EditMembers.Text = "Edit Members";
             // 
             // AdminDashboard
             // 
@@ -216,9 +218,9 @@
         private ToolStripMenuItem addNewBooksToolStripMenuItem;
         private ToolStripMenuItem viewBooksToolStripMenuItem;
         private ToolStripMenuItem studentToolStripMenuItem;
-        private ToolStripMenuItem addMemberToolStripMenuItem;
-        private ToolStripMenuItem viewMemberToolStripMenuItem;
-        private ToolStripMenuItem issueBooksToolStripMenuItem;
+        private ToolStripMenuItem AddMembers;
+        private ToolStripMenuItem ViewMembers;
+        private ToolStripMenuItem Reservations;
         private ToolStripMenuItem returnBooksToolStripMenuItem;
         private ToolStripMenuItem completeBookDetailsToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;

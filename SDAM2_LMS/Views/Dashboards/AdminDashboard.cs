@@ -38,23 +38,39 @@ namespace SDAM2_LMS
             abs.Show();
         }
 
-        private void viewBooksToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ViewBooks_Click(object sender, EventArgs e)
         {
             ViewBook vb = new ViewBook();
             vb.Show();
 
         }
 
-        private void addMemberToolStripMenuItem_Click(object sender, EventArgs e)
+        private void completeBookDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CompleteBookDetails cbd = new CompleteBookDetails();
+            cbd.Show();
+        }
+
+        private void ViewMembers_Click(object sender, EventArgs e)
+        {
+            ViewMember vm = new ViewMember();
+            vm.Show();
+        }
+
+        private void AddMembers_Click(object sender, EventArgs e)
         {
             AddMember am = new AddMember();
             am.Show();
         }
 
-        private void completeBookDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RemoveMembers_Click(object sender, EventArgs e)
         {
-            CompleteBookDetails cbd = new CompleteBookDetails();    
-            cbd.Show();
+
+        }
+
+        private void EditMembers_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
