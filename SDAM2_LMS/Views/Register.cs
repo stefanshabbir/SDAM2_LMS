@@ -38,7 +38,7 @@ namespace SDAM2_LMS
                 MessageBox.Show("Registration Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.Hide();
-                new Dashboard().Show();
+                new LibrarianDashboard().Show();
             }
             else
             {
