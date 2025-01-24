@@ -1,6 +1,6 @@
 ﻿namespace SDAM2_LMS
 {
-    partial class ViewBook
+    partial class ManageBooks
     {
         /// <summary>
         /// Required designer variable.
@@ -32,11 +32,13 @@
             label1 = new Label();
             label2 = new Label();
             SearchInput = new TextBox();
-            label3 = new Label();
             dataGridViewBooksView = new DataGridView();
             panel2 = new Panel();
+            btn_Add = new Button();
+            LanguageTextBox = new TextBox();
+            label10 = new Label();
             ISBNTextBox = new TextBox();
-            button3 = new Button();
+            btn_Clear = new Button();
             DeleteBtn = new Button();
             UpdateBtn = new Button();
             GenreTextBox = new TextBox();
@@ -50,8 +52,7 @@
             label6 = new Label();
             label5 = new Label();
             label4 = new Label();
-            label10 = new Label();
-            LanguageTextBox = new TextBox();
+            btn_Refresh = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewBooksView).BeginInit();
             panel2.SuspendLayout();
@@ -96,18 +97,6 @@
             SearchInput.Size = new Size(234, 23);
             SearchInput.TabIndex = 2;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.FlatStyle = FlatStyle.Popup;
-            label3.Location = new Point(697, 107);
-            label3.Margin = new Padding(2, 0, 2, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(46, 15);
-            label3.TabIndex = 3;
-            label3.Text = "Refresh";
-            label3.Click += label3_Click;
-            // 
             // dataGridViewBooksView
             // 
             dataGridViewBooksView.AllowUserToAddRows = false;
@@ -129,10 +118,11 @@
             // panel2
             // 
             panel2.BackColor = Color.DarkGray;
+            panel2.Controls.Add(btn_Add);
             panel2.Controls.Add(LanguageTextBox);
             panel2.Controls.Add(label10);
             panel2.Controls.Add(ISBNTextBox);
-            panel2.Controls.Add(button3);
+            panel2.Controls.Add(btn_Clear);
             panel2.Controls.Add(DeleteBtn);
             panel2.Controls.Add(UpdateBtn);
             panel2.Controls.Add(GenreTextBox);
@@ -149,30 +139,61 @@
             panel2.Location = new Point(14, 433);
             panel2.Margin = new Padding(2, 1, 2, 1);
             panel2.Name = "panel2";
-            panel2.Size = new Size(859, 264);
+            panel2.Size = new Size(859, 238);
             panel2.TabIndex = 5;
+            // 
+            // btn_Add
+            // 
+            btn_Add.Location = new Point(489, 197);
+            btn_Add.Margin = new Padding(2, 1, 2, 1);
+            btn_Add.Name = "btn_Add";
+            btn_Add.Size = new Size(81, 22);
+            btn_Add.TabIndex = 19;
+            btn_Add.Text = "Add";
+            btn_Add.UseVisualStyleBackColor = true;
+            btn_Add.Click += btn_Add_Click;
+            // 
+            // LanguageTextBox
+            // 
+            LanguageTextBox.Location = new Point(177, 196);
+            LanguageTextBox.Margin = new Padding(2, 1, 2, 1);
+            LanguageTextBox.Name = "LanguageTextBox";
+            LanguageTextBox.Size = new Size(237, 23);
+            LanguageTextBox.TabIndex = 18;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 12F);
+            label10.Location = new Point(11, 196);
+            label10.Margin = new Padding(2, 0, 2, 0);
+            label10.Name = "label10";
+            label10.Size = new Size(78, 21);
+            label10.TabIndex = 17;
+            label10.Text = "Language";
             // 
             // ISBNTextBox
             // 
-            ISBNTextBox.Location = new Point(620, 46);
+            ISBNTextBox.Location = new Point(624, 19);
             ISBNTextBox.Margin = new Padding(2, 1, 2, 1);
             ISBNTextBox.Name = "ISBNTextBox";
             ISBNTextBox.Size = new Size(217, 23);
             ISBNTextBox.TabIndex = 16;
             // 
-            // button3
+            // btn_Clear
             // 
-            button3.Location = new Point(776, 224);
-            button3.Margin = new Padding(2, 1, 2, 1);
-            button3.Name = "button3";
-            button3.Size = new Size(81, 22);
-            button3.TabIndex = 15;
-            button3.Text = "Cancel";
-            button3.UseVisualStyleBackColor = true;
+            btn_Clear.Location = new Point(776, 197);
+            btn_Clear.Margin = new Padding(2, 1, 2, 1);
+            btn_Clear.Name = "btn_Clear";
+            btn_Clear.Size = new Size(81, 22);
+            btn_Clear.TabIndex = 15;
+            btn_Clear.Text = "Clear";
+            btn_Clear.UseVisualStyleBackColor = true;
+            btn_Clear.Click += btn_Clear_Click;
             // 
             // DeleteBtn
             // 
-            DeleteBtn.Location = new Point(683, 224);
+            DeleteBtn.Location = new Point(683, 197);
             DeleteBtn.Margin = new Padding(2, 1, 2, 1);
             DeleteBtn.Name = "DeleteBtn";
             DeleteBtn.Size = new Size(81, 22);
@@ -183,7 +204,7 @@
             // 
             // UpdateBtn
             // 
-            UpdateBtn.Location = new Point(584, 224);
+            UpdateBtn.Location = new Point(584, 197);
             UpdateBtn.Margin = new Padding(2, 1, 2, 1);
             UpdateBtn.Name = "UpdateBtn";
             UpdateBtn.Size = new Size(81, 22);
@@ -194,7 +215,7 @@
             // 
             // GenreTextBox
             // 
-            GenreTextBox.Location = new Point(616, 165);
+            GenreTextBox.Location = new Point(620, 138);
             GenreTextBox.Margin = new Padding(2, 1, 2, 1);
             GenreTextBox.Name = "GenreTextBox";
             GenreTextBox.Size = new Size(221, 23);
@@ -202,7 +223,7 @@
             // 
             // QuantityTextBox
             // 
-            QuantityTextBox.Location = new Point(616, 105);
+            QuantityTextBox.Location = new Point(620, 78);
             QuantityTextBox.Margin = new Padding(2, 1, 2, 1);
             QuantityTextBox.Name = "QuantityTextBox";
             QuantityTextBox.Size = new Size(217, 23);
@@ -210,7 +231,7 @@
             // 
             // PublisherTextBox
             // 
-            PublisherTextBox.Location = new Point(173, 173);
+            PublisherTextBox.Location = new Point(177, 146);
             PublisherTextBox.Margin = new Padding(2, 1, 2, 1);
             PublisherTextBox.Name = "PublisherTextBox";
             PublisherTextBox.Size = new Size(237, 23);
@@ -218,7 +239,7 @@
             // 
             // AuthorTextBox
             // 
-            AuthorTextBox.Location = new Point(173, 107);
+            AuthorTextBox.Location = new Point(177, 80);
             AuthorTextBox.Margin = new Padding(2, 1, 2, 1);
             AuthorTextBox.Name = "AuthorTextBox";
             AuthorTextBox.Size = new Size(237, 23);
@@ -226,7 +247,7 @@
             // 
             // TitleTextBox
             // 
-            TitleTextBox.Location = new Point(173, 40);
+            TitleTextBox.Location = new Point(177, 13);
             TitleTextBox.Margin = new Padding(2, 1, 2, 1);
             TitleTextBox.Name = "TitleTextBox";
             TitleTextBox.Size = new Size(237, 23);
@@ -236,7 +257,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 12F);
-            label9.Location = new Point(426, 162);
+            label9.Location = new Point(430, 135);
             label9.Margin = new Padding(2, 0, 2, 0);
             label9.Name = "label9";
             label9.Size = new Size(52, 21);
@@ -247,7 +268,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 12F);
-            label8.Location = new Point(426, 105);
+            label8.Location = new Point(430, 78);
             label8.Margin = new Padding(2, 0, 2, 0);
             label8.Name = "label8";
             label8.Size = new Size(70, 21);
@@ -258,7 +279,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F);
-            label7.Location = new Point(424, 44);
+            label7.Location = new Point(428, 17);
             label7.Margin = new Padding(2, 0, 2, 0);
             label7.Name = "label7";
             label7.Size = new Size(44, 21);
@@ -269,7 +290,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F);
-            label6.Location = new Point(7, 169);
+            label6.Location = new Point(11, 142);
             label6.Margin = new Padding(2, 0, 2, 0);
             label6.Name = "label6";
             label6.Size = new Size(126, 21);
@@ -280,7 +301,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F);
-            label5.Location = new Point(7, 106);
+            label5.Location = new Point(11, 79);
             label5.Margin = new Padding(2, 0, 2, 0);
             label5.Name = "label5";
             label5.Size = new Size(143, 21);
@@ -291,40 +312,32 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(7, 42);
+            label4.Location = new Point(11, 15);
             label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
             label4.Size = new Size(91, 21);
             label4.TabIndex = 0;
             label4.Text = "Book Name";
             // 
-            // label10
+            // btn_Refresh
             // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI", 12F);
-            label10.Location = new Point(7, 223);
-            label10.Margin = new Padding(2, 0, 2, 0);
-            label10.Name = "label10";
-            label10.Size = new Size(78, 21);
-            label10.TabIndex = 17;
-            label10.Text = "Language";
-            // 
-            // LanguageTextBox
-            // 
-            LanguageTextBox.Location = new Point(173, 223);
-            LanguageTextBox.Margin = new Padding(2, 1, 2, 1);
-            LanguageTextBox.Name = "LanguageTextBox";
-            LanguageTextBox.Size = new Size(237, 23);
-            LanguageTextBox.TabIndex = 18;
+            btn_Refresh.Location = new Point(634, 103);
+            btn_Refresh.Margin = new Padding(2, 1, 2, 1);
+            btn_Refresh.Name = "btn_Refresh";
+            btn_Refresh.Size = new Size(81, 22);
+            btn_Refresh.TabIndex = 19;
+            btn_Refresh.Text = "Refresh";
+            btn_Refresh.UseVisualStyleBackColor = true;
+            btn_Refresh.Click += btn_Refresh_Click;
             // 
             // ViewBook
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(884, 704);
+            ClientSize = new Size(884, 674);
+            Controls.Add(btn_Refresh);
             Controls.Add(panel2);
             Controls.Add(dataGridViewBooksView);
-            Controls.Add(label3);
             Controls.Add(SearchInput);
             Controls.Add(label2);
             Controls.Add(panel1);
@@ -346,7 +359,6 @@
         private Label label1;
         private Label label2;
         private TextBox SearchInput;
-        private Label label3;
         private DataGridView dataGridViewBooksView;
         private Panel panel2;
         private TextBox GenreTextBox;
@@ -360,11 +372,13 @@
         private Label label6;
         private Label label5;
         private Label label4;
-        private Button button3;
+        private Button btn_Clear;
         private Button DeleteBtn;
         private Button UpdateBtn;
         private TextBox ISBNTextBox;
         private TextBox LanguageTextBox;
         private Label label10;
+        private Button btn_Refresh;
+        private Button btn_Add;
     }
 }

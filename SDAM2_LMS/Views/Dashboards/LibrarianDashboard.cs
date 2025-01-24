@@ -37,15 +37,9 @@ namespace SDAM2_LMS
 
         }
 
-        private void addNewBooksToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AddBooks abs = new AddBooks();
-            abs.Show();
-        }
-
         private void viewBooksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ViewBook vb = new ViewBook();
+            ManageBooks vb = new ManageBooks();
             vb.Show();
 
         }
@@ -58,8 +52,14 @@ namespace SDAM2_LMS
 
         private void completeBookDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CompleteBookDetails cbd = new CompleteBookDetails();    
+            CompleteBookDetails cbd = new CompleteBookDetails();
             cbd.Show();
+        }
+
+        private void booksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManageBooks mb = new ManageBooks();
+            mb.Show();
         }
     }
 }
