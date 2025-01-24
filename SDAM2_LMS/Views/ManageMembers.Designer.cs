@@ -143,7 +143,7 @@
             btnAdd.TabIndex = 19;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
-            btnAdd.Click += btn_Add_Click;
+            btnAdd.Click += btnAdd_Click;
             // 
             // inptUsername
             // 
@@ -162,7 +162,7 @@
             btnClear.TabIndex = 15;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = true;
-            btnClear.Click += btn_Clear_Click;
+            btnClear.Click += btnClear_Click;
             // 
             // btnDelete
             // 
@@ -173,7 +173,7 @@
             btnDelete.TabIndex = 14;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
-            btnDelete.Click += DeleteBtn_Click;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnUpdate
             // 
@@ -184,7 +184,7 @@
             btnUpdate.TabIndex = 13;
             btnUpdate.Text = "Update";
             btnUpdate.UseVisualStyleBackColor = true;
-            btnUpdate.Click += UpdateBtn_Click;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // inptAccountType
             // 
