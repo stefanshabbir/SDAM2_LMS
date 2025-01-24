@@ -27,20 +27,6 @@ namespace SDAM2_LMS
             dataGridViewBooksView.DataSource = books;
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-            string search = SearchInput.Text.Trim();
-
-            try
-            {
-                dataGridViewBooksView.DataSource = _controller.SearchBook(search);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex}");
-            }
-        }
-
         private void DeleteBtn_Click(object sender, EventArgs e)
         {
             try
@@ -98,7 +84,57 @@ namespace SDAM2_LMS
                 dataGridViewBooksView.DataSource = _controller.GetBooks();
                 MessageBox.Show("Book updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-             
+
+        }
+
+        private void btn_Refresh_Click(object sender, EventArgs e)
+        {
+            string search = SearchInput.Text.Trim();
+
+            try
+            {
+                dataGridViewBooksView.DataSource = _controller.SearchBook(search);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex}");
+            }
+        }
+
+        private void btn_Clear_Click(object sender, EventArgs e)
+        {
+            TitleTextBox.Clear();
+            ISBNTextBox.Clear();
+            AuthorTextBox.Clear();
+            QuantityTextBox.Clear();
+            GenreTextBox.Clear();
+            PublisherTextBox.Clear();
+            LanguageTextBox.Clear();
+        }
+
+        private void btn_Add_Click(object sender, EventArgs e)
+        {
+            //TODO: NEEDS ERROR CHECKING--
+            string title = TitleTextBox.Text;
+            string author = AuthorTextBox.Text;
+            string genre = GenreTextBox.Text;
+            string publisher = PublisherTextBox.Text;
+            string language = LanguageTextBox.Text;
+            string isbn = ISBNTextBox.Text;
+            int quantity = int.Parse(QuantityTextBox.Text);
+            // --
+
+            var controller = new BookController(new DatabaseContext());
+            bool bookIsAdded = controller.AddBook(title, author, genre, publisher, language, isbn, quantity);
+            if (bookIsAdded)
+            {
+                dataGridViewBooksView.DataSource = _controller.GetBooks();
+                MessageBox.Show("Book Successfully Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("An Unexpected error occured, Check error logs. Book couldn't be added.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
