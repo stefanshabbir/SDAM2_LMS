@@ -40,51 +40,56 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Black", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(778, 38);
+            label1.Location = new Point(425, 17);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(281, 65);
+            label1.Size = new Size(139, 32);
             label1.TabIndex = 0;
             label1.Text = "Issue Book";
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 119);
+            dataGridView1.Location = new Point(6, 56);
+            dataGridView1.Margin = new Padding(2, 1, 2, 1);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 82;
-            dataGridView1.Size = new Size(1881, 481);
+            dataGridView1.Size = new Size(1013, 103);
             dataGridView1.TabIndex = 1;
             // 
             // dataGridView2
             // 
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(12, 705);
+            dataGridView2.Location = new Point(6, 218);
+            dataGridView2.Margin = new Padding(2, 1, 2, 1);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 82;
-            dataGridView2.Size = new Size(1881, 481);
+            dataGridView2.Size = new Size(1013, 128);
             dataGridView2.TabIndex = 3;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Black", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label2.Location = new Point(778, 624);
+            label2.Location = new Point(404, 176);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(378, 65);
+            label2.Size = new Size(188, 32);
             label2.TabIndex = 2;
             label2.Text = "Returned Book";
             // 
             // CompleteBookDetails
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             BackColor = Color.White;
-            ClientSize = new Size(1905, 1080);
+            ClientSize = new Size(1050, 351);
             Controls.Add(dataGridView2);
             Controls.Add(label2);
             Controls.Add(dataGridView1);
             Controls.Add(label1);
+            Margin = new Padding(2, 1, 2, 1);
             Name = "CompleteBookDetails";
             Text = "CompleteBookDetails";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

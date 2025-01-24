@@ -72,7 +72,7 @@
             // 
             viewBooksToolStripMenuItem.Image = (Image)resources.GetObject("viewBooksToolStripMenuItem.Image");
             viewBooksToolStripMenuItem.Name = "viewBooksToolStripMenuItem";
-            viewBooksToolStripMenuItem.Size = new Size(196, 38);
+            viewBooksToolStripMenuItem.Size = new Size(134, 22);
             viewBooksToolStripMenuItem.Text = "View Books";
             viewBooksToolStripMenuItem.Click += ViewBooks_Click;
             // 
@@ -80,7 +80,7 @@
             // 
             addNewBooksToolStripMenuItem.Image = (Image)resources.GetObject("addNewBooksToolStripMenuItem.Image");
             addNewBooksToolStripMenuItem.Name = "addNewBooksToolStripMenuItem";
-            addNewBooksToolStripMenuItem.Size = new Size(196, 38);
+            addNewBooksToolStripMenuItem.Size = new Size(134, 22);
             addNewBooksToolStripMenuItem.Text = "Add Books";
             addNewBooksToolStripMenuItem.Click += addNewBooksToolStripMenuItem_Click;
             // 
@@ -97,28 +97,28 @@
             // 
             ViewMembers.Image = (Image)resources.GetObject("ViewMembers.Image");
             ViewMembers.Name = "ViewMembers";
-            ViewMembers.Size = new Size(196, 38);
+            ViewMembers.Size = new Size(170, 22);
             ViewMembers.Text = "View Members";
             // 
             // AddMembers
             // 
             AddMembers.Image = (Image)resources.GetObject("AddMembers.Image");
             AddMembers.Name = "AddMembers";
-            AddMembers.Size = new Size(196, 38);
+            AddMembers.Size = new Size(170, 22);
             AddMembers.Text = "Add Members";
             AddMembers.Click += AddMembers_Click;
             // 
             // RemoveMembers
             // 
             RemoveMembers.Name = "RemoveMembers";
-            RemoveMembers.Size = new Size(196, 38);
+            RemoveMembers.Size = new Size(170, 22);
             RemoveMembers.Text = "Remove Members";
             RemoveMembers.Click += RemoveMembers_Click;
             // 
             // EditMembers
             // 
             EditMembers.Name = "EditMembers";
-            EditMembers.Size = new Size(196, 38);
+            EditMembers.Size = new Size(170, 22);
             EditMembers.Text = "Edit Members";
             EditMembers.Click += EditMembers_Click;
             // 

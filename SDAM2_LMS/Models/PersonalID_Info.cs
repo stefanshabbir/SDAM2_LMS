@@ -8,11 +8,11 @@ namespace SDAM2_LMS.Models
 {
     internal class PersonalID_Info
     {
-        public int PersonalID { get; private set; }
-        public string Name { get; private set; }
-        public string Email { get; private set; }
-        public string PhoneNumber {  get; private set; }
-        public string Address { get; private set; }
+        public int PersonalID { get; set; }
+        public string Name { get; set; }
+        public string Email { get;  set; }
+        public string PhoneNumber {  get;  set; }
+        public string Address { get;  set; }
 
         public Account Account { get; set; }
 

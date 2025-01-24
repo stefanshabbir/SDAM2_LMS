@@ -1,4 +1,4 @@
-﻿using SDAM2_LMS.Models;
+﻿using SDAM2_LMS.Models.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,9 +16,9 @@ namespace SDAM2_LMS
         public LibrarianDashboard()
         {
             InitializeComponent();
-            if (AppSession.IsLoggedIn)
+            if (SessionService.IsLoggedIn)
             {
-                MessageBox.Show($"Welcome, {AppSession.LoggedInAccount.Username}!");
+                MessageBox.Show($"Welcome, {SessionService.LoggedInAccount.Username}!");
             }
         }
 

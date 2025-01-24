@@ -49,7 +49,9 @@ namespace SDAM2_LMS
                 }
                 else
                 {
-                    //TODO: Log into member's dashboard
+                    MemberDashboard dashboard = new MemberDashboard();
+                    dashboard.Show();
+                    this.Hide();
                 }
 
             }
