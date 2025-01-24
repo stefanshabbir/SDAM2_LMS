@@ -54,7 +54,7 @@ namespace SDAM2_LMS
 
         private void viewBooksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ViewBook vb = new ViewBook();
+            ManageBooks vb = new ManageBooks();
             vb.Show();
 
         }
