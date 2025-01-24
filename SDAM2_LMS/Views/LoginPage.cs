@@ -30,10 +30,17 @@ namespace SDAM2_LMS
             string username = textBoxUsername.Text;
             string password = textBoxPassword.Text;
 
-            if (string.IsNullOrWhiteSpace(username) )
+            if (string.IsNullOrWhiteSpace(username))
             {
                 MessageBox.Show("Username cannot be empty!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 textBoxUsername.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                MessageBox.Show("Password cannot be empty!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBoxPassword.Focus();
                 return;
             }
 
