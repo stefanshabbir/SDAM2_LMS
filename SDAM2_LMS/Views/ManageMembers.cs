@@ -85,16 +85,16 @@ namespace SDAM2_LMS
 
         private void btn_Refresh_Click(object sender, EventArgs e)
         {
-            //string search = SearchInput.Text.Trim();
+            string search = SearchInput.Text.Trim();
 
-            //try
-            //{
-            //    DataGridViewBooksView.DataSource = _controller.SearchBook(search);
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"Error: {ex}");
-            //}
+            try
+            {
+                DataGridViewBooksView.DataSource = _controller.SearchMember(search);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex}");
+            }
         }
 
         private void btnClear_Click(object sender, EventArgs e)

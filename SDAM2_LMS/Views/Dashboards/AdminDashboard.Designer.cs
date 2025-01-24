@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminDashboard));
             menuStrip1 = new MenuStrip();
             menuBtn_Books = new ToolStripMenuItem();
-            studentToolStripMenuItem = new ToolStripMenuItem();
+            menuBtn_Members = new ToolStripMenuItem();
             ViewMembers = new ToolStripMenuItem();
             AddMembers = new ToolStripMenuItem();
             RemoveMembers = new ToolStripMenuItem();
@@ -49,7 +49,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(32, 32);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { menuBtn_Books, studentToolStripMenuItem, Reservations, returnBooksToolStripMenuItem, exitToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { menuBtn_Books, menuBtn_Members, Reservations, returnBooksToolStripMenuItem, exitToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(3, 1, 0, 1);
@@ -65,41 +65,41 @@
             menuBtn_Books.Text = "Books";
             menuBtn_Books.Click += menuBtn_Books_Click;
             // 
-            // studentToolStripMenuItem
+            // menuBtn_Members
             // 
-            studentToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ViewMembers, AddMembers, RemoveMembers, EditMembers });
-            studentToolStripMenuItem.Image = (Image)resources.GetObject("studentToolStripMenuItem.Image");
-            studentToolStripMenuItem.Name = "studentToolStripMenuItem";
-            studentToolStripMenuItem.Size = new Size(101, 36);
-            studentToolStripMenuItem.Text = "Members";
-            studentToolStripMenuItem.Click += studentToolStripMenuItem_Click;
+            menuBtn_Members.DropDownItems.AddRange(new ToolStripItem[] { ViewMembers, AddMembers, RemoveMembers, EditMembers });
+            menuBtn_Members.Image = (Image)resources.GetObject("menuBtn_Members.Image");
+            menuBtn_Members.Name = "menuBtn_Members";
+            menuBtn_Members.Size = new Size(101, 36);
+            menuBtn_Members.Text = "Members";
+            menuBtn_Members.Click += menuBtn_Members_Click;
             // 
             // ViewMembers
             // 
             ViewMembers.Image = (Image)resources.GetObject("ViewMembers.Image");
             ViewMembers.Name = "ViewMembers";
-            ViewMembers.Size = new Size(170, 22);
+            ViewMembers.Size = new Size(196, 38);
             ViewMembers.Text = "View Members";
             // 
             // AddMembers
             // 
             AddMembers.Image = (Image)resources.GetObject("AddMembers.Image");
             AddMembers.Name = "AddMembers";
-            AddMembers.Size = new Size(170, 22);
+            AddMembers.Size = new Size(196, 38);
             AddMembers.Text = "Add Members";
             AddMembers.Click += AddMembers_Click;
             // 
             // RemoveMembers
             // 
             RemoveMembers.Name = "RemoveMembers";
-            RemoveMembers.Size = new Size(170, 22);
+            RemoveMembers.Size = new Size(196, 38);
             RemoveMembers.Text = "Remove Members";
             RemoveMembers.Click += RemoveMembers_Click;
             // 
             // EditMembers
             // 
             EditMembers.Name = "EditMembers";
-            EditMembers.Size = new Size(170, 22);
+            EditMembers.Size = new Size(196, 38);
             EditMembers.Text = "Edit Members";
             EditMembers.Click += EditMembers_Click;
             // 
@@ -174,7 +174,7 @@
 
         private MenuStrip menuStrip1;
         private ToolStripMenuItem menuBtn_Books;
-        private ToolStripMenuItem studentToolStripMenuItem;
+        private ToolStripMenuItem menuBtn_Members;
         private ToolStripMenuItem AddMembers;
         private ToolStripMenuItem ViewMembers;
         private ToolStripMenuItem Reservations;
