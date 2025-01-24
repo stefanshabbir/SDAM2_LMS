@@ -13,10 +13,10 @@ using System.Windows.Forms;
 
 namespace SDAM2_LMS
 {
-    public partial class ViewBook : Form
+    public partial class ManageBooks : Form
     {
         private readonly BookController _controller;
-        public ViewBook()
+        public ManageBooks()
         {
             InitializeComponent();
 

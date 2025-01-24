@@ -1,6 +1,6 @@
 ﻿namespace SDAM2_LMS
 {
-    partial class ViewBook
+    partial class ManageBooks
     {
         /// <summary>
         /// Required designer variable.
