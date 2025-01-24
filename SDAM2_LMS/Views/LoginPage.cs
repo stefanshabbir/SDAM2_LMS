@@ -1,6 +1,7 @@
 ﻿using SDAM2_LMS.Controllers;
 using SDAM2_LMS.Models;
 using SDAM2_LMS.Models.Data;
+using SDAM2_LMS.Models.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,7 +30,7 @@ namespace SDAM2_LMS
             string username = textBoxUsername.Text;
             string password = textBoxPassword.Text;
 
-            var controller = new AccountController(new Models.Services.AccountService(new DatabaseContext()));
+            var controller = new AccountController(new AccountService(new DatabaseContext()));
             var user = controller.Login(username, password);
 
             if (user != null)
