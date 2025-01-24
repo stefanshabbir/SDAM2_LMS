@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SDAM2_LMS.Models
 {
-    internal class PersonalID_Info
+    public class PersonalID_Info
     {
         public int PersonalID { get; set; }
         public string Name { get; set; }

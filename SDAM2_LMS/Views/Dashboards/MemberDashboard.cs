@@ -1,4 +1,5 @@
-﻿using SDAM2_LMS.Models.Services;
+﻿using SDAM2_LMS.Controllers;
+using SDAM2_LMS.Models.Services;
 using SDAM2_LMS.Views;
 using System;
 using System.Collections.Generic;
@@ -14,12 +15,19 @@ namespace SDAM2_LMS
 {
     public partial class MemberDashboard : Form
     {
-        public MemberDashboard()
+        private readonly SessionService _sessionService;
+        private readonly AccountService _accountService;
+        private readonly AccountController _accountController;
+        internal MemberDashboard(SessionService sessionService, AccountService accountService, AccountController accountController)
         {
             InitializeComponent();
-            if (SessionService.IsLoggedIn)
+
+            _sessionService = sessionService;
+            _accountService =  accountService;
+            _accountController = accountController;
+            if (_sessionService.IsLoggedIn)
             {
-                MessageBox.Show($"Welcome, {SessionService.LoggedInAccount.Username}!");
+                MessageBox.Show($"Welcome, {_sessionService.LoggedInAccount.Username}!");
             }
         }
 
@@ -65,7 +73,7 @@ namespace SDAM2_LMS
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            ViewProfile viewProfile = new ViewProfile();
+            ViewProfile viewProfile = new ViewProfile(_accountController, _sessionService);
             viewProfile.Show();
         }
     }

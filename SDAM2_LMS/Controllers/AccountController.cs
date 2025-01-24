@@ -11,7 +11,7 @@ using System.Xml.Linq;
 
 namespace SDAM2_LMS.Controllers
 {
-    internal class AccountController
+    public class AccountController
     {
         private readonly AccountService _accountService;
         public AccountController(AccountService accountService)
@@ -31,6 +31,15 @@ namespace SDAM2_LMS.Controllers
         {
             return _accountService.Register(username, password, email, name, address, phone);
         }
+
+        public void DeleteAccount()
+        {
+            _accountService.DeleteAccount();
+        }
         
+        public void EditAccount(Account updatedAccount)
+        {
+            _accountService.EditAccount(updatedAccount);
+        }
     }
 }

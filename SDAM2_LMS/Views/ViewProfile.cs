@@ -17,16 +17,18 @@ namespace SDAM2_LMS.Views
     public partial class ViewProfile : Form
     {
         private readonly AccountController _accountController;
+        private readonly SessionService _sessionService;
 
-        internal ViewProfile(AccountController accountController)
+        internal ViewProfile(AccountController accountController, SessionService sessionService)
         {
             InitializeComponent();
             _accountController = accountController;
+            _sessionService = sessionService;
         }
 
         private void ViewProfile_Load(object sender, EventArgs e)
         {
-            var currentUser = SessionService.LoggedInAccount;
+            var currentUser = _sessionService.LoggedInAccount;
 
             if (currentUser != null)
             {
@@ -62,7 +64,7 @@ namespace SDAM2_LMS.Views
         {
             var updatedAccount = new Account
             {
-                AccountID = SessionService.LoggedInAccount.AccountID,
+                AccountID = _sessionService.LoggedInAccount.AccountID,
                 Username = UsernameInput.Text,
                 //PersonalID_Info = new PersonalID_Info
                 //{
