@@ -70,10 +70,10 @@
             // 
             textBoxPassword.Location = new Point(93, 180);
             textBoxPassword.Margin = new Padding(2, 1, 2, 1);
-            textBoxPassword.Multiline = true;
             textBoxPassword.Name = "textBoxPassword";
-            textBoxPassword.Size = new Size(258, 20);
+            textBoxPassword.Size = new Size(258, 23);
             textBoxPassword.TabIndex = 3;
+            textBoxPassword.UseSystemPasswordChar = true;
             // 
             // LoginBtn
             // 
