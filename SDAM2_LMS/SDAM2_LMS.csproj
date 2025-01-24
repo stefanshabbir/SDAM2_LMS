@@ -37,6 +37,9 @@
     <PackageReference Include="System.Data.SQLite.EF6" Version="1.0.119" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\ManageBooks.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
