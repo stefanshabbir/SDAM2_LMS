@@ -95,5 +95,18 @@ namespace SDAM2_LMS.Models.Services
 
             _context.SaveChanges();
         }
+
+        public void Logout()
+        {
+            _sessionService.Logout();
+        }
+
+        public AutoResetEvent resetPassword(string newPassword)
+        {
+            var currentUser = _sessionService.LoggedInAccount;
+            currentUser.Password = newPassword;
+            _context.SaveChanges();
+            return new AutoResetEvent(true);
+        }
     }
 }

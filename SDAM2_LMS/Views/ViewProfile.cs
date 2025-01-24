@@ -84,5 +84,73 @@ namespace SDAM2_LMS.Views
             // Feedback to the user
             MessageBox.Show("Profile updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void ResetPasswordBtn_Click(object sender, EventArgs e)
+        {
+            var confirmResult = MessageBox.Show("Are you sure you want to reset your password?", "Confirm Reset", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (confirmResult == DialogResult.Yes)
+            {
+                //_accountController.ResetPassword();
+
+                using (var inputDialog = new Form())
+                {
+                    inputDialog.Text = "Reset Password";
+                    inputDialog.Size = new Size(400, 250);
+                    inputDialog.FormBorderStyle = FormBorderStyle.FixedDialog;
+                    inputDialog.StartPosition = FormStartPosition.CenterParent;
+
+                    // Old password label and textbox
+                    var lblOldPassword = new Label() { Text = "Old Password:", Location = new Point(20, 20), AutoSize = true };
+                    var txtOldPassword = new TextBox() { Location = new Point(140, 20), Width = 200, UseSystemPasswordChar = true };
+
+                    // New password label and textbox
+                    var lblNewPassword = new Label() { Text = "New Password:", Location = new Point(20, 70), AutoSize = true };
+                    var txtNewPassword = new TextBox() { Location = new Point(140, 70), Width = 200, UseSystemPasswordChar = true };
+
+                    // Confirm button
+                    var btnConfirm = new Button()
+                    {
+                        Text = "Confirm",
+                        Location = new Point(140, 130),
+                        DialogResult = DialogResult.OK
+                    };
+                    inputDialog.AcceptButton = btnConfirm;
+
+                    // Add controls to the dialog
+                    inputDialog.Controls.Add(lblOldPassword);
+                    inputDialog.Controls.Add(txtOldPassword);
+                    inputDialog.Controls.Add(lblNewPassword);
+                    inputDialog.Controls.Add(txtNewPassword);
+                    inputDialog.Controls.Add(btnConfirm);
+
+                    // Show dialog and check if user clicked OK
+                    if (inputDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        var oldPassword = txtOldPassword.Text;
+                        var newPassword = txtNewPassword.Text;
+
+                        if (!string.IsNullOrEmpty(oldPassword) && !string.IsNullOrEmpty(newPassword))
+                        {
+                            // Call the ResetPassword method in the AccountController
+                            var success = _accountController.resetPassword(newPassword);
+
+                            if (success)
+                            {
+                                MessageBox.Show("Password reset successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Password reset failed. Please check your old password and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Both fields are required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

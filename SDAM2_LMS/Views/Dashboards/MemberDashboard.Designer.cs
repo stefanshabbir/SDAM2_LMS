@@ -34,13 +34,14 @@
             completeBookDetailsToolStripMenuItem = new ToolStripMenuItem();
             toolStripMenuItem1 = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
+            viewBooksToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(32, 32);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { returnBooksToolStripMenuItem, completeBookDetailsToolStripMenuItem, toolStripMenuItem1, exitToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { viewBooksToolStripMenuItem, returnBooksToolStripMenuItem, completeBookDetailsToolStripMenuItem, toolStripMenuItem1, exitToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(3, 1, 0, 1);
@@ -79,6 +80,12 @@
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
+            // viewBooksToolStripMenuItem
+            // 
+            viewBooksToolStripMenuItem.Name = "viewBooksToolStripMenuItem";
+            viewBooksToolStripMenuItem.Size = new Size(51, 36);
+            viewBooksToolStripMenuItem.Text = "Books";
+            // 
             // MemberDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -106,5 +113,6 @@
         private ToolStripMenuItem completeBookDetailsToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;
         private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem viewBooksToolStripMenuItem;
     }
 }

@@ -41,5 +41,25 @@ namespace SDAM2_LMS.Controllers
         {
             _accountService.EditAccount(updatedAccount);
         }
+
+        public void Logout()
+        {
+            _accountService.Logout();
+        }
+
+        public bool resetPassword(string newPassword)
+        {
+            if (string.IsNullOrEmpty(newPassword))
+            {
+                throw new ArgumentException("Password cannot be empty.");
+                return false;
+
+            } else
+            {
+                _accountService.resetPassword(newPassword);
+                return true;
+            }
+        }
+
     }
 }
