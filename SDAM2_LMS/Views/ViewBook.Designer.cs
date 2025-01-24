@@ -31,27 +31,29 @@
             panel1 = new Panel();
             label1 = new Label();
             label2 = new Label();
-            textBox1 = new TextBox();
+            SearchInput = new TextBox();
             label3 = new Label();
-            dataGridView1 = new DataGridView();
+            dataGridViewBooksView = new DataGridView();
             panel2 = new Panel();
-            dateTimePicker1 = new DateTimePicker();
+            ISBNTextBox = new TextBox();
             button3 = new Button();
-            button2 = new Button();
-            button1 = new Button();
-            textBox7 = new TextBox();
-            textBox6 = new TextBox();
-            textBox4 = new TextBox();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
+            DeleteBtn = new Button();
+            UpdateBtn = new Button();
+            GenreTextBox = new TextBox();
+            QuantityTextBox = new TextBox();
+            PublisherTextBox = new TextBox();
+            AuthorTextBox = new TextBox();
+            TitleTextBox = new TextBox();
             label9 = new Label();
             label8 = new Label();
             label7 = new Label();
             label6 = new Label();
             label5 = new Label();
             label4 = new Label();
+            label10 = new Label();
+            LanguageTextBox = new TextBox();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewBooksView).BeginInit();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -69,7 +71,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Black", 19.875F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(456, 27);
+            label1.Location = new Point(359, 27);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
             label1.Size = new Size(169, 37);
@@ -79,78 +81,88 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(342, 107);
+            label2.Location = new Point(253, 107);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
             label2.Size = new Size(69, 15);
             label2.TabIndex = 1;
             label2.Text = "Book Name";
             // 
-            // textBox1
+            // SearchInput
             // 
-            textBox1.Location = new Point(440, 105);
-            textBox1.Margin = new Padding(2, 1, 2, 1);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(234, 23);
-            textBox1.TabIndex = 2;
+            SearchInput.Location = new Point(326, 104);
+            SearchInput.Margin = new Padding(2, 1, 2, 1);
+            SearchInput.Name = "SearchInput";
+            SearchInput.Size = new Size(234, 23);
+            SearchInput.TabIndex = 2;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.FlatStyle = FlatStyle.Popup;
-            label3.Location = new Point(697, 104);
+            label3.Location = new Point(697, 107);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
             label3.Size = new Size(46, 15);
             label3.TabIndex = 3;
             label3.Text = "Refresh";
+            label3.Click += label3_Click;
             // 
-            // dataGridView1
+            // dataGridViewBooksView
             // 
-            dataGridView1.BackgroundColor = Color.Silver;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(14, 165);
-            dataGridView1.Margin = new Padding(2, 1, 2, 1);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 82;
-            dataGridView1.Size = new Size(859, 280);
-            dataGridView1.TabIndex = 4;
+            dataGridViewBooksView.AllowUserToAddRows = false;
+            dataGridViewBooksView.AllowUserToDeleteRows = false;
+            dataGridViewBooksView.AllowUserToResizeColumns = false;
+            dataGridViewBooksView.AllowUserToResizeRows = false;
+            dataGridViewBooksView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewBooksView.BackgroundColor = Color.Silver;
+            dataGridViewBooksView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewBooksView.Location = new Point(14, 142);
+            dataGridViewBooksView.Margin = new Padding(2, 1, 2, 1);
+            dataGridViewBooksView.MultiSelect = false;
+            dataGridViewBooksView.Name = "dataGridViewBooksView";
+            dataGridViewBooksView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewBooksView.Size = new Size(859, 280);
+            dataGridViewBooksView.TabIndex = 4;
+            dataGridViewBooksView.SelectionChanged += DataGridViewBooksView_SelectionChanged;
             // 
             // panel2
             // 
             panel2.BackColor = Color.DarkGray;
-            panel2.Controls.Add(dateTimePicker1);
+            panel2.Controls.Add(LanguageTextBox);
+            panel2.Controls.Add(label10);
+            panel2.Controls.Add(ISBNTextBox);
             panel2.Controls.Add(button3);
-            panel2.Controls.Add(button2);
-            panel2.Controls.Add(button1);
-            panel2.Controls.Add(textBox7);
-            panel2.Controls.Add(textBox6);
-            panel2.Controls.Add(textBox4);
-            panel2.Controls.Add(textBox3);
-            panel2.Controls.Add(textBox2);
+            panel2.Controls.Add(DeleteBtn);
+            panel2.Controls.Add(UpdateBtn);
+            panel2.Controls.Add(GenreTextBox);
+            panel2.Controls.Add(QuantityTextBox);
+            panel2.Controls.Add(PublisherTextBox);
+            panel2.Controls.Add(AuthorTextBox);
+            panel2.Controls.Add(TitleTextBox);
             panel2.Controls.Add(label9);
             panel2.Controls.Add(label8);
             panel2.Controls.Add(label7);
             panel2.Controls.Add(label6);
             panel2.Controls.Add(label5);
             panel2.Controls.Add(label4);
-            panel2.Location = new Point(14, 496);
+            panel2.Location = new Point(14, 433);
             panel2.Margin = new Padding(2, 1, 2, 1);
             panel2.Name = "panel2";
             panel2.Size = new Size(859, 264);
             panel2.TabIndex = 5;
             // 
-            // dateTimePicker1
+            // ISBNTextBox
             // 
-            dateTimePicker1.Location = new Point(616, 47);
-            dateTimePicker1.Margin = new Padding(2, 1, 2, 1);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(217, 23);
-            dateTimePicker1.TabIndex = 16;
+            ISBNTextBox.Location = new Point(620, 46);
+            ISBNTextBox.Margin = new Padding(2, 1, 2, 1);
+            ISBNTextBox.Name = "ISBNTextBox";
+            ISBNTextBox.Size = new Size(217, 23);
+            ISBNTextBox.TabIndex = 16;
             // 
             // button3
             // 
-            button3.Location = new Point(858, 224);
+            button3.Location = new Point(776, 224);
             button3.Margin = new Padding(2, 1, 2, 1);
             button3.Name = "button3";
             button3.Size = new Size(81, 22);
@@ -158,65 +170,67 @@
             button3.Text = "Cancel";
             button3.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // DeleteBtn
             // 
-            button2.Location = new Point(719, 224);
-            button2.Margin = new Padding(2, 1, 2, 1);
-            button2.Name = "button2";
-            button2.Size = new Size(81, 22);
-            button2.TabIndex = 14;
-            button2.Text = "Delete";
-            button2.UseVisualStyleBackColor = true;
+            DeleteBtn.Location = new Point(683, 224);
+            DeleteBtn.Margin = new Padding(2, 1, 2, 1);
+            DeleteBtn.Name = "DeleteBtn";
+            DeleteBtn.Size = new Size(81, 22);
+            DeleteBtn.TabIndex = 14;
+            DeleteBtn.Text = "Delete";
+            DeleteBtn.UseVisualStyleBackColor = true;
+            DeleteBtn.Click += DeleteBtn_Click;
             // 
-            // button1
+            // UpdateBtn
             // 
-            button1.Location = new Point(584, 224);
-            button1.Margin = new Padding(2, 1, 2, 1);
-            button1.Name = "button1";
-            button1.Size = new Size(81, 22);
-            button1.TabIndex = 13;
-            button1.Text = "Update";
-            button1.UseVisualStyleBackColor = true;
+            UpdateBtn.Location = new Point(584, 224);
+            UpdateBtn.Margin = new Padding(2, 1, 2, 1);
+            UpdateBtn.Name = "UpdateBtn";
+            UpdateBtn.Size = new Size(81, 22);
+            UpdateBtn.TabIndex = 13;
+            UpdateBtn.Text = "Update";
+            UpdateBtn.UseVisualStyleBackColor = true;
+            UpdateBtn.Click += UpdateBtn_Click;
             // 
-            // textBox7
+            // GenreTextBox
             // 
-            textBox7.Location = new Point(616, 165);
-            textBox7.Margin = new Padding(2, 1, 2, 1);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(221, 23);
-            textBox7.TabIndex = 12;
+            GenreTextBox.Location = new Point(616, 165);
+            GenreTextBox.Margin = new Padding(2, 1, 2, 1);
+            GenreTextBox.Name = "GenreTextBox";
+            GenreTextBox.Size = new Size(221, 23);
+            GenreTextBox.TabIndex = 12;
             // 
-            // textBox6
+            // QuantityTextBox
             // 
-            textBox6.Location = new Point(616, 105);
-            textBox6.Margin = new Padding(2, 1, 2, 1);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(217, 23);
-            textBox6.TabIndex = 11;
+            QuantityTextBox.Location = new Point(616, 105);
+            QuantityTextBox.Margin = new Padding(2, 1, 2, 1);
+            QuantityTextBox.Name = "QuantityTextBox";
+            QuantityTextBox.Size = new Size(217, 23);
+            QuantityTextBox.TabIndex = 11;
             // 
-            // textBox4
+            // PublisherTextBox
             // 
-            textBox4.Location = new Point(173, 173);
-            textBox4.Margin = new Padding(2, 1, 2, 1);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(237, 23);
-            textBox4.TabIndex = 9;
+            PublisherTextBox.Location = new Point(173, 173);
+            PublisherTextBox.Margin = new Padding(2, 1, 2, 1);
+            PublisherTextBox.Name = "PublisherTextBox";
+            PublisherTextBox.Size = new Size(237, 23);
+            PublisherTextBox.TabIndex = 9;
             // 
-            // textBox3
+            // AuthorTextBox
             // 
-            textBox3.Location = new Point(173, 107);
-            textBox3.Margin = new Padding(2, 1, 2, 1);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(237, 23);
-            textBox3.TabIndex = 8;
+            AuthorTextBox.Location = new Point(173, 107);
+            AuthorTextBox.Margin = new Padding(2, 1, 2, 1);
+            AuthorTextBox.Name = "AuthorTextBox";
+            AuthorTextBox.Size = new Size(237, 23);
+            AuthorTextBox.TabIndex = 8;
             // 
-            // textBox2
+            // TitleTextBox
             // 
-            textBox2.Location = new Point(173, 40);
-            textBox2.Margin = new Padding(2, 1, 2, 1);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(237, 23);
-            textBox2.TabIndex = 7;
+            TitleTextBox.Location = new Point(173, 40);
+            TitleTextBox.Margin = new Padding(2, 1, 2, 1);
+            TitleTextBox.Name = "TitleTextBox";
+            TitleTextBox.Size = new Size(237, 23);
+            TitleTextBox.TabIndex = 7;
             // 
             // label9
             // 
@@ -225,9 +239,9 @@
             label9.Location = new Point(426, 162);
             label9.Margin = new Padding(2, 0, 2, 0);
             label9.Name = "label9";
-            label9.Size = new Size(109, 21);
+            label9.Size = new Size(52, 21);
             label9.TabIndex = 6;
-            label9.Text = "Book Quantity";
+            label9.Text = "Genre";
             // 
             // label8
             // 
@@ -236,9 +250,9 @@
             label8.Location = new Point(426, 105);
             label8.Margin = new Padding(2, 0, 2, 0);
             label8.Name = "label8";
-            label8.Size = new Size(83, 21);
+            label8.Size = new Size(70, 21);
             label8.TabIndex = 5;
-            label8.Text = "Book Price";
+            label8.Text = "Quantity";
             // 
             // label7
             // 
@@ -247,9 +261,9 @@
             label7.Location = new Point(424, 44);
             label7.Margin = new Padding(2, 0, 2, 0);
             label7.Name = "label7";
-            label7.Size = new Size(148, 21);
+            label7.Size = new Size(44, 21);
             label7.TabIndex = 4;
-            label7.Text = "Book Purchase Date";
+            label7.Text = "ISBN";
             // 
             // label6
             // 
@@ -284,15 +298,34 @@
             label4.TabIndex = 0;
             label4.Text = "Book Name";
             // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 12F);
+            label10.Location = new Point(7, 223);
+            label10.Margin = new Padding(2, 0, 2, 0);
+            label10.Name = "label10";
+            label10.Size = new Size(78, 21);
+            label10.TabIndex = 17;
+            label10.Text = "Language";
+            // 
+            // LanguageTextBox
+            // 
+            LanguageTextBox.Location = new Point(173, 223);
+            LanguageTextBox.Margin = new Padding(2, 1, 2, 1);
+            LanguageTextBox.Name = "LanguageTextBox";
+            LanguageTextBox.Size = new Size(237, 23);
+            LanguageTextBox.TabIndex = 18;
+            // 
             // ViewBook
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(884, 749);
+            ClientSize = new Size(884, 704);
             Controls.Add(panel2);
-            Controls.Add(dataGridView1);
+            Controls.Add(dataGridViewBooksView);
             Controls.Add(label3);
-            Controls.Add(textBox1);
+            Controls.Add(SearchInput);
             Controls.Add(label2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -300,7 +333,7 @@
             Name = "ViewBook";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewBooksView).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
@@ -312,24 +345,26 @@
         private Panel panel1;
         private Label label1;
         private Label label2;
-        private TextBox textBox1;
+        private TextBox SearchInput;
         private Label label3;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridViewBooksView;
         private Panel panel2;
-        private TextBox textBox7;
-        private TextBox textBox6;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
+        private TextBox GenreTextBox;
+        private TextBox QuantityTextBox;
+        private TextBox PublisherTextBox;
+        private TextBox AuthorTextBox;
+        private TextBox TitleTextBox;
         private Label label9;
         private Label label8;
         private Label label7;
         private Label label6;
         private Label label5;
         private Label label4;
-        private DateTimePicker dateTimePicker1;
         private Button button3;
-        private Button button2;
-        private Button button1;
+        private Button DeleteBtn;
+        private Button UpdateBtn;
+        private TextBox ISBNTextBox;
+        private TextBox LanguageTextBox;
+        private Label label10;
     }
 }

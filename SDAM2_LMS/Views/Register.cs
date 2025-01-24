@@ -30,7 +30,7 @@ namespace SDAM2_LMS
             string address = addressInput.Text;
             string name = NameInput.Text;
 
-            var controller = new AccountController(new Services.AccountService(new DatabaseContext()));
+            var controller = new AccountController(new Models.Services.AccountService(new DatabaseContext()));
             bool isRegistered = controller.Register(username, password, email, name, address, phone);
 
             if (isRegistered)
