@@ -23,7 +23,7 @@ namespace SDAM2_LMS.ErrorLog
                 string filePath = Path.Combine(logDirectory, fileName);
 
                 string errorLogText =
-$"===\nERROR MESSAGE:\n{e.Message}\n===\n\n===INNER EXCEPTION:\n{e.InnerException.ToString()}===\n\n\n{e.ToString()}";
+$"===\nERROR MESSAGE:\n{e.Message}\n===\n\n===\nINNER EXCEPTION:\n{e.InnerException.ToString()}\n===\n\n\n{e.ToString()}";
                 File.WriteAllText(filePath, errorLogText);
             }
             catch (Exception ex)

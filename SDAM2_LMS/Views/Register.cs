@@ -1,5 +1,6 @@
 ﻿using SDAM2_LMS.Controllers;
 using SDAM2_LMS.Models.Data;
+using SDAM2_LMS.Models.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,7 +31,7 @@ namespace SDAM2_LMS
             string address = addressInput.Text;
             string name = NameInput.Text;
 
-            var controller = new AccountController(new Services.AccountService(new DatabaseContext()));
+            var controller = new AccountController(new AccountService(new DatabaseContext()));
             bool isRegistered = controller.Register(username, password, email, name, address, phone);
 
             if (isRegistered)
