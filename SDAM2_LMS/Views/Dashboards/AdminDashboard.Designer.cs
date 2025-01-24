@@ -64,6 +64,30 @@
             menuBtn_Books.Size = new Size(83, 36);
             menuBtn_Books.Text = "Books";
             menuBtn_Books.Click += menuBtn_Books_Click;
+            //
+            // booksToolStripMenuItem
+            //
+            booksToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { viewBooksToolStripMenuItem, addNewBooksToolStripMenuItem });
+            booksToolStripMenuItem.Image = (Image)resources.GetObject("booksToolStripMenuItem.Image");
+            booksToolStripMenuItem.Name = "booksToolStripMenuItem";
+            booksToolStripMenuItem.Size = new Size(83, 36);
+            booksToolStripMenuItem.Text = "Books";
+            // 
+            // viewBooksToolStripMenuItem
+            // 
+            viewBooksToolStripMenuItem.Image = (Image)resources.GetObject("viewBooksToolStripMenuItem.Image");
+            viewBooksToolStripMenuItem.Name = "viewBooksToolStripMenuItem";
+            viewBooksToolStripMenuItem.Size = new Size(134, 22);
+            viewBooksToolStripMenuItem.Text = "View Books";
+            viewBooksToolStripMenuItem.Click += ViewBooks_Click;
+            // 
+            // addNewBooksToolStripMenuItem
+            // 
+            addNewBooksToolStripMenuItem.Image = (Image)resources.GetObject("addNewBooksToolStripMenuItem.Image");
+            addNewBooksToolStripMenuItem.Name = "addNewBooksToolStripMenuItem";
+            addNewBooksToolStripMenuItem.Size = new Size(134, 22);
+            addNewBooksToolStripMenuItem.Text = "Add Books";
+            addNewBooksToolStripMenuItem.Click += addNewBooksToolStripMenuItem_Click;
             // 
             // studentToolStripMenuItem
             // 

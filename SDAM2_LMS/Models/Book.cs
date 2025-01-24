@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SDAM2_LMS.Models
 {
-    internal class Book
+    public class Book
     {
         private readonly DatabaseContext dbContext;
         public string Title { get; set; }

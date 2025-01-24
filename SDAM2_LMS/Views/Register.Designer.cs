@@ -109,6 +109,7 @@
             PasswordInput.Name = "PasswordInput";
             PasswordInput.Size = new Size(245, 23);
             PasswordInput.TabIndex = 6;
+            PasswordInput.UseSystemPasswordChar = true;
             // 
             // ConfirmPasswordInput
             // 
@@ -117,6 +118,7 @@
             ConfirmPasswordInput.Name = "ConfirmPasswordInput";
             ConfirmPasswordInput.Size = new Size(245, 23);
             ConfirmPasswordInput.TabIndex = 7;
+            ConfirmPasswordInput.UseSystemPasswordChar = true;
             // 
             // RegisterBtn
             // 

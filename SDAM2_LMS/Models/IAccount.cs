@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SDAM2_LMS.Models
 {
-    internal interface IAccount
+    public interface IAccount
     {
         string Username { get; }
         string Password { get; }
