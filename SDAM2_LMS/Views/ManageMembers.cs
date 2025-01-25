@@ -63,7 +63,6 @@ namespace SDAM2_LMS
                 string phoneNumber = selectedRow.Cells["PhoneNumber"].Value?.ToString();
                 string address = selectedRow.Cells["Address"].Value?.ToString();
                 string selectedAccID = selectedRow.Cells["AccountID"].Value?.ToString();
-                string selectedPID = selectedRow.Cells["PersonalID"].Value?.ToString();
 
                 inptUsername.Text = username;
                 inptName.Text = name;
@@ -102,10 +101,11 @@ namespace SDAM2_LMS
             {
                 DataGridViewBooksView.DataSource = _controller.SearchMember(search);
             }
-            catch (Exception ex)
+            catch (Exception ex) //Catch block format for error handling
             {
-                new WriteErrorLog(ex);
-                MessageBox.Show($"An Error Occured. Check logs for more details. \nError: {ex}");
+                new WriteErrorLog(ex); //Writes the error to a log at /bin/ErrorLogs
+                //Try to following this wording format for the message box
+                MessageBox.Show($"Could not refresh, an Error occured. Check logs for more details. \nError:\n {ex}");
             }
         }
 

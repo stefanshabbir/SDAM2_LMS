@@ -53,8 +53,7 @@ namespace SDAM2_LMS.Controllers
                 m.PersonalID_Info.PhoneNumber,
                 m.PersonalID_Info.Address,
                 m.AccountType.AccountTypeName,
-                m.AccountID,
-                m.PersonalID
+                m.AccountID
             }).ToList();
 
             return membersList;
@@ -97,7 +96,7 @@ namespace SDAM2_LMS.Controllers
             }
         }
 
-        //-- NEEDS ERROR CHECKING;
+        //-- NEEDS ERROR HANDLING;
         public object SearchMember(string search)
         {
             var searchList = _context.Accounts
@@ -114,14 +113,13 @@ namespace SDAM2_LMS.Controllers
                 m.PersonalID_Info.PhoneNumber,
                 m.PersonalID_Info.Address,
                 m.AccountType.AccountTypeName,
-                m.AccountID,
-                m.PersonalID
+                m.AccountID
             }).ToList();
 
             return formattedSearchList;
         }
 
-        //-- NEEDS ERROR CHECKING;
+        //-- NEEDS ERROR HANDLING;
         public void EditMemberAccount(
             Int32 accID, string newUsername, string newName, string newEmail, string newPhoneNumber, string newAddress, string newAccountType
             )
