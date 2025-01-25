@@ -206,7 +206,6 @@
             inptAccountType.Name = "inptAccountType";
             inptAccountType.Size = new Size(245, 23);
             inptAccountType.TabIndex = 17;
-            inptAccountType.UseSystemPasswordChar = true;
             // 
             // label2
             // 
@@ -253,10 +252,9 @@
             Controls.Add(lbl3);
             Controls.Add(lbl2);
             Controls.Add(lbl1);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Margin = new Padding(2, 1, 2, 1);
             Name = "AddMember";
-            Text = "Register";
             ResumeLayout(false);
             PerformLayout();
         }

@@ -31,11 +31,6 @@ namespace SDAM2_LMS
             }
         }
 
-        private void studentToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to Exit?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
@@ -46,32 +41,13 @@ namespace SDAM2_LMS
 
         }
 
-        private void addNewBooksToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AddBooks abs = new AddBooks();
-            abs.Show();
-        }
-
-        private void viewBooksToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ManageBooks vb = new ManageBooks();
-            vb.Show();
-
-        }
-
-        private void addMemberToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AddMember am = new AddMember();
-            am.Show();
-        }
-
         private void completeBookDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CompleteBookDetails cbd = new CompleteBookDetails();
             cbd.Show();
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        private void menuBtn_ViewProfile_Click(object sender, EventArgs e)
         {
             ViewProfile viewProfile = new ViewProfile(_accountController, _sessionService);
             viewProfile.Show();

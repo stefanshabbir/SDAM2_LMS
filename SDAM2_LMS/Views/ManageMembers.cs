@@ -122,7 +122,8 @@ namespace SDAM2_LMS
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            new AddMember(_controller).Show();
+            AddMember am = new AddMember(_controller);
+            am.Show();
             ////TODO: NEEDS ERROR CHECKING--
             //string title = inptName.Text;
             //string author = inptEmail.Text;
