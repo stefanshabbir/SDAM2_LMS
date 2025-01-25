@@ -23,8 +23,19 @@ namespace SDAM2_LMS
             var memberController = new MangeMembersController(new DatabaseContext());
             _controller = memberController;
             var members = _controller.GetMembers();
+
+            var membersList = members.Select(m => new //selecting the columns to display
+            {
+                m.Username,
+                m.PersonalID_Info.Name, //using personalID_Info as it is an object
+                m.PersonalID_Info.Email,
+                m.PersonalID_Info.PhoneNumber,
+                m.AccountType
+            }).ToList();
+
             DataGridViewBooksView.Rows.Clear();
-            DataGridViewBooksView.DataSource = members;
+            DataGridViewBooksView.DataSource = membersList;
+
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
