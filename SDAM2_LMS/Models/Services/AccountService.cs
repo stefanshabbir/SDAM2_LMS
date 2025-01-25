@@ -73,6 +73,7 @@ namespace SDAM2_LMS.Models.Services
             if (confirmResult == DialogResult.Yes)
             {
                 var currentUser = _sessionService.LoggedInAccount;
+                _context.PersonalIDs.Remove(currentUser.PersonalID_Info);
                 _context.Accounts.Remove(currentUser);
                 _context.SaveChanges();
 
