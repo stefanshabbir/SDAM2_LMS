@@ -2,11 +2,16 @@
 using SDAM2_LMS.ErrorLog;
 using SDAM2_LMS.Models;
 using SDAM2_LMS.Models.Data;
+using SDAM2_LMS.Models.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Xml.Linq;
 
 namespace SDAM2_LMS.Controllers
 {
@@ -16,6 +21,21 @@ namespace SDAM2_LMS.Controllers
         public MangeMembersController(DatabaseContext context)
         {
             _context = context;
+        }
+
+        public int GetAccountTypeIDOf(string accountType)
+        {
+            if (accountType == "Admin")
+            { return 1; }
+            else if (accountType == "Librarian")
+            { return 2; }
+            else if (accountType == "Member")
+            { return 3; }
+            else
+            {
+                //Throw an error or something
+                return 0;
+            }
         }
 
         public object GetMembers()
@@ -40,18 +60,34 @@ namespace SDAM2_LMS.Controllers
             return membersList;
         }
 
-        public bool AddMemberAccount()
+        public bool AddMemberAccount(
+            string username, string password, string name, string email, string address, string phoneNumber, string accountType
+            )
         {
             try
             {
-                if (false)
+                var accountExists = _context.Accounts.FirstOrDefault(a => a.Username == username && a.Password == password);
+                if (accountExists != null)
+                { return false; }
+                else
                 {
-                    // TODO: Update the book's quantity
+                    var personalInfo = new PersonalID_Info(name, email, phoneNumber, address);
+                    _context.PersonalIDs.Add(personalInfo);
+                    _context.SaveChanges();
+
+                    int accountTypeID = this.GetAccountTypeIDOf(accountType);
+                    var account = new Account()
+                    {
+                        Username = username,
+                        Password = password,
+                        PersonalID = personalInfo.PersonalID,
+                        AccountTypeID = accountTypeID
+                    };
+                    _context.Accounts.Add(account);
+                    _context.SaveChanges();
+
                     return true;
                 }
-                
-
-                return true;
             }
             catch (Exception ex)
             {
@@ -88,18 +124,9 @@ namespace SDAM2_LMS.Controllers
             Int32 accID, string newUsername, string newName, string newEmail, string newPhoneNumber, string newAddress, string newAccountType
             )
         {
-            int accTypeID = 0; //Temporary assignment
-            if (newAccountType == "Admin")
-            { accTypeID = 1; }
-            else if (newAccountType == "Librarian")
-            { accTypeID = 2; }
-            else if (newAccountType == "Member")
-            { accTypeID = 3; }
-            else { 
-             //Throw an error or something
-                 }
-
+            int accTypeID = this.GetAccountTypeIDOf(newAccountType);
             var account = _context.Accounts.FirstOrDefault(a => a.AccountID == accID);
+
             if (account != null)
             {
                 account.AccountTypeID = accTypeID;
