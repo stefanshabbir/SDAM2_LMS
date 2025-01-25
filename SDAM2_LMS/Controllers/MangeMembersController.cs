@@ -18,11 +18,25 @@ namespace SDAM2_LMS.Controllers
             _context = context;
         }
 
-        public List<Account> GetMembers()
+        public object GetMembers()
         {
-            return _context.Accounts
+            var members = _context.Accounts
                 .Include(m => m.PersonalID_Info) // Include the PersonalID_Info when loading the members accounts
-                .ToList(); 
+                .Include(at => at.AccountType)
+                .ToList();
+
+            var membersList = members.Select(m => new //selecting the columns to display
+            {
+                m.Username,
+                m.PersonalID_Info.Name, //using personalID_Info as it is an object
+                m.PersonalID_Info.Email,
+                m.PersonalID_Info.PhoneNumber,
+                m.AccountType.AccountTypeName,
+                m.AccountID,
+                m.PersonalID
+            }).ToList();
+
+            return membersList;
         }
 
         public bool AddMemberAccount()
@@ -56,6 +70,9 @@ namespace SDAM2_LMS.Controllers
                   .ToList();
         }
 
-        
+        public void EditMemberAccount()
+        {
+
+        }
     }
 }

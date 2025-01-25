@@ -15,6 +15,9 @@ namespace SDAM2_LMS
 {
     public partial class ManageMembers : Form
     {
+        private Int32 _selectedAccountID { get; set; }
+        private Int32 _selectedPersonalID { get; set; }
+
         private readonly MangeMembersController _controller;
         public ManageMembers()
         {
@@ -24,18 +27,8 @@ namespace SDAM2_LMS
             _controller = memberController;
             var members = _controller.GetMembers();
 
-            var membersList = members.Select(m => new //selecting the columns to display
-            {
-                m.Username,
-                m.PersonalID_Info.Name, //using personalID_Info as it is an object
-                m.PersonalID_Info.Email,
-                m.PersonalID_Info.PhoneNumber,
-                m.AccountType
-            }).ToList();
-
             DataGridViewBooksView.Rows.Clear();
-            DataGridViewBooksView.DataSource = membersList;
-
+            DataGridViewBooksView.DataSource = members;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -65,24 +58,29 @@ namespace SDAM2_LMS
             {
                 var selectedRow = DataGridViewBooksView.SelectedRows[0];
 
-                string name = selectedRow.Cells["PersonalID_Info"].Value?.ToString();
+                string name = selectedRow.Cells["Name"].Value?.ToString();
                 string username = selectedRow.Cells["Username"].Value?.ToString();
-                string email = selectedRow.Cells["PersonalID_Info"].Value?.ToString();
-                string accountType = selectedRow.Cells["AccountType"].Value?.ToString();
-                string phoneNumber = selectedRow.Cells["PersonalID_Info"].Value?.ToString();
+                string email = selectedRow.Cells["Email"].Value?.ToString();
+                string accountType = selectedRow.Cells["AccountTypeName"].Value?.ToString();
+                string phoneNumber = selectedRow.Cells["PhoneNumber"].Value?.ToString();
+                string selectedAccID = selectedRow.Cells["AccountID"].Value?.ToString();
+                string selectedPID = selectedRow.Cells["PersonalID"].Value?.ToString();
 
                 inptName.Text = name;
                 inptUsername.Text = username;
                 inptEmail.Text = email;
                 inptAccountType.Text = accountType;
                 inptPhoneNumber.Text = phoneNumber;
+
+                _selectedAccountID = Convert.ToInt32(selectedAccID);
+                _selectedPersonalID = Convert.ToInt32(selectedPID);
             }
 
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            //var confirmation = MessageBox.Show($"Are you sure you want to update the selected book?", "Confirm Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //var confirmation = MessageBox.Show($"Are you sure you want to update the selected Member?", "Confirm Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             //if (confirmation == DialogResult.Yes)
             //{
