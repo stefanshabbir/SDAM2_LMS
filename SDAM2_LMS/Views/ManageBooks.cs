@@ -114,7 +114,7 @@ namespace SDAM2_LMS
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
-            //TODO: NEEDS ERROR CHECKING--
+            //-- NEEDS ERROR HANDLING; empty/null text inputs, integer type for quantity, set max length in winform itself
             string title = TitleTextBox.Text;
             string author = AuthorTextBox.Text;
             string genre = GenreTextBox.Text;

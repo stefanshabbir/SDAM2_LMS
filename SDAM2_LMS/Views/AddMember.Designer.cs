@@ -28,228 +28,257 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
+            lbl1 = new Label();
+            lbl2 = new Label();
+            lbl3 = new Label();
+            lbl4 = new Label();
+            UsernameInput = new TextBox();
+            EmailInput = new TextBox();
+            PasswordInput = new TextBox();
+            ConfirmPasswordInput = new TextBox();
+            btnConfirm = new Button();
+            title = new Label();
+            usernameLabel = new Label();
+            NameInput = new TextBox();
+            phoneNumberLabel = new Label();
+            PhoneInput = new TextBox();
+            addressInput = new TextBox();
             label1 = new Label();
-            pictureBox1 = new PictureBox();
+            inptAccountType = new TextBox();
             label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            label6 = new Label();
-            label7 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
-            textBox6 = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            btnClear = new Button();
             SuspendLayout();
             // 
-            // panel1
+            // lbl1
             // 
-            panel1.Controls.Add(label1);
-            panel1.Location = new Point(2, 1);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1229, 157);
-            panel1.TabIndex = 0;
+            lbl1.AutoSize = true;
+            lbl1.Location = new Point(28, 79);
+            lbl1.Margin = new Padding(2, 0, 2, 0);
+            lbl1.Name = "lbl1";
+            lbl1.Size = new Size(39, 15);
+            lbl1.TabIndex = 0;
+            lbl1.Text = "Name";
+            // 
+            // lbl2
+            // 
+            lbl2.AutoSize = true;
+            lbl2.Location = new Point(28, 145);
+            lbl2.Margin = new Padding(2, 0, 2, 0);
+            lbl2.Name = "lbl2";
+            lbl2.Size = new Size(81, 15);
+            lbl2.TabIndex = 1;
+            lbl2.Text = "Email Address";
+            // 
+            // lbl3
+            // 
+            lbl3.AutoSize = true;
+            lbl3.Location = new Point(28, 277);
+            lbl3.Margin = new Padding(2, 0, 2, 0);
+            lbl3.Name = "lbl3";
+            lbl3.Size = new Size(57, 15);
+            lbl3.TabIndex = 2;
+            lbl3.Text = "Password";
+            // 
+            // lbl4
+            // 
+            lbl4.AutoSize = true;
+            lbl4.Location = new Point(28, 311);
+            lbl4.Margin = new Padding(2, 0, 2, 0);
+            lbl4.Name = "lbl4";
+            lbl4.Size = new Size(104, 15);
+            lbl4.TabIndex = 3;
+            lbl4.Text = "Confirm Password";
+            // 
+            // UsernameInput
+            // 
+            UsernameInput.Location = new Point(149, 240);
+            UsernameInput.Margin = new Padding(2, 1, 2, 1);
+            UsernameInput.Name = "UsernameInput";
+            UsernameInput.Size = new Size(245, 23);
+            UsernameInput.TabIndex = 4;
+            // 
+            // EmailInput
+            // 
+            EmailInput.Location = new Point(149, 143);
+            EmailInput.Margin = new Padding(2, 1, 2, 1);
+            EmailInput.Name = "EmailInput";
+            EmailInput.Size = new Size(245, 23);
+            EmailInput.TabIndex = 5;
+            // 
+            // PasswordInput
+            // 
+            PasswordInput.Location = new Point(149, 274);
+            PasswordInput.Margin = new Padding(2, 1, 2, 1);
+            PasswordInput.Name = "PasswordInput";
+            PasswordInput.Size = new Size(245, 23);
+            PasswordInput.TabIndex = 6;
+            PasswordInput.UseSystemPasswordChar = true;
+            // 
+            // ConfirmPasswordInput
+            // 
+            ConfirmPasswordInput.Location = new Point(149, 308);
+            ConfirmPasswordInput.Margin = new Padding(2, 1, 2, 1);
+            ConfirmPasswordInput.Name = "ConfirmPasswordInput";
+            ConfirmPasswordInput.Size = new Size(245, 23);
+            ConfirmPasswordInput.TabIndex = 7;
+            ConfirmPasswordInput.UseSystemPasswordChar = true;
+            // 
+            // btnConfirm
+            // 
+            btnConfirm.Location = new Point(149, 410);
+            btnConfirm.Margin = new Padding(2, 1, 2, 1);
+            btnConfirm.Name = "btnConfirm";
+            btnConfirm.Size = new Size(85, 30);
+            btnConfirm.TabIndex = 8;
+            btnConfirm.Text = "Confirm";
+            btnConfirm.UseVisualStyleBackColor = true;
+            btnConfirm.Click += btnConfirm_Click;
+            // 
+            // title
+            // 
+            title.AutoSize = true;
+            title.Font = new Font("Arial Black", 19.875F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            title.Location = new Point(149, 9);
+            title.Margin = new Padding(2, 0, 2, 0);
+            title.Name = "title";
+            title.Size = new Size(201, 38);
+            title.TabIndex = 9;
+            title.Text = "Add Member";
+            // 
+            // usernameLabel
+            // 
+            usernameLabel.AutoSize = true;
+            usernameLabel.Location = new Point(28, 243);
+            usernameLabel.Margin = new Padding(2, 0, 2, 0);
+            usernameLabel.Name = "usernameLabel";
+            usernameLabel.Size = new Size(60, 15);
+            usernameLabel.TabIndex = 10;
+            usernameLabel.Text = "Username";
+            // 
+            // NameInput
+            // 
+            NameInput.Location = new Point(149, 76);
+            NameInput.Margin = new Padding(2, 1, 2, 1);
+            NameInput.Name = "NameInput";
+            NameInput.Size = new Size(245, 23);
+            NameInput.TabIndex = 11;
+            // 
+            // phoneNumberLabel
+            // 
+            phoneNumberLabel.AutoSize = true;
+            phoneNumberLabel.Location = new Point(28, 114);
+            phoneNumberLabel.Margin = new Padding(2, 0, 2, 0);
+            phoneNumberLabel.Name = "phoneNumberLabel";
+            phoneNumberLabel.Size = new Size(88, 15);
+            phoneNumberLabel.TabIndex = 12;
+            phoneNumberLabel.Text = "Phone Number";
+            // 
+            // PhoneInput
+            // 
+            PhoneInput.Location = new Point(149, 111);
+            PhoneInput.Margin = new Padding(2, 1, 2, 1);
+            PhoneInput.Name = "PhoneInput";
+            PhoneInput.Size = new Size(245, 23);
+            PhoneInput.TabIndex = 13;
+            // 
+            // addressInput
+            // 
+            addressInput.Location = new Point(149, 179);
+            addressInput.Margin = new Padding(2, 1, 2, 1);
+            addressInput.Name = "addressInput";
+            addressInput.Size = new Size(245, 23);
+            addressInput.TabIndex = 14;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Black", 16.125F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(591, 56);
+            label1.Location = new Point(28, 182);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(298, 59);
-            label1.TabIndex = 0;
-            label1.Text = "Add Member";
-            label1.Click += label1_Click;
+            label1.Size = new Size(49, 15);
+            label1.TabIndex = 15;
+            label1.Text = "Address";
             // 
-            // pictureBox1
+            // inptAccountType
             // 
-            pictureBox1.Location = new Point(2, 155);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(338, 655);
-            pictureBox1.TabIndex = 1;
-            pictureBox1.TabStop = false;
+            inptAccountType.Location = new Point(149, 367);
+            inptAccountType.Margin = new Padding(2, 1, 2, 1);
+            inptAccountType.Name = "inptAccountType";
+            inptAccountType.Size = new Size(245, 23);
+            inptAccountType.TabIndex = 17;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(410, 202);
+            label2.Location = new Point(28, 370);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(168, 32);
-            label2.TabIndex = 2;
-            label2.Text = "Student Name";
+            label2.Size = new Size(79, 15);
+            label2.TabIndex = 16;
+            label2.Text = "Account Type";
             // 
-            // label3
+            // btnClear
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(410, 281);
-            label3.Name = "label3";
-            label3.Size = new Size(169, 32);
-            label3.TabIndex = 3;
-            label3.Text = "Enrollment No";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(410, 360);
-            label4.Name = "label4";
-            label4.Size = new Size(142, 32);
-            label4.TabIndex = 4;
-            label4.Text = "Department";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(410, 439);
-            label5.Name = "label5";
-            label5.Size = new Size(203, 32);
-            label5.TabIndex = 5;
-            label5.Text = "Student Semester";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(410, 522);
-            label6.Name = "label6";
-            label6.Size = new Size(186, 32);
-            label6.TabIndex = 6;
-            label6.Text = "Student Contact";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(410, 607);
-            label7.Name = "label7";
-            label7.Size = new Size(161, 32);
-            label7.TabIndex = 7;
-            label7.Text = "Student Email";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(667, 195);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(363, 39);
-            textBox1.TabIndex = 8;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(667, 278);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(363, 39);
-            textBox2.TabIndex = 9;
-            // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(667, 357);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(363, 39);
-            textBox3.TabIndex = 10;
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(667, 436);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(363, 39);
-            textBox4.TabIndex = 11;
-            // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(667, 522);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(363, 39);
-            textBox5.TabIndex = 12;
-            // 
-            // textBox6
-            // 
-            textBox6.Location = new Point(667, 607);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(363, 39);
-            textBox6.TabIndex = 13;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(593, 717);
-            button1.Name = "button1";
-            button1.Size = new Size(129, 56);
-            button1.TabIndex = 14;
-            button1.Text = "Refresh";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(771, 717);
-            button2.Name = "button2";
-            button2.Size = new Size(129, 56);
-            button2.TabIndex = 15;
-            button2.Text = "Save Info";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(948, 717);
-            button3.Name = "button3";
-            button3.Size = new Size(129, 56);
-            button3.TabIndex = 16;
-            button3.Text = "Exit";
-            button3.UseVisualStyleBackColor = true;
+            btnClear.Location = new Point(309, 410);
+            btnClear.Margin = new Padding(2, 1, 2, 1);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(85, 30);
+            btnClear.TabIndex = 18;
+            btnClear.Text = "Clear";
+            btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClear_Click;
             // 
             // AddMember
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1161, 812);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(textBox6);
-            Controls.Add(textBox5);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(label7);
-            Controls.Add(label6);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
+            ClientSize = new Size(430, 450);
+            Controls.Add(btnClear);
+            Controls.Add(inptAccountType);
             Controls.Add(label2);
-            Controls.Add(pictureBox1);
-            Controls.Add(panel1);
+            Controls.Add(label1);
+            Controls.Add(addressInput);
+            Controls.Add(PhoneInput);
+            Controls.Add(phoneNumberLabel);
+            Controls.Add(NameInput);
+            Controls.Add(usernameLabel);
+            Controls.Add(title);
+            Controls.Add(btnConfirm);
+            Controls.Add(ConfirmPasswordInput);
+            Controls.Add(PasswordInput);
+            Controls.Add(EmailInput);
+            Controls.Add(UsernameInput);
+            Controls.Add(lbl4);
+            Controls.Add(lbl3);
+            Controls.Add(lbl2);
+            Controls.Add(lbl1);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Margin = new Padding(2, 1, 2, 1);
             Name = "AddMember";
-            Text = "AddMember";
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Panel panel1;
+        private Label lbl1;
+        private Label lbl2;
+        private Label lbl3;
+        private Label lbl4;
+        private TextBox UsernameInput;
+        private TextBox EmailInput;
+        private TextBox PasswordInput;
+        private TextBox ConfirmPasswordInput;
+        private Button btnConfirm;
+        private Label title;
+        private Label usernameLabel;
+        private TextBox NameInput;
+        private Label phoneNumberLabel;
+        private TextBox PhoneInput;
+        private TextBox addressInput;
         private Label label1;
-        private PictureBox pictureBox1;
+        private TextBox inptAccountType;
         private Label label2;
-        private Label label3;
-        private Label label4;
-        private Label label5;
-        private Label label6;
-        private Label label7;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox textBox5;
-        private TextBox textBox6;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private Button btnClear;
     }
 }

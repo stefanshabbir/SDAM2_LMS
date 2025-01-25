@@ -69,11 +69,13 @@ namespace SDAM2_LMS.Views
                 return;
             }
 
+            //-- NEEDS ERROR HANDLING; empty/null texts, set max length in winform itself
             _sessionService.LoggedInAccount.Username = UsernameInput.Text;
             _sessionService.LoggedInAccount.PersonalID_Info.Name = NameInput.Text;
             _sessionService.LoggedInAccount.PersonalID_Info.PhoneNumber = PhoneInput.Text;
             _sessionService.LoggedInAccount.PersonalID_Info.Email = EmailInput.Text;
             _sessionService.LoggedInAccount.PersonalID_Info.Address = addressInput.Text;
+            //--
 
             try
             {

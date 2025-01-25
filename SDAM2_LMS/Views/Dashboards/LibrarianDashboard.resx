@@ -121,7 +121,7 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="booksToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="menuBtn_Books.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAA5gAAAKqCAMAAABo0wGdAAAABGdBTUEAALGPC/xhBQAAAGxQTFRF5ubm
         hLTY/2YAz1oMAAAADjBTx8/hwAEHMzMz////zhUcgoCN8vLxABlB7P3/kbvU0kgAFxkbgiIUaW99yev9
@@ -810,7 +810,7 @@
         oooqqqiiiiqqqKKKKqqooooqqqiiKpT7+/8HE+AZy4pEoDwAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="issueBooksToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="menuBtn_Reservations.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         /9j/4AAQSkZJRgABAQEAAAAAAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEB
         AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEB
@@ -2487,7 +2487,7 @@
   <data name="completeBookDetailsToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAFugSURBVHhe7d0H
+        vgAADr4B6kKxwAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAFugSURBVHhe7d0H
         lBVlui7g6Ux3092Epsk0NKGBJuccmhyaHJqcc1SQrIgSzAhmFBEQEYkiSg5mEBQQBTGO46jjOOo999wT
         5syd+e7/1QxzGfvrrl27qv6qvff7rvWsde8Z2bVDdf1vpb9+gyAIgiAIgiAIgiAIgiAIgiAIgiAIgiAI
         giAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAI
