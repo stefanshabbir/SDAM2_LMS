@@ -38,7 +38,26 @@ namespace SDAM2_LMS
             string address = addressInput.Text;
             string name = NameInput.Text;
             //--
+            if (string.IsNullOrWhiteSpace(username))
+            {
+                MessageBox.Show("Username cannot be empty!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                UsernameInput.Focus();
+                return;
+            }
 
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                MessageBox.Show("Password cannot be empty!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                PasswordInput.Focus();
+                return;
+            }
+
+            if (password != confirmPassword)
+            {
+                MessageBox.Show("Password cannot be empty", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning );
+                ConfirmPasswordInput.Focus();
+                return;
+            }
 
             bool isRegistered = _accountController.Register(username, password, email, name, address, phone);
 
