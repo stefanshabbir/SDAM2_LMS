@@ -51,9 +51,7 @@ namespace SDAM2_LMS.Controllers
         {
             if (string.IsNullOrEmpty(newPassword))
             {
-                throw new ArgumentException("Password cannot be empty.");
                 return false;
-
             } else
             {
                 _accountService.resetPassword(newPassword);

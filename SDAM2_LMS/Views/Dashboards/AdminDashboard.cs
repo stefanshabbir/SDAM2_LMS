@@ -72,5 +72,11 @@ namespace SDAM2_LMS
             ManageBooks mb = new ManageBooks();
             mb.Show();
         }
+
+        private void ViewMembers_Click_1(object sender, EventArgs e)
+        {
+            ViewMember vm = new ViewMember();
+            vm.Show();
+        }
     }
 }

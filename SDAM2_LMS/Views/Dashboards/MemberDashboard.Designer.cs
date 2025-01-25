@@ -30,11 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MemberDashboard));
             menuStrip1 = new MenuStrip();
+            viewBooksToolStripMenuItem = new ToolStripMenuItem();
             returnBooksToolStripMenuItem = new ToolStripMenuItem();
             completeBookDetailsToolStripMenuItem = new ToolStripMenuItem();
             toolStripMenuItem1 = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
-            viewBooksToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -48,6 +48,13 @@
             menuStrip1.Size = new Size(746, 38);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
+            // 
+            // viewBooksToolStripMenuItem
+            // 
+            viewBooksToolStripMenuItem.Name = "viewBooksToolStripMenuItem";
+            viewBooksToolStripMenuItem.Size = new Size(51, 36);
+            viewBooksToolStripMenuItem.Text = "Books";
+            viewBooksToolStripMenuItem.Click += viewBooksToolStripMenuItem_Click_1;
             // 
             // returnBooksToolStripMenuItem
             // 
@@ -79,12 +86,6 @@
             exitToolStripMenuItem.Size = new Size(70, 36);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
-            // 
-            // viewBooksToolStripMenuItem
-            // 
-            viewBooksToolStripMenuItem.Name = "viewBooksToolStripMenuItem";
-            viewBooksToolStripMenuItem.Size = new Size(51, 36);
-            viewBooksToolStripMenuItem.Text = "Books";
             // 
             // MemberDashboard
             // 

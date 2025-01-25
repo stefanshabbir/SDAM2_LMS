@@ -23,7 +23,7 @@ namespace SDAM2_LMS
             InitializeComponent();
 
             _sessionService = sessionService;
-            _accountService =  accountService;
+            _accountService = accountService;
             _accountController = accountController;
             if (_sessionService.IsLoggedIn)
             {
@@ -75,6 +75,12 @@ namespace SDAM2_LMS
         {
             ViewProfile viewProfile = new ViewProfile(_accountController, _sessionService);
             viewProfile.Show();
+        }
+
+        private void viewBooksToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            ViewBooks viewBooks = new ViewBooks();
+            viewBooks.Show();
         }
     }
 }
