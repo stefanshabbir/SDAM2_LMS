@@ -17,9 +17,8 @@ namespace SDAM2_LMS
     public partial class ManageMembers : Form
     {
         private Int32 _selectedAccountID { get; set; }
-        private Int32 _selectedPersonalID { get; set; }
-
         private readonly ManageMembersController _controller;
+
         public ManageMembers()
         {
             InitializeComponent();
@@ -35,16 +34,15 @@ namespace SDAM2_LMS
         {
             try
             {
-                var memberID = DataGridViewBooksView.SelectedRows[0].Cells["PersonalID_Info"].Value.ToString();
+                var username = DataGridViewBooksView.SelectedRows[0].Cells["Username"].Value.ToString();
+                var confirmation = MessageBox.Show($"Are you sure you want to delete {username}'s account?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                //var confirmation = MessageBox.Show($"Are you sure you want to delete the book with ISBN: {memberID}?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                //if (confirmation == DialogResult.Yes)
-                //{
-                //    _controller.DeleteBook(bookId);
-                //    DataGridViewBooksView.DataSource = _controller.GetMembers();
-                //    MessageBox.Show("Book deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //}
+                if (confirmation == DialogResult.Yes)
+                {
+                    _controller.DeleteMemberAccount(_selectedAccountID);
+                    DataGridViewBooksView.DataSource = _controller.GetMembers();
+                    MessageBox.Show("Account deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (Exception ex)
             {
@@ -75,7 +73,7 @@ namespace SDAM2_LMS
                 inptAddress.Text = address;
 
                 _selectedAccountID = Convert.ToInt32(selectedAccID);
-                _selectedPersonalID = Convert.ToInt32(selectedPID);
+                //_selectedPersonalID = Convert.ToInt32(selectedPID);
             }
 
         }
@@ -124,25 +122,6 @@ namespace SDAM2_LMS
         {
             AddMember am = new AddMember(_controller);
             am.Show();
-            ////TODO: NEEDS ERROR CHECKING--
-            //string title = inptName.Text;
-            //string author = inptEmail.Text;
-            //string publisher = inptPhoneNumber.Text;
-            //string isbn = inptUsername.Text;
-            //int quantity = int.Parse(inptAccountType.Text);
-            //// --
-
-            //var controller = new BookController(new DatabaseContext());
-            //bool bookIsAdded = controller.AddBook(title, author, genre, publisher, language, isbn, quantity);
-            //if (bookIsAdded)
-            //{
-            //    DataGridViewBooksView.DataSource = _controller.GetBooks();
-            //    MessageBox.Show("Book Successfully Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
-            //else
-            //{
-            //    MessageBox.Show("An Unexpected error occured, Check error logs. Book couldn't be added.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
         }
     }
 }

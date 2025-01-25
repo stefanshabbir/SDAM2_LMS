@@ -96,7 +96,7 @@ namespace SDAM2_LMS.Controllers
                 return false;
             }
         }
-         //would this work?
+        //would this work?
         public object SearchMember(string search)
         {
             var searchList = _context.Accounts
@@ -137,7 +137,20 @@ namespace SDAM2_LMS.Controllers
                 account.PersonalID_Info.Address = newAddress;
                 _context.SaveChanges();
             }
+        }
 
+        public void DeleteMemberAccount(int accID)
+        {
+            var account = _context.Accounts.FirstOrDefault(a => a.AccountID == accID);
+            if (account != null)
+            {
+                _context.Remove(account);
+                _context.SaveChanges();
+
+                var personalInfo = _context.PersonalIDs.FirstOrDefault(p => p.PersonalID == account.PersonalID);
+                _context.Remove(personalInfo);
+                _context.SaveChanges();
+            }
         }
     }
 }
