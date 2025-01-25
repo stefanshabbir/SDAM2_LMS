@@ -96,7 +96,8 @@ namespace SDAM2_LMS.Controllers
                 return false;
             }
         }
-        //would this work?
+
+        //-- NEEDS ERROR CHECKING;
         public object SearchMember(string search)
         {
             var searchList = _context.Accounts
@@ -120,6 +121,7 @@ namespace SDAM2_LMS.Controllers
             return formattedSearchList;
         }
 
+        //-- NEEDS ERROR CHECKING;
         public void EditMemberAccount(
             Int32 accID, string newUsername, string newName, string newEmail, string newPhoneNumber, string newAddress, string newAccountType
             )

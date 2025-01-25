@@ -25,6 +25,7 @@ namespace SDAM2_LMS
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
+            //-- NEEDS ERROR HANDLING; empty/null text inputs, set max length in winform itself
             string username = UsernameInput.Text;
             string password = PasswordInput.Text;
             string confirmPassword = ConfirmPasswordInput.Text;
@@ -34,6 +35,7 @@ namespace SDAM2_LMS
             string address = addressInput.Text;
             string phoneNumber = PhoneInput.Text;
             string accountType = inptAccountType.Text;
+            //
 
             bool accountIsAdded = _controller
                 .AddMemberAccount(username, password, name, email, address, phoneNumber, accountType);
@@ -44,7 +46,7 @@ namespace SDAM2_LMS
             }
             else
             {
-                MessageBox.Show("Invalid Username or Password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An Error occured, please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 PasswordInput.Clear();
                 UsernameInput.Clear();

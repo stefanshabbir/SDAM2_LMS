@@ -73,7 +73,6 @@ namespace SDAM2_LMS
                 inptAddress.Text = address;
 
                 _selectedAccountID = Convert.ToInt32(selectedAccID);
-                //_selectedPersonalID = Convert.ToInt32(selectedPID);
             }
 
         }
@@ -84,6 +83,7 @@ namespace SDAM2_LMS
 
             if (confirmation == DialogResult.Yes)
             {
+                //-- NEEDS ERROR HANDLING;
                 _controller.EditMemberAccount(
                 _selectedAccountID, inptUsername.Text, inptName.Text, inptEmail.Text, inptPhoneNumber.Text, inptAddress.Text, inptAccountType.Text
                     );
