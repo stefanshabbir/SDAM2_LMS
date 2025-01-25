@@ -1,4 +1,5 @@
 ﻿using SDAM2_LMS.Controllers;
+using SDAM2_LMS.ErrorLog;
 using SDAM2_LMS.Models.Data;
 using System;
 using System.Collections.Generic;
@@ -105,7 +106,8 @@ namespace SDAM2_LMS
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex}");
+                new WriteErrorLog(ex);
+                MessageBox.Show($"An Error Occured. Check logs for more details. \nError: {ex}");
             }
         }
 

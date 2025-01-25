@@ -70,12 +70,12 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Black", 19.875F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(394, 24);
+            label1.Location = new Point(408, 24);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(214, 37);
+            label1.Size = new Size(186, 37);
             label1.TabIndex = 0;
-            label1.Text = "View Members";
+            label1.Text = "User Profiles";
             // 
             // label2
             // 

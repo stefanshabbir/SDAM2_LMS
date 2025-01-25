@@ -61,14 +61,27 @@ namespace SDAM2_LMS.Controllers
             }
         }
          //would this work?
-        public IEnumerable<Account> SearchMember(string search)
+        public object SearchMember(string search)
         {
-            return _context.Accounts
+            var searchList = _context.Accounts
                 .Where(account => EF.Functions.Like(account.Username, $"%{search}%") ||
                 EF.Functions.Like(account.PersonalID_Info.Name, $"%{search}%") ||
                 EF.Functions.Like(account.PersonalID_Info.Email, $"%{search}%"))
-                  
                   .ToList();
+
+            var formattedSearchList = searchList.Select(m => new
+            {
+                m.Username,
+                m.PersonalID_Info.Name,
+                m.PersonalID_Info.Email,
+                m.PersonalID_Info.PhoneNumber,
+                m.PersonalID_Info.Address,
+                m.AccountType.AccountTypeName,
+                m.AccountID,
+                m.PersonalID
+            }).ToList();
+
+            return formattedSearchList;
         }
 
         public void EditMemberAccount(
