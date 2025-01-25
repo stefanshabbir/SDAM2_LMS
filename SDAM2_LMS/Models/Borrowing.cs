@@ -14,6 +14,7 @@ namespace SDAM2_LMS.Models
         public int AccountID { get; private set; }
         public DateTime BorrowDate { get; private set; }
         public DateTime ReturnDate { get; private set; }
+        public bool Reserved { get; private set; }
 
         public Book Book { get; set; }
         public Account Account { get; set; }
