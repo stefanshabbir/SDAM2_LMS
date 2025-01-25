@@ -39,6 +39,7 @@ namespace SDAM2_LMS
             string name = NameInput.Text;
             //--
 
+
             bool isRegistered = _accountController.Register(username, password, email, name, address, phone);
 
             if (isRegistered)

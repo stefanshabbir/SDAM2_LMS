@@ -71,7 +71,7 @@
             // 
             textBoxPassword.Location = new Point(106, 240);
             textBoxPassword.Margin = new Padding(2, 1, 2, 1);
-            textBoxPassword.MaxLength = 64;
+            textBoxPassword.MaxLength = 16;
             textBoxPassword.Name = "textBoxPassword";
             textBoxPassword.Size = new Size(294, 27);
             textBoxPassword.TabIndex = 3;
