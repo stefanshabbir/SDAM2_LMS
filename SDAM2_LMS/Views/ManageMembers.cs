@@ -25,10 +25,9 @@ namespace SDAM2_LMS
 
             var memberController = new MangeMembersController(new DatabaseContext());
             _controller = memberController;
-            var members = _controller.GetMembers();
 
             DataGridViewBooksView.Rows.Clear();
-            DataGridViewBooksView.DataSource = members;
+            DataGridViewBooksView.DataSource = _controller.GetMembers();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -58,19 +57,21 @@ namespace SDAM2_LMS
             {
                 var selectedRow = DataGridViewBooksView.SelectedRows[0];
 
-                string name = selectedRow.Cells["Name"].Value?.ToString();
                 string username = selectedRow.Cells["Username"].Value?.ToString();
+                string name = selectedRow.Cells["Name"].Value?.ToString();
                 string email = selectedRow.Cells["Email"].Value?.ToString();
                 string accountType = selectedRow.Cells["AccountTypeName"].Value?.ToString();
                 string phoneNumber = selectedRow.Cells["PhoneNumber"].Value?.ToString();
+                string address = selectedRow.Cells["Address"].Value?.ToString();
                 string selectedAccID = selectedRow.Cells["AccountID"].Value?.ToString();
                 string selectedPID = selectedRow.Cells["PersonalID"].Value?.ToString();
 
-                inptName.Text = name;
                 inptUsername.Text = username;
+                inptName.Text = name;
                 inptEmail.Text = email;
                 inptAccountType.Text = accountType;
                 inptPhoneNumber.Text = phoneNumber;
+                inptAddress.Text = address;
 
                 _selectedAccountID = Convert.ToInt32(selectedAccID);
                 _selectedPersonalID = Convert.ToInt32(selectedPID);
@@ -80,15 +81,17 @@ namespace SDAM2_LMS
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            //var confirmation = MessageBox.Show($"Are you sure you want to update the selected Member?", "Confirm Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var confirmation = MessageBox.Show($"Are you sure you want to update the selected user's profile?", "Confirm Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            //if (confirmation == DialogResult.Yes)
-            //{
-            //    _controller.EditBook(inptUsername.Text, inptName.Text, inptEmail.Text, GenreTextBox.Text, inptPhoneNumber.Text, LanguageTextBox.Text, Convert.ToInt32(inptAccountType.Text));
+            if (confirmation == DialogResult.Yes)
+            {
+                _controller.EditMemberAccount(
+                _selectedAccountID, inptUsername.Text, inptName.Text, inptEmail.Text, inptPhoneNumber.Text, inptAddress.Text, inptAccountType.Text
+                    );
 
-            //    DataGridViewBooksView.DataSource = _controller.GetBooks();
-            //    MessageBox.Show("Book updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
+                DataGridViewBooksView.DataSource = _controller.GetMembers();
+                MessageBox.Show("Profile updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
 
         }
 

@@ -31,6 +31,7 @@ namespace SDAM2_LMS.Controllers
                 m.PersonalID_Info.Name, //using personalID_Info as it is an object
                 m.PersonalID_Info.Email,
                 m.PersonalID_Info.PhoneNumber,
+                m.PersonalID_Info.Address,
                 m.AccountType.AccountTypeName,
                 m.AccountID,
                 m.PersonalID
@@ -70,8 +71,32 @@ namespace SDAM2_LMS.Controllers
                   .ToList();
         }
 
-        public void EditMemberAccount()
+        public void EditMemberAccount(
+            Int32 accID, string newUsername, string newName, string newEmail, string newPhoneNumber, string newAddress, string newAccountType
+            )
         {
+            int accTypeID = 0; //Temporary assignment
+            if (newAccountType == "Admin")
+            { accTypeID = 1; }
+            else if (newAccountType == "Librarian")
+            { accTypeID = 2; }
+            else if (newAccountType == "Member")
+            { accTypeID = 3; }
+            else { 
+             //Throw an error or something
+                 }
+
+            var account = _context.Accounts.FirstOrDefault(a => a.AccountID == accID);
+            if (account != null)
+            {
+                account.AccountTypeID = accTypeID;
+                account.Username = newUsername;
+                account.PersonalID_Info.Name = newName;
+                account.PersonalID_Info.Email = newEmail;
+                account.PersonalID_Info.PhoneNumber = newPhoneNumber;
+                account.PersonalID_Info.Address = newAddress;
+                _context.SaveChanges();
+            }
 
         }
     }

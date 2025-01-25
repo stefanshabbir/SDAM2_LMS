@@ -34,6 +34,8 @@
             SearchInput = new TextBox();
             DataGridViewBooksView = new DataGridView();
             panel2 = new Panel();
+            inptAddress = new TextBox();
+            label3 = new Label();
             btnAdd = new Button();
             inptUsername = new TextBox();
             btnClear = new Button();
@@ -61,14 +63,14 @@
             panel1.Location = new Point(1, 0);
             panel1.Margin = new Padding(2, 1, 2, 1);
             panel1.Name = "panel1";
-            panel1.Size = new Size(882, 91);
+            panel1.Size = new Size(984, 91);
             panel1.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Black", 19.875F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(359, 27);
+            label1.Location = new Point(394, 24);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
             label1.Size = new Size(214, 37);
@@ -78,7 +80,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(231, 107);
+            label2.Location = new Point(300, 109);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
             label2.Size = new Size(77, 15);
@@ -87,7 +89,7 @@
             // 
             // SearchInput
             // 
-            SearchInput.Location = new Point(326, 104);
+            SearchInput.Location = new Point(395, 106);
             SearchInput.Margin = new Padding(2, 1, 2, 1);
             SearchInput.Name = "SearchInput";
             SearchInput.Size = new Size(234, 23);
@@ -107,13 +109,15 @@
             DataGridViewBooksView.MultiSelect = false;
             DataGridViewBooksView.Name = "DataGridViewBooksView";
             DataGridViewBooksView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            DataGridViewBooksView.Size = new Size(859, 280);
+            DataGridViewBooksView.Size = new Size(959, 280);
             DataGridViewBooksView.TabIndex = 4;
             DataGridViewBooksView.SelectionChanged += DataGridViewBooksView_SelectionChanged;
             // 
             // panel2
             // 
             panel2.BackColor = Color.DarkGray;
+            panel2.Controls.Add(inptAddress);
+            panel2.Controls.Add(label3);
             panel2.Controls.Add(btnAdd);
             panel2.Controls.Add(inptUsername);
             panel2.Controls.Add(btnClear);
@@ -128,18 +132,37 @@
             panel2.Controls.Add(label6);
             panel2.Controls.Add(label5);
             panel2.Controls.Add(label4);
-            panel2.Location = new Point(14, 433);
+            panel2.Location = new Point(14, 427);
             panel2.Margin = new Padding(2, 1, 2, 1);
             panel2.Name = "panel2";
-            panel2.Size = new Size(859, 184);
+            panel2.Size = new Size(959, 184);
             panel2.TabIndex = 5;
+            // 
+            // inptAddress
+            // 
+            inptAddress.Location = new Point(665, 100);
+            inptAddress.Margin = new Padding(2, 1, 2, 1);
+            inptAddress.Name = "inptAddress";
+            inptAddress.Size = new Size(217, 23);
+            inptAddress.TabIndex = 21;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F);
+            label3.Location = new Point(479, 100);
+            label3.Margin = new Padding(2, 0, 2, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(66, 21);
+            label3.TabIndex = 20;
+            label3.Text = "Address";
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(465, 141);
+            btnAdd.Location = new Point(279, 144);
             btnAdd.Margin = new Padding(2, 1, 2, 1);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(81, 22);
+            btnAdd.Size = new Size(85, 30);
             btnAdd.TabIndex = 19;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
@@ -147,7 +170,7 @@
             // 
             // inptUsername
             // 
-            inptUsername.Location = new Point(624, 19);
+            inptUsername.Location = new Point(665, 14);
             inptUsername.Margin = new Padding(2, 1, 2, 1);
             inptUsername.Name = "inptUsername";
             inptUsername.Size = new Size(217, 23);
@@ -155,10 +178,10 @@
             // 
             // btnClear
             // 
-            btnClear.Location = new Point(752, 141);
+            btnClear.Location = new Point(579, 144);
             btnClear.Margin = new Padding(2, 1, 2, 1);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(81, 22);
+            btnClear.Size = new Size(85, 30);
             btnClear.TabIndex = 15;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = true;
@@ -166,10 +189,10 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(659, 141);
+            btnDelete.Location = new Point(479, 144);
             btnDelete.Margin = new Padding(2, 1, 2, 1);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(81, 22);
+            btnDelete.Size = new Size(85, 30);
             btnDelete.TabIndex = 14;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
@@ -177,10 +200,10 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(560, 141);
+            btnUpdate.Location = new Point(379, 144);
             btnUpdate.Margin = new Padding(2, 1, 2, 1);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(81, 22);
+            btnUpdate.Size = new Size(85, 30);
             btnUpdate.TabIndex = 13;
             btnUpdate.Text = "Update";
             btnUpdate.UseVisualStyleBackColor = true;
@@ -188,7 +211,7 @@
             // 
             // inptAccountType
             // 
-            inptAccountType.Location = new Point(620, 78);
+            inptAccountType.Location = new Point(665, 55);
             inptAccountType.Margin = new Padding(2, 1, 2, 1);
             inptAccountType.Name = "inptAccountType";
             inptAccountType.Size = new Size(217, 23);
@@ -196,7 +219,7 @@
             // 
             // inptPhoneNumber
             // 
-            inptPhoneNumber.Location = new Point(177, 146);
+            inptPhoneNumber.Location = new Point(226, 102);
             inptPhoneNumber.Margin = new Padding(2, 1, 2, 1);
             inptPhoneNumber.Name = "inptPhoneNumber";
             inptPhoneNumber.Size = new Size(237, 23);
@@ -204,7 +227,7 @@
             // 
             // inptEmail
             // 
-            inptEmail.Location = new Point(177, 80);
+            inptEmail.Location = new Point(226, 59);
             inptEmail.Margin = new Padding(2, 1, 2, 1);
             inptEmail.Name = "inptEmail";
             inptEmail.Size = new Size(237, 23);
@@ -212,7 +235,7 @@
             // 
             // inptName
             // 
-            inptName.Location = new Point(177, 13);
+            inptName.Location = new Point(226, 12);
             inptName.Margin = new Padding(2, 1, 2, 1);
             inptName.Name = "inptName";
             inptName.Size = new Size(237, 23);
@@ -222,7 +245,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 12F);
-            label8.Location = new Point(430, 78);
+            label8.Location = new Point(479, 57);
             label8.Margin = new Padding(2, 0, 2, 0);
             label8.Name = "label8";
             label8.Size = new Size(102, 21);
@@ -233,7 +256,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F);
-            label7.Location = new Point(428, 17);
+            label7.Location = new Point(477, 14);
             label7.Margin = new Padding(2, 0, 2, 0);
             label7.Name = "label7";
             label7.Size = new Size(81, 21);
@@ -244,7 +267,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F);
-            label6.Location = new Point(11, 142);
+            label6.Location = new Point(60, 100);
             label6.Margin = new Padding(2, 0, 2, 0);
             label6.Name = "label6";
             label6.Size = new Size(116, 21);
@@ -255,7 +278,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F);
-            label5.Location = new Point(11, 79);
+            label5.Location = new Point(60, 58);
             label5.Margin = new Padding(2, 0, 2, 0);
             label5.Name = "label5";
             label5.Size = new Size(48, 21);
@@ -266,7 +289,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(11, 15);
+            label4.Location = new Point(60, 14);
             label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
             label4.Size = new Size(52, 21);
@@ -275,10 +298,10 @@
             // 
             // btn_Refresh
             // 
-            btn_Refresh.Location = new Point(634, 103);
+            btn_Refresh.Location = new Point(679, 101);
             btn_Refresh.Margin = new Padding(2, 1, 2, 1);
             btn_Refresh.Name = "btn_Refresh";
-            btn_Refresh.Size = new Size(81, 22);
+            btn_Refresh.Size = new Size(85, 30);
             btn_Refresh.TabIndex = 19;
             btn_Refresh.Text = "Refresh";
             btn_Refresh.UseVisualStyleBackColor = true;
@@ -288,7 +311,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(884, 622);
+            ClientSize = new Size(984, 621);
             Controls.Add(btn_Refresh);
             Controls.Add(panel2);
             Controls.Add(DataGridViewBooksView);
@@ -332,5 +355,7 @@
         private TextBox inptUsername;
         private Button btn_Refresh;
         private Button btnAdd;
+        private TextBox inptAddress;
+        private Label label3;
     }
 }
