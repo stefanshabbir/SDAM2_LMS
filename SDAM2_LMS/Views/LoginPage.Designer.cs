@@ -70,17 +70,17 @@
             // 
             textBoxPassword.Location = new Point(93, 180);
             textBoxPassword.Margin = new Padding(2, 1, 2, 1);
-            textBoxPassword.Multiline = true;
             textBoxPassword.Name = "textBoxPassword";
-            textBoxPassword.Size = new Size(258, 20);
+            textBoxPassword.Size = new Size(258, 23);
             textBoxPassword.TabIndex = 3;
+            textBoxPassword.UseSystemPasswordChar = true;
             // 
             // LoginBtn
             // 
             LoginBtn.Location = new Point(93, 239);
             LoginBtn.Margin = new Padding(2, 1, 2, 1);
             LoginBtn.Name = "LoginBtn";
-            LoginBtn.Size = new Size(110, 22);
+            LoginBtn.Size = new Size(110, 30);
             LoginBtn.TabIndex = 4;
             LoginBtn.Text = "Login";
             LoginBtn.UseVisualStyleBackColor = true;
@@ -88,7 +88,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(81, 31);
+            textBox1.Location = new Point(87, 31);
             textBox1.Margin = new Padding(2, 1, 2, 1);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(2, 23);
@@ -98,7 +98,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Black", 19.875F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(60, 22);
+            label1.Location = new Point(93, 17);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
             label1.Size = new Size(218, 37);
@@ -110,7 +110,7 @@
             RegistrationBtn.Location = new Point(241, 239);
             RegistrationBtn.Margin = new Padding(2, 1, 2, 1);
             RegistrationBtn.Name = "RegistrationBtn";
-            RegistrationBtn.Size = new Size(110, 22);
+            RegistrationBtn.Size = new Size(110, 30);
             RegistrationBtn.TabIndex = 7;
             RegistrationBtn.Text = "Sign Up";
             RegistrationBtn.UseVisualStyleBackColor = true;

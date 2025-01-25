@@ -1,4 +1,5 @@
-﻿using SDAM2_LMS.Controllers;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SDAM2_LMS.Controllers;
 using SDAM2_LMS.Models;
 using SDAM2_LMS.Models.Data;
 using SDAM2_LMS.Models.Services;
@@ -16,19 +17,27 @@ namespace SDAM2_LMS
 {
     public partial class LoginPage : Form
     {
+        private readonly AccountController _accountController;
+        private readonly SessionService _sessionService;
+        private readonly AccountService _accountService;
+
         const int ADMIN = 1;
         const int LIBRARIAN = 2;
         const int MEMBER = 3;
 
-        public LoginPage()
+        public LoginPage(AccountController accountController, AccountService accountService, SessionService sessionService)
         {
             InitializeComponent();
+            _accountController = accountController;
+            _accountService = accountService;
+            _sessionService = sessionService;
         }
 
         private void LoginBtn_Click(object sender, EventArgs e)
-        {
+        {   //-- NEEDS ERROR HANDLING; empty/null text inputs, set max length in winform itself
             string username = textBoxUsername.Text;
             string password = textBoxPassword.Text;
+            //--
 
             if (string.IsNullOrWhiteSpace(username))
             {
@@ -46,7 +55,7 @@ namespace SDAM2_LMS
 
             try
             {
-                var controller = new AccountController(new AccountService(new DatabaseContext()));
+                var controller = _accountController;
                 var user = controller.Login(username, password);
 
                 if (user != null)
@@ -59,13 +68,15 @@ namespace SDAM2_LMS
                     }
                     else if (user.AccountTypeID == LIBRARIAN)
                     {
-                        LibrarianDashboard dashboard = new LibrarianDashboard();
+                        LibrarianDashboard dashboard = new(_sessionService);
                         dashboard.Show();
                         this.Hide();
                     }
                     else
                     {
-                        //TODO: Log into member's dashboard
+                        MemberDashboard dashboard = new(_sessionService, _accountService,_accountController);
+                        dashboard.Show();
+                        this.Hide();
                     }
 
                 }
@@ -76,13 +87,17 @@ namespace SDAM2_LMS
                     textBoxUsername.Clear();
                     textBoxPassword.Clear();
                     textBoxUsername.Focus();
+
+                    AdminDashboard dashboard = new AdminDashboard();
+                    dashboard.Show();
+                    this.Hide();
                 }
             }
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("An unexpected error occurred. Please try again later.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -96,7 +111,7 @@ namespace SDAM2_LMS
 
         private void RegistrationBtn_Click(object sender, EventArgs e)
         {
-            new Register().Show();
+            new Register(_accountController, _sessionService, _accountService).Show();
             this.Hide();
         }
     }

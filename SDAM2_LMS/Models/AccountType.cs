@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SDAM2_LMS.Models
 {
-    internal class AccountType
+    public class AccountType
     {
         public int AccountTypeID { get; set; }
         public string AccountTypeName { get; set; }

@@ -1,8 +1,12 @@
 using System;
 using System.Windows.Forms;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using SDAM2_LMS.Controllers;
 using SDAM2_LMS.Models;
 using SDAM2_LMS.Models.Data;
+using SDAM2_LMS.Models.Services;
+using SDAM2_LMS.Views;
 
 namespace SDAM2_LMS
 {
@@ -18,15 +22,28 @@ namespace SDAM2_LMS
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            //var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
-            //optionsBuilder.UseSqlite("Data Source=./Models/Data/LibraryManagement.db");
+            var serviceProvider = ConfigureServices();
 
-            //using (var context = new DatabaseContext(optionsBuilder.Options))
-            //{
-            //    context.Database.Migrate();
-            //}
+            var loginPage = serviceProvider.GetRequiredService<LoginPage>();
+            Application.Run(loginPage);
+        }
 
-            Application.Run(new LoginPage());
+        private static ServiceProvider ConfigureServices()
+        {
+            var services = new ServiceCollection();
+
+            services.AddScoped<DatabaseContext>();
+            services.AddSingleton<AccountController>();
+            services.AddSingleton<AccountService>();
+            services.AddSingleton<SessionService>();
+
+            services.AddTransient<LoginPage>();
+            services.AddTransient<AdminDashboard>();
+            services.AddTransient<LibrarianDashboard>();
+            services.AddTransient<MemberDashboard>();
+            services.AddTransient<ViewProfile>();
+
+            return services.BuildServiceProvider();
         }
     }
 }

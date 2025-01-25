@@ -17,9 +17,10 @@ namespace SDAM2_LMS
             InitializeComponent();
         }
 
-        private void studentToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuBtn_Members_Click(object sender, EventArgs e)
         {
-
+            ManageMembers mm = new ManageMembers();
+            mm.Show();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -29,20 +30,6 @@ namespace SDAM2_LMS
                 Application.Exit();
 
             }
-
-        }
-
-        private void addNewBooksToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AddBooks abs = new AddBooks();
-            abs.Show();
-        }
-
-        private void ViewBooks_Click(object sender, EventArgs e)
-        {
-            ViewBook vb = new ViewBook();
-            vb.Show();
-
         }
 
         private void completeBookDetailsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -51,26 +38,10 @@ namespace SDAM2_LMS
             cbd.Show();
         }
 
-        private void ViewMembers_Click(object sender, EventArgs e)
+        private void menuBtn_Books_Click(object sender, EventArgs e)
         {
-            ViewMember vm = new ViewMember();
-            vm.Show();
-        }
-
-        private void AddMembers_Click(object sender, EventArgs e)
-        {
-            AddMember am = new AddMember();
-            am.Show();
-        }
-
-        private void RemoveMembers_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void EditMembers_Click(object sender, EventArgs e)
-        {
-
+            ManageBooks mb = new ManageBooks();
+            mb.Show();
         }
     }
 }

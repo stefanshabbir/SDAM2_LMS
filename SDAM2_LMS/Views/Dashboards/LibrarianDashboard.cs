@@ -1,4 +1,4 @@
-﻿using SDAM2_LMS.Models;
+﻿using SDAM2_LMS.Models.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,18 +13,16 @@ namespace SDAM2_LMS
 {
     public partial class LibrarianDashboard : Form
     {
-        public LibrarianDashboard()
+        private readonly SessionService _sessionService;
+        internal LibrarianDashboard(SessionService sessionService)
         {
             InitializeComponent();
-            if (AppSession.IsLoggedIn)
+            if (_sessionService.IsLoggedIn)
             {
-                MessageBox.Show($"Welcome, {AppSession.LoggedInAccount.Username}!");
+                MessageBox.Show($"Welcome, {_sessionService.LoggedInAccount.Username}!");
             }
-        }
 
-        private void studentToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
+            _sessionService = sessionService;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -37,29 +35,16 @@ namespace SDAM2_LMS
 
         }
 
-        private void addNewBooksToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AddBooks abs = new AddBooks();
-            abs.Show();
-        }
-
-        private void viewBooksToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ViewBook vb = new ViewBook();
-            vb.Show();
-
-        }
-
-        private void addMemberToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AddMember am = new AddMember();
-            am.Show();
-        }
-
         private void completeBookDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CompleteBookDetails cbd = new CompleteBookDetails();    
+            CompleteBookDetails cbd = new CompleteBookDetails();
             cbd.Show();
+        }
+
+        private void menuBtn_Books_Click(object sender, EventArgs e)
+        {
+            ManageBooks mb = new ManageBooks();
+            mb.Show();
         }
     }
 }
