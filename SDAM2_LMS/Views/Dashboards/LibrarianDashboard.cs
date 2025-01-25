@@ -17,12 +17,12 @@ namespace SDAM2_LMS
         internal LibrarianDashboard(SessionService sessionService)
         {
             InitializeComponent();
+            _sessionService = sessionService;
             if (_sessionService.IsLoggedIn)
             {
                 MessageBox.Show($"Welcome, {_sessionService.LoggedInAccount.Username}!");
             }
 
-            _sessionService = sessionService;
         }
 
         private void studentToolStripMenuItem_Click(object sender, EventArgs e)
