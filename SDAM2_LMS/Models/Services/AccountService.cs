@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SDAM2_LMS.Models;
 using SDAM2_LMS.Models.Data;
 using System;
 using System.Collections.Generic;
@@ -9,27 +8,32 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace SDAM2_LMS.Models.Services
 {
-    internal class AccountService 
+    public class AccountService 
     {
         //placeholder list to simulate list of accounts
         private List<Account> accounts = new List<Account>();
 
         private readonly DatabaseContext _context;
+        private readonly SessionService _sessionService;
 
-        public AccountService(DatabaseContext context)
+        public AccountService(DatabaseContext context, SessionService sessionService)
         {
             _context = context;
+            _sessionService = sessionService;
         }
 
         //simulating the login 
         public Account Login(string username, string password)
         {
             // searching for corresponding account in list
-            var account = _context.Accounts.FirstOrDefault(a => a.Username == username && a.Password == password);
-            AppSession.LoggedInAccount = account;
+            var account = _context.Accounts
+                .Include(a => a.PersonalID_Info)
+                .FirstOrDefault(a => a.Username == username && a.Password == password);
+            _sessionService.LoggedInAccount = account;
             return account;
         }
 
@@ -52,18 +56,45 @@ namespace SDAM2_LMS.Models.Services
                     Username = username,
                     Password = password,
                     PersonalID = personal.PersonalID,
-                    AccountTypeID = 1,
+                    AccountTypeID = 3, //default type is 'Member'
                 };
 
                 _context.Accounts.Add(account);
                 _context.SaveChanges();
-                AppSession.LoggedInAccount = account;
+                _sessionService.LoggedInAccount = account;
                 return true;
             }
-            
         }
-            
+           
+        public void DeleteAccount()
+        {
+            var confirmResult = MessageBox.Show("Are you sure you want to delete your account?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
+            if (confirmResult == DialogResult.Yes)
+            {
+                var currentUser = _sessionService.LoggedInAccount;
+                _context.PersonalIDs.Remove(currentUser.PersonalID_Info);
+                _context.Accounts.Remove(currentUser);
+                _context.SaveChanges();
+
+                _sessionService.Logout();
+                MessageBox.Show("Account deleted successfully.");
+            }
+        }
         
+        public void EditAccount(Account updatedAccount)
+        {
+            var dbAccount = _context.Accounts
+                .Include(a=> a.PersonalID_Info)
+                .FirstOrDefault(a => a.AccountID == updatedAccount.AccountID);
+
+            dbAccount.Username = updatedAccount.Username;
+            dbAccount.PersonalID_Info.Name = updatedAccount.PersonalID_Info.Name;
+            dbAccount.PersonalID_Info.PhoneNumber = updatedAccount.PersonalID_Info.PhoneNumber;
+            dbAccount.PersonalID_Info.Email = updatedAccount.PersonalID_Info.Email;
+            dbAccount.PersonalID_Info.Address = updatedAccount.PersonalID_Info.Address;
+
+            _context.SaveChanges();
+        }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SDAM2_LMS.Models
 {
-    internal class Borrowing
+    public class Borrowing
     {
         public int BorrowID { get; private set; }
         public int BookID { get; private set; }

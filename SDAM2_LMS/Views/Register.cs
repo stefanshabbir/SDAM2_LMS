@@ -15,9 +15,15 @@ namespace SDAM2_LMS
 {
     public partial class Register : Form
     {
-        public Register()
+        private readonly AccountController _accountController;
+        private readonly SessionService _sessionService;
+        private readonly AccountService _accountService;
+        internal Register(AccountController accountController, SessionService sessionService, AccountService accountService)
         {
             InitializeComponent();
+            _accountController = accountController;
+            _sessionService = sessionService;
+            _accountService = accountService;
         }
 
         private void RegisterBtn_Click(object sender, EventArgs e)
@@ -31,15 +37,14 @@ namespace SDAM2_LMS
             string address = addressInput.Text;
             string name = NameInput.Text;
 
-            var controller = new AccountController(new AccountService(new DatabaseContext()));
-            bool isRegistered = controller.Register(username, password, email, name, address, phone);
+            bool isRegistered = _accountController.Register(username, password, email, name, address, phone);
 
             if (isRegistered)
             {
                 MessageBox.Show("Registration Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.Hide();
-                new LibrarianDashboard().Show();
+                new MemberDashboard(_sessionService, _accountService, _accountController).Show();
             }
             else
             {

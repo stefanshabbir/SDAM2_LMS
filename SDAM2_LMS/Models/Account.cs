@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SDAM2_LMS.Models
 {
-    internal class Account : IAccount
+    public class Account : IAccount
     {
         public int AccountID { get; set; }
         public string Username { get; set; }

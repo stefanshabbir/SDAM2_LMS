@@ -1,4 +1,4 @@
-﻿using SDAM2_LMS.Models;
+﻿using SDAM2_LMS.Models.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,13 +13,16 @@ namespace SDAM2_LMS
 {
     public partial class LibrarianDashboard : Form
     {
-        public LibrarianDashboard()
+        private readonly SessionService _sessionService;
+        internal LibrarianDashboard(SessionService sessionService)
         {
             InitializeComponent();
-            if (AppSession.IsLoggedIn)
+            if (_sessionService.IsLoggedIn)
             {
-                MessageBox.Show($"Welcome, {AppSession.LoggedInAccount.Username}!");
+                MessageBox.Show($"Welcome, {_sessionService.LoggedInAccount.Username}!");
             }
+
+            _sessionService = sessionService;
         }
 
         private void studentToolStripMenuItem_Click(object sender, EventArgs e)
