@@ -15,10 +15,10 @@ using System.Xml.Linq;
 
 namespace SDAM2_LMS.Controllers
 {
-    internal class MangeMembersController
+    internal class ManageMembersController
     {
         private readonly DatabaseContext _context;
-        public MangeMembersController(DatabaseContext context)
+        public ManageMembersController(DatabaseContext context)
         {
             _context = context;
         }

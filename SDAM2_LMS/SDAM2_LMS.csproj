@@ -48,6 +48,9 @@
     <Compile Update="Views\Dashboards\AdminDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Views\AddMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">

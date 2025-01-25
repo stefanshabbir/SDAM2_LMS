@@ -19,12 +19,12 @@ namespace SDAM2_LMS
         private Int32 _selectedAccountID { get; set; }
         private Int32 _selectedPersonalID { get; set; }
 
-        private readonly MangeMembersController _controller;
+        private readonly ManageMembersController _controller;
         public ManageMembers()
         {
             InitializeComponent();
 
-            var memberController = new MangeMembersController(new DatabaseContext());
+            var memberController = new ManageMembersController(new DatabaseContext());
             _controller = memberController;
 
             DataGridViewBooksView.Rows.Clear();
@@ -122,6 +122,7 @@ namespace SDAM2_LMS
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            new AddMember(_controller).Show();
             ////TODO: NEEDS ERROR CHECKING--
             //string title = inptName.Text;
             //string author = inptEmail.Text;
