@@ -20,7 +20,9 @@ namespace SDAM2_LMS.Controllers
 
         public List<Account> GetMembers()
         {
-            return _context.Accounts.ToList();
+            return _context.Accounts
+                .Include(m => m.PersonalID_Info) // Include the PersonalID_Info when loading the members accounts
+                .ToList(); 
         }
 
         public bool AddMemberAccount()
