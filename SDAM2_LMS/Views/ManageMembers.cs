@@ -116,6 +116,7 @@ namespace SDAM2_LMS
             inptEmail.Clear();
             inptAccountType.Clear();
             inptPhoneNumber.Clear();
+            inptAddress.Clear();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
