@@ -11,7 +11,7 @@ using System.Data.Entity;
 
 namespace SDAM2_LMS.Controllers
 {
-    internal class BookController
+    public class BookController
     {
         private readonly DatabaseContext _context;
         public BookController(DatabaseContext context)

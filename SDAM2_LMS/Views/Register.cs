@@ -18,12 +18,15 @@ namespace SDAM2_LMS
         private readonly AccountController _accountController;
         private readonly SessionService _sessionService;
         private readonly AccountService _accountService;
-        internal Register(AccountController accountController, SessionService sessionService, AccountService accountService)
+        private readonly BookController _bookController;
+        private readonly BorrowController _borrowController;
+        internal Register(AccountController accountController, SessionService sessionService, AccountService accountService, BorrowController borrowController)
         {
             InitializeComponent();
             _accountController = accountController;
             _sessionService = sessionService;
             _accountService = accountService;
+            _borrowController = borrowController;
         }
 
         private void RegisterBtn_Click(object sender, EventArgs e)
@@ -44,7 +47,7 @@ namespace SDAM2_LMS
                 MessageBox.Show("Registration Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.Hide();
-                new MemberDashboard(_sessionService, _accountService, _accountController).Show();
+                new MemberDashboard(_sessionService, _accountService, _accountController, _bookController, _borrowController).Show();
             }
             else
             {

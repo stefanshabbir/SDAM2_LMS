@@ -1,5 +1,6 @@
 ﻿using SDAM2_LMS.Controllers;
 using SDAM2_LMS.Models.Data;
+using SDAM2_LMS.Models.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,14 +16,15 @@ namespace SDAM2_LMS
 {
     public partial class ViewBooks : Form
     {
-        private readonly BookController _controller;
-        public ViewBooks()
+        private readonly BookController _bookController;
+        //private readonly SessionService _sessionService;
+        private readonly BorrowController _borrowController;
+        public ViewBooks(BorrowController borrowController, BookController bookController)
         {
             InitializeComponent();
-
-            var bookController = new BookController(new DatabaseContext());
-            _controller = bookController;
-            var books = _controller.GetBooks();
+            _borrowController = borrowController; 
+            _bookController = bookController;
+            var books = _bookController.GetBooks();
             dataGridViewBooksView.Rows.Clear();
             dataGridViewBooksView.DataSource = books;
         }
@@ -37,8 +39,8 @@ namespace SDAM2_LMS
 
                 if (confirmation == DialogResult.Yes)
                 {
-                    _controller.DeleteBook(bookId);
-                    dataGridViewBooksView.DataSource = _controller.GetBooks();
+                    _bookController.DeleteBook(bookId);
+                    dataGridViewBooksView.DataSource = _bookController.GetBooks();
                     MessageBox.Show("Book deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -77,7 +79,7 @@ namespace SDAM2_LMS
 
             try
             {
-                dataGridViewBooksView.DataSource = _controller.SearchBook(search);
+                dataGridViewBooksView.DataSource = _bookController.SearchBook(search);
             }
             catch (Exception ex)
             {
@@ -134,6 +136,29 @@ namespace SDAM2_LMS
                 dataGridViewBooksView.Columns["Quantity"].Visible = false; // Hide the Quantity column
                 e.FormattingApplied = true; // Indicate that formatting has been applied
             }
+        }
+
+        private void BorrowBtn_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewBooksView.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a book to borrow.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var bookId = Convert.ToInt16(dataGridViewBooksView.SelectedRows[0].Cells["BookID"].Value);
+
+            MessageBox.Show(bookId.ToString());
+
+            if (_borrowController.BorrowBook(bookId))
+            {
+                MessageBox.Show("Book borrowed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //RefreshBookList(); // Update the book list to reflect quantity change
+            }
+            else
+            {
+                MessageBox.Show("Failed to borrow book. It may be unavailable.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            //_borrowController.BorrowBook(Convert.ToInt16(dataGridViewBooksView.SelectedRows[0].Cells["BookID"].Value));
         }
     }
 }

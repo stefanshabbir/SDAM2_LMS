@@ -34,6 +34,7 @@
             SearchInput = new TextBox();
             dataGridViewBooksView = new DataGridView();
             btn_Refresh = new Button();
+            BorrowBtn = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewBooksView).BeginInit();
             SuspendLayout();
@@ -91,6 +92,7 @@
             dataGridViewBooksView.MultiSelect = false;
             dataGridViewBooksView.Name = "dataGridViewBooksView";
             dataGridViewBooksView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewBooksView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewBooksView.Size = new Size(859, 280);
             dataGridViewBooksView.TabIndex = 4;
             dataGridViewBooksView.SelectionChanged += DataGridViewBooksView_SelectionChanged;
@@ -106,11 +108,23 @@
             btn_Refresh.UseVisualStyleBackColor = true;
             btn_Refresh.Click += btn_Refresh_Click;
             // 
+            // BorrowBtn
+            // 
+            BorrowBtn.Location = new Point(792, 435);
+            BorrowBtn.Margin = new Padding(2, 1, 2, 1);
+            BorrowBtn.Name = "BorrowBtn";
+            BorrowBtn.Size = new Size(81, 22);
+            BorrowBtn.TabIndex = 20;
+            BorrowBtn.Text = "Borrow";
+            BorrowBtn.UseVisualStyleBackColor = true;
+            BorrowBtn.Click += BorrowBtn_Click;
+            // 
             // ViewBooks
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(884, 467);
+            Controls.Add(BorrowBtn);
             Controls.Add(btn_Refresh);
             Controls.Add(dataGridViewBooksView);
             Controls.Add(SearchInput);
@@ -135,5 +149,6 @@
         private TextBox SearchInput;
         private DataGridView dataGridViewBooksView;
         private Button btn_Refresh;
+        private Button BorrowBtn;
     }
 }

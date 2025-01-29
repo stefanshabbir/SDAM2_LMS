@@ -20,17 +20,21 @@ namespace SDAM2_LMS
         private readonly AccountController _accountController;
         private readonly SessionService _sessionService;
         private readonly AccountService _accountService;
+        private readonly BookController _bookController;
+        private readonly BorrowController _borrowController;
 
         const int ADMIN = 1;
         const int LIBRARIAN = 2;
         const int MEMBER = 3;
 
-        public LoginPage(AccountController accountController, AccountService accountService, SessionService sessionService)
+        public LoginPage(AccountController accountController, AccountService accountService, SessionService sessionService, BookController bookController, BorrowController borrowController)
         {
             InitializeComponent();
             _accountController = accountController;
             _accountService = accountService;
             _sessionService = sessionService;
+            _bookController = bookController;
+            _borrowController = borrowController;
         }
 
         private void LoginBtn_Click(object sender, EventArgs e)
@@ -57,7 +61,7 @@ namespace SDAM2_LMS
                 }
                 else
                 {
-                    MemberDashboard dashboard = new(_sessionService, _accountService, _accountController);
+                    MemberDashboard dashboard = new(_sessionService, _accountService, _accountController, _bookController, _borrowController);
                     dashboard.Show();
                     this.Hide();
                 }
@@ -81,7 +85,7 @@ namespace SDAM2_LMS
 
         private void RegistrationBtn_Click(object sender, EventArgs e)
         {
-            new Register(_accountController, _sessionService, _accountService).Show();
+            new Register(_accountController, _sessionService, _accountService, _borrowController).Show();
             this.Hide();
         }
     }
