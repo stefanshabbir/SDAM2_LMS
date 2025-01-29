@@ -15,10 +15,10 @@ using System.Xml.Linq;
 
 namespace SDAM2_LMS.Controllers
 {
-    internal class ManageMembersController
+    internal class ManageUsersController
     {
         private readonly DatabaseContext _context;
-        public ManageMembersController(DatabaseContext context)
+        public ManageUsersController(DatabaseContext context)
         {
             _context = context;
         }
@@ -38,14 +38,14 @@ namespace SDAM2_LMS.Controllers
             }
         }
 
-        public object GetMembers()
+        public object GetUsers()
         {
-            var members = _context.Accounts
+            var users = _context.Accounts
                 .Include(m => m.PersonalID_Info) // Include the PersonalID_Info when loading the members accounts
                 .Include(at => at.AccountType)
                 .ToList();
 
-            var membersList = members.Select(m => new //selecting the columns to display
+            var usersList = users.Select(m => new //selecting the columns to display
             {
                 m.Username,
                 m.PersonalID_Info.Name, //using personalID_Info as it is an object
@@ -56,10 +56,10 @@ namespace SDAM2_LMS.Controllers
                 m.AccountID
             }).ToList();
 
-            return membersList;
+            return usersList;
         }
 
-        public bool AddMemberAccount(
+        public bool AddUser(
             string username, string password, string name, string email, string address, string phoneNumber, string accountType
             )
         {
@@ -97,7 +97,7 @@ namespace SDAM2_LMS.Controllers
         }
 
         //-- NEEDS ERROR HANDLING;
-        public object SearchMember(string search)
+        public object SearchUser(string search)
         {
             var searchList = _context.Accounts
                 .Where(account => EF.Functions.Like(account.Username, $"%{search}%") ||
@@ -120,7 +120,7 @@ namespace SDAM2_LMS.Controllers
         }
 
         //-- NEEDS ERROR HANDLING;
-        public void EditMemberAccount(
+        public void EditUser(
             Int32 accID, string newUsername, string newName, string newEmail, string newPhoneNumber, string newAddress, string newAccountType
             )
         {
@@ -139,7 +139,7 @@ namespace SDAM2_LMS.Controllers
             }
         }
 
-        public void DeleteMemberAccount(int accID)
+        public void DeleteUser(int accID)
         {
             var account = _context.Accounts.FirstOrDefault(a => a.AccountID == accID);
             if (account != null)

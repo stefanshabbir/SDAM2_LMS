@@ -1,6 +1,6 @@
 ﻿namespace SDAM2_LMS
 {
-    partial class AddMember
+    partial class AddUser
     {
         /// <summary>
         /// Required designer variable.

@@ -17,10 +17,10 @@ namespace SDAM2_LMS
             InitializeComponent();
         }
 
-        private void menuBtn_Members_Click(object sender, EventArgs e)
+        private void menuBtn_Users_Click(object sender, EventArgs e)
         {
-            ManageMembers mm = new ManageMembers();
-            mm.Show();
+            ManageUsers mu = new ManageUsers();
+            mu.Show();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
