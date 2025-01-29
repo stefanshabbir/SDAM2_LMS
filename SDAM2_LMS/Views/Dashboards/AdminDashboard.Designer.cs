@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminDashboard));
             menuStrip1 = new MenuStrip();
             menuBtn_Books = new ToolStripMenuItem();
-            menuBtn_Members = new ToolStripMenuItem();
+            menuBtn_Users = new ToolStripMenuItem();
             Reservations = new ToolStripMenuItem();
             ViewReservations = new ToolStripMenuItem();
             AddReservations = new ToolStripMenuItem();
@@ -45,7 +45,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(32, 32);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { menuBtn_Books, menuBtn_Members, Reservations, returnBooksToolStripMenuItem, exitToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { menuBtn_Books, menuBtn_Users, Reservations, returnBooksToolStripMenuItem, exitToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(3, 1, 0, 1);
@@ -62,14 +62,14 @@
             menuBtn_Books.Text = "Books";
             menuBtn_Books.Click += menuBtn_Books_Click;
             // 
-            // menuBtn_Members
+            // menuBtn_Users
             // 
-            menuBtn_Members.CheckOnClick = true;
-            menuBtn_Members.Image = (Image)resources.GetObject("menuBtn_Members.Image");
-            menuBtn_Members.Name = "menuBtn_Members";
-            menuBtn_Members.Size = new Size(101, 36);
-            menuBtn_Members.Text = "Members";
-            menuBtn_Members.Click += menuBtn_Members_Click;
+            menuBtn_Users.CheckOnClick = true;
+            menuBtn_Users.Image = (Image)resources.GetObject("menuBtn_Members.Image");
+            menuBtn_Users.Name = "menuBtn_Users";
+            menuBtn_Users.Size = new Size(101, 36);
+            menuBtn_Users.Text = "Users";
+            menuBtn_Users.Click += menuBtn_Users_Click;
             // 
             // Reservations
             // 
@@ -142,7 +142,7 @@
 
         private MenuStrip menuStrip1;
         private ToolStripMenuItem menuBtn_Books;
-        private ToolStripMenuItem menuBtn_Members;
+        private ToolStripMenuItem menuBtn_Users;
         private ToolStripMenuItem Reservations;
         private ToolStripMenuItem returnBooksToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;

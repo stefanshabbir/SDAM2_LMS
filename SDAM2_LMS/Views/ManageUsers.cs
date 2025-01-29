@@ -14,20 +14,20 @@ using System.Windows.Forms;
 
 namespace SDAM2_LMS
 {
-    public partial class ManageMembers : Form
+    public partial class ManageUsers : Form
     {
         private Int32 _selectedAccountID { get; set; }
-        private readonly ManageMembersController _controller;
+        private readonly ManageUsersController _controller;
 
-        public ManageMembers()
+        public ManageUsers()
         {
             InitializeComponent();
 
-            var memberController = new ManageMembersController(new DatabaseContext());
-            _controller = memberController;
+            var userController = new ManageUsersController(new DatabaseContext());
+            _controller = userController;
 
             DataGridViewBooksView.Rows.Clear();
-            DataGridViewBooksView.DataSource = _controller.GetMembers();
+            DataGridViewBooksView.DataSource = _controller.GetUsers();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -39,8 +39,8 @@ namespace SDAM2_LMS
 
                 if (confirmation == DialogResult.Yes)
                 {
-                    _controller.DeleteMemberAccount(_selectedAccountID);
-                    DataGridViewBooksView.DataSource = _controller.GetMembers();
+                    _controller.DeleteUser(_selectedAccountID);
+                    DataGridViewBooksView.DataSource = _controller.GetUsers();
                     MessageBox.Show("Account deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -83,11 +83,11 @@ namespace SDAM2_LMS
             if (confirmation == DialogResult.Yes)
             {
                 //-- NEEDS ERROR HANDLING;
-                _controller.EditMemberAccount(
+                _controller.EditUser(
                 _selectedAccountID, inptUsername.Text, inptName.Text, inptEmail.Text, inptPhoneNumber.Text, inptAddress.Text, inptAccountType.Text
                     );
 
-                DataGridViewBooksView.DataSource = _controller.GetMembers();
+                DataGridViewBooksView.DataSource = _controller.GetUsers();
                 MessageBox.Show("Profile updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
@@ -99,7 +99,7 @@ namespace SDAM2_LMS
 
             try
             {
-                DataGridViewBooksView.DataSource = _controller.SearchMember(search);
+                DataGridViewBooksView.DataSource = _controller.SearchUser(search);
             }
             catch (Exception ex) //Catch block format for error handling
             {
@@ -121,7 +121,7 @@ namespace SDAM2_LMS
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            AddMember am = new AddMember(_controller);
+            AddUser am = new AddUser(_controller);
             am.Show();
         }
     }

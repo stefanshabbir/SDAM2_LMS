@@ -13,11 +13,11 @@ using System.Windows.Forms;
 
 namespace SDAM2_LMS
 {
-    public partial class AddMember : Form
+    public partial class AddUser : Form
     {
-        private readonly ManageMembersController _controller;
+        private readonly ManageUsersController _controller;
 
-        internal AddMember(ManageMembersController manageUserscontroller)
+        internal AddUser(ManageUsersController manageUserscontroller)
         {
             InitializeComponent();
             _controller = manageUserscontroller;
@@ -38,7 +38,7 @@ namespace SDAM2_LMS
             //
 
             bool accountIsAdded = _controller
-                .AddMemberAccount(username, password, name, email, address, phoneNumber, accountType);
+                .AddUser(username, password, name, email, address, phoneNumber, accountType);
 
             if (accountIsAdded)
             {

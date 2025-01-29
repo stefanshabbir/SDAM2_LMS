@@ -1,6 +1,6 @@
 ﻿namespace SDAM2_LMS
 {
-    partial class ManageMembers
+    partial class ManageUsers
     {
         /// <summary>
         /// Required designer variable.
