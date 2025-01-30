@@ -1,24 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SDAM2_LMS.ErrorLog;
-using SDAM2_LMS.Models;
 using SDAM2_LMS.Models.Data;
-using SDAM2_LMS.Models.Services;
+using SQLitePCL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using System.Xml.Linq;
 
-namespace SDAM2_LMS.Controllers
+namespace SDAM2_LMS.Models.Services
 {
-    internal class ManageUsersController
+    public class UserService
     {
         private readonly DatabaseContext _context;
-        public ManageUsersController(DatabaseContext context)
+
+        public UserService(DatabaseContext context)
         {
             _context = context;
         }
@@ -33,22 +29,23 @@ namespace SDAM2_LMS.Controllers
             { return 3; }
             else
             {
-                //Throw an error or something
+                //Throw new error type for Invalid account type and catch this specific error in controller's error handling
                 return 0;
             }
         }
 
-        public object GetUsers()
+        public object? GetUsers()
         {
             var users = _context.Accounts
-                .Include(m => m.PersonalID_Info) // Include the PersonalID_Info when loading the members accounts
+                .Include(pid => pid.PersonalID_Info) // To include the PersonalID_Info when loading the members accounts
                 .Include(at => at.AccountType)
                 .ToList();
 
-            var usersList = users.Select(m => new //selecting the columns to display
+            //selecting the columns to display
+            var usersList = users.Select(m => new
             {
                 m.Username,
-                m.PersonalID_Info.Name, //using personalID_Info as it is an object
+                m.PersonalID_Info.Name,
                 m.PersonalID_Info.Email,
                 m.PersonalID_Info.PhoneNumber,
                 m.PersonalID_Info.Address,
@@ -59,45 +56,35 @@ namespace SDAM2_LMS.Controllers
             return usersList;
         }
 
+        // Returns false if account already exists, true if it doesn't. Can throw errors
         public bool AddUser(
             string username, string password, string name, string email, string address, string phoneNumber, string accountType
             )
         {
-            try
+            bool accountExists = _context.Accounts.FirstOrDefault(a => a.Username == username && a.Password == password) != null;
+            if (accountExists) { return false; }
+            else
             {
-                var accountExists = _context.Accounts.FirstOrDefault(a => a.Username == username && a.Password == password);
-                if (accountExists != null)
-                { return false; }
-                else
+                var personalInfo = new PersonalID_Info(name, email, phoneNumber, address);
+                _context.PersonalIDs.Add(personalInfo);
+                _context.SaveChanges();
+
+                int accountTypeID = this.GetAccountTypeIDOf(accountType);
+                var account = new Account()
                 {
-                    var personalInfo = new PersonalID_Info(name, email, phoneNumber, address);
-                    _context.PersonalIDs.Add(personalInfo);
-                    _context.SaveChanges();
+                    Username = username,
+                    Password = password,
+                    PersonalID = personalInfo.PersonalID,
+                    AccountTypeID = accountTypeID
+                };
 
-                    int accountTypeID = this.GetAccountTypeIDOf(accountType);
-                    var account = new Account()
-                    {
-                        Username = username,
-                        Password = password,
-                        PersonalID = personalInfo.PersonalID,
-                        AccountTypeID = accountTypeID
-                    };
-                    _context.Accounts.Add(account);
-                    _context.SaveChanges();
-
-                    return true;
-                }
-            }
-            catch (Exception ex)
-            {
-                new WriteErrorLog(ex);
-                Console.WriteLine($"Error Logged");
-                return false;
+                _context.Accounts.Add(account);
+                _context.SaveChanges(); 
+                return true;
             }
         }
 
-        //-- NEEDS ERROR HANDLING;
-        public object SearchUser(string search)
+        public object? SearchUser(string search)
         {
             var searchList = _context.Accounts
                 .Where(account => EF.Functions.Like(account.Username, $"%{search}%") ||
@@ -119,7 +106,6 @@ namespace SDAM2_LMS.Controllers
             return formattedSearchList;
         }
 
-        //-- NEEDS ERROR HANDLING;
         public void EditUser(
             Int32 accID, string newUsername, string newName, string newEmail, string newPhoneNumber, string newAddress, string newAccountType
             )

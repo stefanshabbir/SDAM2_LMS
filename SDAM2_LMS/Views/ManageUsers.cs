@@ -1,6 +1,7 @@
 ﻿using SDAM2_LMS.Controllers;
 using SDAM2_LMS.ErrorLog;
 using SDAM2_LMS.Models.Data;
+using SDAM2_LMS.Models.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,13 +18,12 @@ namespace SDAM2_LMS
     public partial class ManageUsers : Form
     {
         private Int32 _selectedAccountID { get; set; }
-        private readonly ManageUsersController _controller;
+        private readonly UserController _controller;
 
-        public ManageUsers()
+        public ManageUsers(UserController userController)
         {
             InitializeComponent();
 
-            var userController = new ManageUsersController(new DatabaseContext());
             _controller = userController;
 
             DataGridViewBooksView.Rows.Clear();

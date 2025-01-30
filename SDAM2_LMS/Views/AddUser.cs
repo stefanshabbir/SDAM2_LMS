@@ -15,9 +15,9 @@ namespace SDAM2_LMS
 {
     public partial class AddUser : Form
     {
-        private readonly ManageUsersController _controller;
+        private readonly UserController _controller;
 
-        internal AddUser(ManageUsersController manageUserscontroller)
+        internal AddUser(UserController manageUserscontroller)
         {
             InitializeComponent();
             _controller = manageUserscontroller;
