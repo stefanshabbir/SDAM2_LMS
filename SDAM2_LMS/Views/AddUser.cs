@@ -15,9 +15,9 @@ namespace SDAM2_LMS
 {
     public partial class AddUser : Form
     {
-        private readonly ManageUsersController _controller;
+        private readonly UserController _controller;
 
-        internal AddUser(ManageUsersController manageUserscontroller)
+        internal AddUser(UserController manageUserscontroller)
         {
             InitializeComponent();
             _controller = manageUserscontroller;
@@ -25,36 +25,12 @@ namespace SDAM2_LMS
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            //-- NEEDS ERROR HANDLING; empty/null text inputs, set max length in winform itself
-            string username = UsernameInput.Text;
-            string password = PasswordInput.Text;
-            string confirmPassword = ConfirmPasswordInput.Text;
-
-            string name = NameInput.Text;
-            string email = EmailInput.Text;
-            string address = addressInput.Text;
-            string phoneNumber = PhoneInput.Text;
-            string accountType = inptAccountType.Text;
-            //
-
-            bool accountIsAdded = _controller
-                .AddUser(username, password, name, email, address, phoneNumber, accountType);
-
-            if (accountIsAdded)
-            {
-                MessageBox.Show("Account successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("An Error occured, please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                PasswordInput.Clear();
-                UsernameInput.Clear();
-                EmailInput.Clear();
-                ConfirmPasswordInput.Clear();
-                UsernameInput.Focus();
-            }
-
+            _controller.AddUser(
+                UsernameInput.Text, PasswordInput.Text,
+                NameInput.Text, EmailInput.Text,
+                addressInput.Text, PhoneInput.Text,
+                inptAccountType.Text
+                );
         }
 
         private void btnClear_Click(object sender, EventArgs e)

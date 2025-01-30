@@ -1,4 +1,7 @@
-﻿using System;
+﻿using SDAM2_LMS.Controllers;
+using SDAM2_LMS.Models.Data;
+using SDAM2_LMS.Models.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +22,10 @@ namespace SDAM2_LMS
 
         private void menuBtn_Users_Click(object sender, EventArgs e)
         {
-            ManageUsers mu = new ManageUsers();
+            ManageUsers mu = new ManageUsers
+                (
+                new UserController(new UserService(new DatabaseContext()))
+                );
             mu.Show();
         }
 

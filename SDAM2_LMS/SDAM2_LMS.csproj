@@ -48,7 +48,7 @@
     <Compile Update="Views\Dashboards\AdminDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Views\AddMember.cs">
+    <Compile Update="Views\AddUser.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

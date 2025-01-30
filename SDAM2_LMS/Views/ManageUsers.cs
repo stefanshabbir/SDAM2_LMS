@@ -1,6 +1,7 @@
 ﻿using SDAM2_LMS.Controllers;
 using SDAM2_LMS.ErrorLog;
 using SDAM2_LMS.Models.Data;
+using SDAM2_LMS.Models.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,13 +18,12 @@ namespace SDAM2_LMS
     public partial class ManageUsers : Form
     {
         private Int32 _selectedAccountID { get; set; }
-        private readonly ManageUsersController _controller;
+        private readonly UserController _controller;
 
-        public ManageUsers()
+        public ManageUsers(UserController userController)
         {
             InitializeComponent();
 
-            var userController = new ManageUsersController(new DatabaseContext());
             _controller = userController;
 
             DataGridViewBooksView.Rows.Clear();
@@ -32,22 +32,14 @@ namespace SDAM2_LMS
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var username = DataGridViewBooksView.SelectedRows[0].Cells["Username"].Value.ToString();
-                var confirmation = MessageBox.Show($"Are you sure you want to delete {username}'s account?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var username = DataGridViewBooksView.SelectedRows[0].Cells["Username"].Value.ToString();
 
-                if (confirmation == DialogResult.Yes)
-                {
-                    _controller.DeleteUser(_selectedAccountID);
-                    DataGridViewBooksView.DataSource = _controller.GetUsers();
-                    MessageBox.Show("Account deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
+            var confirmation = MessageBox.Show($"Are you sure you want to delete {username}'s account?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirmation == DialogResult.Yes)
             {
-                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                _controller.DeleteUser(_selectedAccountID);
+                DataGridViewBooksView.DataSource = _controller.GetUsers();
+                }
         }
 
         private void DataGridViewBooksView_SelectionChanged(object sender, EventArgs e)
@@ -82,13 +74,15 @@ namespace SDAM2_LMS
 
             if (confirmation == DialogResult.Yes)
             {
-                //-- NEEDS ERROR HANDLING;
-                _controller.EditUser(
-                _selectedAccountID, inptUsername.Text, inptName.Text, inptEmail.Text, inptPhoneNumber.Text, inptAddress.Text, inptAccountType.Text
+                _controller.EditUser
+                    (
+                _selectedAccountID, inptUsername.Text,
+                inptName.Text, inptEmail.Text,
+                inptPhoneNumber.Text, inptAddress.Text,
+                inptAccountType.Text
                     );
 
                 DataGridViewBooksView.DataSource = _controller.GetUsers();
-                MessageBox.Show("Profile updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
         }
@@ -96,17 +90,7 @@ namespace SDAM2_LMS
         private void btn_Refresh_Click(object sender, EventArgs e)
         {
             string search = SearchInput.Text.Trim();
-
-            try
-            {
-                DataGridViewBooksView.DataSource = _controller.SearchUser(search);
-            }
-            catch (Exception ex) //Catch block format for error handling
-            {
-                new WriteErrorLog(ex); //Writes the error to a log at /bin/ErrorLogs
-                //Try to following this wording format for the message box
-                MessageBox.Show($"Could not refresh, an Error occured. Check logs for more details. \nError:\n {ex}");
-            }
+            DataGridViewBooksView.DataSource = _controller.SearchUser(search);
         }
 
         private void btnClear_Click(object sender, EventArgs e)
