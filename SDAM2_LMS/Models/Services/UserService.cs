@@ -29,7 +29,7 @@ namespace SDAM2_LMS.Models.Services
             { return 3; }
             else
             {
-                //Throw new error type for Invalid account type and catch this specific error in controller's error handling
+                //Throw new error for Invalid account type and catch this specific error in controller's error handling
                 return 0;
             }
         }
@@ -56,7 +56,7 @@ namespace SDAM2_LMS.Models.Services
             return usersList;
         }
 
-        // Returns false if account already exists, true if it doesn't. Can throw errors
+        // Returns false if account already exists, true if it doesn't. Could throw errors
         public bool AddUser(
             string username, string password, string name, string email, string address, string phoneNumber, string accountType
             )
@@ -134,8 +134,8 @@ namespace SDAM2_LMS.Models.Services
                 _context.SaveChanges();
 
                 var personalInfo = _context.PersonalIDs.FirstOrDefault(p => p.PersonalID == account.PersonalID);
-                _context.Remove(personalInfo);
-                _context.SaveChanges();
+                _context?.Remove(personalInfo);
+                _context?.SaveChanges();
             }
         }
     }

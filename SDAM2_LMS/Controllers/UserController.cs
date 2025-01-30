@@ -28,7 +28,7 @@ namespace SDAM2_LMS.Controllers
             return _userService.GetUsers();
         }
 
-        //NEEDS DISPLAY MESSAGES
+        //-- NEEDS ERROR HANDLING; null texts, unexpected exceptions
         public void AddUser(
             string username, string password, string name, string email, string address, string phoneNumber, string accountType
             )
@@ -37,12 +37,12 @@ namespace SDAM2_LMS.Controllers
             {
                 bool userSuccessfullyAdded = _userService.AddUser(username, password, name, email, address, phoneNumber, accountType);
                 if (userSuccessfullyAdded)
-                { 
-                    // Success message
+                {
+                    MessageBox.Show("Account successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    // Account already exists message
+                    MessageBox.Show("Account already exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
@@ -68,18 +68,20 @@ namespace SDAM2_LMS.Controllers
             }
         }
 
-        //-- NEEDS ERROR HANDLING; unexpected exceptions (Follow format of line 60-69)
+        //-- NEEDS ERROR HANDLING; null texts, unexpected exceptions (Follow format of line 60-69)
         public void EditUser(
             Int32 accID, string newUsername, string newName, string newEmail, string newPhoneNumber, string newAddress, string newAccountType
             )
         {
             _userService.EditUser(accID, newUsername, newName, newEmail, newPhoneNumber, newAddress, newAccountType);
+            MessageBox.Show("User profile updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         //-- NEEDS ERROR HANDLING; unexpected exceptions (Follow format of line 60-69)
         public void DeleteUser(int accID)
         {
             _userService.DeleteUser(accID);
+            MessageBox.Show("Account deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

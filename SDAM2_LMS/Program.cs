@@ -36,12 +36,15 @@ namespace SDAM2_LMS
             services.AddSingleton<AccountController>();
             services.AddSingleton<AccountService>();
             services.AddSingleton<SessionService>();
+            services.AddSingleton<UserController>();
+            services.AddSingleton<UserService>();
 
             services.AddTransient<LoginPage>();
             services.AddTransient<AdminDashboard>();
             services.AddTransient<LibrarianDashboard>();
             services.AddTransient<MemberDashboard>();
             services.AddTransient<ViewProfile>();
+            services.AddTransient<ManageUsers>();
 
             return services.BuildServiceProvider();
         }
