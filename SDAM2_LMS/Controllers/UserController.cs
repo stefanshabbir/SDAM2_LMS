@@ -27,8 +27,6 @@ namespace SDAM2_LMS.Controllers
         {
             return _userService.GetUsers();
         }
-
-        //-- NEEDS ERROR HANDLING; null texts, unexpected exceptions
         public void AddUser(
             string username, string password, string name, string email, string address, string phoneNumber, string accountType
             )
@@ -65,12 +63,10 @@ namespace SDAM2_LMS.Controllers
             {
                 return _userService.SearchUser(search);
             }
-            catch (Exception ex) //Catch block format for error handling
+            catch (Exception ex)
             {
-                new WriteErrorLog(ex); //Writes the error to a text file at /bin/ErrorLogs
-                //Try to following this wording format for the message box
+                new WriteErrorLog(ex); 
                 MessageBox.Show($"Could not refresh, an Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
-                
                 return null;
             }
         }
@@ -102,12 +98,23 @@ namespace SDAM2_LMS.Controllers
             }
             
         }
-
-        //-- NEEDS ERROR HANDLING; unexpected exceptions (Follow format of line 60-69)
         public void DeleteUser(int accID)
         {
-            _userService.DeleteUser(accID);
-            MessageBox.Show("Account deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                if (accID < 0)
+                {
+                    MessageBox.Show("Please enter a valid numeric Account ID.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                _userService.DeleteUser(accID);
+                MessageBox.Show("Account deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not refresh, an Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+            }
         }
     }
 }
