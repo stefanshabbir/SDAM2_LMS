@@ -75,13 +75,32 @@ namespace SDAM2_LMS.Controllers
             }
         }
 
-        //-- NEEDS ERROR HANDLING; null texts, unexpected exceptions (Follow format of line 60-69)
         public void EditUser(
             Int32 accID, string newUsername, string newName, string newEmail, string newPhoneNumber, string newAddress, string newAccountType
             )
         {
-            _userService.EditUser(accID, newUsername, newName, newEmail, newPhoneNumber, newAddress, newAccountType);
-            MessageBox.Show("User profile updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                if (accID <= 0)
+                {
+                    MessageBox.Show("Please enter a valid numeric Account ID.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                } 
+                if (string.IsNullOrWhiteSpace(newUsername) || string.IsNullOrWhiteSpace(newName) || string.IsNullOrWhiteSpace(newEmail) || 
+                    string.IsNullOrWhiteSpace(newPhoneNumber) || string.IsNullOrWhiteSpace(newAddress) || string.IsNullOrWhiteSpace(newAccountType))
+                {
+                    MessageBox.Show("All fields must be filled.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                _userService.EditUser(accID, newUsername, newName, newEmail, newPhoneNumber, newAddress, newAccountType);
+                MessageBox.Show("User profile updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not refresh, an Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+            }
+            
         }
 
         //-- NEEDS ERROR HANDLING; unexpected exceptions (Follow format of line 60-69)
