@@ -56,7 +56,6 @@
             dataGridView1.RowHeadersWidth = 82;
             dataGridView1.Size = new Size(805, 103);
             dataGridView1.TabIndex = 1;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // dataGridView2
             // 
@@ -93,6 +92,7 @@
             Margin = new Padding(2, 1, 2, 1);
             Name = "CompleteBookDetails";
             Text = "CompleteBookDetails";
+            Load += CompleteBookDetails_Load_1;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ResumeLayout(false);

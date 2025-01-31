@@ -55,8 +55,8 @@ namespace SDAM2_LMS
 
         private void completeBookDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CompleteBookDetails cbd = new CompleteBookDetails();
-            cbd.Show();
+            //CompleteBookDetails cbd = new CompleteBookDetails();
+            //cbd.Show();
         }
 
         private void booksToolStripMenuItem_Click(object sender, EventArgs e)

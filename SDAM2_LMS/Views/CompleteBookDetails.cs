@@ -20,9 +20,9 @@ namespace SDAM2_LMS
             _borrowController = borrowController;
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void CompleteBookDetails_Load_1(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = _borrowController.GetBorrowedBooks();
+            dataGridView1.DataSource = _borrowController.GetBorrowings();
         }
     }
 }

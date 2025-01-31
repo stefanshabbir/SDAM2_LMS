@@ -40,5 +40,25 @@ namespace SDAM2_LMS.Controllers
             }
             return false;
         }
+
+        public bool ReturnBook(int bookID)
+        {
+            var accID = _sessionService.LoggedInAccount.AccountID;
+            var borrowing = _context.Borrowings.FirstOrDefault(b => b.BookID == bookID && b.AccountID == accID);
+            var book = _context.Books.FirstOrDefault(b => b.BookID == bookID);
+            if (borrowing == null || book == null)
+            {
+                return false;
+            }
+            book.Quantity++;
+            _context.Borrowings.Remove(borrowing);
+            _context.SaveChanges();
+            return true;
+        }
+
+        public IEnumerable<Models.Borrowing> GetBorrowings()
+        {
+            return _context.Borrowings.ToList();
+        }
     }
 }
