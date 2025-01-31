@@ -29,7 +29,6 @@ namespace SDAM2_LMS
 
         private void RegisterBtn_Click(object sender, EventArgs e)
         {
-            //-- NEEDS ERROR HANDLING; set max length in winform itself, empty/null text inputs
             string username = UsernameInput.Text;
             string password = PasswordInput.Text;
             string confirmPassword = ConfirmPasswordInput.Text;
@@ -38,7 +37,7 @@ namespace SDAM2_LMS
             string phone = PhoneInput.Text;
             string address = addressInput.Text;
             string name = NameInput.Text;
-            //--
+            
             if (!ValidateInputs(username,password, confirmPassword, email, phone, address, name)) { return; }
 
             bool isRegistered = _accountController.Register(username, password, email, name, address, phone);

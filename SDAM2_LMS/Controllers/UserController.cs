@@ -35,6 +35,13 @@ namespace SDAM2_LMS.Controllers
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(email)
+                    || string.IsNullOrWhiteSpace(address) || string.IsNullOrWhiteSpace(phoneNumber) || string.IsNullOrWhiteSpace(accountType))
+                {
+                    MessageBox.Show("All fields must be filled.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 bool userSuccessfullyAdded = _userService.AddUser(username, password, name, email, address, phoneNumber, accountType);
                 if (userSuccessfullyAdded)
                 {
@@ -48,7 +55,7 @@ namespace SDAM2_LMS.Controllers
             catch (Exception ex)
             {
                 new WriteErrorLog(ex);
-                // Error message with exception (Follow format of line 60-69)
+                MessageBox.Show($"An Unexpected Error occured. Check logs for more details. \nError: \n {ex}");
             }
         }
 

@@ -34,10 +34,9 @@ namespace SDAM2_LMS
         }
 
         private void LoginBtn_Click(object sender, EventArgs e)
-        {   //-- NEEDS ERROR HANDLING; empty/null text inputs, set max length in winform itself
+        {  
             string username = textBoxUsername.Text;
             string password = textBoxPassword.Text;
-            //--
 
             if (string.IsNullOrWhiteSpace(username))
             {
