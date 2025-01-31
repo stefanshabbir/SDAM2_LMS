@@ -114,7 +114,7 @@ namespace SDAM2_LMS
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
-            //TODO: NEEDS ERROR CHECKING--
+            //-- NEEDS ERROR HANDLING; empty/null text inputs, integer type for quantity, set max length in winform itself
             string title = TitleTextBox.Text;
             string author = AuthorTextBox.Text;
             string genre = GenreTextBox.Text;
@@ -124,8 +124,7 @@ namespace SDAM2_LMS
             int quantity = int.Parse(QuantityTextBox.Text);
             // --
 
-            var controller = new BookController(new DatabaseContext());
-            bool bookIsAdded = controller.AddBook(title, author, genre, publisher, language, isbn, quantity);
+            bool bookIsAdded = _controller.AddBook(title, author, genre, publisher, language, isbn, quantity);
             if (bookIsAdded)
             {
                 dataGridViewBooksView.DataSource = _controller.GetBooks();

@@ -68,11 +68,11 @@ namespace SDAM2_LMS.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.PrimitiveCollection<string>("Authors")
+                    b.Property<string>("Authors")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.PrimitiveCollection<string>("Genres")
+                    b.Property<string>("Genres")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -82,7 +82,7 @@ namespace SDAM2_LMS.Migrations
                     b.Property<string>("Language")
                         .HasColumnType("TEXT");
 
-                    b.PrimitiveCollection<string>("Publisher")
+                    b.Property<string>("Publisher")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -90,6 +90,7 @@ namespace SDAM2_LMS.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("BookID");
@@ -111,6 +112,9 @@ namespace SDAM2_LMS.Migrations
 
                     b.Property<DateTime>("BorrowDate")
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("Reserved")
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("ReturnDate")
                         .HasColumnType("TEXT");

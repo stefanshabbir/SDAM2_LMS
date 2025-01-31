@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace SDAM2_LMS.Views
 {
@@ -62,27 +63,31 @@ namespace SDAM2_LMS.Views
 
         private void UpdateBtn_Click(object sender, EventArgs e)
         {
-            var updatedAccount = new Account
+            if (string.IsNullOrEmpty(UsernameInput.Text) || string.IsNullOrEmpty(NameInput.Text))
             {
-                AccountID = _sessionService.LoggedInAccount.AccountID,
-                Username = UsernameInput.Text,
-                //PersonalID_Info = new PersonalID_Info
-                //{
-                //    Name = NameInput.Text,
-                //    Email = EmailInput.Text,
-                //    PhoneNumber = PhoneInput.Text,
-                //    Address = addressInput.Text
-                //}
-            };
+                MessageBox.Show("Username and Name are required fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            // Save the changes via the controller
-            //_accountController.UpdateProfile(updatedAccount);
+            //-- NEEDS ERROR HANDLING; empty/null texts, set max length in winform itself
+            _sessionService.LoggedInAccount.Username = UsernameInput.Text;
+            _sessionService.LoggedInAccount.PersonalID_Info.Name = NameInput.Text;
+            _sessionService.LoggedInAccount.PersonalID_Info.PhoneNumber = PhoneInput.Text;
+            _sessionService.LoggedInAccount.PersonalID_Info.Email = EmailInput.Text;
+            _sessionService.LoggedInAccount.PersonalID_Info.Address = addressInput.Text;
+            //--
 
-            // Update session data
-            //AppSession.LoggedInAccount = _accountController.GetProfile(updatedAccount.AccountID);
+            try
+            {
+                _accountController.EditAccount(_sessionService.LoggedInAccount);
+                MessageBox.Show("Profile updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                EditBtn_Click(sender, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while updating the account: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
-            // Feedback to the user
-            MessageBox.Show("Profile updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void ResetPasswordBtn_Click(object sender, EventArgs e)

@@ -122,10 +122,10 @@
             // 
             // RegisterBtn
             // 
-            RegisterBtn.Location = new Point(429, 340);
+            RegisterBtn.Location = new Point(429, 329);
             RegisterBtn.Margin = new Padding(2, 1, 2, 1);
             RegisterBtn.Name = "RegisterBtn";
-            RegisterBtn.Size = new Size(81, 22);
+            RegisterBtn.Size = new Size(85, 30);
             RegisterBtn.TabIndex = 8;
             RegisterBtn.Text = "Register";
             RegisterBtn.UseVisualStyleBackColor = true;

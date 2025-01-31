@@ -33,7 +33,7 @@
             viewBooksToolStripMenuItem = new ToolStripMenuItem();
             returnBooksToolStripMenuItem = new ToolStripMenuItem();
             completeBookDetailsToolStripMenuItem = new ToolStripMenuItem();
-            toolStripMenuItem1 = new ToolStripMenuItem();
+            menuBtn_ViewProfile = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -41,7 +41,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(32, 32);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { viewBooksToolStripMenuItem, returnBooksToolStripMenuItem, completeBookDetailsToolStripMenuItem, toolStripMenuItem1, exitToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { returnBooksToolStripMenuItem, completeBookDetailsToolStripMenuItem, menuBtn_ViewProfile, exitToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(3, 1, 0, 1);
@@ -71,13 +71,13 @@
             completeBookDetailsToolStripMenuItem.Text = "Complete Book Details";
             completeBookDetailsToolStripMenuItem.Click += completeBookDetailsToolStripMenuItem_Click;
             // 
-            // toolStripMenuItem1
+            // menuBtn_ViewProfile
             // 
-            toolStripMenuItem1.Image = (Image)resources.GetObject("toolStripMenuItem1.Image");
-            toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(113, 36);
-            toolStripMenuItem1.Text = "View Profile";
-            toolStripMenuItem1.Click += toolStripMenuItem1_Click;
+            menuBtn_ViewProfile.Image = (Image)resources.GetObject("menuBtn_ViewProfile.Image");
+            menuBtn_ViewProfile.Name = "menuBtn_ViewProfile";
+            menuBtn_ViewProfile.Size = new Size(113, 36);
+            menuBtn_ViewProfile.Text = "View Profile";
+            menuBtn_ViewProfile.Click += menuBtn_ViewProfile_Click;
             // 
             // exitToolStripMenuItem
             // 
@@ -113,7 +113,7 @@
         private ToolStripMenuItem returnBooksToolStripMenuItem;
         private ToolStripMenuItem completeBookDetailsToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;
-        private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripMenuItem viewBooksToolStripMenuItem;
+        private ToolStripMenuItem menuBtn_ViewProfile;
     }
 }

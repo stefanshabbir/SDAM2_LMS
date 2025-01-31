@@ -144,10 +144,10 @@
             // 
             // btn_Add
             // 
-            btn_Add.Location = new Point(489, 197);
+            btn_Add.Location = new Point(462, 191);
             btn_Add.Margin = new Padding(2, 1, 2, 1);
             btn_Add.Name = "btn_Add";
-            btn_Add.Size = new Size(81, 22);
+            btn_Add.Size = new Size(85, 30);
             btn_Add.TabIndex = 19;
             btn_Add.Text = "Add";
             btn_Add.UseVisualStyleBackColor = true;
@@ -182,10 +182,10 @@
             // 
             // btn_Clear
             // 
-            btn_Clear.Location = new Point(776, 197);
+            btn_Clear.Location = new Point(762, 191);
             btn_Clear.Margin = new Padding(2, 1, 2, 1);
             btn_Clear.Name = "btn_Clear";
-            btn_Clear.Size = new Size(81, 22);
+            btn_Clear.Size = new Size(85, 30);
             btn_Clear.TabIndex = 15;
             btn_Clear.Text = "Clear";
             btn_Clear.UseVisualStyleBackColor = true;
@@ -193,10 +193,10 @@
             // 
             // DeleteBtn
             // 
-            DeleteBtn.Location = new Point(683, 197);
+            DeleteBtn.Location = new Point(662, 191);
             DeleteBtn.Margin = new Padding(2, 1, 2, 1);
             DeleteBtn.Name = "DeleteBtn";
-            DeleteBtn.Size = new Size(81, 22);
+            DeleteBtn.Size = new Size(85, 30);
             DeleteBtn.TabIndex = 14;
             DeleteBtn.Text = "Delete";
             DeleteBtn.UseVisualStyleBackColor = true;
@@ -204,10 +204,10 @@
             // 
             // UpdateBtn
             // 
-            UpdateBtn.Location = new Point(584, 197);
+            UpdateBtn.Location = new Point(562, 191);
             UpdateBtn.Margin = new Padding(2, 1, 2, 1);
             UpdateBtn.Name = "UpdateBtn";
-            UpdateBtn.Size = new Size(81, 22);
+            UpdateBtn.Size = new Size(85, 30);
             UpdateBtn.TabIndex = 13;
             UpdateBtn.Text = "Update";
             UpdateBtn.UseVisualStyleBackColor = true;
@@ -321,16 +321,16 @@
             // 
             // btn_Refresh
             // 
-            btn_Refresh.Location = new Point(634, 103);
+            btn_Refresh.Location = new Point(623, 99);
             btn_Refresh.Margin = new Padding(2, 1, 2, 1);
             btn_Refresh.Name = "btn_Refresh";
-            btn_Refresh.Size = new Size(81, 22);
+            btn_Refresh.Size = new Size(85, 30);
             btn_Refresh.TabIndex = 19;
             btn_Refresh.Text = "Refresh";
             btn_Refresh.UseVisualStyleBackColor = true;
             btn_Refresh.Click += btn_Refresh_Click;
             // 
-            // ViewBook
+            // ManageBooks
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -343,7 +343,7 @@
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(2, 1, 2, 1);
-            Name = "ViewBook";
+            Name = "ManageBooks";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewBooksView).EndInit();

@@ -38,6 +38,8 @@ namespace SDAM2_LMS
             services.AddSingleton<AccountService>();
             services.AddSingleton<SessionService>();
             services.AddSingleton<BorrowController>();
+            services.AddSingleton<UserController>();
+            services.AddSingleton<UserService>();
 
             services.AddTransient<LoginPage>();
             services.AddTransient<AdminDashboard>();
@@ -45,6 +47,7 @@ namespace SDAM2_LMS
             services.AddTransient<MemberDashboard>();
             services.AddTransient<ViewProfile>();
             services.AddTransient<ViewBooks>();
+            services.AddTransient<ManageUsers>();
 
             return services.BuildServiceProvider();
         }

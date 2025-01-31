@@ -31,11 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminDashboard));
             menuStrip1 = new MenuStrip();
             menuBtn_Books = new ToolStripMenuItem();
-            studentToolStripMenuItem = new ToolStripMenuItem();
-            ViewMembers = new ToolStripMenuItem();
-            AddMembers = new ToolStripMenuItem();
-            RemoveMembers = new ToolStripMenuItem();
-            EditMembers = new ToolStripMenuItem();
+            menuBtn_Users = new ToolStripMenuItem();
             Reservations = new ToolStripMenuItem();
             ViewReservations = new ToolStripMenuItem();
             AddReservations = new ToolStripMenuItem();
@@ -49,7 +45,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(32, 32);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { menuBtn_Books, studentToolStripMenuItem, Reservations, returnBooksToolStripMenuItem, exitToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { menuBtn_Books, menuBtn_Users, Reservations, returnBooksToolStripMenuItem, exitToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(3, 1, 0, 1);
@@ -59,50 +55,21 @@
             // 
             // menuBtn_Books
             // 
+            menuBtn_Books.CheckOnClick = true;
             menuBtn_Books.Image = (Image)resources.GetObject("menuBtn_Books.Image");
             menuBtn_Books.Name = "menuBtn_Books";
             menuBtn_Books.Size = new Size(83, 36);
             menuBtn_Books.Text = "Books";
             menuBtn_Books.Click += menuBtn_Books_Click;
             // 
-            // studentToolStripMenuItem
+            // menuBtn_Users
             // 
-            studentToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ViewMembers, AddMembers, RemoveMembers, EditMembers });
-            studentToolStripMenuItem.Image = (Image)resources.GetObject("studentToolStripMenuItem.Image");
-            studentToolStripMenuItem.Name = "studentToolStripMenuItem";
-            studentToolStripMenuItem.Size = new Size(101, 36);
-            studentToolStripMenuItem.Text = "Members";
-            studentToolStripMenuItem.Click += studentToolStripMenuItem_Click;
-            // 
-            // ViewMembers
-            // 
-            ViewMembers.Image = (Image)resources.GetObject("ViewMembers.Image");
-            ViewMembers.Name = "ViewMembers";
-            ViewMembers.Size = new Size(196, 38);
-            ViewMembers.Text = "View Members";
-            ViewMembers.Click += ViewMembers_Click_1;
-            // 
-            // AddMembers
-            // 
-            AddMembers.Image = (Image)resources.GetObject("AddMembers.Image");
-            AddMembers.Name = "AddMembers";
-            AddMembers.Size = new Size(196, 38);
-            AddMembers.Text = "Add Members";
-            AddMembers.Click += AddMembers_Click;
-            // 
-            // RemoveMembers
-            // 
-            RemoveMembers.Name = "RemoveMembers";
-            RemoveMembers.Size = new Size(196, 38);
-            RemoveMembers.Text = "Remove Members";
-            RemoveMembers.Click += RemoveMembers_Click;
-            // 
-            // EditMembers
-            // 
-            EditMembers.Name = "EditMembers";
-            EditMembers.Size = new Size(196, 38);
-            EditMembers.Text = "Edit Members";
-            EditMembers.Click += EditMembers_Click;
+            menuBtn_Users.CheckOnClick = true;
+            menuBtn_Users.Image = (Image)resources.GetObject("menuBtn_Members.Image");
+            menuBtn_Users.Name = "menuBtn_Users";
+            menuBtn_Users.Size = new Size(101, 36);
+            menuBtn_Users.Text = "Users";
+            menuBtn_Users.Click += menuBtn_Users_Click;
             // 
             // Reservations
             // 
@@ -175,9 +142,7 @@
 
         private MenuStrip menuStrip1;
         private ToolStripMenuItem menuBtn_Books;
-        private ToolStripMenuItem studentToolStripMenuItem;
-        private ToolStripMenuItem AddMembers;
-        private ToolStripMenuItem ViewMembers;
+        private ToolStripMenuItem menuBtn_Users;
         private ToolStripMenuItem Reservations;
         private ToolStripMenuItem returnBooksToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;
@@ -185,7 +150,5 @@
         private ToolStripMenuItem AddReservations;
         private ToolStripMenuItem EditReservations;
         private ToolStripMenuItem ViewReservations;
-        private ToolStripMenuItem RemoveMembers;
-        private ToolStripMenuItem EditMembers;
     }
 }
