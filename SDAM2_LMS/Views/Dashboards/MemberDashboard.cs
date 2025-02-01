@@ -23,6 +23,7 @@ namespace SDAM2_LMS
             InitializeComponent();
             // **--Need to get rid of models in view--**
             _profileController = profileController;
+
             //_session = new SessionService();
             //_session.LoggedInAccount = profileController.GetSessionAccount();
             //if (_session.IsLoggedIn)
@@ -36,7 +37,6 @@ namespace SDAM2_LMS
             if (MessageBox.Show("Are you sure you want to Exit?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 Application.Exit();
-
             }
 
         }

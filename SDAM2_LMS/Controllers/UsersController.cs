@@ -28,7 +28,8 @@ namespace SDAM2_LMS.Controllers
             return _userService.GetUsers();
         }
         public void AddUser(
-            string username, string password, string name, string email, string address, string phoneNumber, string accountType
+            string username, string password, string name,
+            string email, string address, string phoneNumber, string accountType
             )
         {
             try
@@ -72,7 +73,8 @@ namespace SDAM2_LMS.Controllers
         }
 
         public void EditUser(
-            Int32 accID, string newUsername, string newName, string newEmail, string newPhoneNumber, string newAddress, string newAccountType
+            Int32 accID, string newUsername, string newName,
+            string newEmail, string newPhoneNumber, string newAddress, string newAccountType
             )
         {
             try

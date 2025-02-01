@@ -42,11 +42,9 @@ namespace SDAM2_LMS.Models.Services
             string username, string password, string email, string name, string address, string phoneNumber
             )
         {
-            var accountExists = _context.Accounts.FirstOrDefault(a => a.Username == username);
-            if (accountExists != null)
-            {
-                return false;
-            } else
+            var accountExists = _context.Accounts.FirstOrDefault(a => a.Username == username && a.Password == password) != null;
+            if (accountExists) { return false;} 
+            else
             {
                 var personal = new PersonalID_Info(name, email, phoneNumber, address);
                 _context.PersonalIDs.Add(personal);

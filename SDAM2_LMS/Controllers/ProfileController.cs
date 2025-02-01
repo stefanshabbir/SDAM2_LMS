@@ -25,8 +25,7 @@ namespace SDAM2_LMS.Controllers
 
         // Incomplete error handling
         public void UpdateProfile(
-            string newUsername, string newName,
-            string newPhoneNumber, string newEmail, string newAddress
+            string newUsername, string newName, string newPhoneNumber, string newEmail, string newAddress
             )
         {
             if (string.IsNullOrEmpty(newName) || string.IsNullOrEmpty(newName))

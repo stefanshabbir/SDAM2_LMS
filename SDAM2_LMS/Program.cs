@@ -34,9 +34,13 @@ namespace SDAM2_LMS
 
             services.AddScoped<DatabaseContext>();
             services.AddSingleton<AuthenticationController>();
-            services.AddSingleton<AccountService>();
-            services.AddSingleton<SessionService>();
+            services.AddSingleton<BookController>();
+            services.AddSingleton<ProfileController>();
             services.AddSingleton<UsersController>();
+
+            services.AddSingleton<AccountService>();
+            services.AddSingleton<BookService>();
+            services.AddSingleton<SessionService>();
             services.AddSingleton<UsersService>();
 
             services.AddTransient<LoginPage>();
@@ -44,6 +48,7 @@ namespace SDAM2_LMS
             services.AddTransient<LibrarianDashboard>();
             services.AddTransient<MemberDashboard>();
             services.AddTransient<ViewProfile>();
+            services.AddTransient<ManageBooks>();
             services.AddTransient<ManageUsers>();
 
             return services.BuildServiceProvider();
