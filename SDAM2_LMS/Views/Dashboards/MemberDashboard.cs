@@ -49,7 +49,7 @@ namespace SDAM2_LMS
 
         private void completeBookDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CompleteBookDetails cbd = new CompleteBookDetails(_borrowController);
+            CompleteBookDetails cbd = new CompleteBookDetails(_borrowController, _sessionService);
             cbd.Show();
         }
 

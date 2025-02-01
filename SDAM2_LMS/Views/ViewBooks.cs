@@ -29,27 +29,6 @@ namespace SDAM2_LMS
             dataGridViewBooksView.DataSource = books;
         }
 
-        private void DeleteBtn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var bookId = dataGridViewBooksView.SelectedRows[0].Cells["ISBN"].Value.ToString();
-
-                var confirmation = MessageBox.Show($"Are you sure you want to delete the book with ISBN: {bookId}?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (confirmation == DialogResult.Yes)
-                {
-                    _bookController.DeleteBook(bookId);
-                    dataGridViewBooksView.DataSource = _bookController.GetBooks();
-                    MessageBox.Show("Book deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void DataGridViewBooksView_SelectionChanged(object sender, EventArgs e)
         {
             if (dataGridViewBooksView.SelectedRows.Count > 0)
@@ -64,15 +43,17 @@ namespace SDAM2_LMS
                 string publisher = selectedRow.Cells["Publisher"].Value?.ToString();
                 string language = selectedRow.Cells["Language"].Value?.ToString();
 
+                var quantityValue = Convert.ToInt32(selectedRow.Cells["Quantity"].Value);
+                if (quantityValue <= 0)
+                {
+                        BorrowBtn.Text = "Reserve";
+                }
+                else {
+                        BorrowBtn.Text = "Borrow";
+                }
             }
 
         }
-
-        private void UpdateBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_Refresh_Click(object sender, EventArgs e)
         {
             string search = SearchInput.Text.Trim();
@@ -152,7 +133,6 @@ namespace SDAM2_LMS
             if (_borrowController.BorrowBook(bookId))
             {
                 MessageBox.Show("Book borrowed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //RefreshBookList(); // Update the book list to reflect quantity change
             }
             else
             {

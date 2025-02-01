@@ -40,12 +40,12 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Black", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(339, 17);
+            label1.Location = new Point(311, 17);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(139, 32);
+            label1.Size = new Size(194, 32);
             label1.TabIndex = 0;
-            label1.Text = "Issue Book";
+            label1.Text = "Borrowed Book";
             // 
             // dataGridView1
             // 
@@ -58,7 +58,8 @@
             dataGridView1.Margin = new Padding(2, 1, 2, 1);
             dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(805, 103);
             dataGridView1.TabIndex = 1;
@@ -80,9 +81,9 @@
             label2.Location = new Point(314, 176);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(188, 32);
+            label2.Size = new Size(186, 32);
             label2.TabIndex = 2;
-            label2.Text = "Returned Book";
+            label2.Text = "Reserved Book";
             // 
             // CompleteBookDetails
             // 
