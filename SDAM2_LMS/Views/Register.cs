@@ -16,15 +16,12 @@ namespace SDAM2_LMS
 {
     public partial class Register : Form
     {
-        private readonly AccountController _accountController;
-        private readonly SessionService _sessionService;
-        private readonly AccountService _accountService;
-        internal Register(AccountController accountController, SessionService sessionService, AccountService accountService)
+        private readonly AuthenticationController _authController;
+
+        internal Register(AuthenticationController authenticationController)
         {
             InitializeComponent();
-            _accountController = accountController;
-            _sessionService = sessionService;
-            _accountService = accountService;
+            _authController = authenticationController;
         }
 
         private void RegisterBtn_Click(object sender, EventArgs e)
@@ -40,25 +37,9 @@ namespace SDAM2_LMS
             
             if (!ValidateInputs(username,password, confirmPassword, email, phone, address, name)) { return; }
 
-            bool isRegistered = _accountController.Register(username, password, email, name, address, phone);
-
-            if (isRegistered)
-            {
-                MessageBox.Show("Registration Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                this.Hide();
-                new MemberDashboard(_sessionService, _accountService, _accountController).Show();
-            }
-            else
-            {
-                MessageBox.Show("Invalid Username or Password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                PasswordInput.Clear();
-                UsernameInput.Clear();
-                EmailInput.Clear();
-                ConfirmPasswordInput.Clear();
-                UsernameInput.Focus();
-            }
+            bool registrationIsSuccessful = _authController.Register(username, password, email, name, address, phone);
+            if (registrationIsSuccessful) { this.Hide(); }
+            
         }
 
         private bool ValidateInputs(string username, string password, string confirmpassword, string email, string phone, string address, string name)

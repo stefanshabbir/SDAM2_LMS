@@ -22,9 +22,10 @@ namespace SDAM2_LMS
 
         private void menuBtn_Users_Click(object sender, EventArgs e)
         {
+            //Check if this is correct
             ManageUsers mu = new ManageUsers
                 (
-                new UserController(new UserService(new DatabaseContext()))
+                new UsersController(new UsersService(new DatabaseContext()))
                 );
             mu.Show();
         }
@@ -46,7 +47,11 @@ namespace SDAM2_LMS
 
         private void menuBtn_Books_Click(object sender, EventArgs e)
         {
-            ManageBooks mb = new ManageBooks();
+            //Check if this is correct
+            ManageBooks mb = new ManageBooks
+                (
+                new BookController(new BookService(new DatabaseContext()))
+                );
             mb.Show();
         }
     }
