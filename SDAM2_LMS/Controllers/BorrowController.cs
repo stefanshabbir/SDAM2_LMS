@@ -56,9 +56,16 @@ namespace SDAM2_LMS.Controllers
             return true;
         }
 
-        public IEnumerable<Models.Borrowing> GetBorrowings(int accountId)
+        public IEnumerable<object> GetBorrowings(int accountId)
         {
-            return _context.Borrowings.Where(b => b.AccountID == accountId).ToList();
+            return _context.Borrowings.Where(b => b.AccountID == accountId)
+                .Select(b => new 
+                {
+                    b.BookID,
+                    b.Book.Title,
+                    b.BorrowDate,
+                    b.ReturnDate
+                }).ToList();
         }
 
         public IEnumerable<Models.Borrowing> GetBorrowings()
