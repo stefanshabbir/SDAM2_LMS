@@ -33,7 +33,7 @@ namespace SDAM2_LMS
             var services = new ServiceCollection();
 
             services.AddScoped<DatabaseContext>();
-            services.AddSingleton<AccountController>();
+            services.AddSingleton<AuthenticationController>();
             services.AddSingleton<AccountService>();
             services.AddSingleton<SessionService>();
             services.AddSingleton<UsersController>();

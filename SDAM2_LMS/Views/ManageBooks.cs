@@ -35,7 +35,6 @@ namespace SDAM2_LMS
             {
                 _controller.DeleteBook(_selectedBookISBN);
                 dataGridViewBooksView.DataSource = _controller.GetBooks();
-                MessageBox.Show("Book deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
