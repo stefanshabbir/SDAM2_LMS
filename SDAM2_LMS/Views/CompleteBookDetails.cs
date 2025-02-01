@@ -15,17 +15,17 @@ namespace SDAM2_LMS
     public partial class CompleteBookDetails : Form
     {
         private readonly BorrowController _borrowController;
-        private readonly SessionService _sessionService;
-        public CompleteBookDetails(BorrowController borrowController, SessionService sessionService)
+        private readonly ProfileController _profileController;
+        public CompleteBookDetails(BorrowController borrowController, ProfileController profileController)
         {
             InitializeComponent();
             _borrowController = borrowController;
-            _sessionService = sessionService;
+            _profileController = profileController;
         }
 
         private void CompleteBookDetails_Load_1(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = _borrowController.GetBorrowings(_sessionService.LoggedInAccount.AccountID);
+            dataGridView1.DataSource = _borrowController.GetBorrowings(_profileController.GetSessionAccount().AccountID);
             dataGridView1.Columns["BookID"].Visible = false;
         }
     }
