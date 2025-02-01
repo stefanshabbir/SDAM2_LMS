@@ -39,7 +39,6 @@ namespace SDAM2_LMS
 
             bool registrationIsSuccessful = _authController.Register(username, password, email, name, address, phone);
             if (registrationIsSuccessful) { this.Hide(); }
-            
         }
 
         private bool ValidateInputs(string username, string password, string confirmpassword, string email, string phone, string address, string name)

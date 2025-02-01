@@ -64,5 +64,17 @@ namespace SDAM2_LMS.Controllers
                 MessageBox.Show("Account deleted successfully. The application will now restart.");
             }
         }
+
+        // NEEDS ERROR HANDLING
+        public bool resetPassword(string newPassword)
+        {
+            if (string.IsNullOrEmpty(newPassword))
+            { return false; }
+            else
+            {
+                _accountService.resetPassword(newPassword);
+                return true;
+            }
+        }
     }
 }

@@ -41,8 +41,8 @@ namespace SDAM2_LMS
 
         private void completeBookDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CompleteBookDetails cbd = new CompleteBookDetails();
-            cbd.Show();
+            //CompleteBookDetails cbd = new CompleteBookDetails();
+            //cbd.Show();
         }
 
         private void menuBtn_Books_Click(object sender, EventArgs e)
@@ -53,6 +53,12 @@ namespace SDAM2_LMS
                 new BookController(new BookService(new DatabaseContext()))
                 );
             mb.Show();
+        }
+
+        private void ViewMembers_Click_1(object sender, EventArgs e)
+        {
+            //ViewMember vm = new ViewMember();
+            //vm.Show();
         }
     }
 }

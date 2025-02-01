@@ -22,13 +22,17 @@ namespace SDAM2_LMS
         public LoginPage(AuthenticationController authenticationController)
         {
             InitializeComponent();
+
             _authController = authenticationController;
         }
 
         private void LoginBtn_Click(object sender, EventArgs e)
         {
             bool loginIsSuccessful = _authController.Login(textBoxUsername.Text, textBoxPassword.Text);
-            if (loginIsSuccessful) { this.Hide(); }
+            if (loginIsSuccessful) 
+            { 
+                this.Hide(); 
+            }
         }
 
         private void txtUsername_MouseEnter(object sender, EventArgs e)

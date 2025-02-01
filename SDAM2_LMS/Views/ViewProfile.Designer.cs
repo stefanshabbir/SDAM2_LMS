@@ -203,6 +203,7 @@
             ResetPasswordBtn.TabIndex = 33;
             ResetPasswordBtn.Text = "Reset Password";
             ResetPasswordBtn.UseVisualStyleBackColor = true;
+            ResetPasswordBtn.Click += ResetPasswordBtn_Click;
             // 
             // DeleteBtn
             // 

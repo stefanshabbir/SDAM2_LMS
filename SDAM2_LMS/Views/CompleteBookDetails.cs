@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDAM2_LMS.Controllers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,16 @@ namespace SDAM2_LMS
 {
     public partial class CompleteBookDetails : Form
     {
-        public CompleteBookDetails()
+        private readonly BorrowController _borrowController;
+        public CompleteBookDetails(BorrowController borrowController)
         {
             InitializeComponent();
+            _borrowController = borrowController;
+        }
+
+        private void CompleteBookDetails_Load_1(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = _borrowController.GetBorrowings();
         }
     }
 }

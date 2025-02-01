@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -14,13 +15,19 @@ namespace SDAM2_LMS.Controllers
     public class AuthenticationController
     {
         private readonly AccountService _accountService;
+        private readonly BookController _bookController;
+        private readonly BorrowController _borrowController;
 
         private const int ADMIN = 1;
         private const int LIBRARIAN = 2;
 
-        public AuthenticationController(AccountService accountService)
+        public AuthenticationController(
+            AccountService accountService, BorrowController borrowController, BookController bookController
+            )
         {
             _accountService = accountService;
+            _bookController = bookController;
+            _borrowController = borrowController;
         }
 
         // NEEDS ERROR HANDLING
@@ -50,13 +57,17 @@ namespace SDAM2_LMS.Controllers
                 }
                 else if (user.AccountTypeID == LIBRARIAN)
                 {
-                    var dashboard = new LibrarianDashboard(new ProfileController(_accountService));
+                    var dashboard = new LibrarianDashboard(
+                        new ProfileController(_accountService)
+                        );
                     dashboard.Show();
                     return true;
                 }
                 else
                 {
-                    var dashboard = new MemberDashboard(new ProfileController(_accountService));
+                    var dashboard = new MemberDashboard(
+                        new ProfileController(_accountService), _borrowController, _bookController
+                        );
                     dashboard.Show();
                     return true;
                 }
@@ -76,8 +87,10 @@ namespace SDAM2_LMS.Controllers
             if (accountRegistered)
             {
                 MessageBox.Show("Registration Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
-                var dashboard = new MemberDashboard(new ProfileController(_accountService));
+
+                var dashboard = new MemberDashboard(
+                    new ProfileController(_accountService), _borrowController, _bookController
+                    );
                 dashboard.Show();
                 return true;
             }

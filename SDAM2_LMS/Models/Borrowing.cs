@@ -21,9 +21,8 @@ namespace SDAM2_LMS.Models
 
 
         public Borrowing() { }
-        public Borrowing(int borrowID, int bookID, int accountID, DateTime borrowDate, DateTime returnDate, Book book, Account account)
+        public Borrowing(int bookID, int accountID, DateTime borrowDate, DateTime returnDate)
         {
-            this.BorrowID = borrowID;
             this.BookID = bookID;
             this.AccountID = accountID;
             this.BorrowDate = borrowDate;

@@ -18,7 +18,7 @@ namespace SDAM2_LMS.Models
         public string? Language { get; set; }
         public string? ISBN { get; set; }
         public int Quantity { get; set; }
-        internal int BookID { get; set; }
+        public int BookID { get; set; }
 
 
         public Book(DatabaseContext context)
