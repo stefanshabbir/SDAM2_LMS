@@ -17,20 +17,17 @@ namespace SDAM2_LMS.Views
 {
     public partial class ViewProfile : Form
     {
-        private readonly AccountController _accountController;
-        private readonly SessionService _sessionService;
+        private readonly ProfileController _profileController;
 
-        internal ViewProfile(AccountController accountController, SessionService sessionService)
+        internal ViewProfile(ProfileController profileController)
         {
             InitializeComponent();
-            _accountController = accountController;
-            _sessionService = sessionService;
+            _profileController = profileController;
         }
 
         private void ViewProfile_Load(object sender, EventArgs e)
         {
-            var currentUser = _sessionService.LoggedInAccount;
-
+            var currentUser = _profileController.GetSessionAccount();
             if (currentUser != null)
             {
                 UsernameInput.Text = currentUser.Username;
@@ -56,38 +53,25 @@ namespace SDAM2_LMS.Views
 
         private void DeleteBtn_Click(object sender, EventArgs e)
         {
-            _accountController.DeleteAccount();
-            this.Close();
-            Application.Restart();
+            var confirmResult = MessageBox.Show("Are you sure you want to delete your account?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (confirmResult == DialogResult.Yes)
+            {
+                _profileController.DeleteProfile();
+                this.Close();
+                Application.Restart();
+            }
         }
 
         private void UpdateBtn_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(UsernameInput.Text) || string.IsNullOrEmpty(NameInput.Text))
+            var confirmResult = MessageBox.Show("Are you sure you want to update your account details?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (confirmResult == DialogResult.Yes)
             {
-                MessageBox.Show("Username and Name are required fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                _profileController.UpdateProfile(
+                UsernameInput.Text, NameInput.Text,
+                PhoneInput.Text, EmailInput.Text, addressInput.Text
+                );
             }
-
-            //-- NEEDS ERROR HANDLING; empty/null texts, set max length in winform itself
-            _sessionService.LoggedInAccount.Username = UsernameInput.Text;
-            _sessionService.LoggedInAccount.PersonalID_Info.Name = NameInput.Text;
-            _sessionService.LoggedInAccount.PersonalID_Info.PhoneNumber = PhoneInput.Text;
-            _sessionService.LoggedInAccount.PersonalID_Info.Email = EmailInput.Text;
-            _sessionService.LoggedInAccount.PersonalID_Info.Address = addressInput.Text;
-            //--
-
-            try
-            {
-                _accountController.EditAccount(_sessionService.LoggedInAccount);
-                MessageBox.Show("Profile updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                EditBtn_Click(sender, e);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred while updating the account: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
         }
 
         private void ResetPasswordBtn_Click(object sender, EventArgs e)

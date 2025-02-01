@@ -18,9 +18,9 @@ namespace SDAM2_LMS
     public partial class ManageUsers : Form
     {
         private Int32 _selectedAccountID { get; set; }
-        private readonly UserController _controller;
+        private readonly UsersController _controller;
 
-        public ManageUsers(UserController userController)
+        public ManageUsers(UsersController userController)
         {
             InitializeComponent();
 

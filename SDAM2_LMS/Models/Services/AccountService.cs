@@ -38,16 +38,15 @@ namespace SDAM2_LMS.Models.Services
         }
 
         //simulating registrations
-        public bool Register(string username, string password, string email, string name, string address, string phone)
+        public bool Register(
+            string username, string password, string email, string name, string address, string phoneNumber
+            )
         {
-
-            var accountExists = _context.Accounts.FirstOrDefault(a => a.Username == username);
-            if (accountExists != null)
+            var accountExists = _context.Accounts.FirstOrDefault(a => a.Username == username && a.Password == password) != null;
+            if (accountExists) { return false;} 
+            else
             {
-                return false;
-            } else
-            {
-                var personal = new PersonalID_Info(name, email, phone, address);
+                var personal = new PersonalID_Info(name, email, phoneNumber, address);
                 _context.PersonalIDs.Add(personal);
                 _context.SaveChanges();
 
@@ -68,31 +67,28 @@ namespace SDAM2_LMS.Models.Services
            
         public void DeleteAccount()
         {
-            var confirmResult = MessageBox.Show("Are you sure you want to delete your account?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            var currentUser = this.GetSessionAccount();
+            _context.PersonalIDs.Remove(currentUser.PersonalID_Info);
+            _context.Accounts.Remove(currentUser);
+            _context.SaveChanges();
 
-            if (confirmResult == DialogResult.Yes)
-            {
-                var currentUser = _sessionService.LoggedInAccount;
-                _context.PersonalIDs.Remove(currentUser.PersonalID_Info);
-                _context.Accounts.Remove(currentUser);
-                _context.SaveChanges();
-
-                _sessionService.Logout();
-                MessageBox.Show("Account deleted successfully.");
-            }
+            _sessionService.Logout();
         }
         
-        public void EditAccount(Account updatedAccount)
+        public void UpdateAccount(
+            Int32 accID , string newUsername, string newName,
+            string newEmail, string newPhoneNumber, string newAddress
+            )
         {
             var dbAccount = _context.Accounts
                 .Include(a=> a.PersonalID_Info)
-                .FirstOrDefault(a => a.AccountID == updatedAccount.AccountID);
+                .FirstOrDefault(a => a.AccountID == accID);
 
-            dbAccount.Username = updatedAccount.Username;
-            dbAccount.PersonalID_Info.Name = updatedAccount.PersonalID_Info.Name;
-            dbAccount.PersonalID_Info.PhoneNumber = updatedAccount.PersonalID_Info.PhoneNumber;
-            dbAccount.PersonalID_Info.Email = updatedAccount.PersonalID_Info.Email;
-            dbAccount.PersonalID_Info.Address = updatedAccount.PersonalID_Info.Address;
+            dbAccount.Username = newUsername;
+            dbAccount.PersonalID_Info.Name = newName;
+            dbAccount.PersonalID_Info.PhoneNumber = newPhoneNumber;
+            dbAccount.PersonalID_Info.Email = newEmail;
+            dbAccount.PersonalID_Info.Address = newAddress;
 
             _context.SaveChanges();
         }
@@ -108,6 +104,11 @@ namespace SDAM2_LMS.Models.Services
             currentUser.Password = newPassword;
             _context.SaveChanges();
             return new AutoResetEvent(true);
+        }
+
+        public Account? GetSessionAccount()
+        {
+            return _sessionService.LoggedInAccount;
         }
     }
 }

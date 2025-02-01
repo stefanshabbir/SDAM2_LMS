@@ -16,25 +16,26 @@ namespace SDAM2_LMS
 {
     public partial class MemberDashboard : Form
     {
-        private readonly SessionService _sessionService;
-        private readonly AccountService _accountService;
-        private readonly AccountController _accountController;
         private readonly BorrowController _borrowController;
         private readonly BookController _bookController;
-        internal MemberDashboard(SessionService sessionService, AccountService accountService, AccountController accountController, BookController bookController, BorrowController borrowController)
+        private readonly ProfileController _profileController;
+        //private readonly SessionService _session;
+
+        internal MemberDashboard(
+            ProfileController profileController, BorrowController borrowController, BookController bookController)
         {
             InitializeComponent();
-
-            _sessionService = sessionService;
-            _accountService = accountService;
-            _accountController = accountController;
+            // **--Need to get rid of models in view--**
+            _profileController = profileController;
             _bookController = bookController;
             _borrowController = borrowController;
-            if (_sessionService.IsLoggedIn)
-            {
-                MessageBox.Show($"Welcome, {_sessionService.LoggedInAccount.Username}!");
-            }
 
+            //_session = new SessionService();
+            //_session.LoggedInAccount = profileController.GetSessionAccount();
+            //if (_session.IsLoggedIn)
+            //{
+            //    MessageBox.Show($"Welcome, {_session.LoggedInAccount.Username}!");
+            //}
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -42,7 +43,6 @@ namespace SDAM2_LMS
             if (MessageBox.Show("Are you sure you want to Exit?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 Application.Exit();
-
             }
 
         }
@@ -55,7 +55,7 @@ namespace SDAM2_LMS
 
         private void menuBtn_ViewProfile_Click(object sender, EventArgs e)
         {
-            ViewProfile viewProfile = new ViewProfile(_accountController, _sessionService);
+            ViewProfile viewProfile = new ViewProfile(_profileController);
             viewProfile.Show();
         }
 

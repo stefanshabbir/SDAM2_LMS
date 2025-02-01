@@ -1,4 +1,6 @@
-﻿using SDAM2_LMS.Models.Services;
+﻿using SDAM2_LMS.Controllers;
+using SDAM2_LMS.Models.Data;
+using SDAM2_LMS.Models.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,15 +15,18 @@ namespace SDAM2_LMS
 {
     public partial class LibrarianDashboard : Form
     {
-        private readonly SessionService _sessionService;
-        internal LibrarianDashboard(SessionService sessionService)
+        private readonly ProfileController _profileController;
+
+        internal LibrarianDashboard(ProfileController profileController)
         {
             InitializeComponent();
-            _sessionService = sessionService;
-            if (_sessionService.IsLoggedIn)
-            {
-                MessageBox.Show($"Welcome, {_sessionService.LoggedInAccount.Username}!");
-            }
+            // **--Need to get rid of models in view--**
+            _profileController = profileController;
+
+            //if (_sessionService.IsLoggedIn)
+            //{
+            //    MessageBox.Show($"Welcome, {_sessionService.LoggedInAccount.Username}!");
+            //}
 
         }
 
@@ -30,7 +35,6 @@ namespace SDAM2_LMS
             if (MessageBox.Show("Are you sure you want to Exit?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 Application.Exit();
-
             }
 
         }
@@ -43,7 +47,11 @@ namespace SDAM2_LMS
 
         private void menuBtn_Books_Click(object sender, EventArgs e)
         {
-            ManageBooks mb = new ManageBooks();
+            //Check if this is correct
+            ManageBooks mb = new ManageBooks
+                (
+                new BookController(new BookService(new DatabaseContext()))
+                );
             mb.Show();
         }
     }

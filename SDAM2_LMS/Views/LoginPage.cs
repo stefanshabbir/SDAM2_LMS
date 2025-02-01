@@ -17,94 +17,22 @@ namespace SDAM2_LMS
 {
     public partial class LoginPage : Form
     {
-        private readonly AccountController _accountController;
-        private readonly SessionService _sessionService;
-        private readonly AccountService _accountService;
-        private readonly BookController _bookController;
-        private readonly BorrowController _borrowController;
+        private readonly AuthenticationController _authController;
 
-        const int ADMIN = 1;
-        const int LIBRARIAN = 2;
-        const int MEMBER = 3;
-
-        public LoginPage(AccountController accountController, AccountService accountService, SessionService sessionService, BookController bookController, BorrowController borrowController)
+        public LoginPage(AuthenticationController authenticationController)
         {
             InitializeComponent();
-            _accountController = accountController;
-            _accountService = accountService;
-            _sessionService = sessionService;
-            _bookController = bookController;
-            _borrowController = borrowController;
+
+            _authController = authenticationController;
         }
 
         private void LoginBtn_Click(object sender, EventArgs e)
-        {  
-            string username = textBoxUsername.Text;
-            string password = textBoxPassword.Text;
-
-            if (string.IsNullOrWhiteSpace(username))
-            {
-                MessageBox.Show("Username cannot be empty!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBoxUsername.Focus();
-                return;
+        {
+            bool loginIsSuccessful = _authController.Login(textBoxUsername.Text, textBoxPassword.Text);
+            if (loginIsSuccessful) 
+            { 
+                this.Hide(); 
             }
-
-            if (string.IsNullOrWhiteSpace(password))
-            {
-                MessageBox.Show("Password cannot be empty!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBoxPassword.Focus();
-                return;
-            }
-
-            try
-            {
-                var controller = _accountController;
-                var user = controller.Login(username, password);
-
-                if (user != null)
-                {
-                    if (user.AccountTypeID == ADMIN)
-                    {
-                        AdminDashboard dashboard = new AdminDashboard();
-                        dashboard.Show();
-                        this.Hide();
-                    }
-                    else if (user.AccountTypeID == LIBRARIAN)
-                    {
-                        LibrarianDashboard dashboard = new(_sessionService);
-                        dashboard.Show();
-                        this.Hide();
-                    }
-                    else
-                    {
-                        MemberDashboard dashboard = new(_sessionService, _accountService,_accountController, _bookController, _borrowController);
-                        dashboard.Show();
-                        this.Hide();
-                    }
-
-                }
-                else
-                {
-                    MessageBox.Show("Invalid Username or Password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    textBoxUsername.Clear();
-                    textBoxPassword.Clear();
-                    textBoxUsername.Focus();
-
-                    AdminDashboard dashboard = new AdminDashboard();
-                    dashboard.Show();
-                    this.Hide();
-                }
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("An unexpected error occurred. Please try again later.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
         }
 
         private void txtUsername_MouseEnter(object sender, EventArgs e)
@@ -114,7 +42,7 @@ namespace SDAM2_LMS
 
         private void RegistrationBtn_Click(object sender, EventArgs e)
         {
-            new Register(_accountController, _sessionService, _accountService, _borrowController).Show();
+            new Register(_authController).Show();
             this.Hide();
         }
     }

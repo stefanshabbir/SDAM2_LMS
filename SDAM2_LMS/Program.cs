@@ -33,13 +33,16 @@ namespace SDAM2_LMS
             var services = new ServiceCollection();
 
             services.AddDbContext<DatabaseContext>();
-            services.AddSingleton<AccountController>();
+
+            services.AddSingleton<AuthenticationController>();
             services.AddSingleton<BookController>();
-            services.AddSingleton<AccountService>();
-            services.AddSingleton<SessionService>();
             services.AddSingleton<BorrowController>();
-            services.AddSingleton<UserController>();
-            services.AddSingleton<UserService>();
+            services.AddSingleton<UsersController>();
+
+            services.AddSingleton<AccountService>();
+            services.AddSingleton<BookService>();
+            services.AddSingleton<SessionService>();
+            services.AddSingleton<UsersService>();
 
             services.AddTransient<LoginPage>();
             services.AddTransient<AdminDashboard>();
@@ -47,6 +50,7 @@ namespace SDAM2_LMS
             services.AddTransient<MemberDashboard>();
             services.AddTransient<ViewProfile>();
             services.AddTransient<ViewBooks>();
+            services.AddTransient<ManageBooks>();
             services.AddTransient<ManageUsers>();
 
             return services.BuildServiceProvider();
