@@ -14,10 +14,10 @@ namespace SDAM2_LMS.Controllers
 {
     public class BookController
     {
-        private readonly BookService _context;
+        private readonly BookService _bookService;
         public BookController(BookService context)
         {
-            _context = context;
+            _bookService = context;
         }
 
         public void AddBook(
@@ -30,7 +30,7 @@ namespace SDAM2_LMS.Controllers
             {
                 int quantity = int.Parse(stringQuantity); // could throw errors
 
-                bool bookIsAdded = _context.AddBook(title, author, genre, publisher, language, isbn, quantity);
+                bool bookIsAdded = _bookService.AddBook(title, author, genre, publisher, language, isbn, quantity);
                 if (bookIsAdded)
                 {
                    // Success message
@@ -50,19 +50,19 @@ namespace SDAM2_LMS.Controllers
         //-- NEEDS ERROR HANDLING
         public List<Book> GetBooks() 
         { 
-            return _context.GetBooks();
+            return _bookService.GetBooks();
         }
 
         //-- NEEDS ERROR HANDLING
         public IEnumerable<Book> SearchBook(string search)
         {
-            return _context.SearchBook(search);
+            return _bookService.SearchBook(search);
         }
 
         //-- NEEDS ERROR HANDLING
         public void DeleteBook(string isbn)
         {
-            bool bookIsDeleted = _context.DeleteBook(isbn);
+            bool bookIsDeleted = _bookService.DeleteBook(isbn);
             if (bookIsDeleted)
             {
                 // Success message
@@ -79,10 +79,10 @@ namespace SDAM2_LMS.Controllers
             string newPublishers, string newLanguage, string newISBN, string stringQuantity
             )
         {
-            Int32 bookID = _context.GetBookID(_oldISBN);
+            Int32 bookID = _bookService.GetBookID(_oldISBN);
             int newQuantity = int.Parse(stringQuantity);
 
-            bool bookIsEdited = _context.EditBook(
+            bool bookIsEdited = _bookService.EditBook(
                 bookID, newTitle, newAuthors, newGenres, newPublishers, newPublishers, newISBN, newQuantity
                 );
             if (bookIsEdited)
@@ -93,6 +93,21 @@ namespace SDAM2_LMS.Controllers
             {
                 // Book cannot be edited, it may not exist
             }
+        }
+
+        public bool BorrowBook(int bookID)
+        {
+            return _bookService.BorrowBook(bookID);
+        }
+
+        public IEnumerable<object> GetBorrowings(int accountId)
+        {
+            return _bookService.GetBorrowings(accountId);
+        }
+
+        public bool ReturnBook(int bookID)
+        {
+            return _bookService.ReturnBook(bookID);
         }
     }
 }

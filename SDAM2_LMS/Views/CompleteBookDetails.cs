@@ -1,4 +1,5 @@
 ﻿using SDAM2_LMS.Controllers;
+using SDAM2_LMS.Models.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,16 +14,51 @@ namespace SDAM2_LMS
 {
     public partial class CompleteBookDetails : Form
     {
-        private readonly BorrowController _borrowController;
-        public CompleteBookDetails(BorrowController borrowController)
+        private readonly BookController _bookController;
+        private readonly ProfileController _profileController;
+        public CompleteBookDetails(ProfileController profileController, BookController bookController)
         {
             InitializeComponent();
-            _borrowController = borrowController;
+            _profileController = profileController;
+            _bookController = bookController;
         }
 
         private void CompleteBookDetails_Load_1(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = _borrowController.GetBorrowings();
+            dataGridView1.DataSource = _bookController.GetBorrowings(_profileController.GetSessionAccount().AccountID);
+            dataGridView1.Columns["BookID"].Visible = false;
+
+            if (!dataGridView1.Columns.Contains("Return"))
+            {
+                DataGridViewButtonColumn returnColumn = new DataGridViewButtonColumn
+                {
+                    Name = "Return",
+                    HeaderText = "Return",
+                    Text = "Return",
+                    UseColumnTextForButtonValue = true
+                };
+
+                dataGridView1.Columns.Add(returnColumn);
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Return")
+            {
+                var bookID = (int)dataGridView1.Rows[e.RowIndex].Cells["BookID"].Value;
+                if (_bookController.ReturnBook(bookID))
+                {
+                    MessageBox.Show("Book returned successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dataGridView1.DataSource = _bookController.GetBorrowings(_profileController.GetSessionAccount().AccountID);
+                }
+                else
+                {
+                    MessageBox.Show("An error occurred while returning the book.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }
+
+

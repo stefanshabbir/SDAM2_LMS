@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SDAM2_LMS.Controllers;
 using SDAM2_LMS.ErrorLog;
 using SDAM2_LMS.Models.Data;
 using System;
@@ -12,6 +13,7 @@ namespace SDAM2_LMS.Models.Services
     public class BookService
     {
         private readonly DatabaseContext _context;
+        private readonly AccountService _accountService;
 
         public BookService(DatabaseContext context)
         {
@@ -101,6 +103,54 @@ namespace SDAM2_LMS.Models.Services
             }
 
             return false;
+        }
+
+        public IEnumerable<object> GetBorrowings(int accountId)
+        {
+            return _context.Borrowings.Where(b => b.AccountID == accountId)
+                .Select(b => new
+                {
+                    b.BookID,
+                    b.Book.Title,
+                    b.BorrowDate,
+                    b.ReturnDate
+                }).ToList();
+        }
+
+        public bool BorrowBook(int bookID)
+        {
+            var accID = _accountService.GetSessionAccount().AccountID;
+
+            var book = _context.Books.FirstOrDefault(b => b.BookID == bookID);
+            var account = _context.Accounts.FirstOrDefault(a => a.AccountID == accID);
+            if (book == null || account == null)
+            {
+                return false;
+            }
+            if (book.Quantity > 0)
+            {
+                book.Quantity--;
+                var borrowing = new Models.Borrowing(bookID, accID, DateTime.Now, DateTime.Now.AddDays(7));
+                _context.Borrowings.Add(borrowing);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public bool ReturnBook(int bookID)
+        {
+            var accID = _accountService.GetSessionAccount().AccountID;
+            var borrowing = _context.Borrowings.FirstOrDefault(b => b.BookID == bookID && b.AccountID == accID);
+            var book = _context.Books.FirstOrDefault(b => b.BookID == bookID);
+            if (borrowing == null || book == null)
+            {
+                return false;
+            }
+            book.Quantity++;
+            _context.Borrowings.Remove(borrowing);
+            _context.SaveChanges();
+            return true;
         }
     }
 }

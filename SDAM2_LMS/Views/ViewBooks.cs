@@ -17,37 +17,13 @@ namespace SDAM2_LMS
     public partial class ViewBooks : Form
     {
         private readonly BookController _bookController;
-        //private readonly SessionService _sessionService;
-        private readonly BorrowController _borrowController;
-        public ViewBooks(BorrowController borrowController, BookController bookController)
+        public ViewBooks(BookController bookController)
         {
             InitializeComponent();
-            _borrowController = borrowController; 
             _bookController = bookController;
             var books = _bookController.GetBooks();
             dataGridViewBooksView.Rows.Clear();
             dataGridViewBooksView.DataSource = books;
-        }
-
-        private void DeleteBtn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var bookId = dataGridViewBooksView.SelectedRows[0].Cells["ISBN"].Value.ToString();
-
-                var confirmation = MessageBox.Show($"Are you sure you want to delete the book with ISBN: {bookId}?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (confirmation == DialogResult.Yes)
-                {
-                    _bookController.DeleteBook(bookId);
-                    dataGridViewBooksView.DataSource = _bookController.GetBooks();
-                    MessageBox.Show("Book deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void DataGridViewBooksView_SelectionChanged(object sender, EventArgs e)
@@ -64,15 +40,17 @@ namespace SDAM2_LMS
                 string publisher = selectedRow.Cells["Publisher"].Value?.ToString();
                 string language = selectedRow.Cells["Language"].Value?.ToString();
 
+                var quantityValue = Convert.ToInt32(selectedRow.Cells["Quantity"].Value);
+                if (quantityValue <= 0)
+                {
+                        BorrowBtn.Text = "Reserve";
+                }
+                else {
+                        BorrowBtn.Text = "Borrow";
+                }
             }
 
         }
-
-        private void UpdateBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_Refresh_Click(object sender, EventArgs e)
         {
             string search = SearchInput.Text.Trim();
@@ -149,10 +127,9 @@ namespace SDAM2_LMS
 
             MessageBox.Show(bookId.ToString());
 
-            if (_borrowController.BorrowBook(bookId))
+            if (_bookController.BorrowBook(bookId))
             {
                 MessageBox.Show("Book borrowed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //RefreshBookList(); // Update the book list to reflect quantity change
             }
             else
             {

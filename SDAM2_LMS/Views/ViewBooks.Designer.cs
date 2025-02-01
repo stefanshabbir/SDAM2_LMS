@@ -75,7 +75,7 @@
             SearchInput.Location = new Point(326, 104);
             SearchInput.Margin = new Padding(2, 1, 2, 1);
             SearchInput.Name = "SearchInput";
-            SearchInput.Size = new Size(234, 23);
+            SearchInput.Size = new Size(262, 23);
             SearchInput.TabIndex = 2;
             // 
             // dataGridViewBooksView

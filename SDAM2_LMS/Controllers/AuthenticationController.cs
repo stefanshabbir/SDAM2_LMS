@@ -16,18 +16,16 @@ namespace SDAM2_LMS.Controllers
     {
         private readonly AccountService _accountService;
         private readonly BookController _bookController;
-        private readonly BorrowController _borrowController;
 
         private const int ADMIN = 1;
         private const int LIBRARIAN = 2;
 
         public AuthenticationController(
-            AccountService accountService, BorrowController borrowController, BookController bookController
+            AccountService accountService, BookController bookController
             )
         {
             _accountService = accountService;
             _bookController = bookController;
-            _borrowController = borrowController;
         }
 
         // NEEDS ERROR HANDLING
@@ -66,7 +64,7 @@ namespace SDAM2_LMS.Controllers
                 else
                 {
                     var dashboard = new MemberDashboard(
-                        new ProfileController(_accountService), _borrowController, _bookController
+                        new ProfileController(_accountService), _bookController
                         );
                     dashboard.Show();
                     return true;
@@ -89,7 +87,7 @@ namespace SDAM2_LMS.Controllers
                 MessageBox.Show("Registration Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 var dashboard = new MemberDashboard(
-                    new ProfileController(_accountService), _borrowController, _bookController
+                    new ProfileController(_accountService), _bookController
                     );
                 dashboard.Show();
                 return true;
