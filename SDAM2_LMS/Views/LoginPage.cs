@@ -38,42 +38,71 @@ namespace SDAM2_LMS
         }
 
         private void LoginBtn_Click(object sender, EventArgs e)
-        {   //-- NEEDS ERROR HANDLING; empty/null text inputs, set max length in winform itself
+        {  
             string username = textBoxUsername.Text;
             string password = textBoxPassword.Text;
-            //--
 
-            var controller = _accountController;
-            var user = controller.Login(username, password);
-            if (user != null)
+            if (string.IsNullOrWhiteSpace(username))
             {
-                if (user.AccountTypeID == ADMIN)
+                MessageBox.Show("Username cannot be empty!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBoxUsername.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                MessageBox.Show("Password cannot be empty!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBoxPassword.Focus();
+                return;
+            }
+
+            try
+            {
+                var controller = _accountController;
+                var user = controller.Login(username, password);
+
+                if (user != null)
                 {
+                    if (user.AccountTypeID == ADMIN)
+                    {
+                        AdminDashboard dashboard = new AdminDashboard();
+                        dashboard.Show();
+                        this.Hide();
+                    }
+                    else if (user.AccountTypeID == LIBRARIAN)
+                    {
+                        LibrarianDashboard dashboard = new(_sessionService);
+                        dashboard.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MemberDashboard dashboard = new(_sessionService, _accountService,_accountController);
+                        dashboard.Show();
+                        this.Hide();
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Invalid Username or Password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    textBoxUsername.Clear();
+                    textBoxPassword.Clear();
+                    textBoxUsername.Focus();
+
                     AdminDashboard dashboard = new AdminDashboard();
                     dashboard.Show();
                     this.Hide();
                 }
-                else if (user.AccountTypeID == LIBRARIAN)
-                {
-                    LibrarianDashboard dashboard = new(_sessionService);
-                    dashboard.Show();
-                    this.Hide();
-                }
-                else
-                {
-                    MemberDashboard dashboard = new(_sessionService, _accountService, _accountController, _bookController, _borrowController);
-                    dashboard.Show();
-                    this.Hide();
-                }
-
             }
-            else
+            catch (ArgumentException ex)
             {
-                MessageBox.Show("Invalid Username or Password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                textBoxUsername.Clear();
-                textBoxPassword.Clear();
-                textBoxUsername.Focus();
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("An unexpected error occurred. Please try again later.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

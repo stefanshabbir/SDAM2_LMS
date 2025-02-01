@@ -27,14 +27,19 @@ namespace SDAM2_LMS.Controllers
         {
             return _userService.GetUsers();
         }
-
-        //-- NEEDS ERROR HANDLING; null texts, unexpected exceptions
         public void AddUser(
             string username, string password, string name, string email, string address, string phoneNumber, string accountType
             )
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(email)
+                    || string.IsNullOrWhiteSpace(address) || string.IsNullOrWhiteSpace(phoneNumber) || string.IsNullOrWhiteSpace(accountType))
+                {
+                    MessageBox.Show("All fields must be filled.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 bool userSuccessfullyAdded = _userService.AddUser(username, password, name, email, address, phoneNumber, accountType);
                 if (userSuccessfullyAdded)
                 {
@@ -48,7 +53,7 @@ namespace SDAM2_LMS.Controllers
             catch (Exception ex)
             {
                 new WriteErrorLog(ex);
-                // Error message with exception (Follow format of line 60-69)
+                MessageBox.Show($"An Unexpected Error occured. Check logs for more details. \nError: \n {ex}");
             }
         }
 
@@ -58,30 +63,58 @@ namespace SDAM2_LMS.Controllers
             {
                 return _userService.SearchUser(search);
             }
-            catch (Exception ex) //Catch block format for error handling
+            catch (Exception ex)
             {
-                new WriteErrorLog(ex); //Writes the error to a text file at /bin/ErrorLogs
-                //Try to following this wording format for the message box
+                new WriteErrorLog(ex); 
                 MessageBox.Show($"Could not refresh, an Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
-                
                 return null;
             }
         }
 
-        //-- NEEDS ERROR HANDLING; null texts, unexpected exceptions (Follow format of line 60-69)
         public void EditUser(
             Int32 accID, string newUsername, string newName, string newEmail, string newPhoneNumber, string newAddress, string newAccountType
             )
         {
-            _userService.EditUser(accID, newUsername, newName, newEmail, newPhoneNumber, newAddress, newAccountType);
-            MessageBox.Show("User profile updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                if (accID <= 0)
+                {
+                    MessageBox.Show("Please enter a valid numeric Account ID.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                } 
+                if (string.IsNullOrWhiteSpace(newUsername) || string.IsNullOrWhiteSpace(newName) || string.IsNullOrWhiteSpace(newEmail) || 
+                    string.IsNullOrWhiteSpace(newPhoneNumber) || string.IsNullOrWhiteSpace(newAddress) || string.IsNullOrWhiteSpace(newAccountType))
+                {
+                    MessageBox.Show("All fields must be filled.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                _userService.EditUser(accID, newUsername, newName, newEmail, newPhoneNumber, newAddress, newAccountType);
+                MessageBox.Show("User profile updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not refresh, an Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+            }
+            
         }
-
-        //-- NEEDS ERROR HANDLING; unexpected exceptions (Follow format of line 60-69)
         public void DeleteUser(int accID)
         {
-            _userService.DeleteUser(accID);
-            MessageBox.Show("Account deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                if (accID < 0)
+                {
+                    MessageBox.Show("Please enter a valid numeric Account ID.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                _userService.DeleteUser(accID);
+                MessageBox.Show("Account deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not refresh, an Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+            }
         }
     }
 }
