@@ -51,19 +51,32 @@ namespace SDAM2_LMS
                 string username = selectedRow.Cells["Username"].Value?.ToString();
                 string name = selectedRow.Cells["Name"].Value?.ToString();
                 string email = selectedRow.Cells["Email"].Value?.ToString();
-                string accountType = selectedRow.Cells["AccountTypeName"].Value?.ToString();
                 string phoneNumber = selectedRow.Cells["PhoneNumber"].Value?.ToString();
                 string address = selectedRow.Cells["Address"].Value?.ToString();
                 string selectedAccID = selectedRow.Cells["AccountID"].Value?.ToString();
+                string accountType = selectedRow.Cells["AccountTypeName"].Value?.ToString();
 
                 inptUsername.Text = username;
                 inptName.Text = name;
                 inptEmail.Text = email;
-                inptAccountType.Text = accountType;
+                inputAccountType.Text = accountType;
                 inptPhoneNumber.Text = phoneNumber;
                 inptAddress.Text = address;
 
                 _selectedAccountID = Convert.ToInt32(selectedAccID);
+
+                inputAccountType.Items.Clear();
+                inputAccountType.Items.Add("Admin");
+                inputAccountType.Items.Add("Librarian");
+                inputAccountType.Items.Add("Member");
+
+                inputAccountType.SelectedItem = accountType switch
+                {
+                    "Admin" => inputAccountType.SelectedItem = "Admin",
+                    "Librarian" => inputAccountType.SelectedItem = "Librarian",
+                    "Member" => inputAccountType.SelectedItem = "Member",
+                    _ => inputAccountType.SelectedItem = "Member" //default value
+                };
             }
 
         }
@@ -74,12 +87,13 @@ namespace SDAM2_LMS
 
             if (confirmation == DialogResult.Yes)
             {
+
                 _controller.EditUser
                     (
                 _selectedAccountID, inptUsername.Text,
                 inptName.Text, inptEmail.Text,
                 inptPhoneNumber.Text, inptAddress.Text,
-                inptAccountType.Text
+                inputAccountType.SelectedItem.ToString()
                     );
 
                 DataGridViewBooksView.DataSource = _controller.GetUsers();
@@ -98,7 +112,7 @@ namespace SDAM2_LMS
             inptName.Clear();
             inptUsername.Clear();
             inptEmail.Clear();
-            inptAccountType.Clear();
+            inputAccountType.Items.Clear();
             inptPhoneNumber.Clear();
             inptAddress.Clear();
         }
