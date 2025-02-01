@@ -41,46 +41,48 @@
             // lbl1
             // 
             lbl1.AutoSize = true;
-            lbl1.Location = new Point(16, 113);
+            lbl1.Location = new Point(18, 151);
             lbl1.Margin = new Padding(2, 0, 2, 0);
             lbl1.Name = "lbl1";
-            lbl1.Size = new Size(60, 15);
+            lbl1.Size = new Size(75, 20);
             lbl1.TabIndex = 0;
             lbl1.Text = "Username";
             // 
             // lbl2
             // 
             lbl2.AutoSize = true;
-            lbl2.Location = new Point(16, 181);
+            lbl2.Location = new Point(18, 241);
             lbl2.Margin = new Padding(2, 0, 2, 0);
             lbl2.Name = "lbl2";
-            lbl2.Size = new Size(57, 15);
+            lbl2.Size = new Size(70, 20);
             lbl2.TabIndex = 1;
             lbl2.Text = "Password";
             // 
             // textBoxUsername
             // 
-            textBoxUsername.Location = new Point(93, 113);
+            textBoxUsername.Location = new Point(106, 151);
             textBoxUsername.Margin = new Padding(2, 1, 2, 1);
+            textBoxUsername.MaxLength = 30;
             textBoxUsername.Name = "textBoxUsername";
-            textBoxUsername.Size = new Size(258, 23);
+            textBoxUsername.Size = new Size(294, 27);
             textBoxUsername.TabIndex = 2;
             // 
             // textBoxPassword
             // 
-            textBoxPassword.Location = new Point(93, 180);
+            textBoxPassword.Location = new Point(106, 240);
             textBoxPassword.Margin = new Padding(2, 1, 2, 1);
+            textBoxPassword.MaxLength = 16;
             textBoxPassword.Name = "textBoxPassword";
-            textBoxPassword.Size = new Size(258, 23);
+            textBoxPassword.Size = new Size(294, 27);
             textBoxPassword.TabIndex = 3;
             textBoxPassword.UseSystemPasswordChar = true;
             // 
             // LoginBtn
             // 
-            LoginBtn.Location = new Point(93, 239);
+            LoginBtn.Location = new Point(106, 319);
             LoginBtn.Margin = new Padding(2, 1, 2, 1);
             LoginBtn.Name = "LoginBtn";
-            LoginBtn.Size = new Size(110, 30);
+            LoginBtn.Size = new Size(126, 40);
             LoginBtn.TabIndex = 4;
             LoginBtn.Text = "Login";
             LoginBtn.UseVisualStyleBackColor = true;
@@ -88,29 +90,29 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(87, 31);
+            textBox1.Location = new Point(99, 41);
             textBox1.Margin = new Padding(2, 1, 2, 1);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(2, 23);
+            textBox1.Size = new Size(2, 27);
             textBox1.TabIndex = 5;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Black", 19.875F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(93, 17);
+            label1.Location = new Point(106, 23);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(218, 37);
+            label1.Size = new Size(275, 46);
             label1.TabIndex = 6;
             label1.Text = "The Book Vault";
             // 
             // RegistrationBtn
             // 
-            RegistrationBtn.Location = new Point(241, 239);
+            RegistrationBtn.Location = new Point(275, 319);
             RegistrationBtn.Margin = new Padding(2, 1, 2, 1);
             RegistrationBtn.Name = "RegistrationBtn";
-            RegistrationBtn.Size = new Size(110, 30);
+            RegistrationBtn.Size = new Size(126, 40);
             RegistrationBtn.TabIndex = 7;
             RegistrationBtn.Text = "Sign Up";
             RegistrationBtn.UseVisualStyleBackColor = true;
@@ -118,10 +120,10 @@
             // 
             // LoginPage
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveCaption;
-            ClientSize = new Size(377, 369);
+            ClientSize = new Size(431, 492);
             Controls.Add(RegistrationBtn);
             Controls.Add(label1);
             Controls.Add(textBox1);
