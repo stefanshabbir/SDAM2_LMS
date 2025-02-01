@@ -77,7 +77,7 @@ namespace SDAM2_LMS
                     }
                     else
                     {
-                        MemberDashboard dashboard = new(_sessionService, _accountService,_accountController);
+                        MemberDashboard dashboard = new(_sessionService, _accountService,_accountController, _bookController, _borrowController);
                         dashboard.Show();
                         this.Hide();
                     }

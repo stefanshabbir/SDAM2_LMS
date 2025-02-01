@@ -30,31 +30,25 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MemberDashboard));
             menuStrip1 = new MenuStrip();
-            viewBooksToolStripMenuItem = new ToolStripMenuItem();
             returnBooksToolStripMenuItem = new ToolStripMenuItem();
             completeBookDetailsToolStripMenuItem = new ToolStripMenuItem();
             menuBtn_ViewProfile = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
+            viewBooksToolStripMenuItem = new ToolStripMenuItem();
+            booksToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(32, 32);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { returnBooksToolStripMenuItem, completeBookDetailsToolStripMenuItem, menuBtn_ViewProfile, exitToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { booksToolStripMenuItem, returnBooksToolStripMenuItem, completeBookDetailsToolStripMenuItem, menuBtn_ViewProfile, exitToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(3, 1, 0, 1);
             menuStrip1.Size = new Size(746, 38);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
-            // 
-            // viewBooksToolStripMenuItem
-            // 
-            viewBooksToolStripMenuItem.Name = "viewBooksToolStripMenuItem";
-            viewBooksToolStripMenuItem.Size = new Size(51, 36);
-            viewBooksToolStripMenuItem.Text = "Books";
-            viewBooksToolStripMenuItem.Click += viewBooksToolStripMenuItem_Click_1;
             // 
             // returnBooksToolStripMenuItem
             // 
@@ -87,6 +81,20 @@
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
+            // viewBooksToolStripMenuItem
+            // 
+            viewBooksToolStripMenuItem.Name = "viewBooksToolStripMenuItem";
+            viewBooksToolStripMenuItem.Size = new Size(51, 36);
+            viewBooksToolStripMenuItem.Text = "Books";
+            viewBooksToolStripMenuItem.Click += viewBooksToolStripMenuItem_Click_1;
+            // 
+            // booksToolStripMenuItem
+            // 
+            booksToolStripMenuItem.Name = "booksToolStripMenuItem";
+            booksToolStripMenuItem.Size = new Size(51, 36);
+            booksToolStripMenuItem.Text = "Books";
+            booksToolStripMenuItem.Click += booksToolStripMenuItem_Click;
+            // 
             // MemberDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -115,5 +123,6 @@
         private ToolStripMenuItem exitToolStripMenuItem;
         private ToolStripMenuItem viewBooksToolStripMenuItem;
         private ToolStripMenuItem menuBtn_ViewProfile;
+        private ToolStripMenuItem booksToolStripMenuItem;
     }
 }

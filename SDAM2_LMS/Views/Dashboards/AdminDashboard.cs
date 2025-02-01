@@ -52,8 +52,8 @@ namespace SDAM2_LMS
 
         private void ViewMembers_Click_1(object sender, EventArgs e)
         {
-            ViewMember vm = new ViewMember();
-            vm.Show();
+            //ViewMember vm = new ViewMember();
+            //vm.Show();
         }
     }
 }

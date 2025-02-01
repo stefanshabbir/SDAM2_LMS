@@ -61,6 +61,11 @@ namespace SDAM2_LMS
 
         private void viewBooksToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
+            
+        }
+
+        private void booksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             var viewBooks = new ViewBooks(_borrowController, _bookController);
             viewBooks.Show();
         }
