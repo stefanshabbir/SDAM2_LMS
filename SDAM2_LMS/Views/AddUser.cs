@@ -29,7 +29,7 @@ namespace SDAM2_LMS
                 UsernameInput.Text, PasswordInput.Text,
                 NameInput.Text, EmailInput.Text,
                 addressInput.Text, PhoneInput.Text,
-                inptAccountType.Text
+                inputAccountType.SelectedItem.ToString()
                 );
         }
 
@@ -43,9 +43,16 @@ namespace SDAM2_LMS
             EmailInput.Clear();
             addressInput.Clear();
             PhoneInput.Clear();
-            inptAccountType.Clear();
+            inputAccountType.Items.Clear();
 
             UsernameInput.Focus();
+        }
+
+        private void AddUser_Load(object sender, EventArgs e)
+        {
+            inputAccountType.Items.Add("Admin");
+            inputAccountType.Items.Add("Librarian");
+            inputAccountType.Items.Add("Member");
         }
     }
 }
