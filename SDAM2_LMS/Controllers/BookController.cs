@@ -8,85 +8,90 @@ using System.Threading.Tasks;
 using SDAM2_LMS.ErrorLog;
 using Microsoft.EntityFrameworkCore;
 using System.Data.Entity;
+using SDAM2_LMS.Models.Services;
 
 namespace SDAM2_LMS.Controllers
 {
-    internal class BookController
+    public class BookController
     {
-        private readonly DatabaseContext _context;
-        public BookController(DatabaseContext context)
+        private readonly BookService _context;
+        public BookController(BookService context)
         {
             _context = context;
         }
 
-        public bool AddBook(
-        string title, string author, string genre, string publisher, string language, string isbn, int quantity
+        public void AddBook(
+        string title, string author, string genre,
+        string publisher, string language, string isbn, string stringQuantity
             )
         {
+            // null/empty texts error handling
             try
             {
-                if (_context.Books.Any(b => b.ISBN == isbn))
-                {
-                    // TODO: Update the book's quantity
-                    return true;
-                }
-                var book = new Book(title, author, genre, publisher, language, isbn, quantity);
-                _context.Books.Add(book);
-                _context.SaveChanges();
+                int quantity = int.Parse(stringQuantity); // could throw errors
 
-                return true;
+                bool bookIsAdded = _context.AddBook(title, author, genre, publisher, language, isbn, quantity);
+                if (bookIsAdded)
+                {
+                   // Success message
+                }
+                else
+                {
+                    // Book already exists, cannot be added (same isbn)
+                }
             }
             catch (Exception ex)
             {
                 new WriteErrorLog(ex);
-                Console.WriteLine($"Error Logged");
-                return false;
+                // Message
             }
         }
 
+        //-- NEEDS ERROR HANDLING
         public List<Book> GetBooks() 
         { 
-            return _context.Books.ToList();
+            return _context.GetBooks();
         }
 
+        //-- NEEDS ERROR HANDLING
         public IEnumerable<Book> SearchBook(string search)
         {
-            return _context.Books
-                .Where(book => EF.Functions.Like(book.Title, $"%{search}%") || 
-                EF.Functions.Like(book.Authors.ToString(), $"%{search}%") ||
-                EF.Functions.Like(book.Genres.ToString(), $"%{search}%"))
-                  //.Where(book => book.Title.Contains(search, StringComparison.OrdinalIgnoreCase) ||
-                                 //book.Authors.Split(',').Any(author => author.Trim().Contains(search)) ||
-                                 //book.Genres.Split(',').Any(genre => genre.Trim().Contains(search)) ||
-                                 //book.Publisher.Split(',').Any(publisher => publisher.Trim().Contains(search)) ||
-                                 //book.Language.Contains(search, StringComparison.OrdinalIgnoreCase) ||
-                                 //book.ISBN.Contains(search, StringComparison.OrdinalIgnoreCase))
-                  .ToList();
+            return _context.SearchBook(search);
         }
 
-        public void DeleteBook(string id)
+        //-- NEEDS ERROR HANDLING
+        public void DeleteBook(string isbn)
         {
-            var book = _context.Books.FirstOrDefault(a => a.ISBN == id);
-            if (book != null)
+            bool bookIsDeleted = _context.DeleteBook(isbn);
+            if (bookIsDeleted)
             {
-                _context.Remove(book);
-                _context.SaveChanges();
+                // Success message
+            }
+            else
+            {
+                //Invalid book, nothing deleted
             }
         }
 
-        public void EditBook(string id, string newTitle, string newAuthors, string newGenres, string newPublishers, string newLanguage, int newQuantity)
+        //-- NEEDS ERROR HANDLING; null texts, int parsing and unexpected exceptions
+        public void EditBook(
+            string _oldISBN, string newTitle, string newAuthors, string newGenres,
+            string newPublishers, string newLanguage, string newISBN, string stringQuantity
+            )
         {
-            var book = _context.Books.FirstOrDefault(a => a.ISBN == id);
+            Int32 bookID = _context.GetBookID(_oldISBN);
+            int newQuantity = int.Parse(stringQuantity);
 
-            if (book != null)
+            bool bookIsEdited = _context.EditBook(
+                bookID, newTitle, newAuthors, newGenres, newPublishers, newPublishers, newISBN, newQuantity
+                );
+            if (bookIsEdited)
             {
-                book.Title = newTitle;
-                book.Authors = newAuthors;
-                book.Genres = newGenres;
-                book.Publisher = newPublishers;
-                book.Language = newLanguage;
-                book.Quantity = newQuantity;
-                _context.SaveChanges();
+                // Success message
+            }
+            else
+            {
+                // Book cannot be edited, it may not exist
             }
         }
     }

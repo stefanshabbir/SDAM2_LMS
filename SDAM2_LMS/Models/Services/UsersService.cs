@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace SDAM2_LMS.Models.Services
 {
-    public class UserService
+    public class UsersService
     {
         private readonly DatabaseContext _context;
 
-        public UserService(DatabaseContext context)
+        public UsersService(DatabaseContext context)
         {
             _context = context;
         }
@@ -30,7 +30,7 @@ namespace SDAM2_LMS.Models.Services
             else
             {
                 //Throw new error for Invalid account type and catch this specific error in controller's error handling
-                return 0;
+                return -1;
             }
         }
 

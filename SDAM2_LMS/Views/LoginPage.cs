@@ -86,10 +86,6 @@ namespace SDAM2_LMS
                     textBoxUsername.Clear();
                     textBoxPassword.Clear();
                     textBoxUsername.Focus();
-
-                    AdminDashboard dashboard = new AdminDashboard();
-                    dashboard.Show();
-                    this.Hide();
                 }
             }
             catch (ArgumentException ex)

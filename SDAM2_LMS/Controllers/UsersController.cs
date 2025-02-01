@@ -15,10 +15,10 @@ using System.Xml.Linq;
 
 namespace SDAM2_LMS.Controllers
 {
-    public class UserController
+    public class UsersController
     {
-        private readonly UserService _userService;
-        public UserController(UserService service)
+        private readonly UsersService _userService;
+        public UsersController(UsersService service)
         {
             _userService = service;
         }

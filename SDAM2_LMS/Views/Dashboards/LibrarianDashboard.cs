@@ -1,4 +1,6 @@
-﻿using SDAM2_LMS.Models.Services;
+﻿using SDAM2_LMS.Controllers;
+using SDAM2_LMS.Models.Data;
+using SDAM2_LMS.Models.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,7 +45,11 @@ namespace SDAM2_LMS
 
         private void menuBtn_Books_Click(object sender, EventArgs e)
         {
-            ManageBooks mb = new ManageBooks();
+            //Check if this is correct
+            ManageBooks mb = new ManageBooks
+                (
+                new BookController(new BookService(new DatabaseContext()))
+                );
             mb.Show();
         }
     }

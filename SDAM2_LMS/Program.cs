@@ -36,8 +36,8 @@ namespace SDAM2_LMS
             services.AddSingleton<AccountController>();
             services.AddSingleton<AccountService>();
             services.AddSingleton<SessionService>();
-            services.AddSingleton<UserController>();
-            services.AddSingleton<UserService>();
+            services.AddSingleton<UsersController>();
+            services.AddSingleton<UsersService>();
 
             services.AddTransient<LoginPage>();
             services.AddTransient<AdminDashboard>();
