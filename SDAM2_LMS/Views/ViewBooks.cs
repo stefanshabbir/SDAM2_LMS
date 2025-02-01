@@ -17,12 +17,9 @@ namespace SDAM2_LMS
     public partial class ViewBooks : Form
     {
         private readonly BookController _bookController;
-        //private readonly SessionService _sessionService;
-        private readonly BorrowController _borrowController;
-        public ViewBooks(BorrowController borrowController, BookController bookController)
+        public ViewBooks(BookController bookController)
         {
             InitializeComponent();
-            _borrowController = borrowController; 
             _bookController = bookController;
             var books = _bookController.GetBooks();
             dataGridViewBooksView.Rows.Clear();
@@ -130,7 +127,7 @@ namespace SDAM2_LMS
 
             MessageBox.Show(bookId.ToString());
 
-            if (_borrowController.BorrowBook(bookId))
+            if (_bookController.BorrowBook(bookId))
             {
                 MessageBox.Show("Book borrowed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

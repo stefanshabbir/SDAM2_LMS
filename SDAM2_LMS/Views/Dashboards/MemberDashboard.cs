@@ -16,19 +16,17 @@ namespace SDAM2_LMS
 {
     public partial class MemberDashboard : Form
     {
-        private readonly BorrowController _borrowController;
         private readonly BookController _bookController;
         private readonly ProfileController _profileController;
         //private readonly SessionService _session;
 
         internal MemberDashboard(
-            ProfileController profileController, BorrowController borrowController, BookController bookController)
+            ProfileController profileController, BookController bookController)
         {
             InitializeComponent();
             // **--Need to get rid of models in view--**
             _profileController = profileController;
             _bookController = bookController;
-            _borrowController = borrowController;
 
             //_session = new SessionService();
             //_session.LoggedInAccount = profileController.GetSessionAccount();
@@ -49,7 +47,7 @@ namespace SDAM2_LMS
 
         private void completeBookDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CompleteBookDetails cbd = new CompleteBookDetails(_borrowController, _profileController);
+            CompleteBookDetails cbd = new CompleteBookDetails(_profileController, _bookController);
             cbd.Show();
         }
 
@@ -66,7 +64,7 @@ namespace SDAM2_LMS
 
         private void booksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var viewBooks = new ViewBooks(_borrowController, _bookController);
+            var viewBooks = new ViewBooks(_bookController);
             viewBooks.Show();
         }
     }

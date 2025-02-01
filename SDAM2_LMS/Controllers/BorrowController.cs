@@ -20,57 +20,8 @@ namespace SDAM2_LMS.Controllers
             _sessionService = sessionService;
         }
 
-        public bool BorrowBook(int bookID)
-        {
-            var accID = _sessionService.LoggedInAccount.AccountID;
+        
 
-            var book = _context.Books.FirstOrDefault(b => b.BookID == bookID);
-            var account = _context.Accounts.FirstOrDefault(a => a.AccountID == accID);
-            if (book == null || account == null)
-            {
-                return false;
-            }
-            if (book.Quantity > 0)
-            {
-                book.Quantity--;
-                var borrowing = new Models.Borrowing(bookID, accID, DateTime.Now, DateTime.Now.AddDays(7));
-                _context.Borrowings.Add(borrowing);
-                _context.SaveChanges();
-                return true;
-            }
-            return false;
-        }
 
-        public bool ReturnBook(int bookID)
-        {
-            var accID = _sessionService.LoggedInAccount.AccountID;
-            var borrowing = _context.Borrowings.FirstOrDefault(b => b.BookID == bookID && b.AccountID == accID);
-            var book = _context.Books.FirstOrDefault(b => b.BookID == bookID);
-            if (borrowing == null || book == null)
-            {
-                return false;
-            }
-            book.Quantity++;
-            _context.Borrowings.Remove(borrowing);
-            _context.SaveChanges();
-            return true;
-        }
-
-        public IEnumerable<object> GetBorrowings(int accountId)
-        {
-            return _context.Borrowings.Where(b => b.AccountID == accountId)
-                .Select(b => new 
-                {
-                    b.BookID,
-                    b.Book.Title,
-                    b.BorrowDate,
-                    b.ReturnDate
-                }).ToList();
-        }
-
-        public IEnumerable<Models.Borrowing> GetBorrowings()
-        {
-            return _context.Borrowings.ToList();
-        }
     }
 }
