@@ -1,4 +1,5 @@
-﻿using SDAM2_LMS.Models;
+﻿using SDAM2_LMS.ErrorLog;
+using SDAM2_LMS.Models;
 using SDAM2_LMS.Models.Data;
 using SDAM2_LMS.Models.Services;
 using System;
@@ -30,53 +31,62 @@ namespace SDAM2_LMS.Controllers
             _borrowController = borrowController;
         }
 
-        // NEEDS ERROR HANDLING
         public bool Login(string username, string password)
         {
-            if (string.IsNullOrWhiteSpace(username))
+            try
             {
-                MessageBox.Show("Username cannot be empty!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(password))
-            {
-                MessageBox.Show("Password cannot be empty!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            var user = _accountService.Login(username, password);
-
-            bool loginSuccessful = user != null;
-            if (loginSuccessful)
-            {
-                if (user.AccountTypeID == ADMIN)
+                if (string.IsNullOrWhiteSpace(username))
                 {
-                    var dashboard = new AdminDashboard();
-                    dashboard.Show();
-                    return true;
+                    MessageBox.Show("Username cannot be empty!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
                 }
-                else if (user.AccountTypeID == LIBRARIAN)
+                if (string.IsNullOrWhiteSpace(password))
                 {
-                    var dashboard = new LibrarianDashboard(
-                        new ProfileController(_accountService)
-                        );
-                    dashboard.Show();
-                    return true;
+                    MessageBox.Show("Password cannot be empty!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+
+                var user = _accountService.Login(username, password);
+
+                bool loginSuccessful = user != null;
+                if (loginSuccessful)
+                {
+                    if (user.AccountTypeID == ADMIN)
+                    {
+                        var dashboard = new AdminDashboard();
+                        dashboard.Show();
+                        return true;
+                    }
+                    else if (user.AccountTypeID == LIBRARIAN)
+                    {
+                        var dashboard = new LibrarianDashboard(
+                            new ProfileController(_accountService)
+                            );
+                        dashboard.Show();
+                        return true;
+                    }
+                    else
+                    {
+                        var dashboard = new MemberDashboard(
+                            new ProfileController(_accountService), _borrowController, _bookController
+                            );
+                        dashboard.Show();
+                        return true;
+                    }
                 }
                 else
                 {
-                    var dashboard = new MemberDashboard(
-                        new ProfileController(_accountService), _borrowController, _bookController
-                        );
-                    dashboard.Show();
-                    return true;
+                    MessageBox.Show("Invalid Username or Password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Invalid Username or Password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new WriteErrorLog(ex);
+                MessageBox.Show($"An Unexpected Error occured. Check logs for more details. \nError: \n {ex}");
                 return false;
             }
+            
         }
 
         // NEEDS ERROR HANDLING; A lot of rework, most stuff from the Register winform need to be brought here
