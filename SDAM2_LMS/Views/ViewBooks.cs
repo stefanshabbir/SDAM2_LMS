@@ -89,6 +89,7 @@ namespace SDAM2_LMS
                     e.CellStyle.ForeColor = Color.White;
                 }
                 dataGridViewBooksView.Columns["Quantity"].Visible = false; // Hide the Quantity column
+                dataGridViewBooksView.Columns["BookId"].Visible = false; // Hide the BookId column
                 e.FormattingApplied = true; // Indicate that formatting has been applied
             }
         }
