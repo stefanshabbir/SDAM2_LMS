@@ -191,5 +191,17 @@ namespace SDAM2_LMS.Models.Services
         {
             return _context.Borrowings.FirstOrDefault(b => b.BookID == bookID && b.Reserved == true).Reserved;
         }
+
+        public bool DeleteReservation(Int32 bookID, Int32 accID)
+        {
+            var borrow = _context.Borrowings.FirstOrDefault(b => b.BookID == bookID && b.AccountID == accID);
+            if (borrow != null)
+            {
+                _context.Borrowings.Remove(borrow);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
     }
 }

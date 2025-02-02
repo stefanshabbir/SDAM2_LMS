@@ -71,6 +71,20 @@ namespace SDAM2_LMS
                 }
             }
         }
+        private void reservedDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (reservedDataGrid.Columns[e.ColumnIndex].Name == "Cancel")
+            {
+                var bookID = (int)reservedDataGrid.Rows[e.RowIndex].Cells["BookID"].Value;
+                var accID = _profileController.GetSessionAccount().AccountID;
+
+                bool successful = _borrowController.DeleteReservations(bookID, accID);
+                if (successful)
+                {
+                    reservedDataGrid.DataSource = _borrowController.GetReservations(_profileController.GetSessionAccount().AccountID);
+                }
+            }
+        }
     }
 }
 

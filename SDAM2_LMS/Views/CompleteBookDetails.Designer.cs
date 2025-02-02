@@ -74,6 +74,7 @@
             reservedDataGrid.RowHeadersWidth = 82;
             reservedDataGrid.Size = new Size(805, 128);
             reservedDataGrid.TabIndex = 3;
+            reservedDataGrid.CellContentClick += reservedDataGrid_CellContentClick;
             // 
             // label2
             // 
@@ -99,6 +100,7 @@
             Controls.Add(label1);
             Margin = new Padding(2, 1, 2, 1);
             Name = "CompleteBookDetails";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "CompleteBookDetails";
             Load += CompleteBookDetails_Load_1;
             ((System.ComponentModel.ISupportInitialize)borrowedDataGrid).EndInit();

@@ -10,11 +10,12 @@ using System.Windows.Forms;
 
 namespace SDAM2_LMS
 {
-    public partial class IssueBooks : Form
+    public partial class ReturnBook : Form
     {
-        public IssueBooks()
+        public ReturnBook()
         {
             InitializeComponent();
         }
+
     }
 }

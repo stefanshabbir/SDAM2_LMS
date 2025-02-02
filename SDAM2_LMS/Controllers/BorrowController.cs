@@ -136,7 +136,7 @@ namespace SDAM2_LMS.Controllers
 
                 if (_bookService.CheckReservation(bookID))
                 {
-                    MessageBox.Show("Book is already reserved.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                    MessageBox.Show("Book is already reserved.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
                 bool reservedSuccessfully = _bookService.ReserveBook(bookID, accID);
@@ -153,6 +153,27 @@ namespace SDAM2_LMS.Controllers
             {
                 new WriteErrorLog(ex);
                 MessageBox.Show($"Could not reserve book. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                return false;
+            }
+        }
+
+        public bool DeleteReservations(Int32 bookID, Int32 accID)
+        {
+            try
+            {
+                bool deletedSuccessfully = _bookService.DeleteReservation(bookID, accID);
+                if (deletedSuccessfully)
+                {
+                    MessageBox.Show("Reservation deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
+                }
+                MessageBox.Show("An error occurred while deleting the reservation.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not delete reservation. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
                 return false;
             }
         }
