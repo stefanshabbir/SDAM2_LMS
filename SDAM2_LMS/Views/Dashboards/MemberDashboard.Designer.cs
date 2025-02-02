@@ -90,6 +90,7 @@
             // 
             // booksToolStripMenuItem
             // 
+            booksToolStripMenuItem.Image = (Image)resources.GetObject("menuBtn_Books.Image");
             booksToolStripMenuItem.Name = "booksToolStripMenuItem";
             booksToolStripMenuItem.Size = new Size(51, 36);
             booksToolStripMenuItem.Text = "Books";
