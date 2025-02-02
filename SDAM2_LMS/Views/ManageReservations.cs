@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace SDAM2_LMS
 {
-    public partial class ManageBorrowed : Form
+    public partial class ManageReservations : Form
     {
         private readonly BorrowController _borrowController;
 
-        public ManageBorrowed(BorrowController borrowController)
+        public ManageReservations(BorrowController borrowController)
         {
             InitializeComponent();
             _borrowController = borrowController;

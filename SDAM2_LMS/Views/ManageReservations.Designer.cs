@@ -1,6 +1,6 @@
 ﻿namespace SDAM2_LMS
 {
-    partial class ManageBorrowed
+    partial class ManageReservations
     {
         /// <summary>
         /// Required designer variable.

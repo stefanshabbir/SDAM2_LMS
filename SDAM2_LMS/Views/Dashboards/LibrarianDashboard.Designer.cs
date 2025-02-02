@@ -32,20 +32,15 @@
             menuStrip1 = new MenuStrip();
             menuBtn_Books = new ToolStripMenuItem();
             menuBtn_Reservations = new ToolStripMenuItem();
-            AddReservations = new ToolStripMenuItem();
-            RemoveReservations = new ToolStripMenuItem();
-            EditReservations = new ToolStripMenuItem();
-            ViewReservations = new ToolStripMenuItem();
-            returnBooksToolStripMenuItem = new ToolStripMenuItem();
-            completeBookDetailsToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
+            menuBtn_ViewProfile = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(32, 32);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { menuBtn_Books, menuBtn_Reservations, returnBooksToolStripMenuItem, completeBookDetailsToolStripMenuItem, exitToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { menuBtn_Books, menuBtn_Reservations, menuBtn_ViewProfile, exitToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(3, 1, 0, 1);
@@ -63,51 +58,11 @@
             // 
             // menuBtn_Reservations
             // 
-            menuBtn_Reservations.DropDownItems.AddRange(new ToolStripItem[] { AddReservations, RemoveReservations, EditReservations, ViewReservations });
             menuBtn_Reservations.Image = (Image)resources.GetObject("menuBtn_Reservations.Image");
             menuBtn_Reservations.Name = "menuBtn_Reservations";
             menuBtn_Reservations.Size = new Size(117, 36);
             menuBtn_Reservations.Text = "Reservations";
-            // 
-            // AddReservations
-            // 
-            AddReservations.Name = "AddReservations";
-            AddReservations.Size = new Size(186, 22);
-            AddReservations.Text = "Add Reservations";
-            // 
-            // RemoveReservations
-            // 
-            RemoveReservations.Name = "RemoveReservations";
-            RemoveReservations.Size = new Size(186, 22);
-            RemoveReservations.Text = "Remove Reservations";
-            // 
-            // EditReservations
-            // 
-            EditReservations.Name = "EditReservations";
-            EditReservations.Size = new Size(186, 22);
-            EditReservations.Text = "Edit Reservations";
-            // 
-            // ViewReservations
-            // 
-            ViewReservations.Name = "ViewReservations";
-            ViewReservations.Size = new Size(186, 22);
-            ViewReservations.Text = "View Reservations";
-            // 
-            // returnBooksToolStripMenuItem
-            // 
-            returnBooksToolStripMenuItem.Image = (Image)resources.GetObject("returnBooksToolStripMenuItem.Image");
-            returnBooksToolStripMenuItem.Name = "returnBooksToolStripMenuItem";
-            returnBooksToolStripMenuItem.Size = new Size(121, 36);
-            returnBooksToolStripMenuItem.Text = "Return Books";
-            returnBooksToolStripMenuItem.Click += returnBooksToolStripMenuItem_Click;
-            // 
-            // completeBookDetailsToolStripMenuItem
-            // 
-            completeBookDetailsToolStripMenuItem.Image = (Image)resources.GetObject("completeBookDetailsToolStripMenuItem.Image");
-            completeBookDetailsToolStripMenuItem.Name = "completeBookDetailsToolStripMenuItem";
-            completeBookDetailsToolStripMenuItem.Size = new Size(171, 36);
-            completeBookDetailsToolStripMenuItem.Text = "Complete Book Details";
-            completeBookDetailsToolStripMenuItem.Click += completeBookDetailsToolStripMenuItem_Click;
+            menuBtn_Reservations.Click += menuBtn_Reservations_Click;
             // 
             // exitToolStripMenuItem
             // 
@@ -116,6 +71,14 @@
             exitToolStripMenuItem.Size = new Size(70, 36);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
+            // 
+            // menuBtn_ViewProfile
+            // 
+            menuBtn_ViewProfile.Image = (Image)resources.GetObject("menuBtn_ViewProfile.Image");
+            menuBtn_ViewProfile.Name = "menuBtn_ViewProfile";
+            menuBtn_ViewProfile.Size = new Size(113, 36);
+            menuBtn_ViewProfile.Text = "View Profile";
+            menuBtn_ViewProfile.Click += menuBtn_ViewProfile_Click;
             // 
             // LibrarianDashboard
             // 
@@ -142,12 +105,7 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem menuBtn_Books;
         private ToolStripMenuItem menuBtn_Reservations;
-        private ToolStripMenuItem returnBooksToolStripMenuItem;
-        private ToolStripMenuItem completeBookDetailsToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;
-        private ToolStripMenuItem RemoveReservations;
-        private ToolStripMenuItem AddReservations;
-        private ToolStripMenuItem EditReservations;
-        private ToolStripMenuItem ViewReservations;
+        private ToolStripMenuItem menuBtn_ViewProfile;
     }
 }
