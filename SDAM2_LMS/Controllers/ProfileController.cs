@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
+using SDAM2_LMS.ErrorLog;
 
 namespace SDAM2_LMS.Controllers
 {
@@ -23,7 +24,7 @@ namespace SDAM2_LMS.Controllers
             return _accountService.GetSessionAccount();
         }
 
-        // Incomplete error handling
+        // Incomplete error handling or user input
         public void UpdateProfile(
             string newUsername, string newName, string newPhoneNumber, string newEmail, string newAddress
             )
@@ -50,30 +51,47 @@ namespace SDAM2_LMS.Controllers
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while updating the account: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could update profile. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
             }
         }
 
-        // NEEDS ERROR HANDLING
         public void DeleteProfile()
         {
-            var confirmResult = MessageBox.Show("Are you sure you want to delete your account?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (confirmResult == DialogResult.Yes)
+            try
             {
-                _accountService.DeleteAccount();
-                MessageBox.Show("Account deleted successfully. The application will now restart.");
+                var confirmResult = MessageBox.Show("Are you sure you want to delete your account?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    _accountService.DeleteAccount();
+                    MessageBox.Show("Account deleted successfully. The application will now restart.");
+                }
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not delete profile. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
             }
         }
 
-        // NEEDS ERROR HANDLING
+        // NEEDS ERROR HANDLING; incomplete
         public bool resetPassword(string newPassword)
         {
-            if (string.IsNullOrEmpty(newPassword))
-            { return false; }
-            else
+            try
             {
-                _accountService.resetPassword(newPassword);
-                return true;
+                if (string.IsNullOrEmpty(newPassword))
+                { return false; }
+                else
+                {
+                    _accountService.resetPassword(newPassword);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not reset password. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                return false;
             }
         }
     }

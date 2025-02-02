@@ -63,6 +63,7 @@ namespace SDAM2_LMS.Controllers
             }
         }
 
+        //-- NEEDS ERROR HANDLING; if null
         public IEnumerable<Book>? SearchBook(string search)
         {
             try
@@ -77,7 +78,7 @@ namespace SDAM2_LMS.Controllers
             }
         }
 
-        //-- NEEDS ERROR HANDLING
+        //-- NEEDS ERROR HANDLING; if null
         public void DeleteBook(string isbn)
         {
             try
@@ -132,6 +133,7 @@ namespace SDAM2_LMS.Controllers
             }
         }
 
+        //-- NEEDS ERROR HANDLING; if null
         public void BorrowBook(string isbn)
         {
             try
@@ -153,6 +155,7 @@ namespace SDAM2_LMS.Controllers
             }
         }
 
+        //-- NEEDS ERROR HANDLING; if null
         public IEnumerable<object>? GetBorrowings(int accountId)
         {
             try
@@ -171,7 +174,7 @@ namespace SDAM2_LMS.Controllers
         {
             try
             {
-                bool returnedSuccessfully = _bookService.ReturnBook(bookID);
+                bool returnedSuccessfully = bookID != null && _bookService.ReturnBook(bookID);
                 if (returnedSuccessfully)
                 {
                     MessageBox.Show("Book returned successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
