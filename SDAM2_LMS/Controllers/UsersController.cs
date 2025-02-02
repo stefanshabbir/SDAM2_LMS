@@ -96,7 +96,7 @@ namespace SDAM2_LMS.Controllers
             catch (Exception ex)
             {
                 new WriteErrorLog(ex);
-                MessageBox.Show($"Could not refresh, an Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                MessageBox.Show($"An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
             }
             
         }
@@ -115,7 +115,7 @@ namespace SDAM2_LMS.Controllers
             catch (Exception ex)
             {
                 new WriteErrorLog(ex);
-                MessageBox.Show($"Could not refresh, an Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                MessageBox.Show($"An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
             }
         }
     }
