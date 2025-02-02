@@ -115,6 +115,18 @@ namespace SDAM2_LMS.Models.Services
                     b.ReturnDate
                 }).ToList();
         }
+        public IEnumerable<object> GetBorrowings()
+        {
+            return _context.Borrowings.Where(b => b.Reserved == false)
+                .Select(b => new
+                {
+                    b.BookID,
+                    b.Account.Username,
+                    b.Book.Title,
+                    b.BorrowDate,
+                    b.ReturnDate
+                }).ToList();
+        }
 
         public IEnumerable<object> GetReservations(int accountId)
         {
@@ -127,6 +139,20 @@ namespace SDAM2_LMS.Models.Services
                     b.ReturnDate
                 }).ToList();
         }
+        
+        public IEnumerable<object> GetReservations()
+        {
+            return _context.Borrowings.Where(b => b.Reserved == true)
+                .Select(b => new
+                {
+                    b.BookID,
+                    b.Book.Title,
+                    b.BorrowDate,
+                    b.ReturnDate
+                }).ToList();
+        }
+
+        
 
         public bool BorrowBook(Int32 bookID, Int32 accID)
         {
@@ -189,7 +215,7 @@ namespace SDAM2_LMS.Models.Services
 
         public bool CheckReservation(Int32 bookID)
         {
-            return _context.Borrowings.FirstOrDefault(b => b.BookID == bookID && b.Reserved == true).Reserved;
+            return _context.Borrowings.Any(b => b.BookID == bookID && b.Reserved == true);
         }
 
         public bool DeleteReservation(Int32 bookID, Int32 accID)

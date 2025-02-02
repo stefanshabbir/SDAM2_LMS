@@ -89,11 +89,39 @@ namespace SDAM2_LMS.Controllers
             }
         }
 
+        public IEnumerable<object>? GetBorrowings() 
+        {
+            try
+            {
+                return _bookService.GetBorrowings();
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not get borrowings. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                return null;
+            }
+        }
+
         public IEnumerable<object>? GetReservations(int accID)
         {
             try
             {
                 return _bookService.GetReservations(accID);
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not get reservations. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                return null;
+            }
+        }
+
+        public IEnumerable<object>? GetReservations()
+        {
+            try
+            {
+                return _bookService.GetReservations();
             }
             catch (Exception ex)
             {
