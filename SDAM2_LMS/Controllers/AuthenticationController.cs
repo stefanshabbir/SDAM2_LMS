@@ -56,7 +56,7 @@ namespace SDAM2_LMS.Controllers
                 else if (user.AccountTypeID == LIBRARIAN)
                 {
                     var dashboard = new LibrarianDashboard(
-                        new ProfileController(_accountService)
+                        new ProfileController(_accountService), _bookController
                         );
                     dashboard.Show();
                     return true;
