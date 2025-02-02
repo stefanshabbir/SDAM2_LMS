@@ -148,5 +148,25 @@ namespace SDAM2_LMS.Models.Services
             _context.SaveChanges();
             return true;
         }
+
+        public bool ReserveBook(Int32 bookID, int accID)
+        {
+            var book = _context.Books.FirstOrDefault(b => b.BookID == bookID);
+            var account = _context.Accounts.FirstOrDefault(a => a.AccountID == accID);
+
+            if (book == null)
+            {
+                return false;
+            }
+
+            if (book.Quantity < 0)
+            {
+                var borrowing = new Models.Borrowing(bookID, accID, DateTime.Now, DateTime.Now.AddDays(7), true);
+                _context.Borrowings.Add(borrowing);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
     }
 }

@@ -112,5 +112,27 @@ namespace SDAM2_LMS.Controllers
                 return false;
             }
         }
+
+        public bool ReserveBook(Int32 bookID)
+        {
+            try
+            {
+                Int32 accID = _accountService.GetSessionAccount().AccountID;
+                bool reservedSuccessfully = bookID != null && _bookService.ReserveBook(bookID, accID);
+                if (reservedSuccessfully)
+                {
+                    MessageBox.Show("Book reserved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
+                }
+                MessageBox.Show("An error occurred while reserving the book.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not reserve book. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                return false;
+            }
+        }
     }
 }
