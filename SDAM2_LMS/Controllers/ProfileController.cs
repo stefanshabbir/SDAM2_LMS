@@ -25,7 +25,6 @@ namespace SDAM2_LMS.Controllers
             return _accountService.GetSessionAccount();
         }
 
-        // Incomplete error handling or user input
         public void UpdateProfile(
             string newUsername, string newName, string newPhoneNumber, string newEmail, string newAddress
             )

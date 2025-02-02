@@ -34,11 +34,15 @@ namespace SDAM2_LMS.Controllers
             }
         }
 
-        //-- NEEDS ERROR HANDLING; if null
         public IEnumerable<Book>? SearchBookForBorrow(string search)
         {
             try
             {
+                if (string.IsNullOrEmpty(search))
+                {
+                    MessageBox.Show("Please enter a search term to continue. The search term cannot be empty", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
                 return _bookService.SearchBook(search);
             }
             catch (Exception ex)
@@ -49,11 +53,16 @@ namespace SDAM2_LMS.Controllers
             }
         }
 
-        //-- NEEDS ERROR HANDLING; if null
         public void BorrowBook(string isbn)
         {
             try
             {
+                if (string.IsNullOrEmpty(isbn))
+                {
+                    MessageBox.Show("ISBN cannot be empty!","Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 Int32 bookID = _bookService.GetBookID(isbn);
                 Int32 accID = _accountService.GetSessionAccount().AccountID;
 
@@ -74,11 +83,15 @@ namespace SDAM2_LMS.Controllers
             }
         }
 
-        //-- NEEDS ERROR HANDLING; if null
         public IEnumerable<object>? GetBorrowings(Int32 accID)
         {
             try
             {
+                if (accID <= 0)
+                {
+                    MessageBox.Show("Invalid Account ID", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                }
+
                 return _bookService.GetBorrowings(accID);
             }
             catch (Exception ex)
