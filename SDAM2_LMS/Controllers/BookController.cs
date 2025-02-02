@@ -80,11 +80,15 @@ namespace SDAM2_LMS.Controllers
             }
         }
 
-        //-- NEEDS ERROR HANDLING; if null
         public IEnumerable<Book>? SearchBook(string search)
         {
             try
             {
+                if (string.IsNullOrEmpty(search))
+                {
+                    MessageBox.Show("Search term cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return _bookService.GetBooks();
+                }
                 return _bookService.SearchBook(search);
             }
             catch (Exception ex)
@@ -95,21 +99,32 @@ namespace SDAM2_LMS.Controllers
             }
         }
 
-        //-- NEEDS ERROR HANDLING; if null
         public void DeleteBook(string isbn)
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(isbn))
+                {
+                    MessageBox.Show("ISBN cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 Int32 bookID = _bookService.GetBookID(isbn);
+
+                if (bookID == 0)
+                {
+                    MessageBox.Show("Book not found. Nothing to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 bool bookIsDeleted = _bookService.DeleteBook(bookID);
                 if (bookIsDeleted)
                 {
-                    // Success message
+                    MessageBox.Show("Book deleted successfully!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    //Invalid book, nothing deleted
+                    MessageBox.Show("Failed to delete the book.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
