@@ -25,7 +25,16 @@ namespace SDAM2_LMS.Controllers
 
         public object? GetUsers()
         {
-            return _userService.GetUsers();
+            try
+            {
+                return _userService.GetUsers();
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not load users. An Unexpected Error occured. Check logs for more details. \nError: \n {ex}");
+                return null;
+            }
         }
         public void AddUser(
             string username, string password, string name,
@@ -54,7 +63,7 @@ namespace SDAM2_LMS.Controllers
             catch (Exception ex)
             {
                 new WriteErrorLog(ex);
-                MessageBox.Show($"An Unexpected Error occured. Check logs for more details. \nError: \n {ex}");
+                MessageBox.Show($"Could not add user. An Unexpected Error occured. Check logs for more details. \nError: \n {ex}");
             }
         }
 
@@ -67,7 +76,7 @@ namespace SDAM2_LMS.Controllers
             catch (Exception ex)
             {
                 new WriteErrorLog(ex); 
-                MessageBox.Show($"Could not refresh, an Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                MessageBox.Show($"Could not search/refresh. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
                 return null;
             }
         }
@@ -96,7 +105,7 @@ namespace SDAM2_LMS.Controllers
             catch (Exception ex)
             {
                 new WriteErrorLog(ex);
-                MessageBox.Show($"An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                MessageBox.Show($"Could not edit profile. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
             }
             
         }
@@ -115,7 +124,7 @@ namespace SDAM2_LMS.Controllers
             catch (Exception ex)
             {
                 new WriteErrorLog(ex);
-                MessageBox.Show($"An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                MessageBox.Show($"Could not delete user. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
             }
         }
     }
