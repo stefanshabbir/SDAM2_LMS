@@ -39,7 +39,7 @@ namespace SDAM2_LMS.Models.Services
 
         //simulating registrations
         public bool Register(
-            string username, string password, string email, string name, string address, string phoneNumber
+            string username, string password,string confirmpassword, string email, string name, string address, string phoneNumber
             )
         {
             var accountExists = _context.Accounts.FirstOrDefault(a => a.Username == username && a.Password == password) != null;

@@ -32,7 +32,7 @@ namespace SDAM2_LMS.Controllers
             catch (Exception ex)
             {
                 new WriteErrorLog(ex);
-                MessageBox.Show($"Could not load users. An Unexpected Error occured. Check logs for more details. \nError: \n {ex}");
+                MessageBox.Show($"Could not load users. An Unexpected Error occurred. Check logs for more details. \nError: \n {ex}");
                 return null;
             }
         }
@@ -46,7 +46,7 @@ namespace SDAM2_LMS.Controllers
                 if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(email)
                     || string.IsNullOrWhiteSpace(address) || string.IsNullOrWhiteSpace(phoneNumber) || string.IsNullOrWhiteSpace(accountType))
                 {
-                    MessageBox.Show("All fields must be filled.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("All fields must be filled.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -63,7 +63,7 @@ namespace SDAM2_LMS.Controllers
             catch (Exception ex)
             {
                 new WriteErrorLog(ex);
-                MessageBox.Show($"Could not add user. An Unexpected Error occured. Check logs for more details. \nError: \n {ex}");
+                MessageBox.Show($"Could not add user. An Unexpected Error occurred. Check logs for more details. \nError: \n {ex}");
             }
         }
 
@@ -96,7 +96,7 @@ namespace SDAM2_LMS.Controllers
                 if (string.IsNullOrWhiteSpace(newUsername) || string.IsNullOrWhiteSpace(newName) || string.IsNullOrWhiteSpace(newEmail) || 
                     string.IsNullOrWhiteSpace(newPhoneNumber) || string.IsNullOrWhiteSpace(newAddress) || string.IsNullOrWhiteSpace(newAccountType))
                 {
-                    MessageBox.Show("All fields must be filled.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("All fields must be filled.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 _userService.EditUser(accID, newUsername, newName, newEmail, newPhoneNumber, newAddress, newAccountType);
@@ -105,7 +105,7 @@ namespace SDAM2_LMS.Controllers
             catch (Exception ex)
             {
                 new WriteErrorLog(ex);
-                MessageBox.Show($"Could not edit profile. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                MessageBox.Show($"Could not edit profile. An Unexpected Error occurred. Check logs for more details. \nError:\n {ex}");
             }
             
         }
@@ -113,9 +113,9 @@ namespace SDAM2_LMS.Controllers
         {
             try
             {
-                if (accID < 0)
+                if (accID <= 0)
                 {
-                    MessageBox.Show("Please enter a valid numeric Account ID.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Please enter a valid numeric Account ID.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 _userService.DeleteUser(accID);
@@ -124,7 +124,7 @@ namespace SDAM2_LMS.Controllers
             catch (Exception ex)
             {
                 new WriteErrorLog(ex);
-                MessageBox.Show($"Could not delete user. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                MessageBox.Show($"Could not delete user. An Unexpected Error occurred. Check logs for more details. \nError:\n {ex}");
             }
         }
     }

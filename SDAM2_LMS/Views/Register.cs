@@ -34,79 +34,10 @@ namespace SDAM2_LMS
             string phone = PhoneInput.Text;
             string address = addressInput.Text;
             string name = NameInput.Text;
-            
-            if (!ValidateInputs(username,password, confirmPassword, email, phone, address, name)) { return; }
 
-            bool registrationIsSuccessful = _authController.Register(username, password, email, name, address, phone);
+
+            bool registrationIsSuccessful = _authController.Register(username, password, confirmPassword, email, name, address, phone);
             if (registrationIsSuccessful) { this.Hide(); }
-        }
-
-        private bool ValidateInputs(string username, string password, string confirmpassword, string email, string phone, string address, string name)
-        {
-            if (string.IsNullOrWhiteSpace(username))
-            {
-                ShowError("Username cannot be empty!", UsernameInput);
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(password))
-            {
-                ShowError("Password cannot be empty!", PasswordInput);
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(confirmpassword))
-            {
-                ShowError("Confirm Password cannot be empty!", PasswordInput);
-                return false;
-            }
-            if (password != confirmpassword)
-            {
-                ShowError("Passwords do not match", ConfirmPasswordInput);
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(email))
-            {
-                ShowError("Email cannot be empty!", EmailInput);
-                return false;
-            }
-            if (!IsValidEmail(email))
-            {
-                ShowError("Invalid email format", EmailInput);
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(phone))
-            {
-                ShowError("Phone nummber cannot be empty", PhoneInput);
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(address))
-            {
-                address = "Not Given";
-            }
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                ShowError("Name cannot be empty", NameInput);
-                return false;
-            }
-            return true;
-        }
-      
-        private void ShowError(string message, Control control)
-        {
-            MessageBox.Show(message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            control.Focus();
-        }
-
-        private bool IsValidEmail(string email)
-        {
-            try
-            {
-                var test = new MailAddress(email);
-                return true;
-            }
-            catch(FormatException)
-            {
-                return false;
-            }
         }
     }
 }
