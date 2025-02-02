@@ -160,6 +160,11 @@ namespace SDAM2_LMS.Models.Services
                 return false;
             }
 
+            if (borrow != null && borrow.Reserved)
+            {
+                return false;
+            }
+
             if (book.Quantity <= 0)
             {
                 var borrowing = new Models.Borrowing(bookID, accID, borrow.ReturnDate, borrow.ReturnDate.AddDays(7), true);
@@ -168,6 +173,11 @@ namespace SDAM2_LMS.Models.Services
                 return true;
             }
             return false;
+        }
+
+        public bool CheckReservation(Int32 bookID)
+        {
+            return _context.Borrowings.FirstOrDefault(b => b.BookID == bookID && b.Reserved == true).Reserved;
         }
     }
 }

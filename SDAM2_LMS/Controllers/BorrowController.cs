@@ -121,6 +121,12 @@ namespace SDAM2_LMS.Controllers
                 Int32 accID = _accountService.GetSessionAccount().AccountID;
                 bool reservedSuccessfully = bookID != null && _bookService.ReserveBook(bookID, accID);
 
+                if (_bookService.CheckReservation(bookID))
+                {
+                    MessageBox.Show("Book is already reserved.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                    return false;
+                }
+
                 if (reservedSuccessfully)
                 {
                     MessageBox.Show("Book reserved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -107,7 +107,6 @@ namespace SDAM2_LMS
             if (BorrowBtn.Text == "Reserve")
             {
                 _borrowController.ReserveBook(_selectedBookISBN);
-                return;
             }
             else
             {
