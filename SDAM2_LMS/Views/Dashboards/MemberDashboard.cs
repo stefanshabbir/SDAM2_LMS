@@ -45,13 +45,13 @@ namespace SDAM2_LMS
 
         private void menuBtn_BorrowedReserved_Click(object sender, EventArgs e)
         {
-            BorrowedReservedBooks cbd = new BorrowedReservedBooks(_profileController, _borrowController);
-            cbd.Show();
+            var bd = new BorrowedReservedBooks(_profileController, _borrowController);
+            bd.Show();
         }
 
         private void menuBtn_ViewProfile_Click(object sender, EventArgs e)
         {
-            ViewProfile viewProfile = new ViewProfile(_profileController);
+            var viewProfile = new ViewProfile(_profileController);
             viewProfile.Show();
         }
 

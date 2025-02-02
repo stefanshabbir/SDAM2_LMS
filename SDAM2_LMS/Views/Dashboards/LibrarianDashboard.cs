@@ -49,19 +49,19 @@ namespace SDAM2_LMS
 
         private void menuBtn_Books_Click(object sender, EventArgs e)
         {
-            ManageBooks mb = new ManageBooks(_bookController);
+            var mb = new ManageBooks(_bookController);
             mb.Show();
         }
 
         private void menuBtn_Reservations_Click(object sender, EventArgs e)
         {
-            ManageReservations mb = new ManageReservations(_borrowController);
+            var mb = new ManageReservations(_borrowController);
             mb.Show();
         }
 
         private void menuBtn_ViewProfile_Click(object sender, EventArgs e)
         {
-            ViewProfile viewProfile = new ViewProfile(_profileController);
+            var viewProfile = new ViewProfile(_profileController);
             viewProfile.Show();
         }
     }

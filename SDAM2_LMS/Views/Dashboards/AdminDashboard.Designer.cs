@@ -32,12 +32,7 @@
             menuStrip1 = new MenuStrip();
             menuBtn_Books = new ToolStripMenuItem();
             menuBtn_Users = new ToolStripMenuItem();
-            Reservations = new ToolStripMenuItem();
-            ViewReservations = new ToolStripMenuItem();
-            AddReservations = new ToolStripMenuItem();
-            RemoveReservations = new ToolStripMenuItem();
-            EditReservations = new ToolStripMenuItem();
-            returnBooksToolStripMenuItem = new ToolStripMenuItem();
+            menuBtn_Reservations = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -45,7 +40,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(32, 32);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { menuBtn_Books, menuBtn_Users, Reservations, returnBooksToolStripMenuItem, exitToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { menuBtn_Books, menuBtn_Users, menuBtn_Reservations, exitToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(3, 1, 0, 1);
@@ -65,50 +60,18 @@
             // menuBtn_Users
             // 
             menuBtn_Users.CheckOnClick = true;
-            menuBtn_Users.Image = (Image)resources.GetObject("menuBtn_Members.Image");
             menuBtn_Users.Name = "menuBtn_Users";
-            menuBtn_Users.Size = new Size(101, 36);
+            menuBtn_Users.Size = new Size(47, 36);
             menuBtn_Users.Text = "Users";
             menuBtn_Users.Click += menuBtn_Users_Click;
             // 
-            // Reservations
+            // menuBtn_Reservations
             // 
-            Reservations.DropDownItems.AddRange(new ToolStripItem[] { ViewReservations, AddReservations, RemoveReservations, EditReservations });
-            Reservations.Image = (Image)resources.GetObject("Reservations.Image");
-            Reservations.Name = "Reservations";
-            Reservations.Size = new Size(117, 36);
-            Reservations.Text = "Reservations";
-            // 
-            // ViewReservations
-            // 
-            ViewReservations.Name = "ViewReservations";
-            ViewReservations.Size = new Size(186, 22);
-            ViewReservations.Text = "View Reservations";
-            // 
-            // AddReservations
-            // 
-            AddReservations.Name = "AddReservations";
-            AddReservations.Size = new Size(186, 22);
-            AddReservations.Text = "Add Reservations";
-            // 
-            // RemoveReservations
-            // 
-            RemoveReservations.Name = "RemoveReservations";
-            RemoveReservations.Size = new Size(186, 22);
-            RemoveReservations.Text = "Remove Reservations";
-            // 
-            // EditReservations
-            // 
-            EditReservations.Name = "EditReservations";
-            EditReservations.Size = new Size(186, 22);
-            EditReservations.Text = "Edit Reservations";
-            // 
-            // returnBooksToolStripMenuItem
-            // 
-            returnBooksToolStripMenuItem.Image = (Image)resources.GetObject("returnBooksToolStripMenuItem.Image");
-            returnBooksToolStripMenuItem.Name = "returnBooksToolStripMenuItem";
-            returnBooksToolStripMenuItem.Size = new Size(121, 36);
-            returnBooksToolStripMenuItem.Text = "Return Books";
+            menuBtn_Reservations.Image = (Image)resources.GetObject("menuBtn_Reservations.Image");
+            menuBtn_Reservations.Name = "menuBtn_Reservations";
+            menuBtn_Reservations.Size = new Size(117, 36);
+            menuBtn_Reservations.Text = "Reservations";
+            menuBtn_Reservations.Click += menuBtn_Reservations_Click;
             // 
             // exitToolStripMenuItem
             // 
@@ -143,12 +106,7 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem menuBtn_Books;
         private ToolStripMenuItem menuBtn_Users;
-        private ToolStripMenuItem Reservations;
-        private ToolStripMenuItem returnBooksToolStripMenuItem;
+        private ToolStripMenuItem menuBtn_Reservations;
         private ToolStripMenuItem exitToolStripMenuItem;
-        private ToolStripMenuItem RemoveReservations;
-        private ToolStripMenuItem AddReservations;
-        private ToolStripMenuItem EditReservations;
-        private ToolStripMenuItem ViewReservations;
     }
 }

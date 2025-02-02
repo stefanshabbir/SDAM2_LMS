@@ -30,7 +30,7 @@ namespace SDAM2_LMS
             _profileController = profileController;
             _bookController = bookController;
             _borrowController = borrowController;
-            _usersController  = usersController;
+            _usersController = usersController;
         }
 
         private void menuBtn_Users_Click(object sender, EventArgs e)
@@ -50,6 +50,12 @@ namespace SDAM2_LMS
         private void menuBtn_Books_Click(object sender, EventArgs e)
         {
             var mb = new ManageBooks(_bookController);
+            mb.Show();
+        }
+
+        private void menuBtn_Reservations_Click(object sender, EventArgs e)
+        {
+            var mb = new ManageReservations(_borrowController);
             mb.Show();
         }
     }
