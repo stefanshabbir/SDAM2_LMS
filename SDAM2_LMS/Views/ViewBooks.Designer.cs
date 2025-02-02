@@ -91,6 +91,7 @@
             dataGridViewBooksView.Margin = new Padding(2, 1, 2, 1);
             dataGridViewBooksView.MultiSelect = false;
             dataGridViewBooksView.Name = "dataGridViewBooksView";
+            dataGridViewBooksView.ReadOnly = true;
             dataGridViewBooksView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dataGridViewBooksView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewBooksView.Size = new Size(859, 280);

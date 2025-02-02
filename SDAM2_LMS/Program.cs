@@ -42,7 +42,6 @@ namespace SDAM2_LMS
 
             services.AddSingleton<AccountService>();
             services.AddSingleton<BookService>();
-            services.AddSingleton<SessionService>();
             services.AddSingleton<UsersService>();
 
             services.AddTransient<LoginPage>();

@@ -17,15 +17,15 @@ namespace SDAM2_LMS
     {
         private readonly ProfileController _profileController;
         private readonly BookController _bookController;
+        private readonly BorrowController _borrowController;
 
-        internal LibrarianDashboard(
-            ProfileController profileController, BookController bookController
-            )
+        internal LibrarianDashboard(ProfileController profileController, BookController bookController, BorrowController borrowController)
         {
             InitializeComponent();
 
             _profileController = profileController;
             _bookController = bookController;
+            _borrowController = borrowController;
 
             var currentUser = _profileController.GetSessionAccount();
             bool isLoggedIn = currentUser != null;
@@ -53,6 +53,12 @@ namespace SDAM2_LMS
         private void menuBtn_Books_Click(object sender, EventArgs e)
         {
             ManageBooks mb = new ManageBooks(_bookController);
+            mb.Show();
+        }
+
+        private void returnBooksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManageBorrowed mb = new ManageBorrowed(_borrowController);
             mb.Show();
         }
     }

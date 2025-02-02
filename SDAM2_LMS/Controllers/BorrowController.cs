@@ -102,13 +102,63 @@ namespace SDAM2_LMS.Controllers
             }
         }
 
+        public IEnumerable<object>? GetBorrowings() 
+        {
+            try
+            {
+                return _bookService.GetBorrowings();
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not get borrowings. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                return null;
+            }
+        }
+
+        public IEnumerable<object>? GetReservations(int accID)
+        {
+            try
+            {
+                return _bookService.GetReservations(accID);
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not get reservations. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                return null;
+            }
+        }
+
+        public IEnumerable<object>? GetReservations()
+        {
+            try
+            {
+                return _bookService.GetReservations();
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not get reservations. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                return null;
+            }
+        }
+
         public bool ReturnBook(Int32 bookID)
         {
             try
             {
-                Int32 accID = _accountService.GetSessionAccount().AccountID;
+                Account acc = _accountService.GetSessionAccount();
+                bool returnedSuccessfully;
 
-                bool returnedSuccessfully = bookID != null && _bookService.ReturnBook(bookID, accID);
+                if (acc.AccountType.AccountTypeName == "Librarian")
+                {
+                    returnedSuccessfully = _bookService.ReturnBook(bookID);
+                } else
+                {
+                    returnedSuccessfully = _bookService.ReturnBook(bookID, acc.AccountID);
+                }
+
                 if (returnedSuccessfully)
                 {
                     MessageBox.Show("Book returned successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -122,6 +172,57 @@ namespace SDAM2_LMS.Controllers
             {
                 new WriteErrorLog(ex);
                 MessageBox.Show($"Could not return book. An Unexpected Error occurred. Check logs for more details. \nError:\n {ex}");
+                return false;
+            }
+        }
+
+        public bool ReserveBook(string isbn)
+        {
+            try
+            {
+                Int32 bookID = _bookService.GetBookID(isbn);
+                Int32 accID = _accountService.GetSessionAccount().AccountID;
+
+                if (_bookService.CheckReservation(bookID))
+                {
+                    MessageBox.Show("Book is already reserved.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                bool reservedSuccessfully = _bookService.ReserveBook(bookID, accID);
+
+                if (reservedSuccessfully)
+                {
+                    MessageBox.Show("Book reserved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
+                }
+                MessageBox.Show("An error occurred while reserving the book.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not reserve book. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                return false;
+            }
+        }
+
+        public bool DeleteReservations(Int32 bookID, Int32 accID)
+        {
+            try
+            {
+                bool deletedSuccessfully = _bookService.DeleteReservation(bookID, accID);
+                if (deletedSuccessfully)
+                {
+                    MessageBox.Show("Reservation deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
+                }
+                MessageBox.Show("An error occurred while deleting the reservation.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not delete reservation. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
                 return false;
             }
         }

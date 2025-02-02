@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            dataGridView1 = new DataGridView();
-            dataGridView2 = new DataGridView();
+            borrowedDataGrid = new DataGridView();
+            reservedDataGrid = new DataGridView();
             label2 = new Label();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)borrowedDataGrid).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)reservedDataGrid).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -47,33 +47,36 @@
             label1.TabIndex = 0;
             label1.Text = "Borrowed Book";
             // 
-            // dataGridView1
+            // borrowedDataGrid
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.AllowUserToResizeColumns = false;
-            dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(6, 56);
-            dataGridView1.Margin = new Padding(2, 1, 2, 1);
-            dataGridView1.MultiSelect = false;
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(805, 103);
-            dataGridView1.TabIndex = 1;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            borrowedDataGrid.AllowUserToAddRows = false;
+            borrowedDataGrid.AllowUserToDeleteRows = false;
+            borrowedDataGrid.AllowUserToResizeColumns = false;
+            borrowedDataGrid.AllowUserToResizeRows = false;
+            borrowedDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            borrowedDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            borrowedDataGrid.Location = new Point(6, 56);
+            borrowedDataGrid.Margin = new Padding(2, 1, 2, 1);
+            borrowedDataGrid.MultiSelect = false;
+            borrowedDataGrid.Name = "borrowedDataGrid";
+            borrowedDataGrid.ReadOnly = true;
+            borrowedDataGrid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
+            borrowedDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            borrowedDataGrid.Size = new Size(805, 103);
+            borrowedDataGrid.TabIndex = 1;
+            borrowedDataGrid.CellContentClick += borrowedDataGrid_CellContentClick;
             // 
-            // dataGridView2
+            // reservedDataGrid
             // 
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(6, 218);
-            dataGridView2.Margin = new Padding(2, 1, 2, 1);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.RowHeadersWidth = 82;
-            dataGridView2.Size = new Size(805, 128);
-            dataGridView2.TabIndex = 3;
+            reservedDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            reservedDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            reservedDataGrid.Location = new Point(6, 218);
+            reservedDataGrid.Margin = new Padding(2, 1, 2, 1);
+            reservedDataGrid.Name = "reservedDataGrid";
+            reservedDataGrid.RowHeadersWidth = 82;
+            reservedDataGrid.Size = new Size(805, 128);
+            reservedDataGrid.TabIndex = 3;
+            reservedDataGrid.CellContentClick += reservedDataGrid_CellContentClick;
             // 
             // label2
             // 
@@ -93,16 +96,17 @@
             AutoScroll = true;
             BackColor = Color.White;
             ClientSize = new Size(820, 351);
-            Controls.Add(dataGridView2);
+            Controls.Add(reservedDataGrid);
             Controls.Add(label2);
-            Controls.Add(dataGridView1);
+            Controls.Add(borrowedDataGrid);
             Controls.Add(label1);
             Margin = new Padding(2, 1, 2, 1);
             Name = "CompleteBookDetails";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "CompleteBookDetails";
             Load += CompleteBookDetails_Load_1;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)borrowedDataGrid).EndInit();
+            ((System.ComponentModel.ISupportInitialize)reservedDataGrid).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -110,8 +114,8 @@
         #endregion
 
         private Label label1;
-        private DataGridView dataGridView1;
-        private DataGridView dataGridView2;
+        private DataGridView borrowedDataGrid;
+        private DataGridView reservedDataGrid;
         private Label label2;
     }
 }

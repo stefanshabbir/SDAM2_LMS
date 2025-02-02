@@ -51,15 +51,6 @@ namespace SDAM2_LMS
             dataGridViewBooksView.DataSource = _borrowController.SearchBookForBorrow(search);
         }
 
-        private void btn_Clear_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void btn_Add_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void ViewBooks_Load(object sender, EventArgs e)
         {
             if (!dataGridViewBooksView.Columns.Contains("Availability"))
@@ -98,6 +89,7 @@ namespace SDAM2_LMS
                     e.CellStyle.ForeColor = Color.White;
                 }
                 dataGridViewBooksView.Columns["Quantity"].Visible = false; // Hide the Quantity column
+                dataGridViewBooksView.Columns["BookId"].Visible = false; // Hide the BookId column
                 e.FormattingApplied = true; // Indicate that formatting has been applied
             }
         }
@@ -105,12 +97,22 @@ namespace SDAM2_LMS
         private void BorrowBtn_Click(object sender, EventArgs e)
         {
             bool noBookSelected = dataGridViewBooksView.SelectedRows.Count == 0;
+
             if (noBookSelected)
             {
                 MessageBox.Show("Please select a book to borrow.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            _borrowController.BorrowBook(_selectedBookISBN);
+
+
+            if (BorrowBtn.Text == "Reserve")
+            {
+                _borrowController.ReserveBook(_selectedBookISBN);
+            }
+            else
+            {
+                _borrowController.BorrowBook(_selectedBookISBN);
+            }
         }
     }
 }

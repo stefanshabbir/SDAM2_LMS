@@ -106,7 +106,7 @@ namespace SDAM2_LMS.Models.Services
 
         public IEnumerable<object> GetBorrowings(int accountId)
         {
-            return _context.Borrowings.Where(b => b.AccountID == accountId)
+            return _context.Borrowings.Where(b => b.AccountID == accountId && b.Reserved == false)
                 .Select(b => new
                 {
                     b.BookID,
@@ -115,6 +115,46 @@ namespace SDAM2_LMS.Models.Services
                     b.ReturnDate
                 }).ToList();
         }
+        public IEnumerable<object> GetBorrowings()
+        {
+            return _context.Borrowings.Where(b => b.Reserved == false)
+                .Select(b => new
+                {
+                    b.BookID,
+                    b.Account.Username,
+                    b.Book.Title,
+                    b.BorrowDate,
+                    b.ReturnDate
+                }).ToList();
+        }
+
+        public IEnumerable<object> GetReservations(int accountId)
+        {
+            return _context.Borrowings.Where(b => b.AccountID == accountId && b.Reserved == true)
+                .Select(b => new
+                {
+                    b.BookID,
+                    b.Book.Title,
+                    b.BorrowDate,
+                    b.ReturnDate
+                }).ToList();
+        }
+        
+        public IEnumerable<object> GetReservations()
+        {
+            return _context.Borrowings.Where(b => b.Reserved == true)
+                .Select(b => new
+                {
+                    b.BookID,
+                    b.AccountID,
+                    b.Account.Username,
+                    b.Book.Title,
+                    b.BorrowDate,
+                    b.ReturnDate
+                }).ToList();
+        }
+
+        
 
         public bool BorrowBook(Int32 bookID, Int32 accID)
         {
@@ -147,6 +187,63 @@ namespace SDAM2_LMS.Models.Services
             _context.Borrowings.Remove(borrowing);
             _context.SaveChanges();
             return true;
+        }
+
+        public bool ReturnBook(Int32 bookID)
+        {
+            var borrowing = _context.Borrowings.FirstOrDefault(b => b.BookID == bookID);
+            var book = _context.Books.FirstOrDefault(b => b.BookID == bookID);
+            if (borrowing == null || book == null)
+            {
+                return false;
+            }
+            book.Quantity++;
+            _context.Borrowings.Remove(borrowing);
+            _context.SaveChanges();
+            return true;
+        }
+
+        public bool ReserveBook(Int32 bookID, int accID)
+        {
+            var book = _context.Books.FirstOrDefault(b => b.BookID == bookID);
+            var account = _context.Accounts.FirstOrDefault(a => a.AccountID == accID);
+            var borrow = _context.Borrowings.FirstOrDefault(br => br.BookID == bookID);
+
+            if (book == null)
+            {
+                return false;
+            }
+
+            if (borrow != null && borrow.Reserved)
+            {
+                return false;
+            }
+
+            if (book.Quantity <= 0)
+            {
+                var borrowing = new Models.Borrowing(bookID, accID, borrow.ReturnDate, borrow.ReturnDate.AddDays(7), true);
+                _context.Borrowings.Add(borrowing);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public bool CheckReservation(Int32 bookID)
+        {
+            return _context.Borrowings.Any(b => b.BookID == bookID && b.Reserved == true);
+        }
+
+        public bool DeleteReservation(Int32 bookID, Int32 accID)
+        {
+            var borrow = _context.Borrowings.FirstOrDefault(b => b.BookID == bookID && b.AccountID == accID);
+            if (borrow != null)
+            {
+                _context.Borrowings.Remove(borrow);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }

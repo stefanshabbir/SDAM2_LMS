@@ -18,12 +18,13 @@ namespace SDAM2_LMS.Models.Services
         private List<Account> accounts = new List<Account>();
 
         private readonly DatabaseContext _context;
-        private readonly SessionService _sessionService;
 
-        public AccountService(DatabaseContext context, SessionService sessionService)
+
+        public Account? LoggedInAccount { get; set; }
+
+        public AccountService(DatabaseContext context)
         {
             _context = context;
-            _sessionService = sessionService;
         }
 
         //simulating the login 
@@ -32,8 +33,9 @@ namespace SDAM2_LMS.Models.Services
             // searching for corresponding account in list
             var account = _context.Accounts
                 .Include(a => a.PersonalID_Info)
+                .Include(a => a.AccountType)
                 .FirstOrDefault(a => a.Username == username && a.Password == password);
-            _sessionService.LoggedInAccount = account;
+            LoggedInAccount = account;
             return account;
         }
 
@@ -60,7 +62,7 @@ namespace SDAM2_LMS.Models.Services
 
                 _context.Accounts.Add(account);
                 _context.SaveChanges();
-                _sessionService.LoggedInAccount = account;
+                LoggedInAccount = account;
                 return true;
             }
         }
@@ -72,7 +74,7 @@ namespace SDAM2_LMS.Models.Services
             _context.Accounts.Remove(currentUser);
             _context.SaveChanges();
 
-            _sessionService.Logout();
+            Logout();
         }
         
         public void UpdateAccount(
@@ -95,12 +97,12 @@ namespace SDAM2_LMS.Models.Services
 
         public void Logout()
         {
-            _sessionService.Logout();
+            LoggedInAccount = null;
         }
 
         public AutoResetEvent resetPassword(string newPassword)
         {
-            var currentUser = _sessionService.LoggedInAccount;
+            var currentUser = LoggedInAccount;
             currentUser.Password = newPassword;
             _context.SaveChanges();
             return new AutoResetEvent(true);
@@ -108,7 +110,7 @@ namespace SDAM2_LMS.Models.Services
 
         public Account GetSessionAccount()
         {
-            return _sessionService.LoggedInAccount;
+            return LoggedInAccount;
         }
     }
 }
