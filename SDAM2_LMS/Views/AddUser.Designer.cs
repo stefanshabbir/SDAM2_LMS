@@ -44,9 +44,9 @@
             PhoneInput = new TextBox();
             addressInput = new TextBox();
             label1 = new Label();
-            inptAccountType = new TextBox();
             label2 = new Label();
             btnClear = new Button();
+            inputAccountType = new ComboBox();
             SuspendLayout();
             // 
             // lbl1
@@ -199,14 +199,6 @@
             label1.TabIndex = 15;
             label1.Text = "Address";
             // 
-            // inptAccountType
-            // 
-            inptAccountType.Location = new Point(149, 367);
-            inptAccountType.Margin = new Padding(2, 1, 2, 1);
-            inptAccountType.Name = "inptAccountType";
-            inptAccountType.Size = new Size(245, 23);
-            inptAccountType.TabIndex = 17;
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -228,13 +220,21 @@
             btnClear.UseVisualStyleBackColor = true;
             btnClear.Click += btnClear_Click;
             // 
-            // AddMember
+            // inputAccountType
+            // 
+            inputAccountType.FormattingEnabled = true;
+            inputAccountType.Location = new Point(149, 367);
+            inputAccountType.Name = "inputAccountType";
+            inputAccountType.Size = new Size(245, 23);
+            inputAccountType.TabIndex = 23;
+            // 
+            // AddUser
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(430, 450);
+            Controls.Add(inputAccountType);
             Controls.Add(btnClear);
-            Controls.Add(inptAccountType);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(addressInput);
@@ -254,7 +254,8 @@
             Controls.Add(lbl1);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Margin = new Padding(2, 1, 2, 1);
-            Name = "AddMember";
+            Name = "AddUser";
+            Load += AddUser_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -277,8 +278,8 @@
         private TextBox PhoneInput;
         private TextBox addressInput;
         private Label label1;
-        private TextBox inptAccountType;
         private Label label2;
         private Button btnClear;
+        private ComboBox inputAccountType;
     }
 }

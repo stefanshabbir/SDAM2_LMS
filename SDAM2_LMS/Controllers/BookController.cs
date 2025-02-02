@@ -9,15 +9,18 @@ using SDAM2_LMS.ErrorLog;
 using Microsoft.EntityFrameworkCore;
 using System.Data.Entity;
 using SDAM2_LMS.Models.Services;
+using System.Net;
+using System.Windows.Forms;
 
 namespace SDAM2_LMS.Controllers
 {
     public class BookController
     {
-        private readonly BookService _context;
-        public BookController(BookService context)
+        private readonly BookService _bookService;
+
+        public BookController(BookService bookService)
         {
-            _context = context;
+            _bookService = bookService;
         }
 
         public void AddBook(
@@ -30,7 +33,7 @@ namespace SDAM2_LMS.Controllers
             {
                 int quantity = int.Parse(stringQuantity); // could throw errors
 
-                bool bookIsAdded = _context.AddBook(title, author, genre, publisher, language, isbn, quantity);
+                bool bookIsAdded = _bookService.AddBook(title, author, genre, publisher, language, isbn, quantity);
                 if (bookIsAdded)
                 {
                    // Success message
@@ -43,55 +46,91 @@ namespace SDAM2_LMS.Controllers
             catch (Exception ex)
             {
                 new WriteErrorLog(ex);
-                // Message
+                MessageBox.Show($"Could not add book. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
             }
         }
 
-        //-- NEEDS ERROR HANDLING
-        public List<Book> GetBooks() 
-        { 
-            return _context.GetBooks();
-        }
-
-        //-- NEEDS ERROR HANDLING
-        public IEnumerable<Book> SearchBook(string search)
+        public List<Book>? GetBooks()
         {
-            return _context.SearchBook(search);
+            try
+            {
+                return _bookService.GetBooks();
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not get books. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                return null;
+            }
         }
 
-        //-- NEEDS ERROR HANDLING
+        //-- NEEDS ERROR HANDLING; if null
+        public IEnumerable<Book>? SearchBook(string search)
+        {
+            try
+            {
+                return _bookService.SearchBook(search);
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not search/refresh books. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                return null;
+            }
+        }
+
+        //-- NEEDS ERROR HANDLING; if null
         public void DeleteBook(string isbn)
         {
-            bool bookIsDeleted = _context.DeleteBook(isbn);
-            if (bookIsDeleted)
+            try
             {
-                // Success message
+                Int32 bookID = _bookService.GetBookID(isbn);
+
+                bool bookIsDeleted = _bookService.DeleteBook(bookID);
+                if (bookIsDeleted)
+                {
+                    // Success message
+                }
+                else
+                {
+                    //Invalid book, nothing deleted
+                }
             }
-            else
+            catch (Exception ex)
             {
-                //Invalid book, nothing deleted
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not delete book. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
             }
         }
 
-        //-- NEEDS ERROR HANDLING; null texts, int parsing and unexpected exceptions
+        //-- NEEDS ERROR HANDLING; null texts, int parsing
         public void EditBook(
             string _oldISBN, string newTitle, string newAuthors, string newGenres,
             string newPublishers, string newLanguage, string newISBN, string stringQuantity
             )
         {
-            Int32 bookID = _context.GetBookID(_oldISBN);
-            int newQuantity = int.Parse(stringQuantity);
+            try
+            {
+                Int32 bookID = _bookService.GetBookID(_oldISBN);
 
-            bool bookIsEdited = _context.EditBook(
-                bookID, newTitle, newAuthors, newGenres, newPublishers, newPublishers, newISBN, newQuantity
-                );
-            if (bookIsEdited)
-            {
-                // Success message
+                int newQuantity = int.Parse(stringQuantity);
+
+                bool bookIsEdited = _bookService.EditBook(
+                    bookID, newTitle, newAuthors, newGenres, newPublishers, newPublishers, newISBN, newQuantity
+                    );
+                if (bookIsEdited)
+                {
+                    // Success message
+                }
+                else
+                {
+                    // Book cannot be edited, it may not exist
+                }
             }
-            else
+            catch (Exception ex)
             {
-                // Book cannot be edited, it may not exist
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not edit book.An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
             }
         }
     }

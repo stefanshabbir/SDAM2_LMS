@@ -106,7 +106,7 @@ namespace SDAM2_LMS.Models.Services
             return new AutoResetEvent(true);
         }
 
-        public Account? GetSessionAccount()
+        public Account GetSessionAccount()
         {
             return _sessionService.LoggedInAccount;
         }

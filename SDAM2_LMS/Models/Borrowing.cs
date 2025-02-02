@@ -9,16 +9,16 @@ namespace SDAM2_LMS.Models
 {
     public class Borrowing
     {
-        public int BorrowID { get; private set; }
-        public int BookID { get; private set; }
-        public int AccountID { get; private set; }
-        public DateTime BorrowDate { get; private set; }
-        public DateTime ReturnDate { get; private set; }
-        public bool Reserved { get; private set; }
+
+        public int BorrowID { get; set; }
+        public int BookID { get; set; }
+        public int AccountID { get; set; }
+        public DateTime BorrowDate { get; set; }
+        public DateTime ReturnDate { get; set; }
+        public bool Reserved { get; set; }
 
         public Book Book { get; set; }
         public Account Account { get; set; }
-
 
         public Borrowing() { }
         public Borrowing(int bookID, int accountID, DateTime borrowDate, DateTime returnDate)

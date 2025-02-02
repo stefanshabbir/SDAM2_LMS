@@ -16,26 +16,23 @@ namespace SDAM2_LMS
 {
     public partial class MemberDashboard : Form
     {
-        private readonly BorrowController _borrowController;
-        private readonly BookController _bookController;
         private readonly ProfileController _profileController;
-        //private readonly SessionService _session;
+        private readonly BorrowController _borrowController;
 
         internal MemberDashboard(
-            ProfileController profileController, BorrowController borrowController, BookController bookController)
+            ProfileController profileController, BorrowController borrowController)
         {
             InitializeComponent();
-            // **--Need to get rid of models in view--**
+
             _profileController = profileController;
-            _bookController = bookController;
             _borrowController = borrowController;
 
-            //_session = new SessionService();
-            //_session.LoggedInAccount = profileController.GetSessionAccount();
-            //if (_session.IsLoggedIn)
-            //{
-            //    MessageBox.Show($"Welcome, {_session.LoggedInAccount.Username}!");
-            //}
+            var currentUser = _profileController.GetSessionAccount();
+            bool isLoggedIn = currentUser != null;
+            if (isLoggedIn)
+            {
+                MessageBox.Show($"Welcome, {currentUser.Username}!");
+            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -44,12 +41,11 @@ namespace SDAM2_LMS
             {
                 Application.Exit();
             }
-
         }
 
         private void completeBookDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CompleteBookDetails cbd = new CompleteBookDetails(_borrowController);
+            CompleteBookDetails cbd = new CompleteBookDetails(_profileController, _borrowController);
             cbd.Show();
         }
 
@@ -66,7 +62,7 @@ namespace SDAM2_LMS
 
         private void booksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var viewBooks = new ViewBooks(_borrowController, _bookController);
+            var viewBooks = new ViewBooks(_borrowController);
             viewBooks.Show();
         }
     }

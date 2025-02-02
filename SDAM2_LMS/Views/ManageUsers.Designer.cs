@@ -34,6 +34,7 @@
             SearchInput = new TextBox();
             DataGridViewBooksView = new DataGridView();
             panel2 = new Panel();
+            inputAccountType = new ComboBox();
             inptAddress = new TextBox();
             label3 = new Label();
             btnAdd = new Button();
@@ -41,7 +42,6 @@
             btnClear = new Button();
             btnDelete = new Button();
             btnUpdate = new Button();
-            inptAccountType = new TextBox();
             inptPhoneNumber = new TextBox();
             inptEmail = new TextBox();
             inptName = new TextBox();
@@ -109,6 +109,7 @@
             DataGridViewBooksView.MultiSelect = false;
             DataGridViewBooksView.Name = "DataGridViewBooksView";
             DataGridViewBooksView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            DataGridViewBooksView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             DataGridViewBooksView.Size = new Size(959, 280);
             DataGridViewBooksView.TabIndex = 4;
             DataGridViewBooksView.SelectionChanged += DataGridViewBooksView_SelectionChanged;
@@ -116,6 +117,7 @@
             // panel2
             // 
             panel2.BackColor = Color.DarkGray;
+            panel2.Controls.Add(inputAccountType);
             panel2.Controls.Add(inptAddress);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(btnAdd);
@@ -123,7 +125,6 @@
             panel2.Controls.Add(btnClear);
             panel2.Controls.Add(btnDelete);
             panel2.Controls.Add(btnUpdate);
-            panel2.Controls.Add(inptAccountType);
             panel2.Controls.Add(inptPhoneNumber);
             panel2.Controls.Add(inptEmail);
             panel2.Controls.Add(inptName);
@@ -137,6 +138,14 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(959, 184);
             panel2.TabIndex = 5;
+            // 
+            // inputAccountType
+            // 
+            inputAccountType.FormattingEnabled = true;
+            inputAccountType.Location = new Point(665, 59);
+            inputAccountType.Name = "inputAccountType";
+            inputAccountType.Size = new Size(217, 23);
+            inputAccountType.TabIndex = 22;
             // 
             // inptAddress
             // 
@@ -208,14 +217,6 @@
             btnUpdate.Text = "Update";
             btnUpdate.UseVisualStyleBackColor = true;
             btnUpdate.Click += btnUpdate_Click;
-            // 
-            // inptAccountType
-            // 
-            inptAccountType.Location = new Point(665, 55);
-            inptAccountType.Margin = new Padding(2, 1, 2, 1);
-            inptAccountType.Name = "inptAccountType";
-            inptAccountType.Size = new Size(217, 23);
-            inptAccountType.TabIndex = 11;
             // 
             // inptPhoneNumber
             // 
@@ -307,7 +308,7 @@
             btn_Refresh.UseVisualStyleBackColor = true;
             btn_Refresh.Click += btn_Refresh_Click;
             // 
-            // ManageMembers
+            // ManageUsers
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -320,7 +321,7 @@
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(2, 1, 2, 1);
-            Name = "ManageMembers";
+            Name = "ManageUsers";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewBooksView).EndInit();
@@ -339,7 +340,6 @@
         private DataGridView DataGridViewBooksView;
         private Panel panel2;
         private TextBox GenreTextBox;
-        private TextBox inptAccountType;
         private TextBox inptPhoneNumber;
         private TextBox inptEmail;
         private TextBox inptName;
@@ -357,5 +357,6 @@
         private Button btnAdd;
         private TextBox inptAddress;
         private Label label3;
+        private ComboBox inputAccountType;
     }
 }

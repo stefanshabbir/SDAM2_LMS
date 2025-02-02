@@ -24,7 +24,7 @@ namespace SDAM2_LMS.Controllers
         private const int LIBRARIAN = 2;
 
         public AuthenticationController(
-            AccountService accountService, BorrowController borrowController, BookController bookController
+            AccountService accountService, BookController bookController, BorrowController borrowController
             )
         {
             _accountService = accountService;
@@ -61,7 +61,7 @@ namespace SDAM2_LMS.Controllers
                     else if (user.AccountTypeID == LIBRARIAN)
                     {
                         var dashboard = new LibrarianDashboard(
-                            new ProfileController(_accountService)
+                            new ProfileController(_accountService), _bookController
                             );
                         dashboard.Show();
                         return true;
@@ -69,7 +69,7 @@ namespace SDAM2_LMS.Controllers
                     else
                     {
                         var dashboard = new MemberDashboard(
-                            new ProfileController(_accountService), _borrowController, _bookController
+                            new ProfileController(_accountService), _borrowController
                             );
                         dashboard.Show();
                         return true;
@@ -132,7 +132,7 @@ namespace SDAM2_LMS.Controllers
                     MessageBox.Show("Registration Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     var dashboard = new MemberDashboard(
-                        new ProfileController(_accountService), _borrowController, _bookController
+                        new ProfileController(_accountService), _borrowController
                         );
                     dashboard.Show();
                     return true;
