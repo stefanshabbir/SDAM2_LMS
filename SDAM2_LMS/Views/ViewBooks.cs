@@ -16,17 +16,17 @@ namespace SDAM2_LMS
 {
     public partial class ViewBooks : Form
     {
-        private readonly BookController _bookController;
+        private readonly BorrowController _borrowController;
         private string? _selectedBookISBN;
 
-        public ViewBooks(BookController bookController)
+        public ViewBooks(BorrowController borrowController)
         {
             InitializeComponent();
 
-            _bookController = bookController;
+            _borrowController = borrowController;
  
             dataGridViewBooksView.Rows.Clear();
-            dataGridViewBooksView.DataSource = _bookController.GetBooks();
+            dataGridViewBooksView.DataSource = _borrowController.GetBooksForBorrow();
         }
 
         private void DataGridViewBooksView_SelectionChanged(object sender, EventArgs e)
@@ -48,7 +48,7 @@ namespace SDAM2_LMS
         private void btn_Refresh_Click(object sender, EventArgs e)
         {
             string search = SearchInput.Text.Trim();
-            dataGridViewBooksView.DataSource = _bookController.SearchBook(search);
+            dataGridViewBooksView.DataSource = _borrowController.SearchBookForBorrow(search);
         }
 
         private void btn_Clear_Click(object sender, EventArgs e)
@@ -110,9 +110,7 @@ namespace SDAM2_LMS
                 MessageBox.Show("Please select a book to borrow.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            //debug
-            MessageBox.Show(_selectedBookISBN, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            _bookController.BorrowBook(_selectedBookISBN);
+            _borrowController.BorrowBook(_selectedBookISBN);
         }
     }
 }
