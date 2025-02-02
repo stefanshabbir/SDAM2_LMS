@@ -19,17 +19,20 @@ namespace SDAM2_LMS.Controllers
         private readonly AccountService _accountService;
         private readonly BookController _bookController;
         private readonly BorrowController _borrowController;
+        private readonly UsersController _usersController;
 
         private const int ADMIN = 1;
         private const int LIBRARIAN = 2;
 
         public AuthenticationController(
-            AccountService accountService, BookController bookController, BorrowController borrowController
+            AccountService accountService, BookController bookController,
+            BorrowController borrowController, UsersController usersController
             )
         {
             _accountService = accountService;
             _bookController = bookController;
             _borrowController = borrowController;
+            _usersController = usersController;
         }
 
         public bool Login(string username, string password)
@@ -54,7 +57,8 @@ namespace SDAM2_LMS.Controllers
                 {
                     if (user.AccountTypeID == ADMIN)
                     {
-                        var dashboard = new AdminDashboard();
+                        var dashboard = new AdminDashboard(
+                            new ProfileController(_accountService), _bookController, _borrowController, _usersController);
                         dashboard.Show();
                         return true;
                     }

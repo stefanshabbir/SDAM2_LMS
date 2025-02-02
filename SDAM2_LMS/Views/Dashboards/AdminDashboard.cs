@@ -15,18 +15,27 @@ namespace SDAM2_LMS
 {
     public partial class AdminDashboard : Form
     {
-        public AdminDashboard()
+        private readonly ProfileController _profileController;
+        private readonly BookController _bookController;
+        private readonly BorrowController _borrowController;
+        private readonly UsersController _usersController;
+
+        internal AdminDashboard(
+            ProfileController profileController, BookController bookController,
+            BorrowController borrowController, UsersController usersController
+            )
         {
             InitializeComponent();
+
+            _profileController = profileController;
+            _bookController = bookController;
+            _borrowController = borrowController;
+            _usersController  = usersController;
         }
 
         private void menuBtn_Users_Click(object sender, EventArgs e)
         {
-            //Check if this is correct
-            ManageUsers mu = new ManageUsers
-                (
-                new UsersController(new UsersService(new DatabaseContext()))
-                );
+            var mu = new ManageUsers(_usersController);
             mu.Show();
         }
 
@@ -35,30 +44,13 @@ namespace SDAM2_LMS
             if (MessageBox.Show("Are you sure you want to Exit?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 Application.Exit();
-
             }
-        }
-
-        private void completeBookDetailsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //CompleteBookDetails cbd = new CompleteBookDetails();
-            //cbd.Show();
         }
 
         private void menuBtn_Books_Click(object sender, EventArgs e)
         {
-            //Check if this is correct
-            ManageBooks mb = new ManageBooks
-                (
-                new BookController(new BookService(new DatabaseContext()))
-                );
+            var mb = new ManageBooks(_bookController);
             mb.Show();
-        }
-
-        private void ViewMembers_Click_1(object sender, EventArgs e)
-        {
-            //ViewMember vm = new ViewMember();
-            //vm.Show();
         }
     }
 }
