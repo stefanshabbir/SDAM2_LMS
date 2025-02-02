@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
@@ -91,25 +92,77 @@ namespace SDAM2_LMS.Controllers
 
         // NEEDS ERROR HANDLING; A lot of rework, most stuff from the Register winform need to be brought here
         // Success and error messages and all error handling should be here
-        public bool Register(string username, string password, string email,string name, string address, string phone)
+        public bool Register(string username, string password, string confirmpassword, string email, string name, string address, string phone)
         {
-            bool accountRegistered = _accountService.Register(username, password, email, name, address, phone);
-            if (accountRegistered)
+            try
             {
-                MessageBox.Show("Registration Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(confirmpassword) ||
+                    string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(phone))
+                {
+                    MessageBox.Show("All fields must be filled.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
 
-                var dashboard = new MemberDashboard(
-                    new ProfileController(_accountService), _borrowController, _bookController
-                    );
-                dashboard.Show();
+                if (password != confirmpassword)
+                {
+                    MessageBox.Show("Passwords do not match", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+
+                if (phone.Length < 10 )
+                {
+                    MessageBox.Show("Phone number must be at leat 10 digits long.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+
+                if (!IsValidEmail(email))
+                {
+                    MessageBox.Show("Invalid email format.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning );
+                    return false;
+                }
+
+                if (string.IsNullOrWhiteSpace(address))
+                {
+                    address = "Not Given";
+                }
+
+                bool accountRegistered = _accountService.Register(username, password, confirmpassword, email, name, address, phone);
+                if (accountRegistered)
+                {
+                    MessageBox.Show("Registration Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    var dashboard = new MemberDashboard(
+                        new ProfileController(_accountService), _borrowController, _bookController
+                        );
+                    dashboard.Show();
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Account already exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                 MessageBox.Show($"Could not refresh, an Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                return false;
+            }
+            
+        }
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var test = new MailAddress(email);
                 return true;
             }
-            else
+            catch (FormatException)
             {
-                MessageBox.Show("Account already exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
-
     }
 }
