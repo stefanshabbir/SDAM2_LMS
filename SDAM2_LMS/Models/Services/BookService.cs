@@ -13,7 +13,6 @@ namespace SDAM2_LMS.Models.Services
     public class BookService
     {
         private readonly DatabaseContext _context;
-        private readonly AccountService _accountService;
 
         public BookService(DatabaseContext context)
         {
@@ -117,10 +116,8 @@ namespace SDAM2_LMS.Models.Services
                 }).ToList();
         }
 
-        public bool BorrowBook(int bookID)
+        public bool BorrowBook(Int32 bookID, Int32 accID)
         {
-            var accID = _accountService.GetSessionAccount().AccountID;
-
             var book = _context.Books.FirstOrDefault(b => b.BookID == bookID);
             var account = _context.Accounts.FirstOrDefault(a => a.AccountID == accID);
             if (book == null || account == null)
@@ -138,9 +135,8 @@ namespace SDAM2_LMS.Models.Services
             return false;
         }
 
-        public bool ReturnBook(int bookID)
+        public bool ReturnBook(Int32 bookID, Int32 accID)
         {
-            var accID = _accountService.GetSessionAccount().AccountID;
             var borrowing = _context.Borrowings.FirstOrDefault(b => b.BookID == bookID && b.AccountID == accID);
             var book = _context.Books.FirstOrDefault(b => b.BookID == bookID);
             if (borrowing == null || book == null)

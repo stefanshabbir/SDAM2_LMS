@@ -14,18 +14,18 @@ namespace SDAM2_LMS
 {
     public partial class CompleteBookDetails : Form
     {
-        private readonly BookController _bookController;
+        private readonly BorrowController _borrowController;
         private readonly ProfileController _profileController;
-        public CompleteBookDetails(ProfileController profileController, BookController bookController)
+        public CompleteBookDetails(ProfileController profileController, BorrowController borrowController)
         {
             InitializeComponent();
             _profileController = profileController;
-            _bookController = bookController;
+            _borrowController = borrowController;
         }
 
         private void CompleteBookDetails_Load_1(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = _bookController.GetBorrowings(_profileController.GetSessionAccount().AccountID);
+            dataGridView1.DataSource = _borrowController.GetBorrowings(_profileController.GetSessionAccount().AccountID);
             dataGridView1.Columns["BookID"].Visible = false;
 
             if (!dataGridView1.Columns.Contains("Return"))
@@ -48,10 +48,10 @@ namespace SDAM2_LMS
             {
                 var bookID = (int)dataGridView1.Rows[e.RowIndex].Cells["BookID"].Value;
 
-                bool successful = _bookController.ReturnBook(bookID);
+                bool successful = _borrowController.ReturnBook(bookID);
                 if (successful)
                 {
-                    dataGridView1.DataSource = _bookController.GetBorrowings(_profileController.GetSessionAccount().AccountID);
+                    dataGridView1.DataSource = _borrowController.GetBorrowings(_profileController.GetSessionAccount().AccountID);
                 }
             }
         }

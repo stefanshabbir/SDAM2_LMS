@@ -17,9 +17,10 @@ namespace SDAM2_LMS.Controllers
     public class BookController
     {
         private readonly BookService _bookService;
-        public BookController(BookService context)
+
+        public BookController(BookService bookService)
         {
-            _bookService = context;
+            _bookService = bookService;
         }
 
         public void AddBook(
@@ -130,65 +131,6 @@ namespace SDAM2_LMS.Controllers
             {
                 new WriteErrorLog(ex);
                 MessageBox.Show($"Could not edit book.An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
-            }
-        }
-
-        //-- NEEDS ERROR HANDLING; if null
-        public void BorrowBook(string isbn)
-        {
-            try
-            {
-                Int32 bookID = _bookService.GetBookID(isbn);
-
-                bool borrowedSuccessfully = _bookService.BorrowBook(bookID);
-                if (borrowedSuccessfully)
-                {
-                    MessageBox.Show("Book borrowed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-
-                MessageBox.Show("Failed to borrow book. It may be unavailable.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                new WriteErrorLog(ex);
-                MessageBox.Show($"Could not borrow book. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
-            }
-        }
-
-        //-- NEEDS ERROR HANDLING; if null
-        public IEnumerable<object>? GetBorrowings(int accountId)
-        {
-            try
-            {
-                return _bookService.GetBorrowings(accountId);
-            }
-            catch (Exception ex)
-            {
-                new WriteErrorLog(ex);
-                MessageBox.Show($"Could not get borrowings. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
-                return null;
-            }
-        }
-
-        public bool ReturnBook(Int32 bookID)
-        {
-            try
-            {
-                bool returnedSuccessfully = bookID != null && _bookService.ReturnBook(bookID);
-                if (returnedSuccessfully)
-                {
-                    MessageBox.Show("Book returned successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return true;
-                }
-
-                MessageBox.Show("An error occurred while returning the book.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            catch (Exception ex)
-            {
-                new WriteErrorLog(ex);
-                MessageBox.Show($"Could not return book. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
-                return false;
             }
         }
     }
