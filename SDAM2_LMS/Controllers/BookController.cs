@@ -28,19 +28,35 @@ namespace SDAM2_LMS.Controllers
         string publisher, string language, string isbn, string stringQuantity
             )
         {
-            // null/empty texts error handling
             try
             {
-                int quantity = int.Parse(stringQuantity); // could throw errors
+                if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(author) || string.IsNullOrEmpty(genre) || string.IsNullOrEmpty(publisher)
+                    || string.IsNullOrEmpty(language) || string.IsNullOrWhiteSpace(isbn) || string.IsNullOrEmpty(stringQuantity))
+                {
+                    MessageBox.Show("All Fields are required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (isbn.Contains(" "))
+                {
+                    MessageBox.Show("ISBN cannot contain spaces.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (!int.TryParse(stringQuantity, out int quantity) || quantity <= 0) 
+                {
+                    MessageBox.Show("Quantity must be a valid positive number.","Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                    return;
+                }
 
                 bool bookIsAdded = _bookService.AddBook(title, author, genre, publisher, language, isbn, quantity);
                 if (bookIsAdded)
                 {
-                   // Success message
+                    MessageBox.Show("Book added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    // Book already exists, cannot be added (same isbn)
+                    MessageBox.Show("A book with the same ISBN already exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
