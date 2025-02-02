@@ -66,9 +66,9 @@ namespace SDAM2_LMS.Models.Services
                 .ToList();
         }
 
-        public bool DeleteBook(string isbn)
+        public bool DeleteBook(Int32 bookID)
         {
-            var book = _context.Books.FirstOrDefault(b => b.BookID == this.GetBookID(isbn));
+            var book = _context.Books.FirstOrDefault(b => b.BookID == bookID);
 
             bool bookExists = book != null;
             if (bookExists)

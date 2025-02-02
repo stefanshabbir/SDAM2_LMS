@@ -47,14 +47,11 @@ namespace SDAM2_LMS
             if (dataGridView1.Columns[e.ColumnIndex].Name == "Return")
             {
                 var bookID = (int)dataGridView1.Rows[e.RowIndex].Cells["BookID"].Value;
-                if (_bookController.ReturnBook(bookID))
+
+                bool successful = _bookController.ReturnBook(bookID);
+                if (successful)
                 {
-                    MessageBox.Show("Book returned successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     dataGridView1.DataSource = _bookController.GetBorrowings(_profileController.GetSessionAccount().AccountID);
-                }
-                else
-                {
-                    MessageBox.Show("An error occurred while returning the book.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

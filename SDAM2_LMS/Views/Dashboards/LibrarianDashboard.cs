@@ -16,18 +16,21 @@ namespace SDAM2_LMS
     public partial class LibrarianDashboard : Form
     {
         private readonly ProfileController _profileController;
+        private readonly BookController _bookController;
 
-        internal LibrarianDashboard(ProfileController profileController)
+        internal LibrarianDashboard(ProfileController profileController, BookController bookController)
         {
             InitializeComponent();
-            // **--Need to get rid of models in view--**
-            _profileController = profileController;
 
-            //if (_sessionService.IsLoggedIn)
-            //{
-            //    MessageBox.Show($"Welcome, {_sessionService.LoggedInAccount.Username}!");
-            //}
+            this._profileController = profileController;
+            this._bookController = bookController;
 
+            var currentUser = _profileController.GetSessionAccount();
+            bool isLoggedIn = currentUser != null;
+            if (isLoggedIn)
+            {
+                MessageBox.Show($"Welcome, {currentUser.Username}!");
+            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -47,11 +50,7 @@ namespace SDAM2_LMS
 
         private void menuBtn_Books_Click(object sender, EventArgs e)
         {
-            //Check if this is correct
-            ManageBooks mb = new ManageBooks
-                (
-                new BookController(new BookService(new DatabaseContext()))
-                );
+            ManageBooks mb = new ManageBooks(_bookController);
             mb.Show();
         }
     }

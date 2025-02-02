@@ -18,22 +18,21 @@ namespace SDAM2_LMS
     {
         private readonly BookController _bookController;
         private readonly ProfileController _profileController;
-        //private readonly SessionService _session;
 
         internal MemberDashboard(
             ProfileController profileController, BookController bookController)
         {
             InitializeComponent();
-            // **--Need to get rid of models in view--**
+
             _profileController = profileController;
             _bookController = bookController;
 
-            //_session = new SessionService();
-            //_session.LoggedInAccount = profileController.GetSessionAccount();
-            //if (_session.IsLoggedIn)
-            //{
-            //    MessageBox.Show($"Welcome, {_session.LoggedInAccount.Username}!");
-            //}
+            var currentUser = _profileController.GetSessionAccount();
+            bool isLoggedIn = currentUser != null;
+            if (isLoggedIn)
+            {
+                MessageBox.Show($"Welcome, {currentUser.Username}!");
+            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -42,7 +41,6 @@ namespace SDAM2_LMS
             {
                 Application.Exit();
             }
-
         }
 
         private void completeBookDetailsToolStripMenuItem_Click(object sender, EventArgs e)

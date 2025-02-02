@@ -9,6 +9,8 @@ using SDAM2_LMS.ErrorLog;
 using Microsoft.EntityFrameworkCore;
 using System.Data.Entity;
 using SDAM2_LMS.Models.Services;
+using System.Net;
+using System.Windows.Forms;
 
 namespace SDAM2_LMS.Controllers
 {
@@ -43,71 +45,151 @@ namespace SDAM2_LMS.Controllers
             catch (Exception ex)
             {
                 new WriteErrorLog(ex);
-                // Message
+                MessageBox.Show($"Could not add book. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
             }
         }
 
-        //-- NEEDS ERROR HANDLING
-        public List<Book> GetBooks() 
-        { 
-            return _bookService.GetBooks();
-        }
-
-        //-- NEEDS ERROR HANDLING
-        public IEnumerable<Book> SearchBook(string search)
+        public List<Book>? GetBooks()
         {
-            return _bookService.SearchBook(search);
+            try
+            {
+                return _bookService.GetBooks();
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not get books. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                return null;
+            }
         }
 
-        //-- NEEDS ERROR HANDLING
+        //-- NEEDS ERROR HANDLING; if null
+        public IEnumerable<Book>? SearchBook(string search)
+        {
+            try
+            {
+                return _bookService.SearchBook(search);
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not search/refresh books. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                return null;
+            }
+        }
+
+        //-- NEEDS ERROR HANDLING; if null
         public void DeleteBook(string isbn)
         {
-            bool bookIsDeleted = _bookService.DeleteBook(isbn);
-            if (bookIsDeleted)
+            try
             {
-                // Success message
+                Int32 bookID = _bookService.GetBookID(isbn);
+
+                bool bookIsDeleted = _bookService.DeleteBook(bookID);
+                if (bookIsDeleted)
+                {
+                    // Success message
+                }
+                else
+                {
+                    //Invalid book, nothing deleted
+                }
             }
-            else
+            catch (Exception ex)
             {
-                //Invalid book, nothing deleted
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not delete book. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
             }
         }
 
-        //-- NEEDS ERROR HANDLING; null texts, int parsing and unexpected exceptions
+        //-- NEEDS ERROR HANDLING; null texts, int parsing
         public void EditBook(
             string _oldISBN, string newTitle, string newAuthors, string newGenres,
             string newPublishers, string newLanguage, string newISBN, string stringQuantity
             )
         {
-            Int32 bookID = _bookService.GetBookID(_oldISBN);
-            int newQuantity = int.Parse(stringQuantity);
-
-            bool bookIsEdited = _bookService.EditBook(
-                bookID, newTitle, newAuthors, newGenres, newPublishers, newPublishers, newISBN, newQuantity
-                );
-            if (bookIsEdited)
+            try
             {
-                // Success message
+                Int32 bookID = _bookService.GetBookID(_oldISBN);
+
+                int newQuantity = int.Parse(stringQuantity);
+
+                bool bookIsEdited = _bookService.EditBook(
+                    bookID, newTitle, newAuthors, newGenres, newPublishers, newPublishers, newISBN, newQuantity
+                    );
+                if (bookIsEdited)
+                {
+                    // Success message
+                }
+                else
+                {
+                    // Book cannot be edited, it may not exist
+                }
             }
-            else
+            catch (Exception ex)
             {
-                // Book cannot be edited, it may not exist
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not edit book.An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
             }
         }
 
-        public bool BorrowBook(int bookID)
+        //-- NEEDS ERROR HANDLING; if null
+        public void BorrowBook(string isbn)
         {
-            return _bookService.BorrowBook(bookID);
+            try
+            {
+                Int32 bookID = _bookService.GetBookID(isbn);
+
+                bool borrowedSuccessfully = _bookService.BorrowBook(bookID);
+                if (borrowedSuccessfully)
+                {
+                    MessageBox.Show("Book borrowed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                MessageBox.Show("Failed to borrow book. It may be unavailable.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not borrow book. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+            }
         }
 
-        public IEnumerable<object> GetBorrowings(int accountId)
+        //-- NEEDS ERROR HANDLING; if null
+        public IEnumerable<object>? GetBorrowings(int accountId)
         {
-            return _bookService.GetBorrowings(accountId);
+            try
+            {
+                return _bookService.GetBorrowings(accountId);
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not get borrowings. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                return null;
+            }
         }
 
-        public bool ReturnBook(int bookID)
+        public bool ReturnBook(Int32 bookID)
         {
-            return _bookService.ReturnBook(bookID);
+            try
+            {
+                bool returnedSuccessfully = bookID != null && _bookService.ReturnBook(bookID);
+                if (returnedSuccessfully)
+                {
+                    MessageBox.Show("Book returned successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
+                }
+
+                MessageBox.Show("An error occurred while returning the book.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not return book. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                return false;
+            }
         }
     }
 }
