@@ -59,6 +59,7 @@
             // 
             // menuBtn_Users
             // 
+            menuBtn_Users.Image = (Image)resources.GetObject("menuBtn_Members.Image");
             menuBtn_Users.CheckOnClick = true;
             menuBtn_Users.Name = "menuBtn_Users";
             menuBtn_Users.Size = new Size(47, 36);
