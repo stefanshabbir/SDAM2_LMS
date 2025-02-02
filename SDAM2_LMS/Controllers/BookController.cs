@@ -9,6 +9,8 @@ using SDAM2_LMS.ErrorLog;
 using Microsoft.EntityFrameworkCore;
 using System.Data.Entity;
 using SDAM2_LMS.Models.Services;
+using System.Net;
+using System.Windows.Forms;
 
 namespace SDAM2_LMS.Controllers
 {
@@ -62,7 +64,9 @@ namespace SDAM2_LMS.Controllers
         //-- NEEDS ERROR HANDLING
         public void DeleteBook(string isbn)
         {
-            bool bookIsDeleted = _bookService.DeleteBook(isbn);
+            Int32 bookID = _bookService.GetBookID(isbn);
+
+            bool bookIsDeleted = _bookService.DeleteBook(bookID);
             if (bookIsDeleted)
             {
                 // Success message
@@ -95,9 +99,19 @@ namespace SDAM2_LMS.Controllers
             }
         }
 
-        public bool BorrowBook(int bookID)
+        public void BorrowBook(string isbn)
         {
-            return _bookService.BorrowBook(bookID);
+            Int32 bookID = _bookService.GetBookID(isbn);
+
+            bool borrowedSuccessfully = _bookService.BorrowBook(bookID);
+            if (borrowedSuccessfully)
+            {
+                MessageBox.Show("Book borrowed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Failed to borrow book. It may be unavailable.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public IEnumerable<object> GetBorrowings(int accountId)
@@ -105,9 +119,17 @@ namespace SDAM2_LMS.Controllers
             return _bookService.GetBorrowings(accountId);
         }
 
-        public bool ReturnBook(int bookID)
+        public bool ReturnBook(Int32 bookID)
         {
-            return _bookService.ReturnBook(bookID);
+            bool returnedSuccessfully = _bookService.ReturnBook(bookID);
+            if (returnedSuccessfully)
+            {
+                MessageBox.Show("Book returned successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
+            }
+
+            MessageBox.Show("An error occurred while returning the book.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return false;
         }
     }
 }

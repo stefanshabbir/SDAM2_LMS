@@ -17,13 +17,16 @@ namespace SDAM2_LMS
     public partial class ViewBooks : Form
     {
         private readonly BookController _bookController;
+        private string? _selectedBookISBN;
+
         public ViewBooks(BookController bookController)
         {
             InitializeComponent();
+
             _bookController = bookController;
-            var books = _bookController.GetBooks();
+ 
             dataGridViewBooksView.Rows.Clear();
-            dataGridViewBooksView.DataSource = books;
+            dataGridViewBooksView.DataSource = _bookController.GetBooks();
         }
 
         private void DataGridViewBooksView_SelectionChanged(object sender, EventArgs e)
@@ -32,37 +35,20 @@ namespace SDAM2_LMS
             {
                 var selectedRow = dataGridViewBooksView.SelectedRows[0];
 
-                string title = selectedRow.Cells["Title"].Value?.ToString();
-                string isbn = selectedRow.Cells["ISBN"].Value?.ToString();
-                string author = selectedRow.Cells["Authors"].Value?.ToString();
-                string quantity = selectedRow.Cells["Quantity"].Value?.ToString();
-                string genre = selectedRow.Cells["Genres"].Value?.ToString();
-                string publisher = selectedRow.Cells["Publisher"].Value?.ToString();
-                string language = selectedRow.Cells["Language"].Value?.ToString();
-
                 var quantityValue = Convert.ToInt32(selectedRow.Cells["Quantity"].Value);
                 if (quantityValue <= 0)
-                {
-                        BorrowBtn.Text = "Reserve";
-                }
-                else {
-                        BorrowBtn.Text = "Borrow";
-                }
+                { BorrowBtn.Text = "Reserve"; }
+                else 
+                { BorrowBtn.Text = "Borrow"; }
+
+                _selectedBookISBN = selectedRow.Cells["ISBN"].Value?.ToString();
             }
 
         }
         private void btn_Refresh_Click(object sender, EventArgs e)
         {
             string search = SearchInput.Text.Trim();
-
-            try
-            {
-                dataGridViewBooksView.DataSource = _bookController.SearchBook(search);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex}");
-            }
+            dataGridViewBooksView.DataSource = _bookController.SearchBook(search);
         }
 
         private void btn_Clear_Click(object sender, EventArgs e)
@@ -118,24 +104,15 @@ namespace SDAM2_LMS
 
         private void BorrowBtn_Click(object sender, EventArgs e)
         {
-            if (dataGridViewBooksView.SelectedRows.Count == 0)
+            bool noBookSelected = dataGridViewBooksView.SelectedRows.Count == 0;
+            if (noBookSelected)
             {
                 MessageBox.Show("Please select a book to borrow.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            var bookId = Convert.ToInt16(dataGridViewBooksView.SelectedRows[0].Cells["BookID"].Value);
-
-            MessageBox.Show(bookId.ToString());
-
-            if (_bookController.BorrowBook(bookId))
-            {
-                MessageBox.Show("Book borrowed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Failed to borrow book. It may be unavailable.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            //_borrowController.BorrowBook(Convert.ToInt16(dataGridViewBooksView.SelectedRows[0].Cells["BookID"].Value));
+            //debug
+            MessageBox.Show(_selectedBookISBN, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            _bookController.BorrowBook(_selectedBookISBN);
         }
     }
 }
