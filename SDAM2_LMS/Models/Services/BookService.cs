@@ -106,7 +106,19 @@ namespace SDAM2_LMS.Models.Services
 
         public IEnumerable<object> GetBorrowings(int accountId)
         {
-            return _context.Borrowings.Where(b => b.AccountID == accountId)
+            return _context.Borrowings.Where(b => b.AccountID == accountId && b.Reserved == false)
+                .Select(b => new
+                {
+                    b.BookID,
+                    b.Book.Title,
+                    b.BorrowDate,
+                    b.ReturnDate
+                }).ToList();
+        }
+
+        public IEnumerable<object> GetReservations(int accountId)
+        {
+            return _context.Borrowings.Where(b => b.AccountID == accountId && b.Reserved == true)
                 .Select(b => new
                 {
                     b.BookID,
