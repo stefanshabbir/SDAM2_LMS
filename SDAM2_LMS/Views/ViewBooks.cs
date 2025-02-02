@@ -102,6 +102,8 @@ namespace SDAM2_LMS
                 MessageBox.Show("Please select a book to borrow.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+
             if (BorrowBtn.Text == "Reserve")
             {
                 _borrowController.ReserveBook(_selectedBookISBN);

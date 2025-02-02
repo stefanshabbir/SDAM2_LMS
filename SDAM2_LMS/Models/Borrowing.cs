@@ -20,12 +20,17 @@ namespace SDAM2_LMS.Models
         public Book Book { get; set; }
         public Account Account { get; set; }
 
+        public Borrowing()
+        {
+
+        }
         public Borrowing(int bookID, int accountID, DateTime borrowDate, DateTime returnDate)
         {
             this.BookID = bookID;
             this.AccountID = accountID;
             this.BorrowDate = borrowDate;
             this.ReturnDate = returnDate;
+            this.Reserved = false;
         }
 
         public Borrowing(int bookID, int accountID, DateTime borrowDate, DateTime returnDate, bool reserved)
@@ -36,5 +41,15 @@ namespace SDAM2_LMS.Models
             this.ReturnDate = returnDate;
             this.Reserved = reserved;
         }
+    }
+
+    public class StandardBorrowing : Borrowing
+    {
+        public int LoanPeriodDays { get; set; } = 7;
+    }
+
+    public class ExtendedBorrowing : Borrowing
+    {
+        public int LoanPeriodDays { get; set; } = 14;
     }
 }

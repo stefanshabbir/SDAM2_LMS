@@ -153,15 +153,16 @@ namespace SDAM2_LMS.Models.Services
         {
             var book = _context.Books.FirstOrDefault(b => b.BookID == bookID);
             var account = _context.Accounts.FirstOrDefault(a => a.AccountID == accID);
+            var borrow = _context.Borrowings.FirstOrDefault(br => br.BookID == bookID);
 
             if (book == null)
             {
                 return false;
             }
 
-            if (book.Quantity < 0)
+            if (book.Quantity <= 0)
             {
-                var borrowing = new Models.Borrowing(bookID, accID, DateTime.Now, DateTime.Now.AddDays(7), true);
+                var borrowing = new Models.Borrowing(bookID, accID, borrow.ReturnDate, borrow.ReturnDate.AddDays(7), true);
                 _context.Borrowings.Add(borrowing);
                 _context.SaveChanges();
                 return true;

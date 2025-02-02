@@ -113,12 +113,14 @@ namespace SDAM2_LMS.Controllers
             }
         }
 
-        public bool ReserveBook(Int32 bookID)
+        public bool ReserveBook(string isbn)
         {
             try
             {
+                Int32 bookID = _bookService.GetBookID(isbn);
                 Int32 accID = _accountService.GetSessionAccount().AccountID;
                 bool reservedSuccessfully = bookID != null && _bookService.ReserveBook(bookID, accID);
+
                 if (reservedSuccessfully)
                 {
                     MessageBox.Show("Book reserved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
