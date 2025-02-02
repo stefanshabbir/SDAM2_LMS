@@ -1,6 +1,6 @@
 ﻿namespace SDAM2_LMS
 {
-    partial class CompleteBookDetails
+    partial class BorrowedReservedBooks
     {
         /// <summary>
         /// Required designer variable.

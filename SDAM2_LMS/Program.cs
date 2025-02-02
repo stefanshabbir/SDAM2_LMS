@@ -52,7 +52,8 @@ namespace SDAM2_LMS
             services.AddTransient<ViewBooks>();
             services.AddTransient<ManageBooks>();
             services.AddTransient<ManageUsers>();
-            services.AddTransient<CompleteBookDetails>();
+            services.AddTransient<ManageReservations>();
+            services.AddTransient<BorrowedReservedBooks>();
             services.AddTransient<AddUser>();
 
             return services.BuildServiceProvider();
