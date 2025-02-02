@@ -93,13 +93,15 @@ namespace SDAM2_LMS.Controllers
             }
         }
 
-        // NEEDS ERROR HANDLING; incomplete
         public bool resetPassword(string newPassword)
         {
             try
             {
                 if (string.IsNullOrEmpty(newPassword))
-                { return false; }
+                {
+                    MessageBox.Show("New Password cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false; 
+                }
                 else
                 {
                     _accountService.resetPassword(newPassword);
