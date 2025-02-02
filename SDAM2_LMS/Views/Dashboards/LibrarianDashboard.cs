@@ -19,7 +19,9 @@ namespace SDAM2_LMS
         private readonly BookController _bookController;
         private readonly BorrowController _borrowController;
 
-        internal LibrarianDashboard(ProfileController profileController, BookController bookController, BorrowController borrowController)
+        internal LibrarianDashboard(
+            ProfileController profileController, BookController bookController, BorrowController borrowController
+            )
         {
             InitializeComponent();
 
