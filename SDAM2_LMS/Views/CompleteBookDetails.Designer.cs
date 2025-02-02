@@ -53,6 +53,7 @@
             borrowedDataGrid.AllowUserToDeleteRows = false;
             borrowedDataGrid.AllowUserToResizeColumns = false;
             borrowedDataGrid.AllowUserToResizeRows = false;
+            borrowedDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             borrowedDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             borrowedDataGrid.Location = new Point(6, 56);
             borrowedDataGrid.Margin = new Padding(2, 1, 2, 1);
@@ -67,6 +68,7 @@
             // 
             // reservedDataGrid
             // 
+            reservedDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             reservedDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             reservedDataGrid.Location = new Point(6, 218);
             reservedDataGrid.Margin = new Padding(2, 1, 2, 1);

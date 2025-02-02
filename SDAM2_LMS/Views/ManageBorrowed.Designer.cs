@@ -47,6 +47,8 @@
             borrowedBooksDataGrid.AllowUserToDeleteRows = false;
             borrowedBooksDataGrid.AllowUserToResizeColumns = false;
             borrowedBooksDataGrid.AllowUserToResizeRows = false;
+            borrowedBooksDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            borrowedBooksDataGrid.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
             borrowedBooksDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             borrowedBooksDataGrid.Location = new Point(5, 0);
             borrowedBooksDataGrid.Margin = new Padding(2, 1, 2, 1);
@@ -108,6 +110,7 @@
             ReservedBooksDataGrid.AllowUserToDeleteRows = false;
             ReservedBooksDataGrid.AllowUserToResizeColumns = false;
             ReservedBooksDataGrid.AllowUserToResizeRows = false;
+            ReservedBooksDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ReservedBooksDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             ReservedBooksDataGrid.Location = new Point(5, 0);
             ReservedBooksDataGrid.Margin = new Padding(2, 1, 2, 1);

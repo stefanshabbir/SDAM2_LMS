@@ -146,6 +146,7 @@ namespace SDAM2_LMS.Models.Services
                 .Select(b => new
                 {
                     b.BookID,
+                    b.Account.Username,
                     b.Book.Title,
                     b.BorrowDate,
                     b.ReturnDate
