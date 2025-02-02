@@ -21,12 +21,25 @@ namespace SDAM2_LMS
             _borrowController = borrowController;
         }
 
-        private void borrowedBooksDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
+        private void borrowedBooksDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e) 
+        {
+            if (borrowedBooksDataGrid.Columns[e.ColumnIndex].Name == "Return")
+            {
+                var bookID = (int)borrowedBooksDataGrid.Rows[e.RowIndex].Cells["BookID"].Value;
+
+                bool successful = _borrowController.ReturnBook(bookID);
+                if (successful)
+                {
+                    borrowedBooksDataGrid.DataSource = _borrowController.GetBorrowings();
+                }
+            }
+        }
 
         private void ManageBorrowed_Load(object sender, EventArgs e)
         {
             borrowedBooksDataGrid.DataSource = _borrowController.GetBorrowings();
             borrowedBooksDataGrid.Columns["BookID"].Visible = false;
+            //borrowedBooksDataGrid.Columns["AccountID"].Visible = false;
 
 
             if (!borrowedBooksDataGrid.Columns.Contains("Return"))
@@ -44,8 +57,8 @@ namespace SDAM2_LMS
 
             ReservedBooksDataGrid.DataSource = _borrowController.GetReservations();
             ReservedBooksDataGrid.Columns["BookID"].Visible = false;
+            ReservedBooksDataGrid.Columns["AccountID"].Visible = false;
 
-            
 
             if (!ReservedBooksDataGrid.Columns.Contains("Cancel"))
             {
@@ -63,7 +76,17 @@ namespace SDAM2_LMS
 
         private void ReservedBooksDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (ReservedBooksDataGrid.Columns[e.ColumnIndex].Name == "Cancel")
+            {
+                var bookID = (int)ReservedBooksDataGrid.Rows[e.RowIndex].Cells["BookID"].Value;
+                var accID = (int)ReservedBooksDataGrid.Rows[e.RowIndex].Cells["AccountID"].Value;
 
+                bool successful = _borrowController.DeleteReservations(bookID, accID);
+                if (successful)
+                {
+                    ReservedBooksDataGrid.DataSource = _borrowController.GetReservations();
+                }
+            }
         }
     }
 }

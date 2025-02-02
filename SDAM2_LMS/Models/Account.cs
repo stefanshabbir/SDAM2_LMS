@@ -16,7 +16,7 @@ namespace SDAM2_LMS.Models
         public int AccountTypeID { get; set; }
 
         public PersonalID_Info PersonalID_Info { get;  set; }
-        public AccountType AccountType { get; private set; }
+        public AccountType AccountType { get; set; }
         public ICollection<Borrowing> Borrowings { get; private set; } = new List<Borrowing>();
 
 

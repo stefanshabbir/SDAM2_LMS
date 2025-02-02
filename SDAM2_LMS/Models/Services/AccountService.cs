@@ -33,6 +33,7 @@ namespace SDAM2_LMS.Models.Services
             // searching for corresponding account in list
             var account = _context.Accounts
                 .Include(a => a.PersonalID_Info)
+                .Include(a => a.AccountType)
                 .FirstOrDefault(a => a.Username == username && a.Password == password);
             LoggedInAccount = account;
             return account;

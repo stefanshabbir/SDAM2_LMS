@@ -146,6 +146,7 @@ namespace SDAM2_LMS.Models.Services
                 .Select(b => new
                 {
                     b.BookID,
+                    b.AccountID,
                     b.Account.Username,
                     b.Book.Title,
                     b.BorrowDate,
@@ -177,6 +178,20 @@ namespace SDAM2_LMS.Models.Services
         public bool ReturnBook(Int32 bookID, Int32 accID)
         {
             var borrowing = _context.Borrowings.FirstOrDefault(b => b.BookID == bookID && b.AccountID == accID);
+            var book = _context.Books.FirstOrDefault(b => b.BookID == bookID);
+            if (borrowing == null || book == null)
+            {
+                return false;
+            }
+            book.Quantity++;
+            _context.Borrowings.Remove(borrowing);
+            _context.SaveChanges();
+            return true;
+        }
+
+        public bool ReturnBook(Int32 bookID)
+        {
+            var borrowing = _context.Borrowings.FirstOrDefault(b => b.BookID == bookID);
             var book = _context.Books.FirstOrDefault(b => b.BookID == bookID);
             if (borrowing == null || book == null)
             {

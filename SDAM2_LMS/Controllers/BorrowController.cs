@@ -135,9 +135,17 @@ namespace SDAM2_LMS.Controllers
         {
             try
             {
-                Int32 accID = _accountService.GetSessionAccount().AccountID;
+                Account acc = _accountService.GetSessionAccount();
+                bool returnedSuccessfully;
 
-                bool returnedSuccessfully = bookID != null && _bookService.ReturnBook(bookID, accID);
+                if (acc.AccountType.AccountTypeName == "Librarian")
+                {
+                    returnedSuccessfully = _bookService.ReturnBook(bookID);
+                } else
+                {
+                    returnedSuccessfully = _bookService.ReturnBook(bookID, acc.AccountID);
+                }
+
                 if (returnedSuccessfully)
                 {
                     MessageBox.Show("Book returned successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
