@@ -18,12 +18,14 @@ namespace SDAM2_LMS
         private readonly ProfileController _profileController;
         private readonly BookController _bookController;
 
-        internal LibrarianDashboard(ProfileController profileController, BookController bookController)
+        internal LibrarianDashboard(
+            ProfileController profileController, BookController bookController
+            )
         {
             InitializeComponent();
 
-            this._profileController = profileController;
-            this._bookController = bookController;
+            _profileController = profileController;
+            _bookController = bookController;
 
             var currentUser = _profileController.GetSessionAccount();
             bool isLoggedIn = currentUser != null;
