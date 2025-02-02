@@ -121,7 +121,7 @@ namespace SDAM2_LMS.Controllers
             catch (Exception ex)
             {
                 new WriteErrorLog(ex);
-                MessageBox.Show($"Could not return book. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                MessageBox.Show($"Could not return book. An Unexpected Error occurred. Check logs for more details. \nError:\n {ex}");
                 return false;
             }
         }

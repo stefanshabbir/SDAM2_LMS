@@ -62,7 +62,7 @@ namespace SDAM2_LMS.Controllers
             catch (Exception ex)
             {
                 new WriteErrorLog(ex);
-                MessageBox.Show($"Could not add book. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                MessageBox.Show($"Could not add book. An Unexpected Error occurred. Check logs for more details. \nError:\n {ex}");
             }
         }
 
@@ -120,7 +120,7 @@ namespace SDAM2_LMS.Controllers
                 bool bookIsDeleted = _bookService.DeleteBook(bookID);
                 if (bookIsDeleted)
                 {
-                    MessageBox.Show("Book deleted successfully!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Book deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -134,7 +134,6 @@ namespace SDAM2_LMS.Controllers
             }
         }
 
-        //-- NEEDS ERROR HANDLING; null texts, int parsing
         public void EditBook(
             string _oldISBN, string newTitle, string newAuthors, string newGenres,
             string newPublishers, string newLanguage, string newISBN, string stringQuantity
@@ -142,20 +141,37 @@ namespace SDAM2_LMS.Controllers
         {
             try
             {
+                if (string.IsNullOrEmpty(newTitle) || string.IsNullOrEmpty(newAuthors) || string.IsNullOrEmpty(newGenres) ||  string.IsNullOrEmpty(newPublishers)
+                    || string.IsNullOrEmpty(newLanguage) || string.IsNullOrWhiteSpace(newISBN) || string.IsNullOrEmpty(stringQuantity))
+                {
+                    MessageBox.Show("All fields are required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (!int.TryParse(stringQuantity, out int newQuantity) || newQuantity <= 0)
+                {
+                    MessageBox.Show("Quantity must be a valid positive number.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (newISBN.Contains(" "))
+                {
+                    MessageBox.Show("New ISBN cannot contain spaces.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 Int32 bookID = _bookService.GetBookID(_oldISBN);
 
-                int newQuantity = int.Parse(stringQuantity);
-
                 bool bookIsEdited = _bookService.EditBook(
-                    bookID, newTitle, newAuthors, newGenres, newPublishers, newPublishers, newISBN, newQuantity
+                    bookID, newTitle, newAuthors, newGenres, newPublishers, newLanguage, newISBN, newQuantity
                     );
                 if (bookIsEdited)
                 {
-                    // Success message
+                    MessageBox.Show("Book edited successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    // Book cannot be edited, it may not exist
+                    MessageBox.Show("Book cannot be edited. It may not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)

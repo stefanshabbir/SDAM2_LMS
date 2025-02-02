@@ -70,7 +70,7 @@ namespace SDAM2_LMS.Controllers
             catch (Exception ex)
             {
                 new WriteErrorLog(ex);
-                MessageBox.Show($"Could not update profile. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                MessageBox.Show($"Could not update profile. An Unexpected Error occurred. Check logs for more details. \nError:\n {ex}");
             }
         }
 
@@ -88,7 +88,7 @@ namespace SDAM2_LMS.Controllers
             catch (Exception ex)
             {
                 new WriteErrorLog(ex);
-                MessageBox.Show($"Could not delete profile. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                MessageBox.Show($"Could not delete profile. An Unexpected Error occurred. Check logs for more details. \nError:\n {ex}");
             }
         }
 
@@ -110,7 +110,7 @@ namespace SDAM2_LMS.Controllers
             catch (Exception ex)
             {
                 new WriteErrorLog(ex);
-                MessageBox.Show($"Could not reset password. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                MessageBox.Show($"Could not reset password. An Unexpected Error occurred. Check logs for more details. \nError:\n {ex}");
                 return false;
             }
         }

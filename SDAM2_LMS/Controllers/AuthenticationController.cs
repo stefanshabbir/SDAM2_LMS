@@ -109,7 +109,7 @@ namespace SDAM2_LMS.Controllers
 
                 if (phone.Length < 10 )
                 {
-                    MessageBox.Show("Phone number must be at leat 10 digits long.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Phone number must be at least 10 digits long.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
 
@@ -145,7 +145,7 @@ namespace SDAM2_LMS.Controllers
             catch (Exception ex)
             {
                 new WriteErrorLog(ex);
-                 MessageBox.Show($"Could not refresh, an Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                 MessageBox.Show($"Could not refresh, an Unexpected Error occurred. Check logs for more details. \nError:\n {ex}");
                 return false;
             }
             
