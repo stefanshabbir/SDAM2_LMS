@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 using SDAM2_LMS.ErrorLog;
+using System.Net.Mail;
 
 namespace SDAM2_LMS.Controllers
 {
@@ -29,11 +30,29 @@ namespace SDAM2_LMS.Controllers
             string newUsername, string newName, string newPhoneNumber, string newEmail, string newAddress
             )
         {
-            if (string.IsNullOrEmpty(newName) || string.IsNullOrEmpty(newName))
+            if (string.IsNullOrEmpty(newUsername) || string.IsNullOrEmpty(newName))
             {
                 MessageBox.Show("Username and Name are required fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            if (string.IsNullOrEmpty(newPhoneNumber) || newPhoneNumber.Length < 10)
+            {
+                MessageBox.Show("Phone Number must be at least 10 digits", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(newEmail) || !AuthenticationController.IsValidEmail(newEmail))
+            {
+                MessageBox.Show("Invalid Email Format", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(newAddress))
+            {
+                newAddress = "Not Given";
+            }
+
             try
             {
                 var user = _accountService.GetSessionAccount();
@@ -52,7 +71,7 @@ namespace SDAM2_LMS.Controllers
             catch (Exception ex)
             {
                 new WriteErrorLog(ex);
-                MessageBox.Show($"Could update profile. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                MessageBox.Show($"Could not update profile. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
             }
         }
 

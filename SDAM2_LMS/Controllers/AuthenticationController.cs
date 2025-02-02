@@ -90,8 +90,6 @@ namespace SDAM2_LMS.Controllers
             
         }
 
-        // NEEDS ERROR HANDLING; A lot of rework, most stuff from the Register winform need to be brought here
-        // Success and error messages and all error handling should be here
         public bool Register(string username, string password, string confirmpassword, string email, string name, string address, string phone)
         {
             try
@@ -152,7 +150,7 @@ namespace SDAM2_LMS.Controllers
             }
             
         }
-        private bool IsValidEmail(string email)
+        public static bool IsValidEmail(string email)
         {
             try
             {
