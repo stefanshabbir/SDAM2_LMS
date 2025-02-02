@@ -24,7 +24,7 @@ namespace SDAM2_LMS
 
             var serviceProvider = ConfigureServices();
 
-            var loginPage = serviceProvider.GetRequiredService<LoginPage>();
+            var loginPage = serviceProvider.GetRequiredService<Login>();
             Application.Run(loginPage);
         }
 
@@ -44,7 +44,8 @@ namespace SDAM2_LMS
             services.AddSingleton<BookService>();
             services.AddSingleton<UsersService>();
 
-            services.AddTransient<LoginPage>();
+            services.AddTransient<Login>();
+            services.AddTransient<Register>();
             services.AddTransient<AdminDashboard>();
             services.AddTransient<LibrarianDashboard>();
             services.AddTransient<MemberDashboard>();
@@ -52,7 +53,8 @@ namespace SDAM2_LMS
             services.AddTransient<ViewBooks>();
             services.AddTransient<ManageBooks>();
             services.AddTransient<ManageUsers>();
-            services.AddTransient<CompleteBookDetails>();
+            services.AddTransient<ManageReservations>();
+            services.AddTransient<BorrowedReservedBooks>();
             services.AddTransient<AddUser>();
 
             return services.BuildServiceProvider();

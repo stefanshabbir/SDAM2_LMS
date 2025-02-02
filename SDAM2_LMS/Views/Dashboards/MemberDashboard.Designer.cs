@@ -30,19 +30,18 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MemberDashboard));
             menuStrip1 = new MenuStrip();
-            returnBooksToolStripMenuItem = new ToolStripMenuItem();
-            completeBookDetailsToolStripMenuItem = new ToolStripMenuItem();
+            menuBtn_ViewBooks = new ToolStripMenuItem();
+            menuBtn_BorrowedReserved = new ToolStripMenuItem();
             menuBtn_ViewProfile = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
             viewBooksToolStripMenuItem = new ToolStripMenuItem();
-            booksToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(32, 32);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { booksToolStripMenuItem, returnBooksToolStripMenuItem, completeBookDetailsToolStripMenuItem, menuBtn_ViewProfile, exitToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { menuBtn_ViewBooks, menuBtn_BorrowedReserved, menuBtn_ViewProfile, exitToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(3, 1, 0, 1);
@@ -50,20 +49,21 @@
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
-            // returnBooksToolStripMenuItem
+            // menuBtn_ViewBooks
             // 
-            returnBooksToolStripMenuItem.Image = (Image)resources.GetObject("returnBooksToolStripMenuItem.Image");
-            returnBooksToolStripMenuItem.Name = "returnBooksToolStripMenuItem";
-            returnBooksToolStripMenuItem.Size = new Size(121, 36);
-            returnBooksToolStripMenuItem.Text = "Return Books";
+            menuBtn_ViewBooks.Image = (Image)resources.GetObject("menuBtn_ViewBooks.Image");
+            menuBtn_ViewBooks.Name = "menuBtn_ViewBooks";
+            menuBtn_ViewBooks.Size = new Size(111, 36);
+            menuBtn_ViewBooks.Text = "View Books";
+            menuBtn_ViewBooks.Click += menuBtn_ViewBooks_Click;
             // 
-            // completeBookDetailsToolStripMenuItem
+            // menuBtn_BorrowedReserved
             // 
-            completeBookDetailsToolStripMenuItem.Image = (Image)resources.GetObject("completeBookDetailsToolStripMenuItem.Image");
-            completeBookDetailsToolStripMenuItem.Name = "completeBookDetailsToolStripMenuItem";
-            completeBookDetailsToolStripMenuItem.Size = new Size(171, 36);
-            completeBookDetailsToolStripMenuItem.Text = "Complete Book Details";
-            completeBookDetailsToolStripMenuItem.Click += completeBookDetailsToolStripMenuItem_Click;
+            menuBtn_BorrowedReserved.Image = (Image)resources.GetObject("menuBtn_BorrowedReserved.Image");
+            menuBtn_BorrowedReserved.Name = "menuBtn_BorrowedReserved";
+            menuBtn_BorrowedReserved.Size = new Size(189, 36);
+            menuBtn_BorrowedReserved.Text = "Borrowed/Reserved Books";
+            menuBtn_BorrowedReserved.Click += menuBtn_BorrowedReserved_Click;
             // 
             // menuBtn_ViewProfile
             // 
@@ -84,17 +84,7 @@
             // viewBooksToolStripMenuItem
             // 
             viewBooksToolStripMenuItem.Name = "viewBooksToolStripMenuItem";
-            viewBooksToolStripMenuItem.Size = new Size(51, 36);
-            viewBooksToolStripMenuItem.Text = "Books";
-            viewBooksToolStripMenuItem.Click += viewBooksToolStripMenuItem_Click_1;
-            // 
-            // booksToolStripMenuItem
-            // 
-            booksToolStripMenuItem.Image = (Image)resources.GetObject("menuBtn_Books.Image");
-            booksToolStripMenuItem.Name = "booksToolStripMenuItem";
-            booksToolStripMenuItem.Size = new Size(51, 36);
-            booksToolStripMenuItem.Text = "Books";
-            booksToolStripMenuItem.Click += booksToolStripMenuItem_Click;
+            viewBooksToolStripMenuItem.Size = new Size(32, 19);
             // 
             // MemberDashboard
             // 
@@ -119,11 +109,10 @@
         #endregion
 
         private MenuStrip menuStrip1;
-        private ToolStripMenuItem returnBooksToolStripMenuItem;
-        private ToolStripMenuItem completeBookDetailsToolStripMenuItem;
+        private ToolStripMenuItem menuBtn_BorrowedReserved;
         private ToolStripMenuItem exitToolStripMenuItem;
         private ToolStripMenuItem viewBooksToolStripMenuItem;
         private ToolStripMenuItem menuBtn_ViewProfile;
-        private ToolStripMenuItem booksToolStripMenuItem;
+        private ToolStripMenuItem menuBtn_ViewBooks;
     }
 }

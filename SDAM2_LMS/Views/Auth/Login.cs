@@ -15,11 +15,11 @@ using System.Windows.Forms;
 
 namespace SDAM2_LMS
 {
-    public partial class LoginPage : Form
+    public partial class Login : Form
     {
         private readonly AuthenticationController _authController;
 
-        public LoginPage(AuthenticationController authenticationController)
+        public Login(AuthenticationController authenticationController)
         {
             InitializeComponent();
 

@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace SDAM2_LMS
 {
-    public partial class CompleteBookDetails : Form
+    public partial class BorrowedReservedBooks : Form
     {
         private readonly BorrowController _borrowController;
         private readonly ProfileController _profileController;
-        public CompleteBookDetails(ProfileController profileController, BorrowController borrowController)
+        public BorrowedReservedBooks(ProfileController profileController, BorrowController borrowController)
         {
             InitializeComponent();
             _profileController = profileController;

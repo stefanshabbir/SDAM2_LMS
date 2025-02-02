@@ -43,24 +43,19 @@ namespace SDAM2_LMS
             }
         }
 
-        private void completeBookDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuBtn_BorrowedReserved_Click(object sender, EventArgs e)
         {
-            CompleteBookDetails cbd = new CompleteBookDetails(_profileController, _borrowController);
-            cbd.Show();
+            var bd = new BorrowedReservedBooks(_profileController, _borrowController);
+            bd.Show();
         }
 
         private void menuBtn_ViewProfile_Click(object sender, EventArgs e)
         {
-            ViewProfile viewProfile = new ViewProfile(_profileController);
+            var viewProfile = new ViewProfile(_profileController);
             viewProfile.Show();
         }
 
-        private void viewBooksToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void booksToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuBtn_ViewBooks_Click(object sender, EventArgs e)
         {
             var viewBooks = new ViewBooks(_borrowController);
             viewBooks.Show();

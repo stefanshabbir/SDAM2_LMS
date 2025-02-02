@@ -1,6 +1,7 @@
 ﻿using SDAM2_LMS.Controllers;
 using SDAM2_LMS.Models.Data;
 using SDAM2_LMS.Models.Services;
+using SDAM2_LMS.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +20,9 @@ namespace SDAM2_LMS
         private readonly BookController _bookController;
         private readonly BorrowController _borrowController;
 
-        internal LibrarianDashboard(ProfileController profileController, BookController bookController, BorrowController borrowController)
+        internal LibrarianDashboard(
+            ProfileController profileController, BookController bookController, BorrowController borrowController
+            )
         {
             InitializeComponent();
 
@@ -44,22 +47,22 @@ namespace SDAM2_LMS
 
         }
 
-        private void completeBookDetailsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //CompleteBookDetails cbd = new CompleteBookDetails();
-            //cbd.Show();
-        }
-
         private void menuBtn_Books_Click(object sender, EventArgs e)
         {
-            ManageBooks mb = new ManageBooks(_bookController);
+            var mb = new ManageBooks(_bookController);
             mb.Show();
         }
 
-        private void returnBooksToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuBtn_Reservations_Click(object sender, EventArgs e)
         {
-            ManageBorrowed mb = new ManageBorrowed(_borrowController);
+            var mb = new ManageReservations(_borrowController);
             mb.Show();
+        }
+
+        private void menuBtn_ViewProfile_Click(object sender, EventArgs e)
+        {
+            var viewProfile = new ViewProfile(_profileController);
+            viewProfile.Show();
         }
     }
 }
