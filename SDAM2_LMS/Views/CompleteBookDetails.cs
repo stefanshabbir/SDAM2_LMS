@@ -25,10 +25,13 @@ namespace SDAM2_LMS
 
         private void CompleteBookDetails_Load_1(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = _borrowController.GetBorrowings(_profileController.GetSessionAccount().AccountID);
-            dataGridView1.Columns["BookID"].Visible = false;
+            borrowedDataGrid.DataSource = _borrowController.GetBorrowings(_profileController.GetSessionAccount().AccountID);
+            borrowedDataGrid.Columns["BookID"].Visible = false;
 
-            if (!dataGridView1.Columns.Contains("Return"))
+            reservedDataGrid.DataSource = _borrowController.GetReservations(_profileController.GetSessionAccount().AccountID);
+            reservedDataGrid.Columns["BookID"].Visible = false;
+
+            if (!borrowedDataGrid.Columns.Contains("Return"))
             {
                 DataGridViewButtonColumn returnColumn = new DataGridViewButtonColumn
                 {
@@ -38,20 +41,33 @@ namespace SDAM2_LMS
                     UseColumnTextForButtonValue = true
                 };
 
-                dataGridView1.Columns.Add(returnColumn);
+                borrowedDataGrid.Columns.Add(returnColumn);
+            }
+
+            if (!reservedDataGrid.Columns.Contains("Cancel"))
+            {
+                DataGridViewButtonColumn cancelColumn = new DataGridViewButtonColumn
+                {
+                    Name = "Cancel",
+                    HeaderText = "Cancel Reservation",
+                    Text = "Cancel",
+                    UseColumnTextForButtonValue = true
+                };
+
+                reservedDataGrid.Columns.Add(cancelColumn);
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void borrowedDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridView1.Columns[e.ColumnIndex].Name == "Return")
+            if (borrowedDataGrid.Columns[e.ColumnIndex].Name == "Return")
             {
-                var bookID = (int)dataGridView1.Rows[e.RowIndex].Cells["BookID"].Value;
+                var bookID = (int)borrowedDataGrid.Rows[e.RowIndex].Cells["BookID"].Value;
 
                 bool successful = _borrowController.ReturnBook(bookID);
                 if (successful)
                 {
-                    dataGridView1.DataSource = _borrowController.GetBorrowings(_profileController.GetSessionAccount().AccountID);
+                    borrowedDataGrid.DataSource = _borrowController.GetBorrowings(_profileController.GetSessionAccount().AccountID);
                 }
             }
         }

@@ -89,6 +89,20 @@ namespace SDAM2_LMS.Controllers
             }
         }
 
+        public IEnumerable<object>? GetReservations(int accID)
+        {
+            try
+            {
+                return _bookService.GetReservations(accID);
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not get reservations. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                return null;
+            }
+        }
+
         public bool ReturnBook(Int32 bookID)
         {
             try
@@ -119,13 +133,13 @@ namespace SDAM2_LMS.Controllers
             {
                 Int32 bookID = _bookService.GetBookID(isbn);
                 Int32 accID = _accountService.GetSessionAccount().AccountID;
-                bool reservedSuccessfully = bookID != null && _bookService.ReserveBook(bookID, accID);
 
                 if (_bookService.CheckReservation(bookID))
                 {
                     MessageBox.Show("Book is already reserved.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); 
                     return false;
                 }
+                bool reservedSuccessfully = _bookService.ReserveBook(bookID, accID);
 
                 if (reservedSuccessfully)
                 {
