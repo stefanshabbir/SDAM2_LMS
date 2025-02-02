@@ -84,11 +84,8 @@ namespace SDAM2_LMS.Controllers
         {
             try
             {
-                if (string.IsNullOrEmpty(search))
-                {
-                    MessageBox.Show("Search term cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return _bookService.GetBooks();
-                }
+                if (string.IsNullOrEmpty(search)) { return _bookService.GetBooks(); }
+
                 return _bookService.SearchBook(search);
             }
             catch (Exception ex)
