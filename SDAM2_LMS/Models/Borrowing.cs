@@ -20,13 +20,21 @@ namespace SDAM2_LMS.Models
         public Book Book { get; set; }
         public Account Account { get; set; }
 
-        public Borrowing() { }
         public Borrowing(int bookID, int accountID, DateTime borrowDate, DateTime returnDate)
         {
             this.BookID = bookID;
             this.AccountID = accountID;
             this.BorrowDate = borrowDate;
             this.ReturnDate = returnDate;
+        }
+
+        public Borrowing(int bookID, int accountID, DateTime borrowDate, DateTime returnDate, bool reserved)
+        {
+            this.BookID = bookID;
+            this.AccountID = accountID;
+            this.BorrowDate = borrowDate;
+            this.ReturnDate = returnDate;
+            this.Reserved = reserved;
         }
     }
 }
