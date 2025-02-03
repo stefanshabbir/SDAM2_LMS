@@ -73,6 +73,11 @@ namespace SDAM2_LMS
         }
         private void reservedDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) 
+            {
+                return;
+            };
+
             if (reservedDataGrid.Columns[e.ColumnIndex].Name == "Cancel")
             {
                 var bookID = (int)reservedDataGrid.Rows[e.RowIndex].Cells["BookID"].Value;

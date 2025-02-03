@@ -23,6 +23,11 @@ namespace SDAM2_LMS
 
         private void borrowedBooksDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e) 
         {
+            if (e.RowIndex < 0)
+            {
+                return;
+            };
+
             if (borrowedBooksDataGrid.Columns[e.ColumnIndex].Name == "Return")
             {
                 var bookID = (int)borrowedBooksDataGrid.Rows[e.RowIndex].Cells["BookID"].Value;
@@ -76,6 +81,11 @@ namespace SDAM2_LMS
 
         private void ReservedBooksDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0)
+            {
+                return;
+            };
+
             if (ReservedBooksDataGrid.Columns[e.ColumnIndex].Name == "Cancel")
             {
                 var bookID = (int)ReservedBooksDataGrid.Rows[e.RowIndex].Cells["BookID"].Value;
