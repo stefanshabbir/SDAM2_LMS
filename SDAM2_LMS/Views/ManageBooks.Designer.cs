@@ -344,6 +344,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(2, 1, 2, 1);
             Name = "ManageBooks";
+            Load += ManageBooks_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewBooksView).EndInit();

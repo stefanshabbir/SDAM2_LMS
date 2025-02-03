@@ -28,14 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             borrowedBooksDataGrid = new DataGridView();
             tabControl1 = new TabControl();
             BorrowedBooksTab = new TabPage();
+            updateBorrowedBtn = new Button();
+            BorrowDateInput = new DateTimePicker();
             ReservedBooksTab = new TabPage();
+            Update = new Button();
+            reserveDateInput = new DateTimePicker();
             ReservedBooksDataGrid = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)borrowedBooksDataGrid).BeginInit();
             tabControl1.SuspendLayout();
@@ -52,32 +56,33 @@
             borrowedBooksDataGrid.AllowUserToResizeRows = false;
             borrowedBooksDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             borrowedBooksDataGrid.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            borrowedBooksDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Control;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            borrowedBooksDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             borrowedBooksDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            borrowedBooksDataGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Window;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            borrowedBooksDataGrid.DefaultCellStyle = dataGridViewCellStyle6;
             borrowedBooksDataGrid.Location = new Point(5, 0);
             borrowedBooksDataGrid.Margin = new Padding(2, 1, 2, 1);
             borrowedBooksDataGrid.MultiSelect = false;
             borrowedBooksDataGrid.Name = "borrowedBooksDataGrid";
             borrowedBooksDataGrid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             borrowedBooksDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            borrowedBooksDataGrid.Size = new Size(803, 298);
+            borrowedBooksDataGrid.Size = new Size(803, 266);
             borrowedBooksDataGrid.TabIndex = 1;
             borrowedBooksDataGrid.CellContentClick += borrowedBooksDataGrid_CellContentClick;
+            borrowedBooksDataGrid.SelectionChanged += borrowedBooksDataGrid_SelectionChanged;
             // 
             // tabControl1
             // 
@@ -94,6 +99,8 @@
             // 
             // BorrowedBooksTab
             // 
+            BorrowedBooksTab.Controls.Add(updateBorrowedBtn);
+            BorrowedBooksTab.Controls.Add(BorrowDateInput);
             BorrowedBooksTab.Controls.Add(borrowedBooksDataGrid);
             BorrowedBooksTab.Location = new Point(4, 44);
             BorrowedBooksTab.Name = "BorrowedBooksTab";
@@ -103,8 +110,31 @@
             BorrowedBooksTab.Text = "Borrowed Books";
             BorrowedBooksTab.UseVisualStyleBackColor = true;
             // 
+            // updateBorrowedBtn
+            // 
+            updateBorrowedBtn.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            updateBorrowedBtn.Location = new Point(230, 272);
+            updateBorrowedBtn.Name = "updateBorrowedBtn";
+            updateBorrowedBtn.Size = new Size(75, 23);
+            updateBorrowedBtn.TabIndex = 6;
+            updateBorrowedBtn.Text = "Update";
+            updateBorrowedBtn.UseVisualStyleBackColor = true;
+            updateBorrowedBtn.Click += UpdateBo_Click;
+            // 
+            // BorrowDateInput
+            // 
+            BorrowDateInput.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            BorrowDateInput.Format = DateTimePickerFormat.Short;
+            BorrowDateInput.Location = new Point(5, 270);
+            BorrowDateInput.MinDate = new DateTime(2025, 1, 1, 0, 0, 0, 0);
+            BorrowDateInput.Name = "BorrowDateInput";
+            BorrowDateInput.Size = new Size(200, 25);
+            BorrowDateInput.TabIndex = 5;
+            // 
             // ReservedBooksTab
             // 
+            ReservedBooksTab.Controls.Add(Update);
+            ReservedBooksTab.Controls.Add(reserveDateInput);
             ReservedBooksTab.Controls.Add(ReservedBooksDataGrid);
             ReservedBooksTab.Location = new Point(4, 44);
             ReservedBooksTab.Name = "ReservedBooksTab";
@@ -114,6 +144,27 @@
             ReservedBooksTab.Text = "Reserved Books";
             ReservedBooksTab.UseVisualStyleBackColor = true;
             // 
+            // Update
+            // 
+            Update.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Update.Location = new Point(229, 272);
+            Update.Name = "Update";
+            Update.Size = new Size(75, 23);
+            Update.TabIndex = 4;
+            Update.Text = "Update";
+            Update.UseVisualStyleBackColor = true;
+            Update.Click += Update_Click;
+            // 
+            // reserveDateInput
+            // 
+            reserveDateInput.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            reserveDateInput.Format = DateTimePickerFormat.Short;
+            reserveDateInput.Location = new Point(4, 270);
+            reserveDateInput.MinDate = new DateTime(2025, 2, 3, 0, 0, 0, 0);
+            reserveDateInput.Name = "reserveDateInput";
+            reserveDateInput.Size = new Size(200, 25);
+            reserveDateInput.TabIndex = 3;
+            // 
             // ReservedBooksDataGrid
             // 
             ReservedBooksDataGrid.AllowUserToAddRows = false;
@@ -121,34 +172,35 @@
             ReservedBooksDataGrid.AllowUserToResizeColumns = false;
             ReservedBooksDataGrid.AllowUserToResizeRows = false;
             ReservedBooksDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            ReservedBooksDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            ReservedBooksDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             ReservedBooksDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            ReservedBooksDataGrid.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = SystemColors.Window;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            ReservedBooksDataGrid.DefaultCellStyle = dataGridViewCellStyle8;
             ReservedBooksDataGrid.Location = new Point(5, 0);
             ReservedBooksDataGrid.Margin = new Padding(2, 1, 2, 1);
             ReservedBooksDataGrid.MultiSelect = false;
             ReservedBooksDataGrid.Name = "ReservedBooksDataGrid";
             ReservedBooksDataGrid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             ReservedBooksDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            ReservedBooksDataGrid.Size = new Size(803, 298);
+            ReservedBooksDataGrid.Size = new Size(803, 266);
             ReservedBooksDataGrid.TabIndex = 2;
             ReservedBooksDataGrid.CellContentClick += ReservedBooksDataGrid_CellContentClick;
+            ReservedBooksDataGrid.SelectionChanged += ReservedBooksDataGrid_SelectionChanged;
             // 
-            // ManageBorrowed
+            // ManageReservations
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -156,7 +208,7 @@
             ClientSize = new Size(820, 351);
             Controls.Add(tabControl1);
             Margin = new Padding(2, 1, 2, 1);
-            Name = "ManageBorrowed";
+            Name = "ManageReservations";
             Text = "ReturnBook";
             Load += ManageBorrowed_Load;
             ((System.ComponentModel.ISupportInitialize)borrowedBooksDataGrid).EndInit();
@@ -173,5 +225,9 @@
         private TabPage ReservedBooksTab;
         private TabPage BorrowedBooksTab;
         private DataGridView ReservedBooksDataGrid;
+        private DateTimePicker reserveDateInput;
+        private Button Update;
+        private Button updateBorrowedBtn;
+        private DateTimePicker BorrowDateInput;
     }
 }

@@ -21,13 +21,28 @@ namespace SDAM2_LMS
             _borrowController = borrowController;
         }
 
-        private void borrowedBooksDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e) 
+        private void borrowedBooksDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0)
+            {
+                return;
+            };
+
             if (borrowedBooksDataGrid.Columns[e.ColumnIndex].Name == "Return")
             {
                 var bookID = (int)borrowedBooksDataGrid.Rows[e.RowIndex].Cells["BookID"].Value;
 
                 bool successful = _borrowController.ReturnBook(bookID);
+                if (successful)
+                {
+                    borrowedBooksDataGrid.DataSource = _borrowController.GetBorrowings();
+                }
+            }
+            if (borrowedBooksDataGrid.Columns[e.ColumnIndex].Name == "Extend")
+            {
+                var bookID = (int)borrowedBooksDataGrid.Rows[e.RowIndex].Cells["BookID"].Value;
+
+                bool successful = _borrowController.ExtendBorrowing(bookID);
                 if (successful)
                 {
                     borrowedBooksDataGrid.DataSource = _borrowController.GetBorrowings();
@@ -39,7 +54,7 @@ namespace SDAM2_LMS
         {
             borrowedBooksDataGrid.DataSource = _borrowController.GetBorrowings();
             borrowedBooksDataGrid.Columns["BookID"].Visible = false;
-            //borrowedBooksDataGrid.Columns["AccountID"].Visible = false;
+            borrowedBooksDataGrid.Columns["BorrowID"].Visible = false;
 
 
             if (!borrowedBooksDataGrid.Columns.Contains("Return"))
@@ -55,10 +70,22 @@ namespace SDAM2_LMS
                 borrowedBooksDataGrid.Columns.Add(returnColumn);
             }
 
+            if (!borrowedBooksDataGrid.Columns.Contains("Extend"))
+            {
+                DataGridViewButtonColumn extendColumn = new DataGridViewButtonColumn
+                {
+                    Name = "Extend",
+                    HeaderText = "Extend Borrow",
+                    Text = "Extend",
+                    UseColumnTextForButtonValue = true
+                };
+                borrowedBooksDataGrid.Columns.Add(extendColumn);
+            }
+
             ReservedBooksDataGrid.DataSource = _borrowController.GetReservations();
             ReservedBooksDataGrid.Columns["BookID"].Visible = false;
             ReservedBooksDataGrid.Columns["AccountID"].Visible = false;
-
+            ReservedBooksDataGrid.Columns["BorrowID"].Visible = false;
 
             if (!ReservedBooksDataGrid.Columns.Contains("Cancel"))
             {
@@ -76,6 +103,11 @@ namespace SDAM2_LMS
 
         private void ReservedBooksDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0)
+            {
+                return;
+            };
+
             if (ReservedBooksDataGrid.Columns[e.ColumnIndex].Name == "Cancel")
             {
                 var bookID = (int)ReservedBooksDataGrid.Rows[e.RowIndex].Cells["BookID"].Value;
@@ -86,6 +118,52 @@ namespace SDAM2_LMS
                 {
                     ReservedBooksDataGrid.DataSource = _borrowController.GetReservations();
                 }
+            }
+        }
+
+        private void Update_Click(object sender, EventArgs e)
+        {
+            DateTime newBorrowDate = reserveDateInput.Value;
+            if (ReservedBooksDataGrid.SelectedRows.Count > 0)
+            {
+                var selectedRow = ReservedBooksDataGrid.SelectedRows[0];
+                var bookID = (int)selectedRow.Cells["BorrowID"].Value;
+                bool successful = _borrowController.UpdateBorrowDate(bookID, newBorrowDate);
+                if (successful)
+                {
+                    borrowedBooksDataGrid.DataSource = _borrowController.GetReservations();
+                }
+            }
+        }
+
+        private void UpdateBo_Click(object sender, EventArgs e)
+        {
+            DateTime newBorrowDate = BorrowDateInput.Value;
+            if (borrowedBooksDataGrid.SelectedRows.Count > 0)
+            {
+                var selectedRow = borrowedBooksDataGrid.SelectedRows[0];
+                var bookID = (int)selectedRow.Cells["BorrowID"].Value;
+                bool successful = _borrowController.UpdateBorrowDate(bookID, newBorrowDate);
+                if (successful)
+                {
+                    borrowedBooksDataGrid.DataSource = _borrowController.GetBorrowings();
+                }
+            }
+        }
+        private void borrowedBooksDataGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            if(borrowedBooksDataGrid.SelectedRows.Count > 0)
+            {
+                var selectedRow = borrowedBooksDataGrid.SelectedRows[0];
+                BorrowDateInput.Value = (DateTime)selectedRow.Cells["BorrowDate"].Value;
+            }
+        }
+        private void ReservedBooksDataGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            if (ReservedBooksDataGrid.SelectedRows.Count > 0)
+            {
+                var selectedRow = ReservedBooksDataGrid.SelectedRows[0];
+                BorrowDateInput.Value = (DateTime)selectedRow.Cells["BorrowDate"].Value;
             }
         }
     }

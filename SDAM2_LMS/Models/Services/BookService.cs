@@ -21,7 +21,7 @@ namespace SDAM2_LMS.Models.Services
 
         public Int32 GetBookID(string isbn)
         {
-            if (isbn == null) { return -1;}
+            if (isbn == null) { return -1; }
 
             var book = _context.Books.FirstOrDefault(a => a.ISBN == isbn);
 
@@ -120,6 +120,7 @@ namespace SDAM2_LMS.Models.Services
             return _context.Borrowings.Where(b => b.Reserved == false)
                 .Select(b => new
                 {
+                    b.BorrowID,
                     b.BookID,
                     b.Account.Username,
                     b.Book.Title,
@@ -139,12 +140,13 @@ namespace SDAM2_LMS.Models.Services
                     b.ReturnDate
                 }).ToList();
         }
-        
+
         public IEnumerable<object> GetReservations()
         {
             return _context.Borrowings.Where(b => b.Reserved == true)
                 .Select(b => new
                 {
+                    b.BorrowID,
                     b.BookID,
                     b.AccountID,
                     b.Account.Username,
@@ -154,7 +156,7 @@ namespace SDAM2_LMS.Models.Services
                 }).ToList();
         }
 
-        
+
 
         public bool BorrowBook(Int32 bookID, Int32 accID)
         {
@@ -244,6 +246,53 @@ namespace SDAM2_LMS.Models.Services
                 return true;
             }
             return false;
+        }
+
+        public bool ExtendBorrowing(int borrowID)
+        {
+            var borrowing = _context.Borrowings.FirstOrDefault(b => b.BookID == borrowID);
+
+            if (borrowing == null)
+            {
+                return false;
+            }
+
+            if (borrowing.ReturnDate < DateTime.Now)
+            {
+                return false;
+            }
+
+            if (borrowing.ReturnDate > borrowing.BorrowDate.AddDays(28))
+            {
+                return false;
+            }
+
+            borrowing.ReturnDate = borrowing.ReturnDate.AddDays(7);
+            _context.Borrowings.Update(borrowing);
+            _context.SaveChanges();
+            return true;
+        }
+
+        public bool UpdateBorrowDate(int borrowID, DateTime newBorrowDate)
+        {
+            var borrowing = _context.Borrowings.FirstOrDefault(b => b.BorrowID == borrowID);
+            if (borrowing == null)
+            {
+                return false;
+            }
+
+            if (newBorrowDate == null)
+            {
+                return false;
+            }
+            else
+            {
+                borrowing.BorrowDate = newBorrowDate;
+                borrowing.ReturnDate = newBorrowDate.AddDays(7);
+                _context.Borrowings.Update(borrowing);
+                _context.SaveChanges();
+            }
+            return true;
         }
     }
 }

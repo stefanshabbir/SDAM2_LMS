@@ -42,14 +42,4 @@ namespace SDAM2_LMS.Models
             this.Reserved = reserved;
         }
     }
-
-    public class StandardBorrowing : Borrowing
-    {
-        public int LoanPeriodDays { get; set; } = 7;
-    }
-
-    public class ExtendedBorrowing : Borrowing
-    {
-        public int LoanPeriodDays { get; set; } = 14;
-    }
 }
