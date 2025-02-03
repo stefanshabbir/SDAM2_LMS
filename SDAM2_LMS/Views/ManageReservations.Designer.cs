@@ -111,11 +111,12 @@
             // 
             // updateBorrowedBtn
             // 
+            updateBorrowedBtn.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             updateBorrowedBtn.Location = new Point(230, 272);
             updateBorrowedBtn.Name = "updateBorrowedBtn";
             updateBorrowedBtn.Size = new Size(75, 23);
             updateBorrowedBtn.TabIndex = 6;
-            updateBorrowedBtn.Text = "updateBorrowedBtn";
+            updateBorrowedBtn.Text = "Update";
             updateBorrowedBtn.UseVisualStyleBackColor = true;
             updateBorrowedBtn.Click += UpdateBo_Click;
             // 
@@ -124,7 +125,7 @@
             BorrowDateInput.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             BorrowDateInput.Format = DateTimePickerFormat.Short;
             BorrowDateInput.Location = new Point(5, 270);
-            BorrowDateInput.MinDate = new DateTime(2025, 2, 3, 0, 0, 0, 0);
+            BorrowDateInput.MinDate = new DateTime(2025, 1, 1, 0, 0, 0, 0);
             BorrowDateInput.Name = "BorrowDateInput";
             BorrowDateInput.Size = new Size(200, 25);
             BorrowDateInput.TabIndex = 5;
@@ -144,11 +145,12 @@
             // 
             // Update
             // 
+            Update.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Update.Location = new Point(229, 272);
             Update.Name = "Update";
             Update.Size = new Size(75, 23);
             Update.TabIndex = 4;
-            Update.Text = "button1";
+            Update.Text = "Update";
             Update.UseVisualStyleBackColor = true;
             Update.Click += Update_Click;
             // 

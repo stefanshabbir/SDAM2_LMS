@@ -249,6 +249,12 @@ namespace SDAM2_LMS.Controllers
         {
             try
             {
+                if (newBorrowDate.CompareTo(DateTime.Now) < 0)
+                {
+                    MessageBox.Show("Borrow date cannot be in the past.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
                 bool dateUpdated = _bookService.UpdateBorrowDate(borrowID, newBorrowDate);
                 if (dateUpdated)
                 {
