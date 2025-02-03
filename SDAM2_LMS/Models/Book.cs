@@ -42,25 +42,5 @@ namespace SDAM2_LMS.Models
         {
             this.BookID = id;
         }
-
-        public IEnumerable<Book> SearchBook(string search)
-        {
-            return dbContext.Books.Where(book => 
-            book.Title.Contains(search)).ToList();
-            //EF.Functions.Like(book.Authors.ToString(), $"%{search}%") ||
-            //EF.Functions.Like(book.Genres.ToString(), $"%{search}%"))
-        }
-
-        public bool DeleteBook(int id) 
-        { 
-            var book = dbContext.Books.FirstOrDefault(a => a.BookID== id);
-            if (book != null)
-            {
-                dbContext.Remove(book);
-                dbContext.SaveChanges();
-                return true;
-            }
-            return false;
-        }
     }
 }
