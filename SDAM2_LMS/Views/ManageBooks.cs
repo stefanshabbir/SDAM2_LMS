@@ -26,6 +26,8 @@ namespace SDAM2_LMS
             var books = _controller.GetBooks();
             dataGridViewBooksView.Rows.Clear();
             dataGridViewBooksView.DataSource = books;
+
+            dataGridViewBooksView.Columns["BookID"].Visible = false;
         }
 
         private void DeleteBtn_Click(object sender, EventArgs e)
