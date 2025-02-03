@@ -1,0 +1,198 @@
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS "AccountTypes" (
+	"AccountTypeID"	INTEGER NOT NULL,
+	"AccountTypeName"	TEXT NOT NULL,
+	CONSTRAINT "PK_AccountTypes" PRIMARY KEY("AccountTypeID" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "Accounts" (
+	"AccountID"	INTEGER NOT NULL,
+	"Username"	TEXT NOT NULL,
+	"Password"	TEXT NOT NULL,
+	"PersonalID"	INTEGER NOT NULL,
+	"AccountTypeID"	INTEGER NOT NULL,
+	CONSTRAINT "PK_Accounts" PRIMARY KEY("AccountID" AUTOINCREMENT),
+	CONSTRAINT "FK_Accounts_AccountTypes_AccountTypeID" FOREIGN KEY("AccountTypeID") REFERENCES "AccountTypes"("AccountTypeID") ON DELETE CASCADE,
+	CONSTRAINT "FK_Accounts_PersonalIDs_PersonalID" FOREIGN KEY("PersonalID") REFERENCES "PersonalIDs"("PersonalID") ON DELETE CASCADE
+);
+CREATE TABLE IF NOT EXISTS "Books" (
+	"BookID"	INTEGER NOT NULL,
+	"Authors"	TEXT NOT NULL,
+	"Genres"	TEXT NOT NULL,
+	"ISBN"	TEXT,
+	"Language"	TEXT,
+	"Publisher"	TEXT NOT NULL,
+	"Quantity"	INTEGER NOT NULL,
+	"Title"	TEXT NOT NULL,
+	CONSTRAINT "PK_Books" PRIMARY KEY("BookID" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "Borrowings" (
+	"BorrowID"	INTEGER NOT NULL,
+	"BookID"	INTEGER NOT NULL,
+	"AccountID"	INTEGER NOT NULL,
+	"BorrowDate"	TEXT NOT NULL,
+	"ReturnDate"	TEXT NOT NULL,
+	"Reserved"	INTEGER NOT NULL DEFAULT 0,
+	CONSTRAINT "PK_Borrowings" PRIMARY KEY("BorrowID" AUTOINCREMENT),
+	CONSTRAINT "FK_Borrowings_Accounts_AccountID" FOREIGN KEY("AccountID") REFERENCES "Accounts"("AccountID") ON DELETE CASCADE,
+	CONSTRAINT "FK_Borrowings_Books_BookID" FOREIGN KEY("BookID") REFERENCES "Books"("BookID") ON DELETE CASCADE
+);
+CREATE TABLE IF NOT EXISTS "PersonalIDs" (
+	"PersonalID"	INTEGER NOT NULL,
+	"Name"	TEXT NOT NULL,
+	"Email"	TEXT NOT NULL,
+	"PhoneNumber"	TEXT NOT NULL,
+	"Address"	TEXT NOT NULL,
+	CONSTRAINT "PK_PersonalIDs" PRIMARY KEY("PersonalID" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+	"MigrationId"	TEXT NOT NULL,
+	"ProductVersion"	TEXT NOT NULL,
+	CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY("MigrationId")
+);
+CREATE TABLE IF NOT EXISTS "__EFMigrationsLock" (
+	"Id"	INTEGER NOT NULL,
+	"Timestamp"	TEXT NOT NULL,
+	CONSTRAINT "PK___EFMigrationsLock" PRIMARY KEY("Id")
+);
+INSERT INTO "AccountTypes" ("AccountTypeID","AccountTypeName") VALUES (1,'Admin');
+INSERT INTO "AccountTypes" ("AccountTypeID","AccountTypeName") VALUES (2,'Librarian');
+INSERT INTO "AccountTypes" ("AccountTypeID","AccountTypeName") VALUES (3,'Member');
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (1,'admin','123',1,1);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (2,'setf04','123',2,2);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (3,'lak','123',3,3);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (4,'johnd123','password123',4,2);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (5,'janes456','pass456',5,3);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (6,'markj789','secure123',6,2);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (7,'emilyb321','mypassword',7,2);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (8,'michaelw555','strongpass',8,1);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (9,'oliviad678','pass987',9,2);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (10,'ethanm910','abc123',10,3);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (11,'sophiaw345','simplepass',11,2);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (12,'liamt567','letmein',12,1);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (13,'emmaw890','accessme',13,2);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (14,'jamesm234','login123',14,3);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (15,'isabellac678','password!',15,1);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (16,'benjaminl890','hello123',16,2);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (17,'avasc901','testing123',17,3);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (18,'lucash567','easy123',18,2);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (19,'miaw345','passme!',19,1);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (20,'alexy678','complex123',20,2);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (21,'ameliak102','qwerty!',21,3);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (22,'danielw789','secure!',22,1);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (23,'charlottet567','mypin',23,2);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (24,'henryh234','letmein!',24,3);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (25,'ellap345','lock123',25,1);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (26,'sebastiang678','passit123',26,2);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (27,'graceb102','easylogin',27,3);
+INSERT INTO "Accounts" ("AccountID","Username","Password","PersonalID","AccountTypeID") VALUES (28,'davida567','passcode!',28,1);
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (1,'George Orwell','Dystopian Fiction','978-0451524935','English','Secker & Warburg',0,'1984');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (2,'J.K. Rowling','Fantasy','978-0747532743','English','Bloomsbury',7,'Harry Potter and the Philosopher Stone');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (3,'Jane Austen','Romance','978-1503290563','English','T. Egerton',0,'Pride and Prejudice');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (4,'Haruki Murakami','Magical Realism','978-0307476463','Japanese','Shinchosha',6,'Kafka on the Shore');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (5,'F. Scott Fitzgerald','Classics','978-0743273565','English','Charles Scribners Sons',4,'The Great Gatsby');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (6,'Gabriel Garcia Marquez','Magical Realism','978-0307389732','Spanish','Editorial Sudamericana',0,'One Hundred Years of Solitude');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (7,'Leo Tolstoy','Historical Fiction','978-1853260629','Russian','The Russian Messenger',8,'War and Peace');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (8,'Mark Twain','Adventure','978-0486280615','English','Chatto & Windus',9,'Adventures of Huckleberry Finn');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (9,'Mary Shelley','Horror','978-0486282114','English','Lackington, Hughes, Harding, Mavor & Jones',1,'Frankenstein');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (10,'Homer','Epic Poetry','978-0140268867','Greek','Penguin Classics',10,'The Odyssey');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (11,'Charles Dickens','Drama','978-0486415864','English','Chapman & Hall',3,'A Tale of Two Cities');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (12,'Ernest Hemingway','Classics','978-0684801223','English','Charles Scribners Sons',5,'The Old Man and the Sea');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (13,'J.R.R. Tolkien','Fantasy','978-0261103573','English','Allen & Unwin',8,'The Hobbit');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (14,'Fyodor Dostoevsky','Psychological Fiction','978-0679734529','Russian','The Russian Messenger',0,'Crime and Punishment');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (15,'Virginia Woolf','Modernist Fiction','978-0156907392','English','Hogarth Press',6,'Mrs Dalloway');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (16,'Albert Camus','Existentialism','978-0679720201','French','Gallimard',4,'The Stranger');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (17,'Victor Hugo','Historical Fiction','978-0451419439','French','A. Lacroix',10,'Les Misérables');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (18,'Herman Melville','Adventure','978-1503280786','English','Harper & Brothers',7,'Moby Dick');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (19,'Ray Bradbury','Science Fiction','978-1451673319','English','Ballantine Books',5,'Fahrenheit 451');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (20,'Lewis Carroll','Fantasy','978-0486275437','English','Macmillan',3,'Alices Adventures in Wonderland');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (21,'Joseph Conrad','Adventure','978-0140186529','English','Blackwoods Magazine',8,'Heart of Darkness');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (22,'Miguel de Cervantes','Classics','978-0060934347','Spanish','Francisco de Robles',4,'Don Quixote');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (23,'Aldous Huxley','Dystopian Fiction','978-0060850524','English','Chatto & Windus',7,'Brave New World');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (24,'Emily Brontë','Romance','978-0486292564','English','Thomas Cautley Newby',6,'Wuthering Heights');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (25,'George R.R. Martin','Fantasy','978-0553103540','English','Bantam Books',2,'A Game of Thrones');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (26,'Toni Morrison','Drama','978-1400033416','English','Alfred A. Knopf',9,'Beloved');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (27,'Harper Lee','Drama','978-0061120084','English','J.B. Lippincott & Co.',1,'To Kill a Mockingbird');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (28,'Franz Kafka','Absurdist Fiction','978-0805209990','German','Kurt Wolff Verlag',5,'The Metamorphosis');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (29,'C.S. Lewis','Fantasy','978-0064471190','English','Geoffrey Bles',4,'The Lion, the Witch, and the Wardrobe');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (30,'J.D. Salinger','Realist Fiction','978-0316769488','English','Little, Brown and Company',8,'The Catcher in the Rye');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (31,'Arthur Conan Doyle','Mystery','978-0141034379','English','Ward, Lock & Co.',7,'The Adventures of Sherlock Holmes');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (32,'H.G. Wells','Science Fiction','978-0553213515','English','William Heinemann',3,'The War of the Worlds');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (33,'L.M. Montgomery','Childrens Fiction','978-0553213171','English','L.C. Page & Co.',6,'Anne of Green Gables');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (34,'Robert Louis Stevenson','Adventure','978-0486275598','English','Cassell & Company',2,'Treasure Island');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (35,'Jack London','Adventure','978-0486269689','English','Macmillan',5,'The Call of the Wild');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (36,'Dante Alighieri','Epic Poetry','978-0451208637','Italian','John Murray',10,'The Divine Comedy');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (37,'Thomas Hardy','Tragedy','978-0140431252','English','Osgood, McIlvaine & Co.',1,'Tess of the dUrbervilles');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (38,'John Steinbeck','Drama','978-0140186390','English','The Viking Press',9,'Of Mice and Men');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (39,'George Eliot','Realist Fiction','978-0451531319','English','William Blackwood and Sons',4,'Middlemarch');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (40,'James Joyce','Modernist Fiction','978-0679722762','English','Sylvia Beach',3,'Ulysses');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (41,'Edgar Allan Poe','Horror','978-0142437339','English','Various',5,'The Tell-Tale Heart');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (42,'Antoine de Saint-Exupéry','Childrens Fiction','978-0156012195','French','Reynal & Hitchcock',8,'The Little Prince');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (43,'Chinua Achebe','Drama','978-0385474542','English','Heinemann',6,'Things Fall Apart');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (44,'Khaled Hosseini','Drama','978-1594480003','English','Riverhead Books',7,'The Kite Runner');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (45,'Margaret Atwood','Dystopian Fiction','978-0385490818','English','McClelland and Stewart',2,'The Handmaids Tale');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (46,'William Golding','Allegory','978-0399501487','English','Faber and Faber',9,'Lord of the Flies');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (47,'Sylvia Plath','Drama','978-0060837020','English','Harper & Row',10,'The Bell Jar');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (48,'Zora Neale Hurston','Drama','978-0061120060','English','J.B. Lippincott & Co.',1,'Their Eyes Were Watching God');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (49,'Emily Dickinson','Poetry','978-0674018242','English','Little, Brown and Company',4,'Collected Poems');
+INSERT INTO "Books" ("BookID","Authors","Genres","ISBN","Language","Publisher","Quantity","Title") VALUES (50,'Hannah Arendt','Philosophy','978-0156188676','German','Harcourt, Brace & World',3,'The Human Condition');
+INSERT INTO "Borrowings" ("BorrowID","BookID","AccountID","BorrowDate","ReturnDate","Reserved") VALUES (1,1,1,'2025-01-01','2025-01-15',1);
+INSERT INTO "Borrowings" ("BorrowID","BookID","AccountID","BorrowDate","ReturnDate","Reserved") VALUES (2,2,4,'2025-01-06','2025-01-20',0);
+INSERT INTO "Borrowings" ("BorrowID","BookID","AccountID","BorrowDate","ReturnDate","Reserved") VALUES (3,3,5,'2025-01-11','2025-01-25',0);
+INSERT INTO "Borrowings" ("BorrowID","BookID","AccountID","BorrowDate","ReturnDate","Reserved") VALUES (4,6,7,'2025-01-16','2025-01-30',0);
+INSERT INTO "Borrowings" ("BorrowID","BookID","AccountID","BorrowDate","ReturnDate","Reserved") VALUES (5,9,9,'2025-01-21','2025-02-04',0);
+INSERT INTO "Borrowings" ("BorrowID","BookID","AccountID","BorrowDate","ReturnDate","Reserved") VALUES (6,14,10,'2025-01-26','2025-02-09',1);
+INSERT INTO "Borrowings" ("BorrowID","BookID","AccountID","BorrowDate","ReturnDate","Reserved") VALUES (7,16,11,'2025-01-31','2025-02-14',0);
+INSERT INTO "Borrowings" ("BorrowID","BookID","AccountID","BorrowDate","ReturnDate","Reserved") VALUES (8,18,14,'2025-02-05','2025-02-19',0);
+INSERT INTO "Borrowings" ("BorrowID","BookID","AccountID","BorrowDate","ReturnDate","Reserved") VALUES (9,25,15,'2025-02-10','2025-02-24',0);
+INSERT INTO "Borrowings" ("BorrowID","BookID","AccountID","BorrowDate","ReturnDate","Reserved") VALUES (10,27,16,'2025-02-15','2025-03-01',0);
+INSERT INTO "Borrowings" ("BorrowID","BookID","AccountID","BorrowDate","ReturnDate","Reserved") VALUES (11,3,19,'2025-02-20','2025-03-06',1);
+INSERT INTO "Borrowings" ("BorrowID","BookID","AccountID","BorrowDate","ReturnDate","Reserved") VALUES (12,7,20,'2025-02-25','2025-03-11',0);
+INSERT INTO "Borrowings" ("BorrowID","BookID","AccountID","BorrowDate","ReturnDate","Reserved") VALUES (13,22,21,'2025-03-02','2025-03-16',0);
+INSERT INTO "Borrowings" ("BorrowID","BookID","AccountID","BorrowDate","ReturnDate","Reserved") VALUES (14,9,23,'2025-03-07','2025-03-21',0);
+INSERT INTO "Borrowings" ("BorrowID","BookID","AccountID","BorrowDate","ReturnDate","Reserved") VALUES (15,11,24,'2025-03-12','2025-03-26',0);
+INSERT INTO "Borrowings" ("BorrowID","BookID","AccountID","BorrowDate","ReturnDate","Reserved") VALUES (16,6,26,'2025-03-17','2025-03-31',1);
+INSERT INTO "Borrowings" ("BorrowID","BookID","AccountID","BorrowDate","ReturnDate","Reserved") VALUES (17,1,3,'2025-02-3','2025-02-10',0);
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (1,'Admin Account','admin@test.com','0111111','2rd test, debug');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (2,'Stefan','stefanshabbir@gmail.com','0775741339','somewhere, on, earth.');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (3,'Lakindu','lakinduperera@gmail.com','0776982312','somewhere else, on the, earth.');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (4,'John Doe','john.doe@example.com','1234567890','123 Elm Street');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (5,'Jane Smith','jane.smith@example.com','9876543210','456 Pine Avenue');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (6,'Mark Johnson','mark.johnson@example.com','4561237890','789 Oak Drive');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (7,'Emily Brown','emily.brown@example.com','3216549870','102 Maple Road');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (8,'Michael Williams','michael.williams@example.com','7893216540','555 Cedar Blvd');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (9,'Olivia Davis','olivia.davis@example.com','6549873210','678 Birch Lane');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (10,'Ethan Miller','ethan.miller@example.com','9873216540','910 Aspen Ct');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (11,'Sophia Wilson','sophia.wilson@example.com','7654321098','345 Poplar St');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (12,'Liam Thomas','liam.thomas@example.com','8765432109','567 Magnolia Way');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (13,'Emma White','emma.white@example.com','6543219870','890 Willow Ave');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (14,'James Moore','james.moore@example.com','9012345678','234 Fir Rd');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (15,'Isabella Clark','isabella.clark@example.com','7896541230','678 Ash Blvd');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (16,'Benjamin Lewis','benjamin.lewis@example.com','4567890123','890 Redwood Ln');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (17,'Ava Scott','ava.scott@example.com','3219876543','901 Cypress St');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (18,'Lucas Harris','lucas.harris@example.com','1230987654','567 Cherry Ct');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (19,'Mia Walker','mia.walker@example.com','2345678901','345 Palm Ave');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (20,'Alexander Young','alex.young@example.com','3456789012','678 Sequoia Dr');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (21,'Amelia King','amelia.king@example.com','4567891234','910 Pine Ct');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (22,'Daniel Wright','daniel.wright@example.com','9871236540','102 Walnut Rd');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (23,'Charlotte Turner','charlotte.turner@example.com','7890123456','789 Spruce Ln');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (24,'Henry Hall','henry.hall@example.com','6547893210','890 Acacia St');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (25,'Ella Phillips','ella.phillips@example.com','1236549870','123 Dogwood Blvd');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (26,'Sebastian Green','sebastian.green@example.com','7894561230','567 Cypress Dr');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (27,'Grace Baker','grace.baker@example.com','3214567890','234 Larch Ln');
+INSERT INTO "PersonalIDs" ("PersonalID","Name","Email","PhoneNumber","Address") VALUES (28,'David Adams','david.adams@example.com','6789012345','890 Mulberry Ct');
+INSERT INTO "__EFMigrationsHistory" ("MigrationId","ProductVersion") VALUES ('20241230095146_UpdateAccountEntity','9.0.0');
+INSERT INTO "__EFMigrationsHistory" ("MigrationId","ProductVersion") VALUES ('20250120025112_EnsurePersistence','9.0.0');
+INSERT INTO "__EFMigrationsHistory" ("MigrationId","ProductVersion") VALUES ('20250125161150_Reservation','9.0.0');
+CREATE INDEX IF NOT EXISTS "IX_Accounts_AccountTypeID" ON "Accounts" (
+	"AccountTypeID"
+);
+CREATE UNIQUE INDEX IF NOT EXISTS "IX_Accounts_PersonalID" ON "Accounts" (
+	"PersonalID"
+);
+CREATE INDEX IF NOT EXISTS "IX_Borrowings_AccountID" ON "Borrowings" (
+	"AccountID"
+);
+CREATE INDEX IF NOT EXISTS "IX_Borrowings_BookID" ON "Borrowings" (
+	"BookID"
+);
+COMMIT;
