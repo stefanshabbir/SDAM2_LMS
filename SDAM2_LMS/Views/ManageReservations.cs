@@ -150,5 +150,21 @@ namespace SDAM2_LMS
                 }
             }
         }
+        private void borrowedBooksDataGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            if(borrowedBooksDataGrid.SelectedRows.Count > 0)
+            {
+                var selectedRow = borrowedBooksDataGrid.SelectedRows[0];
+                BorrowDateInput.Value = (DateTime)selectedRow.Cells["BorrowDate"].Value;
+            }
+        }
+        private void ReservedBooksDataGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            if (ReservedBooksDataGrid.SelectedRows.Count > 0)
+            {
+                var selectedRow = ReservedBooksDataGrid.SelectedRows[0];
+                BorrowDateInput.Value = (DateTime)selectedRow.Cells["BorrowDate"].Value;
+            }
+        }
     }
 }

@@ -96,5 +96,10 @@ namespace SDAM2_LMS
                 );
             dataGridViewBooksView.DataSource = _controller.GetBooks();
         }
+
+        private void ManageBooks_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

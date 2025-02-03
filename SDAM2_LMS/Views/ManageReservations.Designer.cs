@@ -82,6 +82,7 @@
             borrowedBooksDataGrid.Size = new Size(803, 266);
             borrowedBooksDataGrid.TabIndex = 1;
             borrowedBooksDataGrid.CellContentClick += borrowedBooksDataGrid_CellContentClick;
+            borrowedBooksDataGrid.SelectionChanged += borrowedBooksDataGrid_SelectionChanged;
             // 
             // tabControl1
             // 
@@ -197,6 +198,7 @@
             ReservedBooksDataGrid.Size = new Size(803, 266);
             ReservedBooksDataGrid.TabIndex = 2;
             ReservedBooksDataGrid.CellContentClick += ReservedBooksDataGrid_CellContentClick;
+            ReservedBooksDataGrid.SelectionChanged += ReservedBooksDataGrid_SelectionChanged;
             // 
             // ManageReservations
             // 
