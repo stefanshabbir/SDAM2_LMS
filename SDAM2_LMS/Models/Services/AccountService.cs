@@ -100,7 +100,7 @@ namespace SDAM2_LMS.Models.Services
             LoggedInAccount = null;
         }
 
-        public AutoResetEvent resetPassword(string newPassword)
+        public AutoResetEvent ResetPassword(string newPassword)
         {
             var currentUser = LoggedInAccount;
             currentUser.Password = newPassword;

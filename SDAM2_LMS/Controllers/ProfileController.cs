@@ -92,7 +92,7 @@ namespace SDAM2_LMS.Controllers
             }
         }
 
-        public bool resetPassword(string newPassword)
+        public bool ResetPassword(string newPassword)
         {
             try
             {
@@ -103,7 +103,7 @@ namespace SDAM2_LMS.Controllers
                 }
                 else
                 {
-                    _accountService.resetPassword(newPassword);
+                    _accountService.ResetPassword(newPassword);
                     return true;
                 }
             }

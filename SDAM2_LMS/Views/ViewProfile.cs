@@ -122,7 +122,7 @@ namespace SDAM2_LMS.Views
                         if (!string.IsNullOrEmpty(oldPassword) && !string.IsNullOrEmpty(newPassword))
                         {
                             // Call the ResetPassword method in the AccountController
-                            var success = _profileController.resetPassword(newPassword);
+                            var success = _profileController.ResetPassword(newPassword);
 
                             if (success)
                             {
