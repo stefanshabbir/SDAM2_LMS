@@ -44,10 +44,27 @@ namespace SDAM2_LMS.Controllers
             try
             {
                 if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(email)
-                    || string.IsNullOrWhiteSpace(address) || string.IsNullOrWhiteSpace(phoneNumber) || string.IsNullOrWhiteSpace(accountType))
+                     || string.IsNullOrWhiteSpace(phoneNumber) || string.IsNullOrWhiteSpace(accountType))
                 {
                     MessageBox.Show("All fields must be filled.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
+                }
+
+                if (string.IsNullOrEmpty(phoneNumber) || phoneNumber.Length < 10)
+                {
+                    MessageBox.Show("Phone Number must be at least 10 digits", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(email) || !AuthenticationController.IsValidEmail(email))
+                {
+                    MessageBox.Show("Invalid Email Format", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(address))
+                {
+                    address = "Not Given";
                 }
 
                 bool userSuccessfullyAdded = _userService.AddUser(username, password, name, email, address, phoneNumber, accountType);
@@ -99,6 +116,17 @@ namespace SDAM2_LMS.Controllers
                     MessageBox.Show("All fields must be filled.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                if (string.IsNullOrEmpty(newPhoneNumber) || newPhoneNumber.Length < 10)
+                {
+                    MessageBox.Show("Phone Number must be at least 10 digits", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (string.IsNullOrEmpty(newEmail) || !AuthenticationController.IsValidEmail(newEmail))
+                {
+                    MessageBox.Show("Invalid Email Format", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 _userService.EditUser(accID, newUsername, newName, newEmail, newPhoneNumber, newAddress, newAccountType);
                 MessageBox.Show("User profile updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
