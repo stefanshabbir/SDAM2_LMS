@@ -60,6 +60,18 @@ namespace SDAM2_LMS
                 borrowedBooksDataGrid.Columns.Add(returnColumn);
             }
 
+            if (!borrowedBooksDataGrid.Columns.Contains("Extend"))
+            {
+                DataGridViewButtonColumn extendColumn = new DataGridViewButtonColumn
+                {
+                    Name = "Extend",
+                    HeaderText = "Extend",
+                    Text = "Extend",
+                    UseColumnTextForButtonValue = true
+                };
+                borrowedBooksDataGrid.Columns.Add(extendColumn);
+            }
+
             ReservedBooksDataGrid.DataSource = _borrowController.GetReservations();
             ReservedBooksDataGrid.Columns["BookID"].Visible = false;
             ReservedBooksDataGrid.Columns["AccountID"].Visible = false;

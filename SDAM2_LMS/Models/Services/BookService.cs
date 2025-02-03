@@ -245,5 +245,28 @@ namespace SDAM2_LMS.Models.Services
             }
             return false;
         }
+
+        public bool ExtendBorrowing(int borrowID)
+        {
+            var borrowing = _context.Borrowings.FirstOrDefault(b => b.BorrowID == borrowID);
+
+            if (borrowing == null)
+            {
+                return false;
+            }
+                borrowing = new Borrowing()
+                {
+                    BorrowID = borrowing.BorrowID,
+                    BookID = borrowing.BookID,
+                    AccountID = borrowing.AccountID,
+                    BorrowDate = borrowing.BorrowDate,
+                    ReturnDate = borrowing.BorrowDate.AddDays(7),
+                    Reserved = borrowing.Reserved
+                };
+                _context.Borrowings.Update(borrowing);
+            _context.SaveChanges();
+            return true;
+        }
+
     }
 }

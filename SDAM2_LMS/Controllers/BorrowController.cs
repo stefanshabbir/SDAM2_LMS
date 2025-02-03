@@ -223,5 +223,26 @@ namespace SDAM2_LMS.Controllers
                 return false;
             }
         }
+
+        public bool ExtendBorrowing(int borrowID)
+        {
+            try
+            {
+                bool extendedSuccessfully = _bookService.ExtendBorrowing(borrowID);
+                if (extendedSuccessfully)
+                {
+                    MessageBox.Show("Borrowing extended successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
+                }
+                MessageBox.Show("An error occurred while extending the borrowing.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not extend borrowing. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                return false;
+            }
+        }
     }
 }
