@@ -248,22 +248,15 @@ namespace SDAM2_LMS.Models.Services
 
         public bool ExtendBorrowing(int borrowID)
         {
-            var borrowing = _context.Borrowings.FirstOrDefault(b => b.BorrowID == borrowID);
+            var borrowing = _context.Borrowings.FirstOrDefault(b => b.BookID == borrowID);
 
             if (borrowing == null)
             {
                 return false;
             }
-                borrowing = new Borrowing()
-                {
-                    BorrowID = borrowing.BorrowID,
-                    BookID = borrowing.BookID,
-                    AccountID = borrowing.AccountID,
-                    BorrowDate = borrowing.BorrowDate,
-                    ReturnDate = borrowing.BorrowDate.AddDays(7),
-                    Reserved = borrowing.Reserved
-                };
-                _context.Borrowings.Update(borrowing);
+            
+            borrowing.ReturnDate = borrowing.ReturnDate.AddDays(7);
+            _context.Borrowings.Update(borrowing);
             _context.SaveChanges();
             return true;
         }

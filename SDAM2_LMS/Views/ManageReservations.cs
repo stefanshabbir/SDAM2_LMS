@@ -38,6 +38,16 @@ namespace SDAM2_LMS
                     borrowedBooksDataGrid.DataSource = _borrowController.GetBorrowings();
                 }
             }
+            if (borrowedBooksDataGrid.Columns[e.ColumnIndex].Name == "Extend")
+            {
+                var bookID = (int)borrowedBooksDataGrid.Rows[e.RowIndex].Cells["BookID"].Value;
+
+                bool successful = _borrowController.ExtendBorrowing(bookID);
+                if (successful)
+                {
+                    borrowedBooksDataGrid.DataSource = _borrowController.GetBorrowings();
+                }
+            }
         }
 
         private void ManageBorrowed_Load(object sender, EventArgs e)
@@ -65,7 +75,7 @@ namespace SDAM2_LMS
                 DataGridViewButtonColumn extendColumn = new DataGridViewButtonColumn
                 {
                     Name = "Extend",
-                    HeaderText = "Extend",
+                    HeaderText = "Extend Borrow",
                     Text = "Extend",
                     UseColumnTextForButtonValue = true
                 };
