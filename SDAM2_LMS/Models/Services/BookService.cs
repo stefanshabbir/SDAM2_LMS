@@ -21,7 +21,7 @@ namespace SDAM2_LMS.Models.Services
 
         public Int32 GetBookID(string isbn)
         {
-            if (isbn == null) { return -1;}
+            if (isbn == null) { return -1; }
 
             var book = _context.Books.FirstOrDefault(a => a.ISBN == isbn);
 
@@ -139,7 +139,7 @@ namespace SDAM2_LMS.Models.Services
                     b.ReturnDate
                 }).ToList();
         }
-        
+
         public IEnumerable<object> GetReservations()
         {
             return _context.Borrowings.Where(b => b.Reserved == true)
@@ -154,7 +154,7 @@ namespace SDAM2_LMS.Models.Services
                 }).ToList();
         }
 
-        
+
 
         public bool BorrowBook(Int32 bookID, Int32 accID)
         {
@@ -254,7 +254,7 @@ namespace SDAM2_LMS.Models.Services
             {
                 return false;
             }
-            
+
             if (borrowing.ReturnDate < DateTime.Now)
             {
                 return false;
@@ -271,5 +271,26 @@ namespace SDAM2_LMS.Models.Services
             return true;
         }
 
+        public bool UpdateBorrowDate(int borrowID, DateTime newBorrowDate)
+        {
+            var borrowing = _context.Borrowings.FirstOrDefault(b => b.BookID == borrowID);
+            if (borrowing == null)
+            {
+                return false;
+            }
+
+            if (newBorrowDate == null)
+            {
+                return false;
+            }
+            else
+            {
+                borrowing.BorrowDate = newBorrowDate;
+                borrowing.ReturnDate = DateTime.Now.AddDays(7);
+                _context.Borrowings.Update(borrowing);
+                _context.SaveChanges();
+            }
+            return true;
+        }
     }
 }

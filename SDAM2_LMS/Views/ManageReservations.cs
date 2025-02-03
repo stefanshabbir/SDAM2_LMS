@@ -21,7 +21,7 @@ namespace SDAM2_LMS
             _borrowController = borrowController;
         }
 
-        private void borrowedBooksDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e) 
+        private void borrowedBooksDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
             {
@@ -117,6 +117,22 @@ namespace SDAM2_LMS
                 if (successful)
                 {
                     ReservedBooksDataGrid.DataSource = _borrowController.GetReservations();
+                }
+            }
+        }
+
+        private void Update_Click(object sender, EventArgs e)
+        {
+            DateTime newBorrowDate = borrowDateInput.Value;
+
+            if (borrowedBooksDataGrid.SelectedRows.Count > 0)
+            {
+                var selectedRow = borrowedBooksDataGrid.SelectedRows[0];
+                var bookID = (int)selectedRow.Cells["BookID"].Value;
+                bool successful = _borrowController.UpdateBorrowDate(bookID, newBorrowDate);
+                if (successful)
+                {
+                    borrowedBooksDataGrid.DataSource = _borrowController.GetBorrowings();
                 }
             }
         }
