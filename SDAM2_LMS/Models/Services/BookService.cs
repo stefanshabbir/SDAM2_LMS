@@ -255,6 +255,16 @@ namespace SDAM2_LMS.Models.Services
                 return false;
             }
             
+            if (borrowing.ReturnDate < DateTime.Now)
+            {
+                return false;
+            }
+
+            if (borrowing.ReturnDate > borrowing.BorrowDate.AddDays(28))
+            {
+                return false;
+            }
+
             borrowing.ReturnDate = borrowing.ReturnDate.AddDays(7);
             _context.Borrowings.Update(borrowing);
             _context.SaveChanges();
