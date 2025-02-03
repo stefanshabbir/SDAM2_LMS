@@ -60,6 +60,11 @@ namespace SDAM2_LMS
 
         private void borrowedDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0)
+            {
+                return;
+            };
+
             if (borrowedDataGrid.Columns[e.ColumnIndex].Name == "Return")
             {
                 var bookID = (int)borrowedDataGrid.Rows[e.RowIndex].Cells["BookID"].Value;
