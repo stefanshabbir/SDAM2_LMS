@@ -120,6 +120,7 @@ namespace SDAM2_LMS.Models.Services
             return _context.Borrowings.Where(b => b.Reserved == false)
                 .Select(b => new
                 {
+                    b.BorrowID,
                     b.BookID,
                     b.Account.Username,
                     b.Book.Title,
@@ -145,6 +146,7 @@ namespace SDAM2_LMS.Models.Services
             return _context.Borrowings.Where(b => b.Reserved == true)
                 .Select(b => new
                 {
+                    b.BorrowID,
                     b.BookID,
                     b.AccountID,
                     b.Account.Username,
@@ -273,7 +275,7 @@ namespace SDAM2_LMS.Models.Services
 
         public bool UpdateBorrowDate(int borrowID, DateTime newBorrowDate)
         {
-            var borrowing = _context.Borrowings.FirstOrDefault(b => b.BookID == borrowID);
+            var borrowing = _context.Borrowings.FirstOrDefault(b => b.BorrowID == borrowID);
             if (borrowing == null)
             {
                 return false;
@@ -286,7 +288,7 @@ namespace SDAM2_LMS.Models.Services
             else
             {
                 borrowing.BorrowDate = newBorrowDate;
-                borrowing.ReturnDate = DateTime.Now.AddDays(7);
+                borrowing.ReturnDate = newBorrowDate.AddDays(7);
                 _context.Borrowings.Update(borrowing);
                 _context.SaveChanges();
             }

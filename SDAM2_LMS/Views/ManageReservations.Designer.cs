@@ -35,10 +35,12 @@
             borrowedBooksDataGrid = new DataGridView();
             tabControl1 = new TabControl();
             BorrowedBooksTab = new TabPage();
+            updateBorrowedBtn = new Button();
+            BorrowDateInput = new DateTimePicker();
             ReservedBooksTab = new TabPage();
-            ReservedBooksDataGrid = new DataGridView();
-            borrowDateInput = new DateTimePicker();
             Update = new Button();
+            reserveDateInput = new DateTimePicker();
+            ReservedBooksDataGrid = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)borrowedBooksDataGrid).BeginInit();
             tabControl1.SuspendLayout();
             BorrowedBooksTab.SuspendLayout();
@@ -77,7 +79,7 @@
             borrowedBooksDataGrid.Name = "borrowedBooksDataGrid";
             borrowedBooksDataGrid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             borrowedBooksDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            borrowedBooksDataGrid.Size = new Size(803, 298);
+            borrowedBooksDataGrid.Size = new Size(803, 266);
             borrowedBooksDataGrid.TabIndex = 1;
             borrowedBooksDataGrid.CellContentClick += borrowedBooksDataGrid_CellContentClick;
             // 
@@ -96,6 +98,8 @@
             // 
             // BorrowedBooksTab
             // 
+            BorrowedBooksTab.Controls.Add(updateBorrowedBtn);
+            BorrowedBooksTab.Controls.Add(BorrowDateInput);
             BorrowedBooksTab.Controls.Add(borrowedBooksDataGrid);
             BorrowedBooksTab.Location = new Point(4, 44);
             BorrowedBooksTab.Name = "BorrowedBooksTab";
@@ -105,10 +109,30 @@
             BorrowedBooksTab.Text = "Borrowed Books";
             BorrowedBooksTab.UseVisualStyleBackColor = true;
             // 
+            // updateBorrowedBtn
+            // 
+            updateBorrowedBtn.Location = new Point(230, 272);
+            updateBorrowedBtn.Name = "updateBorrowedBtn";
+            updateBorrowedBtn.Size = new Size(75, 23);
+            updateBorrowedBtn.TabIndex = 6;
+            updateBorrowedBtn.Text = "updateBorrowedBtn";
+            updateBorrowedBtn.UseVisualStyleBackColor = true;
+            updateBorrowedBtn.Click += UpdateBo_Click;
+            // 
+            // BorrowDateInput
+            // 
+            BorrowDateInput.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            BorrowDateInput.Format = DateTimePickerFormat.Short;
+            BorrowDateInput.Location = new Point(5, 270);
+            BorrowDateInput.MinDate = new DateTime(2025, 2, 3, 0, 0, 0, 0);
+            BorrowDateInput.Name = "BorrowDateInput";
+            BorrowDateInput.Size = new Size(200, 25);
+            BorrowDateInput.TabIndex = 5;
+            // 
             // ReservedBooksTab
             // 
             ReservedBooksTab.Controls.Add(Update);
-            ReservedBooksTab.Controls.Add(borrowDateInput);
+            ReservedBooksTab.Controls.Add(reserveDateInput);
             ReservedBooksTab.Controls.Add(ReservedBooksDataGrid);
             ReservedBooksTab.Location = new Point(4, 44);
             ReservedBooksTab.Name = "ReservedBooksTab";
@@ -117,6 +141,26 @@
             ReservedBooksTab.TabIndex = 1;
             ReservedBooksTab.Text = "Reserved Books";
             ReservedBooksTab.UseVisualStyleBackColor = true;
+            // 
+            // Update
+            // 
+            Update.Location = new Point(229, 272);
+            Update.Name = "Update";
+            Update.Size = new Size(75, 23);
+            Update.TabIndex = 4;
+            Update.Text = "button1";
+            Update.UseVisualStyleBackColor = true;
+            Update.Click += Update_Click;
+            // 
+            // reserveDateInput
+            // 
+            reserveDateInput.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            reserveDateInput.Format = DateTimePickerFormat.Short;
+            reserveDateInput.Location = new Point(4, 270);
+            reserveDateInput.MinDate = new DateTime(2025, 2, 3, 0, 0, 0, 0);
+            reserveDateInput.Name = "reserveDateInput";
+            reserveDateInput.Size = new Size(200, 25);
+            reserveDateInput.TabIndex = 3;
             // 
             // ReservedBooksDataGrid
             // 
@@ -148,29 +192,9 @@
             ReservedBooksDataGrid.Name = "ReservedBooksDataGrid";
             ReservedBooksDataGrid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             ReservedBooksDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            ReservedBooksDataGrid.Size = new Size(803, 252);
+            ReservedBooksDataGrid.Size = new Size(803, 266);
             ReservedBooksDataGrid.TabIndex = 2;
             ReservedBooksDataGrid.CellContentClick += ReservedBooksDataGrid_CellContentClick;
-            // 
-            // borrowDateInput
-            // 
-            borrowDateInput.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            borrowDateInput.Format = DateTimePickerFormat.Short;
-            borrowDateInput.Location = new Point(103, 261);
-            borrowDateInput.MinDate = new DateTime(2025, 2, 3, 0, 0, 0, 0);
-            borrowDateInput.Name = "borrowDateInput";
-            borrowDateInput.Size = new Size(200, 25);
-            borrowDateInput.TabIndex = 3;
-            // 
-            // Update
-            // 
-            Update.Location = new Point(337, 261);
-            Update.Name = "Update";
-            Update.Size = new Size(75, 23);
-            Update.TabIndex = 4;
-            Update.Text = "button1";
-            Update.UseVisualStyleBackColor = true;
-            Update.Click += Update_Click;
             // 
             // ManageReservations
             // 
@@ -197,7 +221,9 @@
         private TabPage ReservedBooksTab;
         private TabPage BorrowedBooksTab;
         private DataGridView ReservedBooksDataGrid;
-        private DateTimePicker borrowDateInput;
+        private DateTimePicker reserveDateInput;
         private Button Update;
+        private Button updateBorrowedBtn;
+        private DateTimePicker BorrowDateInput;
     }
 }

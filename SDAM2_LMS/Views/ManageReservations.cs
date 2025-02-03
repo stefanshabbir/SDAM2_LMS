@@ -54,7 +54,7 @@ namespace SDAM2_LMS
         {
             borrowedBooksDataGrid.DataSource = _borrowController.GetBorrowings();
             borrowedBooksDataGrid.Columns["BookID"].Visible = false;
-            //borrowedBooksDataGrid.Columns["AccountID"].Visible = false;
+            borrowedBooksDataGrid.Columns["BorrowID"].Visible = false;
 
 
             if (!borrowedBooksDataGrid.Columns.Contains("Return"))
@@ -85,7 +85,7 @@ namespace SDAM2_LMS
             ReservedBooksDataGrid.DataSource = _borrowController.GetReservations();
             ReservedBooksDataGrid.Columns["BookID"].Visible = false;
             ReservedBooksDataGrid.Columns["AccountID"].Visible = false;
-
+            ReservedBooksDataGrid.Columns["BorrowID"].Visible = false;
 
             if (!ReservedBooksDataGrid.Columns.Contains("Cancel"))
             {
@@ -123,12 +123,26 @@ namespace SDAM2_LMS
 
         private void Update_Click(object sender, EventArgs e)
         {
-            DateTime newBorrowDate = borrowDateInput.Value;
+            DateTime newBorrowDate = reserveDateInput.Value;
+            if (ReservedBooksDataGrid.SelectedRows.Count > 0)
+            {
+                var selectedRow = ReservedBooksDataGrid.SelectedRows[0];
+                var bookID = (int)selectedRow.Cells["BorrowID"].Value;
+                bool successful = _borrowController.UpdateBorrowDate(bookID, newBorrowDate);
+                if (successful)
+                {
+                    borrowedBooksDataGrid.DataSource = _borrowController.GetReservations();
+                }
+            }
+        }
 
+        private void UpdateBo_Click(object sender, EventArgs e)
+        {
+            DateTime newBorrowDate = BorrowDateInput.Value;
             if (borrowedBooksDataGrid.SelectedRows.Count > 0)
             {
                 var selectedRow = borrowedBooksDataGrid.SelectedRows[0];
-                var bookID = (int)selectedRow.Cells["BookID"].Value;
+                var bookID = (int)selectedRow.Cells["BorrowID"].Value;
                 bool successful = _borrowController.UpdateBorrowDate(bookID, newBorrowDate);
                 if (successful)
                 {

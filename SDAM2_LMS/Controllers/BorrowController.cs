@@ -244,5 +244,29 @@ namespace SDAM2_LMS.Controllers
                 return false;
             }
         }
+
+        public bool UpdateBorrowDate(int borrowID, DateTime newBorrowDate)
+        {
+            try
+            {
+                bool dateUpdated = _bookService.UpdateBorrowDate(borrowID, newBorrowDate);
+                if (dateUpdated)
+                {
+                    MessageBox.Show("Borrow Date updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Failed to update borrow date.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                new WriteErrorLog(ex);
+                MessageBox.Show($"Could not update borrow date. An Unexpected Error occured. Check logs for more details. \nError:\n {ex}");
+                return false;
+            }
+        }
     }
 }
